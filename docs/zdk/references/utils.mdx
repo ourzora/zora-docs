@@ -1,0 +1,493 @@
+---
+id: utils
+title: Utils
+---
+
+Many utility and convenience functions are defined in `utils.ts`
+
+The utility functions can roughly be split into 3 categories:
+
+- `Type Constructors`
+- `Hash Utilities`
+- `EIP-712 Utilities`
+- `Miscellaneous`
+
+### Type Constructors
+
+There are a number of [Types](src/types.ts) that are necessary to interact with a Zora instance.
+The type constructors accept input, perform basic validation on the input, and return the properly formatted Zora Type.
+
+
+#### constructMediaData
+
+- Accepts the arguments for constructing `MediaData` type.
+- Validates that the URIs begins with `https://`.
+- Validates that the hashes are exactly 32 bytes in length.
+
+| **Name**     | **Type**     | **Description**                                    |
+| ------------ | ------------ | -------------------------------------------------- |
+| tokenURI     | string       | The uri where the media's content can be accessed  |
+| metadataURI  | string       | The uri where the media's metadata can be accessed |
+| contentHash  | BytesLike    | The sha256 hash of the media's content             |
+| metadataHash | BytesLike    | The sha256 hash of the media's metadata            |
+
+```typescript
+import { constructMediaData, sha256FromBuffer } from '@zoralabs/zdk'
+
+const contentHash = await sha256FromBuffer(Buffer.from('some content'))
+const metadataHash = await sha256FromBuffer(Buffer.from('some metadata'))
+
+const mediaData = constructMediaData(
+  'https://token.com',
+  'https://metadata.com',
+  contentHash,
+  metadataHash
+)
+```
+
+#### constructAsk
+
+- Parses and Validates the currency address to ensure its a valid Ethereum Address
+
+| **Name**     | **Type**  | **Description**                                      |
+| --------- | ------------ | ---------------------------------------------------- |
+| currency  | string       | The currency address of the Ask                      |
+| amount    | BigNumberish | The amount of the Ask in the currency's atomic units |
+
+```typescript
+import { constructAsk, Decimal } from '@zoralabs/zdk'
+
+const dai = '0x6B175474E89094C44Da98b954EedeAC495271d0F'
+const decimal100 = Decimal.new(100)
+const ask = constructAsk(dai, decimal100.value)
+```
+
+#### constructBid
+
+- Parses and Validates the bidder, recipient, and currency addresses.
+- Rounds the SellOnShare to 4 decimals of precision
+
+| **Name**    | **Type**     | **Description**                                      |
+| ----------- | ------------ | ---------------------------------------------------- |
+| currency    | string       | The currency address of the Bid                      |
+| amount      | BigNumberish | The amount of the Bid in the currency's atomic units |
+| bidder      | string       | The address of the Bid's bidder                      |
+| recipient   | string       | The address of the Bid's recipient                   |
+| sellOnShare | number       | The sellOnShare of the Bid                           |
+
+```typescript
+import { constructBid, Decimal } from '@zoralabs/zdk'
+
+const dai = '0x6B175474E89094C44Da98b954EedeAC495271d0F'
+const decimal100 = Decimal.new(100)
+const bidder = '0xf13090cC20613BF9b5F0b3E6E83CCAdB5Cd0FbD5'
+const bid = constructBid(dai, decimal100.value, bidder, bidder, 33.3333)
+```
+
+#### constructBidShares
+
+- Accepts `number` args, converts them to ethers `BigNumber` type with 18 decimals of precision.
+- Performs validation that the `BigNumber` representations sum to `100` in `BigNumber` form.
+
+| **Name**    | **Type**     | **Description**                                      |
+| ----------- | ------------ | ---------------------------------------------------- |
+| creator     | number       | The creator bidshare for the media                   |
+| owner       | number       | The owner bidshare for the media                     |
+| prevOwner   | number       | The prevOwner bidshare for the media                 |
+
+
+```typescript
+import { constructBidShares } from '@zoralabs/zdk'
+
+const bidShares = constructBidShares(10, 90, 0)
+```
+
+### Hashing Utilities
+
+All pieces of media minted on the Zora Protocol must etch a `sha56` hash of both its content and metadata onto the blockchain.
+As such it is important developers interacting with Zora have reliable ways to create and verify hashes of data of all types of sizes.
+
+#### sha256FromBuffer
+
+Create a sha256 from a `Buffer` object
+
+| **Name**    | **Type**     | **Description**                                      |
+| ----------- | ------------ | ---------------------------------------------------- |
+| buffer      | Buffer       | The Buffer to be hashed                              |
+
+```typescript
+import { sha256FromBuffer } from '@zoralabs/zdk'
+import { promises as fs } from 'fs'
+
+
+const buf = await fs.readFile('path/to/file')
+const hash = sha256FromBuffer(buf)
+
+const otherBuffer = Buffer.from('someContent')
+const otherHash = sha256FromBuffer(otherBuffer)
+```
+
+#### sha256FromHexString
+
+Create a sha256 hash from a hex string.
+Hex string must be prefixed with `0x`
+
+| **Name**    | **Type**     | **Description**                                      |
+| ----------- | ------------ | ---------------------------------------------------- |
+| data        | string       | The hex encoded data to be hashed                    |
+
+
+```typescript
+import { sha256FromHexString } from '@zoralabs/zdk'
+
+const buf = Buffer.from('someContent')
+const hexString = '0x'.concat(buf.toString('hex'))
+const hash = sha256FromHexString(hexString)
+```
+
+#### sha256FromFile
+
+Create a sha256 hash from a local file
+This is most useful for the hashing of large files. It uses a readStream to load bits into memory via a buffer and construct a hash as it consumes the contents of the file.
+
+| **Name**    | **Type**     | **Description**                                                 |
+| ----------- | ------------ | --------------------------------------------------------------- |
+| pathToFile  | string       | The path to the file to be hashed                               |
+| chunkSize   | number       | The chunk size in bytes for the read stream to read into memory |
+
+```typescript
+import { sha256FromFile } from '@zoralabs/zdk'
+
+const hash = await sha256FromFile('path/to/file', 16 * 1024)
+```
+
+### EIP-712 Utilities
+
+#### signPermitMessage
+
+[Permit](https://eips.ethereum.org/EIPS/eip-2612) was specified as an extension of ERC-20 standard to allow for users to issue `approval` to accounts without needing `ETH`.
+
+We have extended it further to be used for the Zora Protocol, so that users can delegate approvals to orther smart contracts to perform actions that `approved` users can do such as:
+
+- `setAsk`
+- `acceptBid`
+- `updateContentURI`
+- `updateMetadataURI`
+- `transfer`
+
+
+For now, the signer must be an `ethers` `Wallet` object. But soon we will support any `Signer`.
+
+| **Name**    | **Type**     | **Description**                                      |
+| ----------- | ------------ | ---------------------------------------------------- |
+| owner       | Wallet       | The owners's wallet                                  |
+| toAddress   | string       | The address being granted the permit                 |
+| mediaId     | number       | The ID of the media                                  |
+| nonce       | number       | The permitNonce of the owner address                 |
+| deadline    | number       | The deadline of the signature to be included in a tx |
+| domain      | EIP712Domain | The EIP712Domain for the permit sig                  |
+
+```typescript
+import { JsonRpcProvider } from '@ethersproject/providers'
+import { generatedWallets } from '@zoralabs/core/dist/utils'
+import {
+  Zora,
+  signPermitMessage,
+} from 'zoralabs/zdk'
+
+const provider = new JsonRpcProvider()
+const [mainWallet, otherWallet] = generatedWallets(provider)
+const rinkebyZora = new Zora(mainWallet, 4)
+const deadline = Math.floor(new Date().getTime() / 1000) + 60 * 60 * 24 // 24 hours
+const domain = rinkebyZora.eip712Domain()
+const eipSig = await signPermitMessage(
+  mainWallet,
+  otherWallet.address,
+  0, // mediaId
+  0, // nonce
+  deadline,
+  domain
+)
+```
+
+#### signMintWithSigMessage
+
+We extended `EIP-712` to allow for creators to `mint` without needing `ETH`.
+A user can sign a `mintWithSig` message and use a trusted relayer to relay the transaction and mint on their behalf.
+
+| **Name**       | **Type**     | **Description**                                      |
+| -------------- | ------------ | ---------------------------------------------------- |
+| owner          | Wallet       | The owners's wallet                                  |
+| contentHash    | BytesLike    | The sha256 hash of the media's content               |
+| metadataHash   | BytesLike    | The sha256 hash of the media's metadata              |
+| creatorShareBN | BigNumber    | The creator share of the media                       |
+| nonce          | number       | The mintWithSigNonce of the owner address            |
+| deadline       | number       | The deadline of the signature to be included in a tx |
+| domain         | EIP712Domain | The EIP712Domain for the mintWithSig signature       |
+
+```typescript
+import { JsonRpcProvider } from '@ethersproject/providers'
+import { generatedWallets } from '@zoralabs/core/dist/utils'
+import {
+  Zora,
+  sha256FromBuffer,
+  signMintWithSigMessage,
+  Decimal,
+  constructMediaData,
+  constructBidShares
+} from 'zoralabs/zdk'
+
+const provider = new JsonRpcProvider()
+const [mainWallet, otherWallet] = generatedWallets(provider)
+const rinkebyZora = new Zora(otherWallet, 4)
+
+const contentHash = await sha256FromBuffer(Buffer.from('some content'))
+const metadataHash = await sha256FromBuffer(Buffer.from('some metadata'))
+const contentURI = 'https://token.com'
+const metadataURI = 'https://metadata.com'
+
+const mediaData = constructMediaData(
+  contentURI,
+  metadataURI,
+  contentHash,
+  metadataHash
+)
+const bidShares = constructBidShares(10, 90, 0)
+const deadline = Math.floor(new Date().getTime() / 1000) + 60 * 60 * 24 // 24 hours
+const domain = rinkebyZora.eip712Domain()
+const nonce = await rinkebyZora.fetchMintWithSigNonce(mainWallet.address)
+const eipSig = await signMintWithSigMessage(
+  mainWallet,
+  contentHash,
+  metadataHash,
+  Decimal.new(10).value,
+  nonce.toNumber(),
+  deadline,
+  domain
+)
+```
+
+#### recoverSignatureFromPermit
+
+Recover the address of the signing private key of a `Permit` message
+
+| **Name**    | **Type**        | **Description**                                      |
+| ----------- | --------------- | ---------------------------------------------------- |
+| owner       | Wallet          | The owners's wallet                                  |
+| toAddress   | string          | The address being granted the permit                 |
+| mediaId     | number          | The ID of the media                                  |
+| nonce       | number          | The permitNonce of the owner address                 |
+| deadline    | number          | The deadline of the signature to be included in a tx |
+| domain      | EIP712Domain    | The EIP712Domain for the permit sig                  |
+| sig         | EIP712Signature | The EIP712Signature to have an address recovered     |
+
+```typescript
+import { JsonRpcProvider } from '@ethersproject/providers'
+import { generatedWallets } from '@zoralabs/core/dist/utils'
+import {
+  Zora,
+  signPermitMessage,
+  recoverSignatureFromPermit,
+} from 'zoralabs/zdk'
+
+const provider = new JsonRpcProvider()
+const [mainWallet, otherWallet] = generatedWallets(provider)
+const zora = new Zora(provider, 4)
+const deadline = Math.floor(new Date().getTime() / 1000) + 60 * 60 * 24 // 24 hours
+const domain = zora.eip712Domain()
+const eipSig = await signPermitMessage(
+  mainWallet,
+  otherWallet.address,
+  1,
+  1,
+  deadline,
+  domain
+)
+
+const recovered = await recoverSignatureFromPermit(
+  otherWallet.address,
+  1,
+  1,
+  deadline,
+  domain,
+  eipSig
+)
+
+if (recovered.toLowerCase() != mainWallet.address.toLowerCase()) {
+  console.log('Unable to Validate Signature')
+} else {
+  console.log('Signature Validated')
+}
+```
+
+#### recoverSignatureFromMintWithSig
+
+Recover the address of the signing private key of a `mintWithSig` message
+
+| **Name**       | **Type**        | **Description**                                      |
+| -------------- | --------------- | ---------------------------------------------------- |
+| owner          | Wallet          | The owners's wallet                                  |
+| contentHash    | BytesLike       | The sha256 hash of the media's content               |
+| metadataHash   | BytesLike       | The sha256 hash of the media's metadata              |
+| creatorShareBN | BigNumber       | The creator share of the media                       |
+| nonce          | number          | The mintWithSigNonce of the owner address            |
+| deadline       | number          | The deadline of the signature to be included in a tx |
+| domain         | EIP712Domain    | The EIP712Domain for the mintWithSig signature       |
+| sig            | EIP712Signature | The EIP712Signature to have an address recovered     |
+
+```typescript
+import { JsonRpcProvider } from '@ethersproject/providers'
+import { generatedWallets } from '@zoralabs/core/dist/utils'
+import {
+  Zora,
+  sha256FromBuffer,
+  signMintWithSigMessage,
+  recoverSignatureFromMintWithSig,
+  Decimal
+} from 'zoralabs/zdk'
+
+const provider = new JsonRpcProvider()
+const [mainWallet] = generatedWallets(provider)
+const rinkebyZora = new Zora(provider, 4)
+const deadline = Math.floor(new Date().getTime() / 1000) + 60 * 60 * 24 // 24 hours
+const domain = rinkebyZora.eip712Domain()
+
+const contentHash = await sha256FromBuffer(Buffer.from('some content'))
+const metadataHash = await sha256FromBuffer(Buffer.from('some metadata'))
+
+const eipSig = await signMintWithSigMessage(
+  mainWallet,
+  contentHash,
+  metadataHash,
+  Decimal.new(10).value,
+  1,
+  deadline,
+  domain
+)
+
+const recovered = await recoverSignatureFromMintWithSig(
+  contentHash,
+  metadataHash,
+  Decimal.new(10).value,
+  2,
+  deadline,
+  domain,
+  eipSig
+)
+
+if (recovered.toLowerCase() != mainWallet.address.toLowerCase()) {
+  console.log('Unable to Validate Signature')
+} else {
+  console.log('Signature Validated')
+}
+```
+
+### Miscellaneous
+
+#### approveERC20
+
+Approves the specified amount of an ERC20 for the `spender` address to spend from the `wallet` address.
+
+| **Name**       | **Type**        | **Description**                                      |
+| -------------- | --------------- | ---------------------------------------------------- |
+| wallet         | Wallet          | An ethers wallet with an ERC20 balance               |
+| erc20Address   | string          | The address of the ERC20 being approved              |
+| spender        | string          | The address being approved to spend the ERC20        |
+| amount         | BigNumberish    | The amount of ERC20 being approved                   |
+
+```typescript
+import { approveERC20, Decimal } from '@zoralabs/zdk'
+import { Wallet } from 'ethers'
+import { JsonRpcProvider } from '@ethersproject/providers'
+
+const provider = new JsonRpcProvider() // must provide a uri to access an ethereum node, defaults to localhost:8545
+const dai = '0x6B175474E89094C44Da98b954EedeAC495271d0F'
+const wallet = Wallet.createRandom().connect(provider) // creates random wallet and connects to ethereum provider
+const spenderWallet = Wallet.createRandom().connect(provider) // creates another random wallet
+
+// before calling approveERC20 on wallet, ensure it has a balance of the currency
+// in this example wallet is a randomly created wallet so does not contain a balance of dai
+await approveERC20(wallet, dai, spenderWallet.address, Decimal.new(10).value)
+```
+
+#### isURIHashVerified
+
+ Returns the `verified` status of a uri.
+ A uri is only considered `verified` if its content hashes to its expected hash
+
+| **Name**       | **Type**    | **Description**                                                                 |
+| -------------- | ----------- | ------------------------------------------------------------------------------- |
+| uri            | string      | A uri beginning with `https://` where some content is stored                    |
+| expectedHash   | BytesLike   | The expected sha256 hash for the content at the given uri                       |
+| timeout        | number      | The timeout in milliseconds for the http request to uri                         |
+
+```typescript
+import { isURIHashVerified } from '@zoralabs/zdk'
+
+const uri = 'https://ipfs.io/ipfs/QmRA3NWM82ZGynMbYzAgYTSXCVM14Wx1RZ8fKP42G6gjgj'
+const expectedHash = '0xb1674191a88ec5cdd733e4240a81803105dc412d6c6708d53ab94fc248f4f553'
+
+const verified = await isURIHashVerified(uri, expectedHash)
+```
+
+#### isMediaDataVerified
+
+Returns the `verified` status of some MediaData.
+MediaData is only considered `verified` if the content of its URIs hash to their respective hash
+
+| **Name**       | **Type**    | **Description**                                                      |
+| -------------- | ----------- | -------------------------------------------------------------------- |
+| mediaData      | MediaData   | The MediaData that needs to be verified                              |
+| timeout        | number      | The timeout in milliseconds for the http request to mediaData's uris |
+
+```typescript
+import { constructMediaData, isMediaDataVerified } from '@zoralabs/zdk'
+
+const contentURI = 'https://ipfs.fleek.co/ipfs/bafybeiacyrrjel6qq2mdv6to6fvbzsg64y3g4kbp32h55zfmesx2oe7cwi'
+const contentHash = '0x4646793fb9d195cd2760c8c11538b5f7b97fd456fbe8a1226a997ed49d6f944d'
+const metadataURI = 'https://ipfs.fleek.co/ipfs/bafybeifvmzeyggdi36igqjiub5bq6vbpn5ebihxgqjbrk5ibqculk4upoy'
+const metadataHash = '0x95a1b4039d0582a6bf5c3fb57893cf4b57a9a9b9986bb7cc89f3489e0b702fdb'
+
+const mediaData = constructMediaData(contentURI, metadataURI, contentHash, metadataHash)
+const verified = isMediaDataVerified(mediaData)
+```
+
+#### wrapETH
+
+Calls the `deposit` function on the specified weth contract address, wrapping the `amount` of eth to weth for the `wallet`
+
+| **Name**       | **Type**    | **Description**                                                 |
+| -------------- | ----------- | --------------------------------------------------------------- |
+| wallet         | Wallet      | The wallet with an eth balance that is wrapping to weth         |
+| wethAddress    | string      | The address of the weth contract                                |
+| amount         | BigNumber   | The amount of eth to be wrapped to weth                         |
+
+```typescript
+import { wrapETH, WETH_MAINNET, Decimal } from '@zoralabs/zdk'
+import { Wallet } from 'ethers'
+import { JsonRpcProvider } from '@ethersproject/providers'
+
+const provider = new JsonRpcProvider("<infura / alchemy mainnet node url>") // you can pass a url to your ethereum node, it will default to localhost:8545 for local blockchain development
+const wallet =  Wallet.fromMnemoic('<your mneumonic>').connect(provider)
+await wrapETH(wallet, WETH_MAINNET, Decimal.new(1).value) // wrap 1 eth to weth for wallet
+```
+
+#### unwrapWETH
+
+Calls the `withdraw ` function on the specified weth contract address, unwrapping `amount` of weth to eth for `wallet`
+
+| **Name**       | **Type**    | **Description**                                                 |
+| -------------- | ----------- | --------------------------------------------------------------- |
+| wallet         | Wallet      | The wallet with an eth balance that is wrapping to weth         |
+| wethAddress    | string      | The address of the weth contract                                |
+| amount         | BigNumber   | The amount of eth to be wrapped to weth                         |
+
+```typescript
+import { unwrapWETH, WETH_MAINNET, Decimal } from '@zoralabs/zdk'
+import { Wallet } from 'ethers'
+import { JsonRpcProvider } from '@ethersproject/providers'
+
+const provider = new JsonRpcProvider("<infura / alchemy mainnet node url>") // you can pass a url to your ethereum node, it will default to localhost:8545 for local blockchain development
+const wallet =  Wallet.fromMnemoic('<your mneumonic>').connect(provider)
+await unwrapWETH(wallet, WETH_MAINNET, Decimal.new(1).value) // wrap 1 eth to weth for wallet
+```
