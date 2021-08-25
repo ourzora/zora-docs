@@ -7,9 +7,9 @@ Read our whitepaper below
 
 ---
 
-### Zora: Universal Media Protocol
+## Zora: Universal Media Protocol
 
-#### Introduction
+### Introduction
 
 Digital tooling and internet communication networks have given people the unprecedented ability to create and share media.
 But today, creators have unprecedented dependency on internet media platforms. Media is created on, uploaded to, hosted by,
@@ -36,7 +36,7 @@ Each minute, creators generate unthinkable amounts of information and value. Tod
 by digital media platforms. By enabling platformless media, Zora Protocol welcomes an age where that value returns where it
 belongs: creators and their communities.
 
-#### Zora Protocol Overview
+### Zora Protocol Overview
 
 Zora is a protocol designed for the Ethereum blockchain that establishes universal, perpetual markets for media in the form
 of [ERC-721](https://eips.ethereum.org/EIPS/eip-721). Each piece of media is embedded with a market, consisting of a transparent
@@ -51,7 +51,7 @@ The Zora protocol introduces integrity checks to ensure that media and its metad
 can be performed by any system at any time. This integrity safeguard allows for the URI of media and metadata to be updated
 arbitrarily, ensuring robustness when hosting media off-chain.
 
-#### Bids
+### Bids
 
 This protocol uses Bids to represent buy-side liquidity for a piece of media. An important distinction of a bid is that it
 specifies an [ERC-20](https://eips.ethereum.org/EIPS/eip-20) currency to be bid with. This mechanism allows for a market of
@@ -89,7 +89,7 @@ struct Bid {
 }
 ```
 
-#### Bid Validity
+### Bid Validity
 
 When splitting a bid between shareholders, this protocol will not round or estimate the share amounts; it requires the bid
 amount be perfectly divisible into its shares. For example, suppose a piece of media is to have a bid split evenly to the
@@ -120,7 +120,7 @@ Therefore, given the least common denominator of 200, any valid bid must be divi
 this value may seem high, but recall that the majority of ERC-20 tokens in Ethereum have 18 decimals. Therefore, a bid for
 the above set of shares must be divisible by 5 * 10-15 units, which we assume to be an acceptable amount for this protocol.
 
-#### Asks
+### Asks
 At any time, an owner of a piece of media may accept a valid bid. However, bids only represent the buy-side of a media market.
 Without a sell-side, liquidity will fragment into multiple different pools. This protocol therefore uses an ask mechanism that
 allows for bidders to automatically execute a trade if the ask is fulfilled.
@@ -140,7 +140,7 @@ struct Ask {
 }
 ```
 
-#### Media Uniqueness & Integrity
+### Media Uniqueness & Integrity
 
 The primary objective of this article is to establish the market value of any piece of media. It is therefore paramount that no
 two pieces of media are identical, or else the value of the media risks fragmentation. We introduce a method to ensure the
@@ -160,7 +160,7 @@ and metadata for integrity. It is up to the market participants to check the int
 it is expected that a failing integrity check on a piece of media will result in the devaluation of that media and removal of
 buy-side liquidity by bidders on the piece.
 
-#### 3rd Party Support
+### 3rd Party Support
 
 Interacting with this protocol requires each participant maintain an Ethereum balance such that they can submit transactions
 to the Ethereum blockchain. In order to avoid this requirement, some platforms or service providers may want to submit
@@ -175,7 +175,7 @@ transaction.
 By adding support for 3rd parties to transact on a user's behalf, a new media ecosystem is able to develop using this protocol
 as a primitive.
 
-#### Conclusion
+### Conclusion
 
 This protocol aims to serve as a means for discovering and capturing the true value of created media.Platformless media
 tokens with embedded markets, or cryptomedia, are the key primitive in facilitating this value capture. By unifying the

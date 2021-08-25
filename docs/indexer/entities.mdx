@@ -1,0 +1,247 @@
+---
+id: entities
+title: Entities
+---
+
+---
+
+One benefit of GraphQL is that it is self-documenting. The best way to view the current tables, field names and possible
+queries one could make is through a GraphQL client UI. We have a hosted Indexer GraphiQL
+[Console](https://ourzora.github.io/indexer-playground/). The tables and their fields are also documented below.
+
+## Ethereum Data
+
+Indexer stores the raw data for Transactions and Event Logs that it finds "interesting", namely transactions that interact
+with the Zora Protocol, and transactions that result in a transfer of an NFT Contract it is indexing.
+
+```graphql
+// Ethereum transaction data
+Transaction {
+  // Fields
+  blockHash
+  blockNumber
+  blockTimestamp
+  failureReason
+  from
+  gas
+  gasPrice
+  hash
+  input
+  network
+  nonce
+  status
+  to
+  transactionIndex
+  value
+
+  // Relationships
+  eventLogs
+  <event table name>Events // i.e. auctionApprovalUpdatedEvents)
+  mediaMints // see MediaMint table for context
+}
+```
+```graphql 
+// Ethereum event log data
+EventLog {
+  // Fields
+  address
+  blockHash
+  blockNumber
+  blockTimestamp
+  data
+  id // format: <transactionHash>-<logIndex> i.e. 0xbd7c2c6e978cc78e826ddc9404c769b6151cf762ac43e78bafade98b7d3dd5e1-24
+  logIndex
+  topics
+  transactionHash
+
+  // Relationships
+  <event table name>Event // i.e. auctionApprovalUpdatedEvent
+  mediaMints // see MediaMint table for context
+  transaction
+}
+```
+
+## Aggregated Tables
+
+Indexer keeps track of higher level, aggregated tables that represent that most up to date state of an object. At
+any block number, the aggregate view will mirror the view of the object on the blockchain. **Token**, **Media**, and
+**Auction** are the three aggregate tables. Read more about them below.
+
+### Token
+
+```graphql 
+// Individual NFT
+Token {
+  // Fields
+  address // contract address
+  id // format: <address>-<tokenId> i.e. 0x7C2668BD0D3c050703CEcC956C11Bd520c26f7d4-241
+  metadataId // this is a uuid to make the metadata relationship possible
+  mintTransferEventId // same format as EventLog id, to make mintTransferEvent relationship possible
+  minter // same as mintTransferEvent.to
+  name
+  owner
+  supportsMetadata
+  symbol
+  tokenId
+  tokenURI
+
+  // Relationships
+  auctions // all Auctions for this token
+  <event table name>Event // i.e. auctionApprovalUpdatedEvent
+  media // Zora Media info (only available for Zora NFTs)
+  metadata // metadata json blob, if exists
+  mintTransferEvent // TokenTransferEvent where .from is the 0x00... address
+  tokenContract // TokenContract has information like name and symbol
+  transferEvents // all TokenTransferEvents
+}
+```
+
+### Media
+
+```graphql 
+// Media - the Zora NFT extension - see Zora's Media.sol for context
+Media {
+  // Fields
+  address // always the same contract address, makes many relationships possible
+  contentHash
+  contentURI
+  creator
+  creatorBidShare
+  metadataHash
+  metadataURI
+  mintTransferEventId
+  owner
+  ownerBidShare
+  prevOwner
+  prevOwnerBidShare
+  tokenId
+
+  // Relationships
+  askEvents // array of MarketAskEvents
+  asks // array of MarketAsks
+  auctions // array of Auctions for this token
+  bidEvents // array of MarketBidEvents
+  bids // array of MarketBids
+  metadata // metadata json blob
+  token // Token
+  tokenMetadataURIUpdatedEvents // array of MediaTokenMetadataURIUpdatedEvents
+  tokenURIUpdatedEvents // array of MediaTokenURIUpdatedEvents
+  transferEvents // array of TokenTransferEvents
+}
+```
+
+### Auction
+
+```graphql
+// Zora AuctionHouse auction - see contract for more context
+// many Auction fields and relationships can be null depending on the state of the auction
+Auction {
+  // Fields
+  amountTokenOwnerReceived
+  approved
+  auctionCurrency
+  auctionId
+  curator
+  curatorFee
+  curatorFeePercentage
+  duration // always current with AuctionDurationExtended events
+  expiresAt - firstBidTime + current duration
+  firstBidTime
+  lastBidAmount
+  lastBidder
+  reservePrice
+  tokenContract
+  tokenId
+  tokenOwner
+  winner
+
+  // Relationships
+  approvalEvents // array of AuctionApprovalEvents
+  bidEvents // array of AuctionBidEvents
+  canceledEvent // single AuctionCanceledEvent
+  createdEvent // single AuctionCreatedEvent
+  durationExtendedEvents // array of AuctionDurationExtendedEvents
+  endedEvent // single AuctionEndedEvent
+  media // single Media object if the token is a Zora NFT
+  reservePriceUpdatedEvents // array of AuctionReservePriceUpdatedEvents
+  token // single Token object
+}
+```
+
+## Event Tables
+
+Protocol event tables are generally named by the format: 
+
+```<contract name><exact name for the event>Event. ```
+
+Currently we watch Zora's AuctionHouse events, which have the prefix **Auction**; Zora Media and Market events, which have prefixes
+**Media** and **Market**; and generic 721 events which have the prefix **Token**. The field names should match the specific contract
+event field names (exception: a struct in an event will be flattened into all the struct field names), plus there are several
+other useful fields that all **Event** tables share.
+
+Below is an example of one Event table.
+
+```graphql 
+// Zora AuctionHouse AuctionBid event - see contract for more context
+
+AuctionBidEvent {
+  // common Event fields
+  address // contract that emitted event
+  blockNumber
+  blockTimestamp
+  eventLogId
+  id // same format as EventLog, so same as eventLogId
+  logIndex
+  transactionHash
+
+  // event-specific fields
+  auctionId
+  extended
+  firstBid
+  sender
+  tokenContract
+  tokenId
+  value
+
+  // common Event relationships
+  eventLog
+  transaction
+  media
+  token
+  
+  // event-specific relationships
+  auction // all Auction__ events have this
+}
+```
+
+## Other Tables
+
+**TokenContract** is how Indexer keeps track of the contracts it wants to monitor.
+
+```graphql 
+TokenContract {
+  // fields
+  address
+  deployedAtBlockNumber
+  name
+  supportsMetadata // supports ERC721Metadata standard
+  symbol
+}
+```
+
+**TokenMetadata** stores a metadata json blob and info associating it with a specific token. There may be many TokenMetadata
+entries with the same URI and thus same metadata.
+
+```graphql
+TokenMetadata {
+  // fields
+  address // Token address
+  id // uuid, ignore
+  json // data blob
+  tokenId
+  tokenURI
+
+  // relationships
+  token
+}
+```
