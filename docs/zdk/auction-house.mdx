@@ -1,0 +1,208 @@
+---
+id: auction-house
+title: Auction House
+---
+
+The Zora Auction House is an open and permissionless system that allows any creator, community, platform or DAO to create
+and run their own curated auction houses.
+
+###
+
+As an extension to the Zora protocol, we provide an open and permissionless auction house, allowing any creator, community,
+platform, or DAO to create and run their own curated auction houses.
+
+The ZDK provides access to the Auction House contract, allowing  anyone to create, partake, or curate their own auction.
+
+## Constructor
+
+Similarly to instantiating the [Zora Protocol Module](https://docs.zora.co/zoraos/dev/zdk/zora-protocol), the Auction House Module requires an ethers.js Signer or Provider,
+and the chain ID you are interacting with.
+
+| **Name**         | **Type**                 | **Description**                                                      |
+| ---------------- | ------------------------ | -------------------------------------------------------------------- |
+| signerOrProvider | Signer \| Provider       | The from address of the media transfer                               |
+| chainId          | number                   | The chain ID for the Ethereum chain. 1 for mainnet, or 4 for rinkeby |
+
+```jsx
+import { AuctionHouse } from '@zoralabs/zdk'
+import { Wallet } from 'ethers'
+
+const wallet = Wallet.createRandom()
+const auctionHouse = new AuctionHouse(wallet, 1)
+```
+
+## Auction Interface
+
+Auctions are returned via the ZDK with the following structure:
+
+```jsx
+interface Auction {
+  approved: boolean
+  amount: BigNumber
+  duration: BigNumber
+  firstBidTime: BigNumber
+  reservePrice: BigNumber
+  curatorFeePercentage: number
+  tokenOwner: string
+  bidder: string
+  curator: string
+  auctionCurrency: string
+}
+```
+
+## Get an Auction
+
+
+| **Name**         | **Type**                 | **Description**                                                      |
+| ---------------- | ------------------------ | -------------------------------------------------------------------- |
+| auctionId        | BigNumberish             | The ID for the auction you are trying to fetch                       |
+
+```jsx
+import { AuctionHouse } from '@zoralabs/zdk'
+import { Wallet } from 'ethers'
+
+const wallet = Wallet.createRandom()
+const auctionHouse = new AuctionHouse(wallet, 1)
+
+await auctionHouse.fetchAuction(auctionId)
+```
+
+## Get an Auction from a Transaction Receipt
+
+If you've just created an auction, it may be useful to fetch the auction immediately after it was created.
+You can do this via the ZDK by simply passing the ethers.js Transaction Receipt from the transaction in which
+you created the auction.
+
+
+| **Name**         | **Type**                 | **Description**                                                      |
+| ---------------- | ------------------------ | -------------------------------------------------------------------- |
+| receipt          | TransactionReceipt       | The receipt from the transaction in which the auction was created    |
+
+```jsx
+import { AuctionHouse } from '@zoralabs/zdk'
+import { Wallet } from 'ethers'
+
+const wallet = Wallet.createRandom()
+
+// 1. Connect to the Auction House
+const auctionHouse = new AuctionHouse(wallet, 1)
+
+// 2. Create an Auction
+const createAuctionTx = await auctionHouse.createAuction(tokenId, duration, reservePrice, curator, curatorFeePercentage, auctionCurrency)
+
+// 3. Await confirmation from the Ethereum Network and receive a receipt
+const receipt = await createAuctionTx.wait()
+
+// 4. Finally, get the auction information from the transaction receipt
+const auction = await auctionHouse.fetchAuctionFromTransactionReceipt(receipt)
+```
+
+## Create an Auction
+In order to create an auction, the token owner simply approves their token to be used in the auction and specifies the
+parameters under which the auction shall take place.
+
+| **Name**             | **Type**     | **Description**                                                                                                                 |
+| ----------------     | ------------ | ------------------------------------------------------------------------------------------------------------------------------- |
+| tokenId              | BigNumberish | The ID of the token                                                                                                             |
+| duration             | BigNumberish | The length of time to run the auction for, in seconds                                                                           |
+| reservePrice         | BigNumberish | The minimum price of the first bid                                                                                              |
+| curator              | string       | The address for the auction curator, or the zero address for an uncurated auction                                               |
+| curatorFeePercentage | number       | The % of this auction's highest bid to award the auction curator once the auction has completed                                 |
+| auctionCurrency      | string       | The address of the ERC-20 contract in which this auction can be run. If set to the zero address, the auction will be run in ETH |
+| tokenAddress         | string       | [optional] The address of the NFT contract the token is coming from. If not specified, the Zora protocol is assumed.            |
+
+```jsx
+import { AuctionHouse, Zora } from '@zoralabs/zdk'
+import { Wallet } from 'ethers'
+
+const wallet = Wallet.createRandom()
+
+// 1. Connect to the Auction House and Zora Protocol
+const auctionHouse = new AuctionHouse(wallet, 1)
+const zora = new Zora(wallet, 1)
+
+// 2. Approve the media to be placed on auction
+const approvalTx = await zora.approve(auctionHouse.address, tokenId)
+
+// 3. Await confirmation of the approval
+await approvalTx.wait()
+
+// 3. Create the Auction
+const createAuctionTx = await auctionHouse.createAuction(tokenId, duration, reservePrice, curator, curatorFeePercentage, auctionCurrency)
+```
+
+## Approve an auction
+As a curator, you can approve any auction in which you have been specified as the curator. Doing so effectively
+opens up the auction for bidding to take place. 
+
+| **Name**   | **Type**     | **Description**                                                                                                                 |
+| ---------- | ------------ | -------------------------------------- |
+| auctionId  | BigNumberish | The ID for the auction                 |
+| approved   | boolean      | Whether or not the auction is approved |
+
+```jsx
+import { AuctionHouse } from '@zoralabs/zdk'
+import { Wallet } from 'ethers'
+
+const curatorWallet = Wallet.createRandom()
+const auctionHouse = new AuctionHouse(curatorWallet, 1)
+
+await auctionHouse.setAuctionApproval(auctionId, true)
+```
+
+## Create a bid
+If an auction has been approved, anyone is able to submit a bid to the auction.
+
+| **Name**   | **Type**     | **Description**                                                                                                                 |
+| ---------- | ------------ | --------------------------------------------------------------- |
+| auctionId  | BigNumberish | The ID of the auction                                           |
+| amount     | BigNumberish | The amount of the auction's specified currency to be bidding in |
+
+```jsx
+import { AuctionHouse } from '@zoralabs/zdk'
+import { Wallet } from 'ethers'
+
+const wallet = Wallet.createRandom()
+const auctionHouse = new AuctionHouse(wallet, 1)
+
+await auctionHouse.createBid(auctionId, amount)
+```
+
+## End an Auction
+
+Once an auction's timer has run out, anyone is able to end the auction. Ending an auction pays out the auction creator
+and curator, and transfers the token to the auction winner. If the auction is run using a Zora NFT, the auction also respects
+perpetual equity for the creator and any bid shares that may be present on the token.
+
+| **Name**   | **Type**     | **Description**                                                                                                                 |
+| ---------- | ------------ | --------------------- |
+| auctionId  | BigNumberish | The ID of the auction |
+
+```jsx
+import { AuctionHouse } from '@zoralabs/zdk'
+import { Wallet } from 'ethers'
+
+const wallet = Wallet.createRandom()
+const auctionHouse = new AuctionHouse(wallet, 1)
+
+await auctionHouse.endAuction(auctionId)
+```
+
+## Cancel an Auction
+
+If an auction has not received any bids yet, either the curator or creator may choose to cancel the auction. Doing
+so returns the token to the original owner and removes the auction from the directory.
+
+| **Name**   | **Type**     | **Description**                                                                                                                 |
+| ---------- | ------------ | ---------------------- |
+| auctionId  | BigNumberish | The ID for the auction |
+
+```jsx
+import { AuctionHouse } from '@zoralabs/zdk'
+import { Wallet } from 'ethers'
+
+const wallet = Wallet.createRandom()
+const auctionHouse = new AuctionHouse(wallet, 1)
+
+await auctionHouse.cancelAuction(auctionId)
+```

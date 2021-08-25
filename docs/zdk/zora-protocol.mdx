@@ -1,72 +1,48 @@
 ---
-id: zora
-title: Zora
+id: zora-protocol
+title: Zora Protocol
 ---
 
-The Zora class gives a developer direct read / write access to a specified instance of the Zora Protocol.
+The Zora module provides read/write access directly to the Zora protocol.
 
-## Constructor
+###
 
-```typescript
-constructor(
-    signerOrProvider: Signer | Provider,
-    chainId: number,
-    mediaAddress?: string,
-    marketAddress?: string
-  )
-```
+To instantiate the module,  an ethers ```Signer``` or ```Provider```, must be passed to the constructor. In addition,
+the ```chainID```representing the Ethereum network you are trying to connect to. Zora currently supports Rinkeby (4) for testing, and Mainnet
+(1) for production. 
 
-The constructor requires two arguments:
+| **Name**         | **Type**           | **Description**                                              |
+| ---------------- | ------------------ | ------------------------------------------------------------ |
+| signerOrProvider | Signer \| Provider | The Wallet or JSON RPC Provider connected to Ethereum        |
+| chainId          | number             | The network to connect to. 1 for Mainnet, and 4 for Rinkeby. |
+| mediaAddress?    | string             | [Optional] The media address of  a deployed zora protocol    |
+| marketAddress?   | string             | [Optional] The market address of a deployed zora protocol    |
 
-- signerOrProvider
-- chainID
-
-The constructor will use the `signerOrProvider` to determine if the Zora Instance is `readOnly` or `readAndWrite` capable.
-If a `signer` is passed in then the Zora instance will be able to invoke both read and write functions.
-If only a `provider` is passed in then the Zora instance can only invoke readOnly methods.
-
-The constructor will use the `chainID` to look up the officially supported Zora Protocol addresses and return a Zora instance connected the protocol
-
-If the chainId does not exist in `chainIdToNetworkName` the constructor will raise.
-
-The constructor can optionally accept two parameters to `override` the official supported Zora Protocol addresses. These overrides are particularly useful for development on a local blockchain. The overrides must adhere to a logical `XAND` to be valid. Either both overrides must be present or both must be null.
-
-### Examples
-
-#### Mainnet
-
-```typescript
+```jsx
 import { Zora } from '@zoralabs/zdk'
 import { Wallet } from 'ethers'
 
 const wallet = Wallet.createRandom()
 const zora = new Zora(wallet, 1)
-const totalSupply = await zora.fetchTotalMedia()
+console.log(await zora.totalSupply())
 ```
+When using a local blockchain, you must specify overrides for both ```mediaAddress``` and ```marketAddress```. These should point
+to the addresses of deployed Zora media and market contracts on your local blockchain.
 
-#### Rinkeby
-
-```typescript
-import { Zora } from '@zoralabs/zdk'
-import { Wallet } from 'ethers'
-
-const wallet = Wallet.createRandom()
-const zora = new Zora(wallet, 4)
-const totalSupply = await zora.fetchTotalMedia()
-```
-
-#### Local Blockchain
-
-When using a local blockchain you must specify overrides for both `mediaAddress` and `marketAddress`. These should point to the addresses of deployed Zora Media and Market contracts on your local blockchain.
-
-```typescript
-import { Zora } from '@zoralabs/zdk'
+```jsx
+import { Zora } from '@zoralabs/sdk'
 import { Wallet } from 'ethers'
 
 const wallet = Wallet.createRandom()
 const zora = new Zora(wallet, 50, mediaAddress, marketAddress)
-const totalSupply = await zora.fetchTotalMedia()
+console.log(await zora.media.totalSupply())
 ```
+
+:::note
+
+To see a real life example of connecting to a user's wallet with Metamask or WalletConnect, see our [React Guide](#react-connecting-wallet)
+
+:::
 
 ## Read Functions
 
@@ -353,32 +329,3 @@ Transfers specified media to the specified address if and only if it adheres to 
 | from     | string       | The from address of the media transfer |
 | to       | string       | The to address of the media transfer   |
 | mediaId  | BigNumberish | The ID for the media being transferred |
-
-
-### isValidBid
-
-Checks to see if a Bid's amount is evenly splittable given the media's current bidShares
-
-| **Name** | **Type**     | **Description**                        |
-| -------- | ------------ | -------------------------------------- |
-| mediaId  | BigNumberish | The ID for the media                   |
-| bid      | Bid          | The Bid to check for validity          |
-
-
-### isValidAsk
-
-Checks to see if an Ask's amount is evenly splittable given the media's current bidShares
-
-| **Name** | **Type**     | **Description**                        |
-| -------- | ------------ | -------------------------------------- |
-| mediaId  | BigNumberish | The ID for the media                   |
-| ask      | Ask          | The Ask to check for validity          |
-
-### isVerifiedMedia
-
-Checks to see if a piece of media has verified uris that hash to their immutable hashes
-
-| **Name** | **Type**     | **Description**                                              |
-| -------- | ------------ | ------------------------------------------------------------ |
-| mediaId  | BigNumberish | The ID for the media being checked for verification          |
-| timeout  | number       | The timeout (ms) for fetching content from the media's uris  |

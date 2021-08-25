@@ -1,0 +1,57 @@
+---
+id: introduction
+title: Introduction
+---
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+## ZDK
+
+The Zora Development Kit (ZDK) is a tool for developers to simply and reliably interact with the Zora Protocol.
+The ZDK is written in Typescript.
+
+###
+
+## Getting started
+
+To start, install the developer kit with ```yarn``` or ```npm```
+
+<Tabs
+  defaultValue="yarn"
+  values={[
+    { label: 'Yarn', value: 'yarn', },
+    { label: 'NPM', value: 'npm', }
+  ]
+}>
+<TabItem value="yarn">
+
+```bash
+yarn add @zoralabs/zdk
+```
+
+</TabItem>
+<TabItem value="npm">
+
+```bash
+npm install -S @zoralabs/zdk
+```
+
+</TabItem>
+</Tabs>
+
+The ZDK exposes utilities for the Zora contracts and an [ethers.js](https://docs.ethers.io/v5/) interface to interact with the Zora ecosystem.
+
+:::note
+
+The [ethers.js](https://docs.ethers.io/v5/) library is an incredibly powerful tool for interacting with the Ethereum blockchain. Most of the guides
+provided in this documentation interact with ethers.js as well.
+
+:::
+
+The ZDK currently provides 6 modules, which can be used in combination or separately to read and write to the Zora protocol:
+* Zora Module
+* Utility Module
+* Addresses Module
+* Metadata Module
+* User Information Module
+* Auction House Module
