@@ -3,10 +3,15 @@ id: addresses
 title: Addresses
 ---
 
-In order to reference the officially supported address of the Zora Protocol on various Ethereum Networks, a developer can simply:
+In order to reference the officially supported addresses of the Zora protocol on different Ethereum networks,
+we provide a module exporting the addresses as string constants.
+
+---
+
+To retrieve the addresses, simply import the module as shown below:
 
 ```js
-import { addresses } from '@zoralabs/zdk'
+import { addresses } from '@zoralabs/sdk'
 
 const rinkebyMedia = addresses['rinkeby'].media
 const rinkebyMarket = addresses['rinkeby'].market
