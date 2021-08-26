@@ -13,9 +13,9 @@ ZoraOS is a suite of developer tools that allow anyone to build on the Zora Prot
 
 * [ZDK](../docs/zdk/introduction)
 
-* Subgraph
+* [Subgraph](../docs/subgraph/subgraph)
 
-* NFT Hooks
+* [NFT Hooks](..docs/media-rendering/nft-hooks)
 
 In the spirit of building tools in collaboration with our community, all of our repositories are open source with either the [MIT License](https://opensource.org/licenses/MIT) or the [GPL-3.0 License](https://www.gnu.org/licenses/gpl-3.0.en.html). Zora is a tool in the public domain – as such, anyone and everyone is able to contribute and improve Zora for the entire community. 
 
