@@ -1,7 +1,7 @@
-const lightCodeTheme = require('prism-react-renderer/themes/github');
-const darkCodeTheme = require('prism-react-renderer/themes/dracula');
-const math = require('remark-math');
-const katex = require('rehype-katex');
+const lightCodeTheme = require('prism-react-renderer/themes/github')
+const darkCodeTheme = require('prism-react-renderer/themes/dracula')
+const math = require('remark-math')
+const katex = require('rehype-katex')
 
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
 module.exports = {
@@ -15,7 +15,7 @@ module.exports = {
   projectName: 'docusaurus', // Usually your repo name.
   themeConfig: {
     navbar: {
-      title: 'ZoraOS',
+      title: 'ZoraOS☼☽',
       logo: {
         alt: 'My Site Logo',
         src: 'img/zora-logo.png',
@@ -34,6 +34,12 @@ module.exports = {
         },
       ],
     },
+    colorMode: {
+      switchConfig: {
+        darkIcon: '\u{263D}',
+        lightIcon: '\u{263C}',
+      },
+    },
     footer: {
       style: 'dark',
       links: [
@@ -50,16 +56,12 @@ module.exports = {
           title: 'Community',
           items: [
             {
-              label: 'Stack Overflow',
-              href: 'https://stackoverflow.com/questions/tagged/docusaurus',
-            },
-            {
               label: 'Discord',
-              href: 'https://discordapp.com/invite/docusaurus',
+              href: 'https://zora.community/',
             },
             {
               label: 'Twitter',
-              href: 'https://twitter.com/docusaurus',
+              href: 'https://twitter.com/ourzora',
             },
           ],
         },
@@ -105,4 +107,4 @@ module.exports = {
       crossorigin: 'anonymous',
     },
   ],
-};
+}

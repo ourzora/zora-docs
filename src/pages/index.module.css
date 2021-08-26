@@ -5,13 +5,18 @@
  * and scoped locally.
  */
 
-.heroBanner {
+.heroBanner, .heroBannerDark {
   padding: 4rem 0;
   text-align: center;
   position: relative;
   overflow: hidden;
-  --ifm-color-primary: black;
-  --ifm-hero-text-color: white;
+  --ifm-hero-text-color: black;
+  background: white;
+}
+
+.heroBannerDark {
+  background: #18191a;
+  color: white;
 }
 
 @media screen and (max-width: 966px) {
@@ -24,4 +29,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.layout {
+  --ifm-color-primary: black;
+  --ifm-hero-text-color: white;
 }
