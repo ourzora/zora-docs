@@ -9,36 +9,36 @@ Cryptomedia is the foundational primitive of the Zora Protocol.
 
 Cryptomedia is a medium for anyone on the internet to create universally accessible and individually ownable hypermedia.
 
-To create new cryptomedia using the ZDK, you must call the ```mint``` function.
+To create new cryptomedia using the ZDK, you must call the `mint` function.
 
-The ```mint``` function on a ```Zora``` instance expects two parameters: ```MediaData``` and ```BidShares```
+The `mint` function on a `Zora` instance expects two parameters: `MediaData` and `BidShares`
 
 ## MediaData
 
 MediaData type is comprised of four fields.
 
-To construct the metadata of a piece of cryptomedia, use the ```generateMetadata``` function defined in ```metadata.ts```.
+To construct the metadata of a piece of cryptomedia, use the `generateMetadata` function defined in `metadata.ts`.
 For more info visit Metadata.
 
 ### tokenURI
 
 The uri where the cryptomedia's content is hosted. This could link to any storage provider on the internet.
-Zora strongly recommends using a *decentralized* storage provider such as ipfs or arweave. The contentHash field is a sha-256
+Zora strongly recommends using a _decentralized_ storage provider such as ipfs or arweave. The contentHash field is a sha-256
 hash of the content of the content file. It is imperative that this hash is correct, because once it is written to the
 blockchain it **cannot** be changed.
 
 ### metadataURI / metadataHash
 
 The uri where the cryptomedia's content is hosted. This could link to any storage provider on the internet.
-Zora strongly recommends using a *decentralized* storage provider such as ipfs or arweave. The contentHash field is a sha-256
+Zora strongly recommends using a _decentralized_ storage provider such as ipfs or arweave. The contentHash field is a sha-256
 hash of the content of the content file. It is imperative that this hash is correct, because once it is written to the
 blockchain it **cannot** be changed.
 
 ## BidShares
 
-The ```BidShares``` type is composed of three fields:
+The `BidShares` type is composed of three fields:
 
-```jsx 
+```typescript
 type DecimalValue = { value: BigNumber }
 
 type BidShares = {
@@ -65,7 +65,7 @@ The equity (%) the previous owner gets from the next accepted bid of the piece o
 
 ## Complete minting example:
 
-```jsx
+```typescript
 import { constructMediaData, sha256FromBuffer, generateMetadata, isMediaDataVerified, Zora } from '@zoralabs/zdk'
 
 async function uploadToDecentralizedStorage(data: Buffer) {
@@ -82,7 +82,7 @@ async function mintZNFT({
   description: string,
   previewImageUrl?: string = ''
 }) {
-  
+
   const metadataJSON = generateMetadata('zora-20210101', {
     description,
     mimeType: 'text/plain',
@@ -90,10 +90,10 @@ async function mintZNFT({
     name,
     version: 'zora-20210604',
   })
-  
+
   const contentURI = await uploadToDecentralizedStorage(content);
   const metadataURI = await uploadToDecentralizedStorage(Buffer.from(metadataJSON));
-  
+
   const contentHash = sha256FromBuffer(content);
   const metadataHash = sha256FromBuffer(Buffer.from(metadataJSON));
   const mediaData = constructMediaData(
@@ -102,25 +102,25 @@ async function mintZNFT({
     contentHash,
     metadataHash
   );
-  
+
   // Verifies hashes of content to ensure the hashes match
   const verified = await isMediaDataVerified(mediaData);
   if (!verified){
     throw new Error("MediaData not valid, do not mint");
   }
-  
+
   // BidShares should sum up to 100%
   const bidShares = constructBidShares(
     10, // creator share percentage
     90, // owner share percentage
     0 // prevOwner share percentage
   );
-  
+
   const tx = await zora.mint(mediaData, bidShares);
   return new Promise((resolve) => {
     // This listens for the nft transfer event
     zora.media.on(
-      "Transfer", 
+      "Transfer",
       (from: string, to: string, tokenId: BigNumber) => {
       if (
         from === "0x0000000000000000000000000000000000000000" &&

@@ -3,8 +3,12 @@ id: nft-hooks
 title: NFT Hooks
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
+import Tabs from '@theme/Tabs'
+import TabItem from '@theme/TabItem'
+
+zNFT Data Fetching Hooks. Retrieve pricing and NFT information to display on your own website.
+
+---
 
 This library consists of a data fetch class and associated React hooks to load NFT data is an easy, efficient manner.
 The API both batches and caches requests, meaning you can use the hooks across a page without needing to worry about
@@ -35,12 +39,12 @@ npm install @zoralabs/nft-hooks --save
 
 Then you can import and use the hooks in your react application:
 
-```jsx
-import {useZNFT, useNFTMetadata} from "@zoralabs/nft-hooks";
+```typescript
+import { useZNFT, useNFTMetadata } from '@zoralabs/nft-hooks'
 
 function MyNFT() {
-  const {data} = useZNFT("20");
-  const {metadata} = useNFTMetadata(data && data.metadataURI);
+  const { data } = useZNFT('20')
+  const { metadata } = useNFTMetadata(data && data.metadataURI)
 
   return (
     <div>
@@ -48,24 +52,24 @@ function MyNFT() {
       <p>{metadata.description}</p>
       <p>Owned by: {data.owner.id}</p>
     </div>
-  );
+  )
 }
 ```
 
 ### All hooks
 
-| **Hook**       | **Usage**                                                        |
-| -------------- | ---------------------------------------------------------------- |
-| useZNFT        | Fetches on-chain zNFT data                                       |
-| useNFT         | Fetches on-chain NFT data for any ERC721 (coming soon)           |
-| useNFTMetadata | Fetches NFT metadata from a URL                                  |
-| useNFTContent  | Fetches text content from server for rendering from content URL  |
+| **Hook**       | **Usage**                                                       |
+| -------------- | --------------------------------------------------------------- |
+| useZNFT        | Fetches on-chain zNFT data                                      |
+| useNFT         | Fetches on-chain NFT data for any ERC721 (coming soon)          |
+| useNFTMetadata | Fetches NFT metadata from a URL                                 |
+| useNFTContent  | Fetches text content from server for rendering from content URL |
 
 ### Configuration
 
-To set the network configuration, wrap the hooks used with the ```NFTFetchConfiguration``` component.
+To set the network configuration, wrap the hooks used with the `NFTFetchConfiguration` component.
 
-```jsx
+```typescript
 import {Networks, NFTFetchConfiguration} from '@zoralabs/nft-hooks';
 
 function NFTGallery() {
@@ -78,10 +82,11 @@ function NFTGallery() {
 ```
 
 ### Development
-1. ```git clone https://github.com/ourzora/nft-hooks```
-2. ```cd nft-hooks```
-3. ```npm i -g yarn``` if you don't have yarn installed
-4. ```yarn```
-5. ```yarn run test``` test your code
+
+1. `git clone https://github.com/ourzora/nft-hooks`
+2. `cd nft-hooks`
+3. `npm i -g yarn` if you don't have yarn installed
+4. `yarn`
+5. `yarn run test` test your code
 
 Pull requests and tickets are accepted for issues and improvements to this library.

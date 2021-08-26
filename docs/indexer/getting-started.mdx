@@ -18,9 +18,9 @@ If you are making an unauthenticated request, make sure to include **X-Hasura-Ro
 ### Fetching a Zora NFT
 
 To fetch the rich information from Zora NFTs, use the **Media** table. The example query fetches the last 100 NFTs minted
-on the Zora Media contract. 
+on the Zora Media contract.
 
-```graphql
+```gql
 Media(order_by: { tokenId: desc}, limit: 100){
     tokenId
     creator
@@ -42,12 +42,12 @@ You can directly query for any NFT by querying the **Token** table. The example 
 [Blitmap](https://www.blitmap.com/) collection. You can check to see which NFT contracts are supported by querying the
 **TokenContract** table.
 
-```graphql
+```gql
  Token(where: { address: { _eq: "0x8d04a8c79cEB0889Bdd12acdF3Fa9D207eD3Ff63"}}, order_by: { tokenId: asc} limit: 100){
     tokenId
     address
     minter
-    owner 
+    owner
     metadata {
       json
     }
@@ -59,7 +59,7 @@ You can directly query for any NFT by querying the **Token** table. The example 
 You can query for a Zora Auction by using the **Auction** table. The example query fetches the auctions that have had
 their reserve price met, but have not been finalized (listed in order of auctionId).
 
-```graphql
+```gql
 Auction(where: { lastBidder: { _is_null: false}, _not: {endedEvent: {}} }, order_by: { auctionId: desc}, limit:10) {
     tokenContract
     tokenId

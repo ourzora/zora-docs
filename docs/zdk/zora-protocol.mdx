@@ -7,18 +7,18 @@ The Zora module provides read/write access directly to the Zora protocol.
 
 ---
 
-To instantiate the module,  an ethers ```Signer``` or ```Provider```, must be passed to the constructor. In addition,
-the ```chainID```representing the Ethereum network you are trying to connect to. Zora currently supports Rinkeby (4) for testing, and Mainnet
-(1) for production. 
+To instantiate the module, an ethers `Signer` or `Provider`, must be passed to the constructor. In addition,
+the `chainID`representing the Ethereum network you are trying to connect to. Zora currently supports Rinkeby (4) for testing, and Mainnet
+(1) for production.
 
 | **Name**         | **Type**           | **Description**                                              |
 | ---------------- | ------------------ | ------------------------------------------------------------ |
 | signerOrProvider | Signer \| Provider | The Wallet or JSON RPC Provider connected to Ethereum        |
 | chainId          | number             | The network to connect to. 1 for Mainnet, and 4 for Rinkeby. |
-| mediaAddress?    | string             | [Optional] The media address of  a deployed zora protocol    |
+| mediaAddress?    | string             | [Optional] The media address of a deployed zora protocol     |
 | marketAddress?   | string             | [Optional] The market address of a deployed zora protocol    |
 
-```jsx
+```typescript
 import { Zora } from '@zoralabs/zdk'
 import { Wallet } from 'ethers'
 
@@ -26,10 +26,11 @@ const wallet = Wallet.createRandom()
 const zora = new Zora(wallet, 1)
 console.log(await zora.totalSupply())
 ```
-When using a local blockchain, you must specify overrides for both ```mediaAddress``` and ```marketAddress```. These should point
+
+When using a local blockchain, you must specify overrides for both `mediaAddress` and `marketAddress`. These should point
 to the addresses of deployed Zora media and market contracts on your local blockchain.
 
-```jsx
+```typescript
 import { Zora } from '@zoralabs/sdk'
 import { Wallet } from 'ethers'
 
@@ -131,59 +132,59 @@ Fetch the next mintWithSig nonce for an address
 
 Fetch the balance of an address on an instance of the Zora Media Contract
 
-| **Name**  | **Type**       | **Description**                                           |
-| --------- | -------------- | --------------------------------------------------------- |
-| address   |  string        | The address of the account whose balance is being fetched |
+| **Name** | **Type** | **Description**                                           |
+| -------- | -------- | --------------------------------------------------------- |
+| address  | string   | The address of the account whose balance is being fetched |
 
 ### fetchOwnerOf
 
 Fetch the owner of a piece of media on an instance of the Zora Media Contract
 
-| **Name**  | **Type**     | **Description**                                   |
-| --------- | ------------ | ------------------------------------------------- |
-| mediaId   | BigNumberish | The ID for the media whose owner is being fetched |
+| **Name** | **Type**     | **Description**                                   |
+| -------- | ------------ | ------------------------------------------------- |
+| mediaId  | BigNumberish | The ID for the media whose owner is being fetched |
 
 ### fetchMediaOfOwnerByIndex
 
 Fetch the mediaId of the specified owner by index on an instance of the Zora Media Contract
 
-| **Name**  | **Type**     | **Description**                          |
-| --------- | ------------ | ---------------------------------------- |
-| owner     | string       | The owner address of the media           |
-| index     | BigNumberish | The ERC-721 enumerbale index of owner    |
+| **Name** | **Type**     | **Description**                       |
+| -------- | ------------ | ------------------------------------- |
+| owner    | string       | The owner address of the media        |
+| index    | BigNumberish | The ERC-721 enumerbale index of owner |
 
 ### fetchTotalMedia
 
 Fetch the total amount of non-burned media that has been minted
 
-| **Name**  | **Type**     | **Description**                 |
-| --------- | ------------ | ------------------------------- |
-|           |              |                                 |
+| **Name** | **Type** | **Description** |
+| -------- | -------- | --------------- |
+|          |          |                 |
 
 ### fetchMediaByIndex
 
 Fetch the mediaId by index
 
-| **Name**  | **Type**     | **Description**                                              |
-| --------- | ------------ | ------------------------------------------------------------ |
-| index     | BigNumberish | The ERC-721 enumerbale index of a piece of media             |
+| **Name** | **Type**     | **Description**                                  |
+| -------- | ------------ | ------------------------------------------------ |
+| index    | BigNumberish | The ERC-721 enumerbale index of a piece of media |
 
 ### fetchApproved
 
 Fetch the approved account for the specified media
 
-| **Name**  | **Type**     | **Description**                                              |
-| --------- | ------------ | ------------------------------------------------------------ |
-| mediaId   | BigNumberish | The ID for the media whose approved address is being fetched |
+| **Name** | **Type**     | **Description**                                              |
+| -------- | ------------ | ------------------------------------------------------------ |
+| mediaId  | BigNumberish | The ID for the media whose approved address is being fetched |
 
 ### fetchIsApprovedForAll
 
 Fetch if the specified operator is approved for all media owned by the specified owner
 
-| **Name**  | **Type**     | **Description**                 |
-| --------- | ------------ | ------------------------------- |
-| owner     | string       | An address on the Zora Protocol |
-| operator  | string       | An address on the Zora Protocol |
+| **Name** | **Type** | **Description**                 |
+| -------- | -------- | ------------------------------- |
+| owner    | string   | An address on the Zora Protocol |
+| operator | string   | An address on the Zora Protocol |
 
 ## Write Functions
 

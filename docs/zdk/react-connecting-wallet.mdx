@@ -15,30 +15,30 @@ Typically, you will create an ethers signer through asking users to connect thei
 [web3-react](https://github.com/NoahZinsmeister/web3-react) to connect the user's wallet or [web3modal](https://github.com/web3modal/web3modal). Once you set up
 these libraries, you can then use that provider for the ZDK.
 
-```jsx
+```typescript
 // Example for setting up the AuctionHouse from Web3React
 function MyComponent() {
-  const {library, chainId} = useWeb3React();
+  const { library, chainId } = useWeb3React()
   // library is a ethers provider/signer instance
   // chainId is the networkId
-  
+
   const auctionHouse = useMemo(() => {
     if (library && chainId) {
-      return new AuctionHouse(library.getSigner(), chainId);
+      return new AuctionHouse(library.getSigner(), chainId)
     }
-  }, [library, chainId]);
-  return (
-    auctionHouse ? (
-      <ManageAuction auctionHouse={auctionHouse} />
-    ) : <div>Please connect wallet</div>
-  );
+  }, [library, chainId])
+  return auctionHouse ? (
+    <ManageAuction auctionHouse={auctionHouse} />
+  ) : (
+    <div>Please connect wallet</div>
+  )
 }
 ```
 
 If you want to allow easy bidding and listing of NFTs, Zora supports hosted urls where the user can interact with Zora
 interface to list their NFTs or bid on NFTs without needing to setup any wallet login and the user can trust the Zora.co site.
 
-```jsx
+```typescript
 https://zora.co/auctions/{TOKEN_ADDRESS}/{TOKEN_ID}/list
 // Lists the given token for an auction house auction
 
