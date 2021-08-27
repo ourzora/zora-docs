@@ -30,12 +30,12 @@ module.exports = {
         {
           position: 'left',
           label: 'Guides',
-          to: "/guides/introduction",
+          to: "docs/guides/introduction",
         },
         {
           position: 'left',
-          label: 'Built on Zora',
-          to: "/guides/introduction",
+          label: 'Built with Zora',
+          to: "docs/built-on-zora/platforms",
         },
         {
           href: 'https://github.com/facebook/docusaurus',
