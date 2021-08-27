@@ -13,6 +13,7 @@
   --ifm-color-primary-darkest: #000000;
   --ifm-code-font-size: 95%;
   --ifm-navbar-link-hover-color: #000000;
+  --ifm-menu-color: #808080;
 }
 
 .docusaurus-highlight-code-line {
@@ -36,4 +37,12 @@ html[data-theme='dark'] {
 
 a {
   font-weight: bold;
+}
+
+.react-toggle-track {
+  background-color: var(--ifm-color-emphasis-100) !important;
+}
+
+.react-toggle-thumb {
+  background-color: var(--ifm-color-emphasis-200) !important;
 }

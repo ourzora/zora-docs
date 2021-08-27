@@ -28,6 +28,16 @@ module.exports = {
           label: 'Docs',
         },
         {
+          position: 'left',
+          label: 'Guides',
+          to: "/guides/introduction",
+        },
+        {
+          position: 'left',
+          label: 'Built on Zora',
+          to: "/guides/introduction",
+        },
+        {
           href: 'https://github.com/facebook/docusaurus',
           label: 'GitHub',
           position: 'right',
@@ -80,6 +90,10 @@ module.exports = {
       theme: lightCodeTheme,
       darkTheme: darkCodeTheme,
     },
+    algolia: {
+      apiKey: 'YOUR_API_KEY',
+      indexName: 'YOUR_INDEX_NAME'
+    },
   },
   presets: [
     [
@@ -95,6 +109,9 @@ module.exports = {
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
+        },
+        guides: {
+          sidebarPath: require.resolve('./sidebars.js'),
         },
       },
     ],
