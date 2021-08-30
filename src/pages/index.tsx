@@ -27,6 +27,7 @@ export default function Home() {
       <HomepageHeader />
       <main className={styles.layout}>
         <HomepageFeatures />
+         
       </main>
     </Layout>
   )

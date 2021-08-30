@@ -19,6 +19,7 @@
     "@docusaurus/theme-search-algolia": "^2.0.0-beta.4",
     "@mdx-js/react": "^1.6.21",
     "@svgr/webpack": "^5.5.0",
+    "@zoralabs/ui": "^0.2.19",
     "clsx": "^1.1.1",
     "file-loader": "^6.2.0",
     "hast-util-is-element": "1.1.0",
@@ -41,5 +42,13 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@docusaurus/module-type-aliases": "^2.0.0-beta.5",
+    "@tsconfig/docusaurus": "^1.0.4",
+    "@types/react": "^17.0.19",
+    "@types/react-helmet": "^6.1.2",
+    "@types/react-router-dom": "^5.1.8",
+    "typescript": "^4.4.2"
   }
 }
