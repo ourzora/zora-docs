@@ -57,8 +57,16 @@ module.exports = {
           title: 'Docs',
           items: [
             {
-              label: 'Tutorial',
+              label: 'Introduction',
               to: '/docs/intro',
+            },
+            {
+              label: 'Guides',
+              to: '/docs/guides/introduction',
+            },
+            {
+              label: 'Built with Zora',
+              to: '/docs/built-with-zora',
             },
           ],
         },
