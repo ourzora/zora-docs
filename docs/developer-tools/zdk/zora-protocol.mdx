@@ -24,7 +24,7 @@ import { Wallet } from 'ethers'
 
 const wallet = Wallet.createRandom()
 const zora = new Zora(wallet, 1)
-console.log(await zora.totalSupply())
+const totalSupply = await zora.fetchTotalMedia()
 ```
 
 When using a local blockchain, you must specify overrides for both `mediaAddress` and `marketAddress`. These should point
@@ -36,7 +36,7 @@ import { Wallet } from 'ethers'
 
 const wallet = Wallet.createRandom()
 const zora = new Zora(wallet, 50, mediaAddress, marketAddress)
-console.log(await zora.media.totalSupply())
+const totalSupply = await zora.fetchTotalMedia()
 ```
 
 :::note
