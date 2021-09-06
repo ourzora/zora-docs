@@ -5,7 +5,8 @@
  * and scoped locally.
  */
 
-.heroBanner, .heroBannerDark {
+.heroBanner,
+.heroBannerDark {
   padding: 4rem 0;
   text-align: center;
   position: relative;
@@ -34,4 +35,12 @@
 .layout {
   --ifm-color-primary: black;
   --ifm-hero-text-color: white;
+  background: linear-gradient(
+    180deg,
+    rgba(30, 30, 30, 0.9) 13.42%,
+    rgba(15, 15, 15, 0.95) 73.77%
+  );
+  backdrop-filter: blur(20px);
+  margin-left: 30px;
+  margin-right: 30px;
 }

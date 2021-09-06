@@ -1,0 +1,77 @@
+.getting-started-card {
+  width: 440px;
+  height: 476px;
+  left: 0px;
+  top: 0px;
+  border: 2px solid #4d4d4d;
+  box-sizing: border-box;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  padding: 31px;
+}
+
+.getting-started-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.doc-title {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 35px;
+  line-height: 50px;
+  margin-bottom: 74px;
+}
+
+.doc-number {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 40px;
+  line-height: 50px;
+  letter-spacing: -0.02em;
+  font-feature-settings: 'tnum' on, 'lnum' on;
+  color: #e6e6e6;
+  margin-bottom: 122px;
+}
+
+.doc-subtopic {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 30px;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: #ffffff;
+  opacity: 0.7;
+}
+
+.tools-card {
+  width: 440px;
+  height: 215px;
+  left: 0px;
+  top: 337px;
+  border: 2px solid #4d4d4d;
+  box-sizing: border-box;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  padding: 31px;
+}
+
+.tools-title {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 30px;
+  line-height: 40px;
+  color: #ffffff;
+  margin-bottom: 10px;
+}
+
+.tools-paragraph {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 30px;
+  color: #b3b3b3;
+}
