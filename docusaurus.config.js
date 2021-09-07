@@ -8,7 +8,7 @@ module.exports = {
   title: 'Zora',
   url: 'https://your-docusaurus-test-site.com',
   baseUrl: '/',
-  onBrokenLinks: 'throw',
+  onBrokenLinks: 'ignore',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/zora-logo.png',
   organizationName: 'facebook', // Usually your GitHub org/user name.
