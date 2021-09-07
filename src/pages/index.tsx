@@ -20,7 +20,8 @@ function HomepageHeader() {
       }
     >
       <div className="container">
-        <h1 className="hero__title">{siteConfig.title}OS☼☽</h1>
+        <h1 className="hero__title">☼☾</h1>
+        <h2>ZORA FOR DEVELOPERS</h2>
       </div>
     </header>
   )
@@ -34,11 +35,14 @@ export default function Home() {
     >
       <HomepageHeader />
       <main className={styles.layout}>
-        <p>Getting started</p>
-        <p>VIEW ALL</p>
+        <div className={styles.gettingStartedFlexBox}>
+          <p className={styles.gettingStarted}>Getting started</p>
+          <p className={styles.viewAll}>VIEW ALL</p>
+        </div>
         <GettingStartedCards />
-        <p>Tools</p>
+        <p className={styles.tools}>Tools</p>
         <ToolsCards />
+        <p className={styles.projects}>Projects using ZORA</p>
       </main>
     </Layout>
   )
