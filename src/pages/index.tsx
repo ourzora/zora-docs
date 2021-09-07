@@ -20,8 +20,8 @@ function HomepageHeader() {
       }
     >
       <div className="container">
-        <h1 className="hero__title">☼☾</h1>
-        <h2>ZORA FOR DEVELOPERS</h2>
+        <h1 className={styles.heroTitle}>☼☾</h1>
+        <h2 className={styles.heroSubtitle}>ZORA FOR DEVELOPERS</h2>
       </div>
     </header>
   )

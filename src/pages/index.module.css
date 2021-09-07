@@ -13,11 +13,33 @@
   overflow: hidden;
   --ifm-hero-text-color: black;
   background: white;
+  margin: 0px;
 }
 
 .heroBannerDark {
   background: #18191a;
   color: white;
+}
+
+.heroTitle {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 200px;
+  line-height: 87.9%;
+  text-align: center;
+  letter-spacing: -0.02em;
+  color: #fbf6f4;
+  margin-bottom: 39px;
+}
+
+.heroSubtitle {
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 87.9%;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  margin-bottom: 167px;
 }
 
 @media screen and (max-width: 966px) {
@@ -56,6 +78,7 @@
 .gettingStartedFlexBox {
   display: flex;
   flex-direction: row;
+  padding-top: 39px;
 }
 
 .viewAll {
