@@ -7,6 +7,7 @@ import HomepageFeatures from '../components/HomepageFeatures'
 import useThemeContext from '@theme/hooks/useThemeContext'
 import { GettingStartedCards } from '../components/GettingStartedCards'
 import { ToolsCards } from '../components/ToolsCards'
+import { ShaderComponent } from '../components/ShaderComponent'
 
 function HomepageHeader() {
   const { siteConfig } = useDocusaurusContext()
@@ -33,12 +34,14 @@ export default function Home() {
       title={`ZoraOS☼☽`}
       description="Description will go into a meta tag in <head />"
     >
+      <ShaderComponent />
       <HomepageHeader />
       <main className={styles.layout}>
         <div className={styles.gettingStartedFlexBox}>
           <p className={styles.gettingStarted}>Getting started</p>
           <p className={styles.viewAll}>VIEW ALL</p>
         </div>
+        
         <GettingStartedCards />
         <p className={styles.tools}>Tools</p>
         <ToolsCards />
