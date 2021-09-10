@@ -10,15 +10,14 @@ module.exports = {
   baseUrl: '/',
   onBrokenLinks: 'ignore',
   onBrokenMarkdownLinks: 'warn',
-  favicon: 'img/zora-logo.png',
+  favicon: 'img/zoraOrb.svg',
   organizationName: 'facebook', // Usually your GitHub org/user name.
   projectName: 'docusaurus', // Usually your repo name.
   themeConfig: {
     navbar: {
-      title: 'ZoraOS☼☽',
       logo: {
         alt: 'My Site Logo',
-        src: 'img/zora-logo.png',
+        src: 'img/zoraTextLogo.svg',
       },
       items: [
         {
@@ -30,12 +29,12 @@ module.exports = {
         {
           position: 'left',
           label: 'Guides',
-          to: "docs/guides/introduction",
+          to: 'docs/guides/introduction',
         },
         {
           position: 'left',
           label: 'Built with Zora',
-          to: "docs/built-with-zora",
+          to: 'docs/built-with-zora',
         },
         {
           href: 'https://github.com/facebook/docusaurus',
@@ -45,54 +44,8 @@ module.exports = {
       ],
     },
     colorMode: {
-      switchConfig: {
-        darkIcon: '\u{263D}',
-        lightIcon: '\u{263C}',
-      },
-    },
-    footer: {
-      style: 'dark',
-      links: [
-        {
-          title: 'Docs',
-          items: [
-            {
-              label: 'Introduction',
-              to: '/docs/intro',
-            },
-            {
-              label: 'Guides',
-              to: '/docs/guides/introduction',
-            },
-            {
-              label: 'Built with Zora',
-              to: '/docs/built-with-zora',
-            },
-          ],
-        },
-        {
-          title: 'Community',
-          items: [
-            {
-              label: 'Discord',
-              href: 'https://zora.community/',
-            },
-            {
-              label: 'Twitter',
-              href: 'https://twitter.com/ourzora',
-            },
-          ],
-        },
-        {
-          title: 'More',
-          items: [
-            {
-              label: 'GitHub',
-              href: 'https://github.com/facebook/docusaurus',
-            },
-          ],
-        },
-      ],
+      defaultMode: 'dark',
+      disableSwitch: true,
     },
     prism: {
       theme: lightCodeTheme,
@@ -100,7 +53,7 @@ module.exports = {
     },
     algolia: {
       apiKey: 'YOUR_API_KEY',
-      indexName: 'YOUR_INDEX_NAME'
+      indexName: 'YOUR_INDEX_NAME',
     },
   },
   presets: [
@@ -132,4 +85,5 @@ module.exports = {
       crossorigin: 'anonymous',
     },
   ],
+  plugins: ['docusaurus2-dotenv'],
 }
