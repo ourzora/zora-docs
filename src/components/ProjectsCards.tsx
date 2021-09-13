@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from './HomepageFeatures.module.css'
+import './styles.css'
 import PartyBid from '@site/static/img/projects/partyBid.png'
 import PunkHouse from '@site/static/img/projects/punkHouse.png'
 import Mirror from '@site/static/img/projects/mirror.png'
@@ -11,15 +11,15 @@ import Artiva from '@site/static/img/projects/artiva.png'
 
 export default function ProjectsCards() {
   return (
-    <div className={styles.projectContainer}>
-      <img src={PartyBid} className={styles.projectCard} />
-      <img src={PunkHouse} className={styles.projectCard} />
-      <img src={Mirror} className={styles.projectCard} />
-      <img src={BlitHouse} className={styles.projectCard} />
-      <img src={Fwb} className={styles.projectCard} />
-      <img src={Catalog} className={styles.projectCard} />
-      <img src={BrightMoments} className={styles.projectCard} />
-      <img src={Artiva} className={styles.projectCard} />
+    <div className={'projectContainer'}>
+      <img src={PartyBid} className={'projectCard'} />
+      <img src={PunkHouse} className={'projectCard'} />
+      <img src={Mirror} className={'projectCard'} />
+      <img src={BlitHouse} className={'projectCard'} />
+      <img src={Fwb} className={'projectCard'} />
+      <img src={Catalog} className={'projectCard'} />
+      <img src={BrightMoments} className={'projectCard'} />
+      <img src={Artiva} className={'projectCard'} />
     </div>
   )
 }
