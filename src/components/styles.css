@@ -1,5 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=inter');
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@500&display=swap');
 
 .getting-started-card {
   width: 440px;
@@ -12,7 +12,10 @@
   display: flex;
   flex-direction: column;
   padding: 31px;
-  margin-right: 30px;
+}
+
+.getting-started-card:hover {
+  border: 2px solid #ffffff;
 }
 
 html[data-theme='light'] .getting-started-card {
@@ -23,6 +26,9 @@ html[data-theme='light'] .getting-started-card {
   display: flex;
   flex-direction: row;
   align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
 }
 
 .doc-title {
@@ -32,7 +38,6 @@ html[data-theme='light'] .getting-started-card {
   line-height: 50px;
   margin-right: 81px;
   margin-bottom: 74px;
-  --ifm-font-family-base: 'Inter';
 }
 
 .doc-number {
@@ -59,7 +64,7 @@ html[data-theme='light'] .doc-number {
   text-transform: uppercase;
   color: #ffffff;
   opacity: 0.7;
-  font-family: 'Roboto Mono', monospace;
+  font-family: 'DM Mono', monospace;
 }
 
 html[data-theme='light'] .doc-subtopic {
@@ -77,7 +82,10 @@ html[data-theme='light'] .doc-subtopic {
   display: flex;
   flex-direction: column;
   padding: 31px;
-  margin-right: 30px;
+}
+
+.tools-card:hover {
+  border: 2px solid #ffffff;
 }
 
 html[data-theme='light'] .tools-card {
@@ -87,7 +95,7 @@ html[data-theme='light'] .tools-card {
 .tools-title {
   font-style: normal;
   font-weight: 500;
-  font-size: 30px;
+  font-size: 29px;
   line-height: 40px;
   color: #ffffff;
   margin-bottom: 10px;
@@ -116,16 +124,14 @@ html[data-theme='light'] .tools-paragraph {
 }
 
 .tools-version {
-  font-size: 14px;
+  margin-top: 8px;
+  font-family: 'DM Mono', monospace;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 13px;
   line-height: 24px;
   letter-spacing: -0.02em;
   text-transform: uppercase;
-  color: #f2f2f2;
-  margin-top: 8px;
-}
-
-html[data-theme='light'] .tools-version {
-  color: #000000;
 }
 
 .projectCard {
@@ -135,4 +141,50 @@ html[data-theme='light'] .tools-version {
   box-sizing: border-box;
   filter: drop-shadow(0px 5px 15px rgba(0, 0, 0, 0.12));
   border-radius: 20px;
+  display: inline-block;
+  box-shadow: 0px 5px 15px 0px #0000001f;
+}
+
+.projectContainer {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+
+@media screen and (max-width: 1300px) {
+  /* .doc-number {
+    margin-bottom: 60px;
+    font-size: 35px;
+  }
+
+  .doc-title {
+    font-size: 28px;
+    margin-right: 55px;
+    margin-bottom: 74px;
+  }
+
+  .tools-title {
+    font-size: 20px;
+    margin-right: 28px;
+  }
+
+  .tools-version {
+    font-size: 9px;
+  }
+
+  .tools-paragraph {
+    font-size: 13px;
+  }
+
+  .tools-card {
+    width: 290px;
+    height: 215px;
+    padding: 31px;
+  }
+
+  .projectCard {
+    width: 280;
+  } */
 }

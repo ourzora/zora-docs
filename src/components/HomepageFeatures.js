@@ -14,7 +14,7 @@ export default function HomepageFeatures() {
             key={index}
             className={isDarkTheme ? styles.cardsDark : styles.cards}
           >
-            <text>{feature}</text>
+            <p>{feature}</p>
           </div>
         ))}
       </div>

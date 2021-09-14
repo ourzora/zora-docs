@@ -26,13 +26,18 @@ export const ToolsCards = () => {
   return (
     <div className={'getting-started-container'}>
       {content.map((card, index) => (
-        <div key={index} className={'tools-card'}>
-          <div className={'tools-title-flexbox'}>
-            <text className={'tools-title'}>{card.toolsTitle}</text>
-            <p className={'tools-version'}>{card.toolsVersion}</p>
+        <a
+          className={'getting-started-hover'}
+          href="/docs/developer-tools/media-rendering/nft-hooks"
+        >
+          <div key={index} className={'tools-card'}>
+            <div className={'tools-title-flexbox'}>
+              <p className={'tools-title'}>{card.toolsTitle}</p>
+              <p className={'tools-version'}>{card.toolsVersion}</p>
+            </div>
+            <p className={'tools-paragraph'}>{card.toolsParagraph}</p>
           </div>
-          <text className={'tools-paragraph'}>{card.toolsParagraph}</text>
-        </div>
+        </a>
       ))}
     </div>
   )
