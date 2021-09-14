@@ -5,48 +5,8 @@
  * and scoped locally.
  */
 
-.heroBanner,
-.heroBannerDark {
-  padding: 4rem 0;
-  text-align: center;
-  position: relative;
-  overflow: hidden;
-  --ifm-hero-text-color: black;
-  background: white;
-  margin: 0px;
-}
-
-.heroBannerDark {
-  background: #18191a;
-  color: white;
-}
-
-.heroTitle {
-  font-family: Inter;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 200px;
-  line-height: 87.9%;
-  text-align: center;
-  letter-spacing: -0.02em;
-  color: #fbf6f4;
-  margin-bottom: 39px;
-}
-
-.heroSubtitle {
-  font-weight: bold;
-  font-size: 20px;
-  line-height: 87.9%;
-  letter-spacing: -0.02em;
-  text-transform: uppercase;
-  margin-bottom: 167px;
-}
-
-@media screen and (max-width: 966px) {
-  .heroBanner {
-    padding: 2rem;
-  }
-}
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@500&display=swap');
 
 .buttons {
   display: flex;
@@ -63,8 +23,15 @@
     rgba(15, 15, 15, 0.95) 73.77%
   );
   backdrop-filter: blur(20px);
-  margin-left: 30px;
-  margin-right: 30px;
+  z-index: 1;
+  position: absolute;
+  top: 624px;
+  width: 100%;
+  padding-left: 30px;
+  padding-right: 30px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-bottom: 186px;
 }
 
 .gettingStarted {
@@ -72,13 +39,15 @@
   font-size: 35px;
   line-height: 50px;
   color: #f2f2f2;
-  margin-right: 1039px;
+  text-align: left;
 }
 
 .gettingStartedFlexBox {
   display: flex;
   flex-direction: row;
   padding-top: 39px;
+  align-items: center;
+  gap: 77%;
 }
 
 .viewAll {
@@ -88,7 +57,11 @@
   letter-spacing: 0.05em;
   text-transform: uppercase;
   color: #f2f2f2;
-  margin-top: 22px;
+  text-align: right;
+}
+
+html[data-theme='light'] .viewAll {
+  color: #4c4c4c;
 }
 
 .tools {
@@ -99,10 +72,114 @@
   margin-top: 72px;
 }
 
+html[data-theme='light'] .tools {
+  color: #000000;
+}
+
 .projects {
   font-weight: 500;
   font-size: 30px;
   line-height: 40px;
   color: #ffffff;
   margin-top: 107px;
+}
+
+html[data-theme='light'] .projects {
+  color: #000000;
+}
+
+.logoText {
+  position: absolute;
+  width: 322px;
+  height: 176px;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  top: 224px;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 200px;
+  line-height: 87.9%;
+  text-align: center;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: #fbf6f4;
+}
+
+.headerSubtitle {
+  position: absolute;
+  width: 222px;
+  height: 18px;
+  top: 439px;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  font-family: 'DM Mono', monospace;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 100%;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: #ffffff;
+}
+
+html[data-theme='light'] .layout {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.9) 0%,
+    rgba(255, 255, 255, 0.95) 20.55%,
+    rgba(255, 255, 255, 0.95) 73.77%
+  );
+  backdrop-filter: blur(20px);
+}
+
+html[data-theme='light'] .gettingStarted {
+  color: #000000;
+}
+
+@media screen and (max-width: 1200px) {
+  .layout {
+    /* padding-left: 3%;
+    padding-right: 2%; */
+    top: 400px;
+  }
+
+  .gettingStarted {
+    margin-right: 612px;
+  }
+
+  .logoText {
+    top: 124px;
+    font-size: 150px;
+  }
+
+  .headerSubtitle {
+    top: 300px;
+    font-size: 15px;
+  }
+}
+
+@media screen and (max-width: 1600px) and (min-width: 1500px) {
+  .layout {
+    /* padding-left: 5%;
+    padding-right: 3%; */
+    top: 400px;
+  }
+
+  .gettingStarted {
+    margin-right: 612px;
+  }
+
+  .logoText {
+    top: 124px;
+    font-size: 150px;
+  }
+
+  .headerSubtitle {
+    top: 300px;
+    font-size: 15px;
+  }
 }
