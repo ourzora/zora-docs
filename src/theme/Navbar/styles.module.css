@@ -1,0 +1,49 @@
+/**
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+/*
+Hide toggle in small viewports
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&display=swap');
+
+@media screen and (max-width: 997px) {
+  .toggle {
+    display: none;
+  }
+}
+
+.navbarHideable {
+  transition: transform var(--ifm-transition-fast) ease;
+}
+
+.navbarHidden {
+  transform: translate3d(0, calc(-100% - 2px), 0);
+}
+
+.zoraCoButton {
+  width: 122px;
+  height: 40px;
+  background: #f2f2f2;
+  border-radius: 4px;
+  color: #000000;
+  padding: 0;
+  border: none;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 24px;
+}
+
+.githubIcon {
+  left: 0%;
+  right: 0.41%;
+  top: 1.25%;
+  bottom: 1.18%;
+  margin-right: 32px;
+}
