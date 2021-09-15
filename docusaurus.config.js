@@ -85,5 +85,17 @@ module.exports = {
       crossorigin: 'anonymous',
     },
   ],
-  plugins: ['docusaurus2-dotenv'],
+  plugins: [
+    [
+      'docusaurus2-dotenv',
+      {
+        path: './.env',
+        safe: false,
+        systemvars: false,
+        silent: false,
+        expand: false,
+        defaults: false,
+      },
+    ],
+  ],
 }
