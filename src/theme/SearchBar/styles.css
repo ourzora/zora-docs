@@ -56,3 +56,13 @@
   bottom: -0.63%;
   margin-right: 20px;
 }
+
+@media screen and (max-width: 375px) {
+  .searchBox{
+    display: none;
+  }
+
+  .navbar__items navbar__items--center{
+    display: none;
+  }
+}

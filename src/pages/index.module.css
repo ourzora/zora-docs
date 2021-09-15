@@ -140,46 +140,56 @@ html[data-theme='light'] .gettingStarted {
   color: #000000;
 }
 
-@media screen and (max-width: 1200px) {
-  .layout {
-    /* padding-left: 3%;
-    padding-right: 2%; */
-    top: 400px;
-  }
-
-  .gettingStarted {
-    margin-right: 612px;
-  }
-
-  .logoText {
-    top: 124px;
-    font-size: 150px;
-  }
-
-  .headerSubtitle {
-    top: 300px;
-    font-size: 15px;
+@media screen and (max-width: 800px) {
+  .gettingStartedFlexBox {
+    gap: 55%;
   }
 }
 
-@media screen and (max-width: 1600px) and (min-width: 1500px) {
-  .layout {
-    /* padding-left: 5%;
-    padding-right: 3%; */
-    top: 400px;
+@media screen and (min-width: 1000px) {
+  .gettingStartedFlexBox {
+    gap: 65%;
   }
+}
 
-  .gettingStarted {
-    margin-right: 612px;
+@media screen and (min-width: 1500px) {
+  .gettingStartedFlexBox {
+    gap: 75%;
+    margin-left: 25px;
   }
+}
 
-  .logoText {
-    top: 124px;
-    font-size: 150px;
+@media screen and (min-width: 1600px) {
+  .gettingStartedFlexBox {
+    gap: 73%;
+    margin-left: 75px;
   }
+}
 
-  .headerSubtitle {
-    top: 300px;
-    font-size: 15px;
+@media screen and (min-width: 1700px) {
+  .gettingStartedFlexBox {
+    gap: 71%;
+    margin-left: 125px;
+  }
+}
+
+@media screen and (min-width: 1800px) {
+  .gettingStartedFlexBox {
+    gap: 68%;
+    margin-left: 175px;
+  }
+}
+
+@media screen and (min-width: 1900px) {
+  .gettingStartedFlexBox {
+    gap: 66%;
+    margin-left: 220px;
+  }
+}
+
+@media screen and (min-width: 2000px) {
+  .gettingStartedFlexBox {
+    gap: 65%;
+    margin-left: 270px;
   }
 }

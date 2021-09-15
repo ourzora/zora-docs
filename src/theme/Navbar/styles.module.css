@@ -47,3 +47,8 @@ Hide toggle in small viewports
   bottom: 1.18%;
   margin-right: 32px;
 }
+
+.navbar__logo {
+  width: 90px;
+  height: 40px;
+}

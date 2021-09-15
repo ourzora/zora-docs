@@ -29,6 +29,7 @@ html[data-theme='light'] .getting-started-card {
   flex-wrap: wrap;
   justify-content: center;
   gap: 30px;
+  padding: 10px;
 }
 
 .doc-title {
