@@ -33,8 +33,8 @@ module.exports = {
         },
         {
           position: 'left',
-          label: 'Built with Zora',
-          to: 'docs/built-with-zora',
+          label: 'Showcase',
+          to: 'docs/showcase',
         },
         {
           href: 'https://github.com/facebook/docusaurus',
