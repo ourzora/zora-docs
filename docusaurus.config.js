@@ -91,7 +91,7 @@ module.exports = {
       {
         path: './.env',
         safe: false,
-        systemvars: false,
+        systemvars: true,
         silent: false,
         expand: false,
         defaults: false,
