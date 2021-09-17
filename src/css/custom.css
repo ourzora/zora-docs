@@ -12,7 +12,6 @@
   src: url('https://fonts.googleapis.com/css2?family=Inter:wght@700&display=swap');
 }
 
-
 :root {
   --ifm-color-primary: #000000;
   --ifm-color-primary-dark: #000000;
@@ -44,9 +43,9 @@ html[data-theme='dark'] {
   --ifm-color-primary-darkest: #ffff;
   --ifm-navbar-link-hover-color: #ffff;
   --ifm-navbar-background-color: rgba(20, 20, 20, 0.8);
-  background-position: 15.28% 15.28% -4.23% -4.34%;
   background-image: url('../../static/img/radialGradient.svg');
   background-repeat: no-repeat;
+  background-position: center;
 }
 
 a {

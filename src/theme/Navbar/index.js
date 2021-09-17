@@ -241,7 +241,9 @@ function Navbar() {
               onChange={colorModeToggle.toggle}
             />
           )}
-          <button className={styles.zoraCoButton}>Open Zora.co</button>
+          <a href="https://zora.co/">
+            <button className={styles.zoraCoButton}>Open Zora.co</button>
+          </a>
         </div>
       </div>
 

@@ -48,8 +48,8 @@ module.exports = {
       disableSwitch: true,
     },
     prism: {
-      theme: lightCodeTheme,
-      darkTheme: darkCodeTheme,
+      theme: darkCodeTheme,
+      additionalLanguages: ["solidity"],
     },
     algolia: {
       apiKey: 'YOUR_API_KEY',

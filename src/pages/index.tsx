@@ -9,7 +9,7 @@ import ProjectsCards from '../components/ProjectsCards'
 export default function Home() {
   return (
     <Layout
-      title={`ZoraOS☼☽`}
+      title={`ZoraOS☼☾`}
       description="Description will go into a meta tag in <head />"
     >
       <ShaderComponent />
@@ -18,15 +18,17 @@ export default function Home() {
         <h2 className={styles.headerSubtitle}>ZORA FOR DEVELOPERS</h2>
       </div>
       <main className={styles.layout}>
-        <div className={styles.gettingStartedFlexBox}>
-          <p className={styles.gettingStarted}>Getting started</p>
-          <p className={styles.viewAll}>VIEW ALL</p>
+        <div className={styles.layoutFlexBox}>
+          <div className={styles.gettingStartedFlexBox}>
+            <p className={styles.gettingStarted}>Getting started</p>
+            <p className={styles.viewAll}>VIEW ALL</p>
+          </div>
+          <GettingStartedCards />
+          <p className={styles.tools}>Tools</p>
+          <ToolsCards />
+          <p className={styles.projects}>Projects using ZORA</p>
+          <ProjectsCards />
         </div>
-        <GettingStartedCards />
-        <p className={styles.tools}>Tools</p>
-        <ToolsCards />
-        <p className={styles.projects}>Projects using ZORA</p>
-        <ProjectsCards />
       </main>
     </Layout>
   )
