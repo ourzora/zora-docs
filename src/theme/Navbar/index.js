@@ -223,17 +223,16 @@ function Navbar() {
             titleClassName="navbar__title"
           />
           {leftItems.map((item, i) => (
-            <NavbarItem {...item} key={i} />
+            <NavbarItem {...item} key={i} className={styles.navbar__item__style}/>
           ))}
         </div>
         <div className="navbar__items navbar__items--center">
           {!hasSearchNavbarItem && <SearchBar />}
         </div>
         <div className="navbar__items navbar__items--right">
-          {/* {rightItems.map((item, i) => (
-            <NavbarItem {...item} key={i} />
-          ))} */}
-          <GithubIcon className={styles.githubIcon} />
+          <a href="https://github.com/">
+            <GithubIcon className={styles.githubIcon} />
+          </a>
           {!colorModeToggle.disabled && (
             <Toggle
               className={styles.toggle}

@@ -54,7 +54,10 @@
   right: 0%;
   top: 0%;
   bottom: -0.63%;
-  margin-right: 20px;
+  margin-right: 12px;
+  margin-left: 10px;
+  width: 18px;
+  height: 16.1px;
 }
 
 @media screen and (max-width: 375px) {

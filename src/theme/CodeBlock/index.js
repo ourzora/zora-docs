@@ -13,7 +13,7 @@ import Translate, { translate } from '@docusaurus/Translate'
 import styles from './styles.module.css'
 import { useThemeConfig, parseCodeBlockTitle } from '@docusaurus/theme-common'
 const highlightLinesRangeRegex = /{([\d,-]+)}/
-import customPrismTheme from './prism.css'
+import prismTheme from './prismTheme.css'
 
 const getHighlightDirectiveRegex = (
   languages = ['js', 'jsBlock', 'jsx', 'python', 'html'],
@@ -185,7 +185,7 @@ export default function CodeBlock({
     <Highlight
       {...defaultProps}
       key={String(mounted)}
-      theme={customPrismTheme}
+      theme={prismTheme}
       code={code}
       language={language}
     >

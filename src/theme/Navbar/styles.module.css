@@ -43,12 +43,21 @@ Hide toggle in small viewports
 .githubIcon {
   left: 0%;
   right: 0.41%;
-  top: 1.25%;
   bottom: 1.18%;
   margin-right: 32px;
+  margin-top: 7px;
 }
 
 .navbar__logo {
   width: 90px;
   height: 40px;
+}
+
+.navbar__item__style {
+  margin-right: 25px;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 24px;
+  color: #f2f2f2;
 }
