@@ -5,6 +5,7 @@ import { GettingStartedCards } from '../components/GettingStartedCards'
 import { ToolsCards } from '../components/ToolsCards'
 import { ShaderComponent } from '../components/ShaderComponent'
 import ProjectsCards from '../components/ProjectsCards'
+import HomepageLogo from '../../static/img/homepageLogo.svg'
 
 export default function Home() {
   return (
@@ -14,7 +15,7 @@ export default function Home() {
     >
       <ShaderComponent />
       <div>
-        <h1 className={styles.logoText}>☀☾</h1>
+        <HomepageLogo className={styles.logoText}/>
         <h2 className={styles.headerSubtitle}>ZORA FOR DEVELOPERS</h2>
       </div>
       <main className={styles.layout}>
