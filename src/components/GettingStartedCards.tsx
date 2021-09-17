@@ -1,6 +1,6 @@
 import React from 'react'
 import './styles.css'
-import { gettingStartedContent } from './content/gettingStartedCardsContent'
+import { gettingStartedContent } from './content/GettingStartedCardsContent'
 
 export const GettingStartedCards = () => {
   return (
