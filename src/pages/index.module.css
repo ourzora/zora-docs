@@ -70,10 +70,6 @@
   text-align: right;
 }
 
-html[data-theme='light'] .viewAll {
-  color: #4c4c4c;
-}
-
 .viewAll:hover {
   text-decoration: underline;
 }
@@ -87,10 +83,6 @@ html[data-theme='light'] .viewAll {
   margin-left: 7px;
 }
 
-html[data-theme='light'] .tools {
-  color: #000000;
-}
-
 .projects {
   font-weight: 500;
   font-size: 30px;
@@ -98,10 +90,6 @@ html[data-theme='light'] .tools {
   color: #ffffff;
   margin-top: 107px;
   margin-left: 8px;
-}
-
-html[data-theme='light'] .projects {
-  color: #000000;
 }
 
 .logoText {
@@ -141,18 +129,3 @@ html[data-theme='light'] .projects {
   text-transform: uppercase;
   color: #ffffff;
 }
-
-html[data-theme='light'] .layout {
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.9) 0%,
-    rgba(255, 255, 255, 0.95) 20.55%,
-    rgba(255, 255, 255, 0.95) 73.77%
-  );
-  backdrop-filter: blur(20px);
-}
-
-html[data-theme='light'] .gettingStarted {
-  color: #000000;
-}
-

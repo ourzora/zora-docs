@@ -18,10 +18,6 @@
   border: 2px solid #ffffff;
 }
 
-html[data-theme='light'] .getting-started-card {
-  border: 2px solid #e6e6e6;
-}
-
 .getting-started-container {
   display: flex;
   flex-direction: row;
@@ -52,10 +48,6 @@ html[data-theme='light'] .getting-started-card {
   margin-bottom: 122px;
 }
 
-html[data-theme='light'] .doc-number {
-  color: #000000;
-}
-
 .doc-subtopic {
   font-style: normal;
   font-weight: bold;
@@ -66,10 +58,6 @@ html[data-theme='light'] .doc-number {
   color: #ffffff;
   opacity: 0.7;
   font-family: 'DM Mono', monospace;
-}
-
-html[data-theme='light'] .doc-subtopic {
-  color: #000000;
 }
 
 .tools-card {
@@ -89,10 +77,6 @@ html[data-theme='light'] .doc-subtopic {
   border: 2px solid #ffffff;
 }
 
-html[data-theme='light'] .tools-card {
-  border: 2px solid #e6e6e6;
-}
-
 .tools-title {
   font-style: normal;
   font-weight: 500;
@@ -103,20 +87,12 @@ html[data-theme='light'] .tools-card {
   margin-right: 86px;
 }
 
-html[data-theme='light'] .tools-title {
-  color: #000000;
-}
-
 .tools-paragraph {
   font-style: normal;
   font-weight: normal;
   font-size: 18px;
   line-height: 30px;
   color: #b3b3b3;
-}
-
-html[data-theme='light'] .tools-paragraph {
-  color: #4c4c4c;
 }
 
 .tools-title-flexbox {
