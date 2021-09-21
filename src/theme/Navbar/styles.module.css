@@ -61,3 +61,29 @@ Hide toggle in small viewports
   line-height: 24px;
   color: #f2f2f2;
 }
+
+@media only screen and (max-width: 1439px) {
+  .zoraCoButton {
+    width: 97.6px;
+    height: 32px;
+    font-size: 11.2px;
+  }
+  
+  .githubIcon {
+    left: 0%;
+    right: 0.33%;
+    bottom: 0.944%;
+    margin-right: 25.6px;
+    margin-top: 5.6px;
+  }
+  
+  .navbar__logo {
+    width: 72px;
+    height: 32px;
+  }
+  
+  .navbar__item__style {
+    margin-right: 20px;
+    font-size: 11.2px;
+  }
+}
