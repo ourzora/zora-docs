@@ -66,3 +66,9 @@ a {
   backdrop-filter: blur(40px);
   height: 80px;
 }
+
+.navbar--fixed-top {
+  width: 100%;
+  position: fixed;
+  left: 0;
+}
