@@ -15,7 +15,6 @@ import {
   useMobileSecondaryMenuRenderer,
   usePrevious,
 } from '@docusaurus/theme-common'
-import useHideableNavbar from '@theme/hooks/useHideableNavbar'
 import useLockBodyScroll from '@theme/hooks/useLockBodyScroll'
 import useWindowSize from '@theme/hooks/useWindowSize'
 import NavbarItem from '@theme/NavbarItem'
@@ -188,19 +187,17 @@ function Navbar() {
   } = useThemeConfig()
   const mobileSidebar = useMobileSidebar()
   const colorModeToggle = useColorModeToggle()
-  const { navbarRef, isNavbarVisible } = useHideableNavbar(hideOnScroll)
   const items = useNavbarItems()
   const hasSearchNavbarItem = items.some((item) => item.type === 'search')
   const { leftItems, rightItems } = splitNavItemsByPosition(items)
   return (
     <nav
-      ref={navbarRef}
       className={clsx('navbar', 'navbar--fixed-top', {
         'navbar--dark': style === 'dark',
         'navbar--primary': style === 'primary',
         'navbar-sidebar--show': mobileSidebar.shown,
         [styles.navbarHideable]: hideOnScroll,
-        [styles.navbarHidden]: hideOnScroll && !isNavbarVisible,
+        [styles.navbarHidden]: hideOnScroll,
       })}
     >
       <div className="navbar__inner">
