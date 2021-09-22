@@ -13,9 +13,6 @@ vec2 random2(vec2 st){
     return -1.0 + 2.0*fract(sin(st)*43758.5453123);
 }
 
-
-
-
 // Gradient Noise by Inigo Quilez - iq/2013
 // https://www.shadertoy.com/view/XdXGW8
 float noise(in vec2 st) {
@@ -30,7 +27,7 @@ float noise(in vec2 st) {
                      dot( random2(i + vec2(1.0,1.0) ), f - vec2(1.0,1.0) ), u.x), u.y);
 }
 
-#define OCTAVES 6
+#define OCTAVES 5
 float fbm (in vec2 st) {
     // Initial values
     float value = 0.0;
@@ -46,13 +43,6 @@ float fbm (in vec2 st) {
     return value;
 }
 
-vec3 map2(vec3 cmap1, vec3 cmap2, vec3 w) {
-	vec3 w1 = w;
-	vec3 w2 = vec3(1.) - w;
-	vec3 newColor = w1 * cmap1 + w2 * cmap2;
-	return newColor;
-}
-
 vec3 stop1 = vec3(220. / 255., 200. / 255., 208. / 255.);
 vec3 stop2 = vec3(120. / 255., 200. / 255., 207. / 255.);
 vec3 stop3 = vec3(77. / 255., 149. / 255., 158. / 255.);
@@ -63,48 +53,47 @@ vec3 stop7 = vec3(45. / 255., 28. / 255., 19. / 255.);
 // yeah this will probably break if you don't use greyscale
 vec3 mapColor(vec3 c) {
 	if (c.x > 0.9) {
-		return map2(stop1, stop1, (c - 0.9) / (1. - 0.9));
+		return stop1;
 	}
 	else if (c.x > 0.75) {
-		return map2(stop1, stop2, (c - 0.75) / (0.9 - 0.75));
+        // w2 = (c - 0.75) / (0.9 - 0.75)
+		return mix(stop2, stop1, 6.66666666667 * c + -5.);
 	}
 	else if (c.x > 0.6) {
-		return map2(stop2, stop3, (c - 0.6) / (0.75 - 0.6));
+        // w3 = (c - 0.6) / (0.75 - 0.6)
+		return mix(stop3, stop2, 6.66666666667 * c + -4.);
 	}
 	else if (c.x > 0.5) {
-		return map2(stop3, stop4, (c - 0.5) / (0.6 - 0.5));
+        // w4 = (c - 0.5) / (0.6 - 0.5)
+		return mix(stop4, stop3, 10. * c + -5.);
 	}
 	else if (c.x > 0.25) {
-		return map2(stop4, stop5, (c - 0.25) / (0.5 - 0.25));
+        // w5 = (c - 0.25) / (0.5 - 0.25)
+		return mix(stop5, stop4, 4. * c + -1.);
 	}
 	else if (c.x > 0.1) {
-		return map2(stop5, stop6, (c - 0.1) / (0.25 - 0.1));
+        // w6 = (c - 0.1) / (0.25 - 0.1)
+		return mix(stop6, stop5, 6.66666666667 * c + -0.6666667);
 	}
 	else if (c.x > 0.05) {
-		return map2(stop6, stop7, (c - 0.05) / (0.1 - 0.05));
+        // w7 = (c - 0.05) / (0.1 - 0.05)
+		return mix(stop7, stop6, 20. * c + -1.);
 	}
-	return map2(stop7, stop7, c);
+	return stop7;
 }
 
 void main() {
     vec2 st = gl_FragCoord.xy/u_resolution.xy;
     st.x *= u_resolution.x/u_resolution.y;
     vec3 color = vec3(0.0);
+    vec2 rand = vec2(random2(st) + u_time);
     float seed = 111. * random2(vec2(u_seed)).y;
-
-    float t = 1.0;
-    // Uncomment to animate
-    t = abs(1.0-sin(u_time*.1))*5.;
-    t += abs(1.0-sin(u_time*.02 + 3.1))*7.9;
-		t *= 0.7;
-    // Comment and uncomment the following lines:
-    vec2 unmappedSt = vec2(random2(st) + u_time);
-    st += noise(st*1.5 + seed)*t - u_time * 0.05; // Animate the coordinate space
-    color = vec3(1.) * smoothstep(.01,.15,fbm(st)); // Big black drops
-    // color += pow(smoothstep(.05,.2,fbm(st*.5)), 1.); // Black splatter
-    color -= smoothstep(.13,.15,fbm(st * .5)); // Holes on splatter
-    // color -= smoothstep(.01,.2,fbm(st*2.)); // Holes on splatter
-		vec3 mappedColor = mapColor(color);
-		mappedColor += vec3(random2(unmappedSt).x) * 0.1;
+    float t = abs(5.0- 5. *sin(u_time*.1));
+    t += abs(7.9 - 7.9 * sin(u_time*.02 + 3.1));
+	t *= 0.7;
+    st += noise(st*1.5 + seed)*t - u_time * 0.05;
+    float fbm_st = fbm(st);
+    color = vec3(smoothstep(.01,.15,fbm_st) - smoothstep(.13,.15,fbm(st * 0.5)));
+    vec3 mappedColor = mapColor(color) + vec3(random2(rand).x * 0.1);
     gl_FragColor = vec4(mappedColor,1.0);
 }`
