@@ -21,7 +21,6 @@
     rgba(30, 30, 30, 0.9) 13.42%,
     rgba(15, 15, 15, 0.95) 73.77%
   );
-  backdrop-filter: blur(20px);
   z-index: 1;
   position: absolute;
   top: 624px;
@@ -123,54 +122,54 @@
   color: #ffffff;
 }
 
-@media only screen and (max-width: 1439px) { 
-  
+@media only screen and (max-width: 1439px) {
+
   .layout {
     top: 499.2px;
     padding-left: 16px;
     padding-right: 16px;
     padding-bottom: 148.8px;
   }
-  
+
   .layoutFlexBox {
     width: 1120px;
   }
-  
+
   .gettingStarted {
     font-size: 28px;
     line-height: 40px;
   }
-  
+
   .gettingStartedFlexBox {
     padding-top: 31.2px;
     margin-left: 7.4px;
   }
-  
+
   .viewAll {
     font-size: 9.6px;
     line-height: 16px;
   }
-  
+
   .tools {
     font-size: 28px;
     margin-top: 57.6px;
     margin-left: 5.6px;
     line-height: 40px;
   }
-  
+
   .projects {
     font-size: 24px;
     margin-top: 85.6px;
     margin-left: 6.4px;
     line-height: 32px;
   }
-  
+
   .logoText {
     width: 257.6px;
     height: 140.8px;
     top: 179.2px;
   }
-  
+
   .headerSubtitle {
     width: 225px;
     height: 14.4px;
@@ -186,46 +185,46 @@
     padding-right: 13.6px;
     padding-bottom: 125.48px;
   }
-  
+
   .layoutFlexBox {
     width: 952px;
   }
-  
+
   .gettingStarted {
     font-size: 23.8px;
     line-height: 34px;
   }
-  
+
   .gettingStartedFlexBox {
     padding-top: 26.52px;
     margin-left: 6.29px;
   }
-  
+
   .viewAll {
     font-size: 8.16px;
     line-height: 13.6px;
   }
-  
+
   .tools {
     font-size: 23.8px;
     margin-top: 48.96px;
     margin-left: 4.76px;
     line-height: 34px;
   }
-  
+
   .projects {
     font-size: 20.4px;
     margin-top: 72.76px;
     margin-left: 5.44px;
     line-height: 27.2px;
   }
-  
+
   .logoText {
     width: 218.96px;
     height: 119.68px;
     top: 152.32px;
   }
-  
+
   .headerSubtitle {
     height: 12.24px;
     top: 298.52px;

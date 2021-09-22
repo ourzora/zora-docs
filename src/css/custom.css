@@ -72,3 +72,7 @@ a {
   position: fixed;
   left: 0;
 }
+
+.shader-canvas {
+  position: fixed;
+}

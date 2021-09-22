@@ -3,7 +3,6 @@ precision mediump float;
 #endif
 
 uniform vec2 u_resolution;
-uniform vec2 u_mouse;
 uniform float u_time;
 uniform float u_seed;
 
@@ -27,20 +26,17 @@ float noise(in vec2 st) {
                      dot( random2(i + vec2(1.0,1.0) ), f - vec2(1.0,1.0) ), u.x), u.y);
 }
 
-#define OCTAVES 5
-float fbm (in vec2 st) {
-    // Initial values
-    float value = 0.0;
-    float amplitude = .5;
-    float frequency = 0.;
-    //
-    // Loop of octaves
-    for (int i = 0; i < OCTAVES; i++) {
-        value += amplitude * noise(st);
-        st *= 2.;
-        amplitude *= .5;
-    }
-    return value;
+const mat2 m = mat2( 0.80,  0.60, -0.60,  0.80 );
+float fbm( vec2 p )
+{
+    float f = 0.0;
+    f += 0.500000* noise(p); p = m*p*2.02;
+    f += 0.250000*noise(p); p = m*p*2.03;
+    f += 0.125000*noise(p); p = m*p*2.01;
+    f += 0.062500*noise(p); p = m*p*2.04;
+    f += 0.031250*noise(p); p = m*p*2.01;
+    f += 0.015625*noise(p);
+    return f/0.96875;
 }
 
 vec3 stop1 = vec3(220. / 255., 200. / 255., 208. / 255.);
