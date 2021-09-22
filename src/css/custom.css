@@ -67,12 +67,7 @@ a {
   height: 80px;
 }
 
-.navbar--fixed-top {
-  width: 100%;
-  position: fixed;
-  left: 0;
-}
-
 .shader-canvas {
   position: fixed;
+  top: 0;
 }

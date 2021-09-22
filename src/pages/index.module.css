@@ -16,11 +16,8 @@
 .layout {
   --ifm-color-primary: black;
   --ifm-hero-text-color: white;
-  background: linear-gradient(
-    180deg,
-    rgba(30, 30, 30, 0.9) 13.42%,
-    rgba(15, 15, 15, 0.95) 73.77%
-  );
+  background: #141414DD;
+  backdrop-filter: blur(20px);
   z-index: 1;
   position: absolute;
   top: 624px;
