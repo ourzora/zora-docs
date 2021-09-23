@@ -19,7 +19,6 @@
     "@docusaurus/theme-search-algolia": "^2.0.0-beta.4",
     "@mdx-js/react": "^1.6.21",
     "@svgr/webpack": "^5.5.0",
-    "@zoralabs/ui": "^0.2.19",
     "clsx": "^1.1.1",
     "docusaurus2-dotenv": "^1.4.0",
     "ethers": "^5.4.6",
