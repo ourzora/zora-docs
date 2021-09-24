@@ -60,13 +60,6 @@ a {
   background-color: var(--ifm-color-emphasis-200) !important;
 }
 
-.navbar {
-  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1),
-    inset 0px -2px 0px rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(40px);
-  height: 80px;
-}
-
 .shader-canvas {
   position: fixed;
   top: 0;
