@@ -31,9 +31,14 @@ module.exports = {
           to: 'docs/guides/introduction',
         },
         {
-          href: 'https://github.com/facebook/docusaurus',
-          label: 'GitHub',
-          position: 'right',
+          position: 'left',
+          label: 'Showcase',
+          to: 'docs/showcase',
+        },
+        {
+          position: 'left',
+          label: 'Open Zora.co',
+          to: 'https://zora.co/',
         },
       ],
     },
