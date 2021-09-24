@@ -66,3 +66,8 @@ a {
   backdrop-filter: blur(40px);
   height: 80px;
 }
+
+.shader-canvas {
+  position: fixed;
+  top: 0;
+}
