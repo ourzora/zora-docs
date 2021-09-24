@@ -20,9 +20,11 @@ import useLockBodyScroll from '@theme/hooks/useLockBodyScroll'
 import useWindowSize from '@theme/hooks/useWindowSize'
 import NavbarItem from '@theme/NavbarItem'
 import Logo from '@theme/Logo'
-import IconMenu from '@theme/IconMenu'
 import styles from './styles.module.css' // retrocompatible with v1
 import GithubIcon from '../../projectIcons/githubIcon.svg'
+import NavbarMenuExit from '../../../static/img/navbarMenuExit.svg'
+import HamburgerIcon from '../../../static/img/hamburgerIcon.svg'
+import SearchIcon from '../../../static/img/searchIcon.svg'
 
 const DefaultNavItemPosition = 'right'
 
@@ -136,6 +138,7 @@ function NavbarMobileSidebar({ sidebarShown, toggleSidebar }) {
   return (
     <div className="navbar-sidebar">
       <div className="navbar-sidebar__brand">
+        <NavbarMenuExit className="navbar__menu__exit" />
         <Logo
           className="navbar__brand"
           imageClassName="navbar__logo"
@@ -212,7 +215,7 @@ function Navbar() {
               onClick={mobileSidebar.toggle}
               onKeyDown={mobileSidebar.toggle}
             >
-              <IconMenu />
+              <HamburgerIcon />
             </button>
           )}
           <Logo
@@ -227,7 +230,8 @@ function Navbar() {
               className={styles.navbar__item__style}
             />
           ))}
-          { !mobileSidebar.shouldRender &&  <SearchBar /> }
+          <SearchIcon className={styles.searchIcon} />
+          {!mobileSidebar.shouldRender && <SearchBar />}
         </div>
         <div className="navbar__items navbar__items--right">
           <a href="https://github.com/">

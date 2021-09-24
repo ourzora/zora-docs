@@ -64,3 +64,26 @@ a {
   position: fixed;
   top: 0;
 }
+
+.menu__link {
+  color: #f2f2f2;
+  margin-bottom: 20px;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 30px;
+}
+
+.navbar__menu__exit {
+  margin-left: 8px;
+}
+
+.navbar-sidebar__item, .navbar-sidebar__brand {
+  background: #141414;
+}
+
+.navbar--fixed-top {
+  background: rgba(20, 20, 20, 0.8);
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1),
+    inset 0px -2px 0px rgba(255, 255, 255, 0.2);
+}
