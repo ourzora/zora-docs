@@ -1,4 +1,3 @@
-const lightCodeTheme = require('prism-react-renderer/themes/github')
 const darkCodeTheme = require('prism-react-renderer/themes/dracula')
 const math = require('remark-math')
 const katex = require('rehype-katex')
@@ -17,7 +16,7 @@ module.exports = {
     navbar: {
       logo: {
         alt: 'My Site Logo',
-        src: 'img/zoraTextLogo.svg',
+        src: 'img/zoraOrb.svg',
       },
       items: [
         {
@@ -30,11 +29,6 @@ module.exports = {
           position: 'left',
           label: 'Guides',
           to: 'docs/guides/introduction',
-        },
-        {
-          position: 'left',
-          label: 'Showcase',
-          to: 'docs/showcase',
         },
         {
           href: 'https://github.com/facebook/docusaurus',
