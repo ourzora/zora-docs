@@ -87,3 +87,17 @@ Hide toggle in small viewports
     font-size: 11.2px;
   }
 }
+
+@media only screen and (max-width: 400px) {
+  .DocSearch-Button {
+    display: none;
+  }
+
+  .githubIcon { 
+    display: none;
+  }
+
+  .zoraCoButton {
+    display: none;
+  }
+}

@@ -16,7 +16,7 @@ export default function Home() {
       <ShaderComponent />
       <div>
         <HomepageLogo className={styles.logoText}/>
-        <h2 className={styles.headerSubtitle}>ZORA FOR DEVELOPERS</h2>
+        <h2 className={styles.headerSubtitle}>FOR DEVELOPERS</h2>
       </div>
       <main className={styles.layout}>
         <div className={styles.layoutFlexBox}>

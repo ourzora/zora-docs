@@ -232,3 +232,58 @@
     line-height: 68%;
   }
 }
+
+@media only screen and (max-width: 375px) {
+  .layout {
+    top: 388px;
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-bottom: 148.8px;
+  }
+  
+  .layoutFlexBox {
+    width: 345px;
+  }
+  
+  .gettingStarted {
+    font-size: 20px;
+    line-height: 30px;
+  }
+  
+  .gettingStartedFlexBox {
+    padding-top: 35px;
+    margin-left: 7.4px;
+    gap: 37%;
+  }
+  
+  .viewAll {
+    font-size: 12px;
+    line-height: 20px;
+  }
+  
+  .tools {
+    font-size: 20px;
+    margin-top: 35px;
+    margin-left: 0px;
+    line-height: 30px;
+  }
+  
+  .projects {
+    font-size: 20px;
+    margin-top: 35px;
+    margin-left: 6.4px;
+    line-height: 30px;
+  }
+  
+  .logoText {
+    width: 197.5px;
+    height: 66.32px;
+    top: 175.5px;
+  }
+  
+  .headerSubtitle {
+    width: 168px;
+    height: 20px;
+    top: 269px;
+  }
+}

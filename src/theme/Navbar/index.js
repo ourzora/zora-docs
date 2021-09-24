@@ -190,8 +190,7 @@ function Navbar() {
   const colorModeToggle = useColorModeToggle()
   const { navbarRef, isNavbarVisible } = useHideableNavbar(hideOnScroll)
   const items = useNavbarItems()
-  const hasSearchNavbarItem = items.some((item) => item.type === 'search')
-  const { leftItems, rightItems } = splitNavItemsByPosition(items)
+  const { leftItems } = splitNavItemsByPosition(items)
   return (
     <nav
       ref={navbarRef}
@@ -229,7 +228,7 @@ function Navbar() {
               className={styles.navbar__item__style}
             />
           ))}
-          <SearchBar />
+          { !mobileSidebar.shouldRender &&  <SearchBar /> }
         </div>
         <div className="navbar__items navbar__items--right">
           <a href="https://github.com/">
