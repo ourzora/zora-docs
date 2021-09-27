@@ -1,16 +1,16 @@
 ---
 id: usenftcontent
 title: useNFTContent
+sidebar_position: 4
 ---
 
-Hook to fetch and load the content uri of a NFT. Either returns the uri to fetch or the content that is contained
-in the uri in the case of text posts.
+Fetches and loads the media content that is stored for a zNFT (ZORA NFT)
 
 ---
 
-This hook makes a request to fetch metadata from IPFS retrieved from the zNFT `metadataURI`.
+This hook makes a request to fetch content based on zNFT's `contentURI`.
 
-Most IPFS servers allow remote JSON fetches, including all Zora NFTs. There is a chance this request could fail
+Most metadata servers allow remote JSON fetches, including all ZORA NFTs. There is a chance this request could fail
 when the server does not allow cross-origin requests. Requests are set with a 15 second timeout to allow showing the user
 an error message instead of an indefinite loader.
 
@@ -38,12 +38,13 @@ type useNFTContentType = {
 }
 ```
 
-To use the hook, simply pass in the `contentURI` from the zNFT on-chain data and `mimeType` from the NFT Metadata.
+To use the hook, simply pass in the `contentURI` from the zNFT on-chain data and `mimeType` (image, video, audio etc) from the zNFT's Metadata.
+You can learn more about MIME types [here](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types).
 
 If you do not have access to `mimeType` from the metadata or do not wish to retrieve the metadata, the `mimeType`
 can be omitted with a small performance impact.
 
-Content returned from this hook is _not_ cached, each time the hook is used the content is fetched.
+Content returned from this hook is **not cached**, meaning that each time the hook is used the content will be fetched.
 
 ```typescript
 import { useNFTContent } from '@zoralabs/nft-hooks'
@@ -75,7 +76,7 @@ const MyMediaData = ({ uri: string, mimeType: string }) => {
 }
 ```
 
-Alternatively, the same information can be fetched using the base MediaFetchAgent for server-side or non-react use:
+Alternatively, the same information can be fetched using the base `MediaFetchAgent` for server-side or non-react use:
 
 ```typescript
 import { MediaFetchAgent } from '@zoralabs/nft-hooks'

@@ -1,0 +1,104 @@
+---
+id: zora-contracts
+title: Zora Contracts
+sidebar_position: 1
+---
+
+import Tabs from '@theme/Tabs'
+import TabItem from '@theme/TabItem'
+
+An introduction to the smart contracts that comprise the Zora Protocol
+
+---
+
+### ZORA NFT Contracts
+ZORA NFTs extends the base ERC-721 NFT Standard and allows anyone to easliy mint their own NFTs. 
+NFTs minted from this contract are known as **zNFTs** (aka cryptomedia) and have a few addtional characterists that make them different from regular ERC-721 NFTs.
+
+#### ZORA NFTs vs Regular NFTs
+- zNFTs separate the content from the metadata by having both a `metadataURI` and a `contentURI`
+- zNFTs store a hash of both the metadata and media content
+- The URI linking to external storage can be updated, but a zNFT's metadata and content hashes can not
+
+ZORA NFTs are composed of two contracts, which form the basis for zNFTs. The `Media` contract which mints and stores token data and the `Market` contract which is the built in market for zNFTs minted from the **Media** contract. 
+
+![have a look](https://raw.githubusercontent.com/ourzora/core/master/architecture.png)
+
+Both contracts are deployed on the following networks and addresses:
+
+| **Contract** | **Network**    | **Address**                                |
+| ------------ | -------------- | ------------------------------------------ |
+| Media        | Mainnet        | 0xabEFBc9fD2F806065b4f3C237d4b59D9A97Bcac7 |
+| Market       | Mainnet        | 0xE5BFAB544ecA83849c53464F85B7164375Bdaac1 |
+| Media        | Rinkeby        | 0x7C2668BD0D3c050703CEcC956C11Bd520c26f7d4 |
+| Market       | Rinkeby        | 0x85e946e1Bd35EC91044Dc83A5DdAB2B6A262ffA6 |
+| Media        | Polygon        | 0x6953190AAfD8f8995e8f47e8F014d0dB83E92300 |
+| Market       | Polygon        | 0xE20bd7dC76e09AEBC2A9A732AB6AEE616c5a17Eb |
+| Media        | Polygon Mumbai | 0xabEFBc9fD2F806065b4f3C237d4b59D9A97Bcac7 |
+| Market       | Polygon Mumbai | 0xE5BFAB544ecA83849c53464F85B7164375Bdaac1 |
+
+To read more about the contract architecture, or to view the source code, visit the [Github repository](https://github.com/ourzora/core).
+
+ZORA Core is available via Yarn and NPM:
+<Tabs
+  defaultValue="yarn"
+  values={[
+    { label: 'Yarn', value: 'yarn', },
+    { label: 'NPM', value: 'npm', }
+  ]
+}>
+<TabItem value="yarn">
+
+```bash
+yarn add @zoralabs/core
+```
+
+</TabItem>
+<TabItem value="npm">
+
+```bash
+npm i -S @zoralabs/core
+```
+
+</TabItem>
+</Tabs>
+
+### Auction House
+The ZORA Auction House is an open and permissionless system that allows any creator, community, platform or DAO to create and run their own curated auction houses for any ERC-721 compliant NFT.
+
+These auction houses run reserve timed auctions for NFTs, with special emphasis given to the role of curators. If an owner of an NFT chooses to list with a curator, that curator can charge a curator fee and has to approve any auction before it commences with that curators auction house. 
+Anyone is able to run an NFT auction on the protocol with no fee by simply not specifying a curator.
+
+The Auction House contract is currently deployed at the following locations:
+
+| **Network**    | **Address**                                |
+| -------------- | ------------------------------------------ |
+| Mainnet        | 0xE468cE99444174Bd3bBBEd09209577d25D1ad673 |
+| Rinkeby        | 0xE7dd1252f50B3d845590Da0c5eADd985049a03ce |
+| Polygon        | 0x48F1C97259Dc7f3900965391651693BaeBfd59A2 |
+| Polygon Mumbai | 0x6953190AAfD8f8995e8f47e8F014d0dB83E92300 |
+
+The code is available on [Github](https://github.com/ourzora/auction-house). It can also be installed via Yarn and NPM:
+
+<Tabs
+  defaultValue="yarn"
+  values={[
+    { label: 'Yarn', value: 'yarn', },
+    { label: 'NPM', value: 'npm', }
+  ]
+}>
+<TabItem value="yarn">
+
+```bash
+yarn add @zoralabs/auction-house
+```
+
+</TabItem>
+<TabItem value="npm">
+
+```bash
+npm i -S @zoralabs/auction-house
+```
+
+</TabItem>
+</Tabs>

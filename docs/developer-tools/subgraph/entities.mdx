@@ -1,22 +1,24 @@
 ---
 id: entities
 title: Entities
+sidebar_position: 3
 ---
 
-This page describes all of the GraphQL entities of the Zora Subgraph.
+This page describes all of the GraphQL entities of the ZORA Subgraph.
 
 ---
 
 ## Media
 
-The `Media` entity represents the core data for a piece of Zora `cryptomedia`.
+The `Media` entity represents the core data for NFTs minted on ZORA (zNFTs)
+
 
 | Field Name           | Type    | Description                                                |
 | -------------------- | ------- | ---------------------------------------------------------- |
-| id                   | ID      | The tokenId on the Zora Media Contract                     |
+| id                   | ID      | The tokenId on the ZORA Media Contract                     |
 | owner                | User    | The current owner of the Media                             |
 | creator              | User    | The creator of the Media                                   |
-| prevowner            | User    | The previous owner of the Zora Media's Market              |
+| prevowner            | User    | The previous owner of the ZORA Media's Market              |
 | approved             | User    | The approved user of the Media                             |
 | contentHash          | Bytes   | The sha256 hash of the media's content                     |
 | metadataHash         | Bytes   | The sha256 hash of the media's metadata                    |
@@ -36,7 +38,7 @@ The `Media` entity represents the core data for a piece of Zora `cryptomedia`.
 
 ## Users
 
-The `User` entity represents ethereum accounts that interact with the Zora Protocol.
+The `User` entity represents ethereum accounts that interact with the ZORA Protocol.
 
 | Field Name      | Type      | Description                                                                  |
 | --------------- | --------- | ---------------------------------------------------------------------------- |
@@ -48,7 +50,7 @@ The `User` entity represents ethereum accounts that interact with the Zora Proto
 
 ## Ask
 
-The `Ask` entity represents an onchain Ask for a piece of cryptomedia on the Zora Protocol.
+The `Ask` entity represents an onchain Ask for a ZORA NFT.
 
 | Field Name           | Type     | Description                                       |
 | -------------------- | -------- | ------------------------------------------------- |
@@ -62,7 +64,7 @@ The `Ask` entity represents an onchain Ask for a piece of cryptomedia on the Zor
 
 ## InactiveAsk
 
-The `InactiveAsk` entity represents an Ask that is no longer valid on the Zora Protocol. InactiveAsks have either been `removed` or `finalized`.
+The `InactiveAsk` entity represents an Ask that is no longer valid on the ZORA Protocol. InactiveAsks have either been `removed` or `finalized`.
 
 | Field Name           | Type            | Description                                               |
 | -------------------- | --------------- | --------------------------------------------------------- |
@@ -77,7 +79,7 @@ The `InactiveAsk` entity represents an Ask that is no longer valid on the Zora P
 
 ## Bid
 
-The `Bid` entity represents an onchain Bid for a piece of cryptomedia on the Zora Protocol.
+The `Bid` entity represents an onchain Bid for a ZORA NFT.
 
 | Field Name           | Type     | Description                                       |
 | -------------------- | -------- | ------------------------------------------------- |
@@ -93,7 +95,7 @@ The `Bid` entity represents an onchain Bid for a piece of cryptomedia on the Zor
 
 ## InactiveBid
 
-The `InactiveAsk` entity represents a Bid that is no longer valid on the Zora Protocol. InactiveBids have either been `removed` or `finalized`.
+The `InactiveAsk` entity represents a Bid that is no longer valid on the ZORA Protocol. InactiveBids have either been `removed` or `finalized`.
 
 | Field Name           | Type            | Description                                               |
 | -------------------- | --------------- | --------------------------------------------------------- |
@@ -110,7 +112,7 @@ The `InactiveAsk` entity represents a Bid that is no longer valid on the Zora Pr
 
 ## Currency
 
-The `Currency` entity represents ERC-20 tokens that have been used as Asks or Bids on the Zora Protocol.
+The `Currency` entity represents ERC-20 tokens that have been used as Asks or Bids on the ZORA Protocol.
 
 | Field Name   | Type    | Description                                           |
 | ------------ | ------- | ----------------------------------------------------- |
@@ -118,7 +120,7 @@ The `Currency` entity represents ERC-20 tokens that have been used as Asks or Bi
 | name         | String  | The name of the Currency                              |
 | symbol       | String  | The symbol of the Currency                            |
 | decimals     | Int     | The decimals of the Currency                          |
-| liquidity    | BigInt  | Total Bid Liquidity of the Currency on all Zora Media |
+| liquidity    | BigInt  | Total Bid Liquidity of the Currency on all ZORA Media |
 | activeBids   | \[Bid\] | The active Bids denominated in the Currency           |
 | activeAsks   | User    | The active Asks denominated in the Currency           |
 | inactiveBids | User    | The InactiveBids denominated in the Currency          |
@@ -126,7 +128,7 @@ The `Currency` entity represents ERC-20 tokens that have been used as Asks or Bi
 
 ## Transfer
 
-The `Transfer` entity represents transfers of ownership of pieces of cryptomedia on the Zora Protocol.
+The `Transfer` entity represents transfers of ownership of a ZORA NFT.
 
 | Field Name           | Type   | Description                                            |
 | -------------------- | ------ | ------------------------------------------------------ |
@@ -139,7 +141,7 @@ The `Transfer` entity represents transfers of ownership of pieces of cryptomedia
 
 ## URIUpdate
 
-The `URIUpdate` entity represents updates to the `content` or `metadata` uris of cryptomedia on the Zora Protocol.
+The `URIUpdate` entity represents updates to the `content` or `metadata` uris of ZORA NFTs.
 
 | Field Name           | Type          | Description                                             |
 | -------------------- | ------------- | ------------------------------------------------------- |

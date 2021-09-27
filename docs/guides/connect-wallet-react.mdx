@@ -1,0 +1,50 @@
+---
+id: connect-wallet-react
+title: Connect a Wallet in React
+
+---
+
+Guide to connecting the user's wallet in react.
+
+---
+
+The ZORA ZDK requires a connection to a node in order to both get data from the blockchain and submit transactions.
+By having a user connect their wallet to your application, you are able to communicate to a node through their wallet.
+
+If your application only needs to read data from the blockchain using the ZDK, an [ethers provider](https://docs.ethers.io/v5/api/providers/) can be used. 
+If you need to submit a transaction, you should provide an ethers signer, a type of provider that can sign transactions.
+
+The ZORA team typically uses [web3-react](https://github.com/NoahZinsmeister/web3-react) to connect the user's wallet or [web3modal](https://github.com/web3modal/web3modal). Once you set up
+these libraries, you can then use that provider for the ZDK.
+
+```typescript 
+import { useWeb3React } from '@web3-react/core'
+
+function MyComponent() {
+  const { library, chainId } = useWeb3React()
+  // library is a ethers provider/signer instance
+  // chainId is the networkId
+
+  const auctionHouse = useMemo(() => {
+    if (library && chainId) {
+      return new AuctionHouse(library.getSigner(), chainId)
+    }
+  }, [library, chainId])
+  return auctionHouse ? (
+    <ManageAuction auctionHouse={auctionHouse} />
+  ) : (
+    <div>Please connect wallet</div>
+  )
+}
+```
+
+If you want to allow easy bidding and listing of NFTs, ZORA supports hosted urls where the user can interact with ZORA
+interface to list their NFTs or bid on NFTs without needing to setup any wallet login and the user can trust the ZORA.co site.
+
+```typescript
+https://zora.co/auctions/{TOKEN_ADDRESS}/{TOKEN_ID}/list
+// Lists the given token for an auction house auction
+
+https://zora.co/auctions/{TOKEN_ADDRESS}/{TOKEN_ID}/bid
+// Allows the user to bid on the active auction for the given token
+```

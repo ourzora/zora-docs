@@ -1,36 +1,41 @@
 ---
-id: minting-media
-title: Minting Media
+id: minting-znfts
+title: Mint an NFT
 ---
 
+A guide on how to mint your first NFT on ZORA
+
 ---
 
-Cryptomedia is the foundational primitive of the Zora Protocol.
-
-Cryptomedia is a medium for anyone on the internet to create universally accessible and individually ownable hypermedia.
-
-To create new cryptomedia using the ZDK, you must call the `mint` function.
-
-The `mint` function on a `Zora` instance expects two parameters: `MediaData` and `BidShares`
+To create new ZORA NFT using the ZDK, you must call the `mint` function. The `mint` function on a `Zora` instance expects two parameters: `MediaData` and `BidShares`
 
 ## MediaData
 
 MediaData type is comprised of four fields.
 
-To construct the metadata of a piece of cryptomedia, use the `generateMetadata` function defined in `metadata.ts`.
-For more info visit Metadata.
+```typescript
+const metadata = {
+  version: 'zora-20200101', // The version of metadata you are generating
+  name: someName,
+  description: someDescription,
+  mimeType: someMimeType, // Media type: audio, image, etc etc 
+}
+```
+
+To construct the metadata for a zNFT, use the `generateMetadata` function defined in `metadata.ts`.
+For more info visit [Metadata](../developer-tools/zdk/metadata#generate-metadata).
 
 ### tokenURI
 
-The uri where the cryptomedia's content is hosted. This could link to any storage provider on the internet.
-Zora strongly recommends using a _decentralized_ storage provider such as ipfs or arweave. The contentHash field is a sha-256
+The uri where the zNFT's content is hosted externally to the blockchain.
+ZORA strongly recommends using a _decentralized_ storage provider such as [IPFS](https://ipfs.io/) or arweave. The contentHash field is a sha-256
 hash of the content of the content file. It is imperative that this hash is correct, because once it is written to the
 blockchain it **cannot** be changed.
 
 ### metadataURI / metadataHash
 
-The uri where the cryptomedia's content is hosted. This could link to any storage provider on the internet.
-Zora strongly recommends using a _decentralized_ storage provider such as ipfs or arweave. The contentHash field is a sha-256
+The uri where the zNFT's content is hosted.
+ZORA strongly recommends using a _decentralized_ storage provider such as [IPFS](https://ipfs.io/) or arweave. The contentHash field is a sha-256
 hash of the content of the content file. It is imperative that this hash is correct, because once it is written to the
 blockchain it **cannot** be changed.
 
@@ -48,22 +53,22 @@ type BidShares = {
 }
 ```
 
-Each field represents the share that each stakeholder of a piece of cryptomedia has on the **next** accepted bid. At the
+Each field represents the share that each stakeholder of a zNFT has on the **next** accepted bid. At the
 time of mint, the indivduals bid shares (creator, owner, prevOwner) **must** sum to 100.
 
 ### creator
 
-The immutable, perpetual equity (%) the creator gets from each accepted bid of the piece of cryptomedia.
+The immutable, perpetual equity (%) the creator gets from each accepted bid of the zNFT.
 
 ### owner
 
-The equity (%) the current owner gets from the next accepted bid of the piece of cryptomedia.
+The equity (%) the current owner gets from the next accepted bid of the zNFT.
 
 ### prevOwner
 
-The equity (%) the previous owner gets from the next accepted bid of the piece of cryptomedia.
+The equity (%) the previous owner gets from the next accepted bid of the zNFT.
 
-## Complete minting example:
+## Complete Minting Code:
 
 ```typescript
 import { constructMediaData, sha256FromBuffer, generateMetadata, isMediaDataVerified, Zora } from '@zoralabs/zdk'

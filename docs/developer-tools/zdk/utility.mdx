@@ -1,22 +1,29 @@
 ---
 id: utility
 title: Utility
+sidebar_position: 4
+
 ---
 
-The utility module provides many convenience tools for interacting with the ZDK
+The utility module provides tools for making easier to interact with the ZDK
 
 ---
 
 The utility functions can roughly be split into 3 categories:
 
-- `Type Constructors`
-- `Hash Utilities`
-- `EIP-712 Utilities`
+- [Type Constructors:](./utility#type-constructors) Performs basic validation and return a properly formatted struct
+- [Hash Utilities:](./utility#hashing-utilities) Create and verify sha256 hashes
+- [EIP-712 Utilities](./utility#eip-712-utilities) Tools for signing data with a private key
 
 ## Type Constructors
 
+<<<<<<< HEAD
 The Zora protocol utilizes a number of structs to encode data as parameters.
 The ZDK provides some type constructors that can perform some basic validation and return a properly formatted struct.
+=======
+The ZORA protocol utilizes a number of structs to encode data as parameters.
+The ZDK provides some type constructors that can perform some basic validation and return a properly formatted struct. 
+>>>>>>> f0fa5e9 (toUpperCase Zora in docs)
 
 ### constructMediaData
 
@@ -95,16 +102,13 @@ const bidShares = constructBidShares(10, 90, 0)
 
 ## Hashing Utilities
 
-All pieces of media minted on the Zora Protocol must etch a `sha256` hash of both its content and metadata onto the blockchain.
-As such it is important developers interacting with Zora have reliable ways to create and verify hashes of data of all
-types and sizes.
+All NFTs minted on the ZORA Protocol store a ```sha256``` hash of both its content and metadata.
+This tool makes it easy for developers to both create and verify hashes.
 
-:::note
-The majority of NFT protocols don't currently support storing integrity tools like a `sha256` checksum. This means that if
-the URL that other NFTs were to ever change, the NFT would become corrupted with no way to verify the originality of the media.
+The majority of NFT protocols don't currently support storing integrity tools like a ```sha256``` checksum. This means that if
+the URL that other NFTs were to ever change, the NFT would become corrupted with no way to verify the originality of the media. 
 
-By providing an on-chain integrity check, anyone is able to ensure that a Zora NFT has not been corrupted in any way.
-:::
+By providing an on-chain integrity check, anyone is able to ensure that a ZORA NFT has not been corrupted in any way.
 
 ### sha256FromBuffer
 
@@ -153,11 +157,13 @@ const hash = await sha256FromFile('path/to/file', 16 * 1024)
 
 ## EIP-712 Utilities
 
+[EIP-712](https://eips.ethereum.org/EIPS/eip-712) is a standard for hashing and signing of data.
+
 ### signPermitMessage
 
 [Permit](https://eips.ethereum.org/EIPS/eip-2612) was specified as an extension of ERC-20 standard to allow for users to issue `approval` to accounts without needing `ETH`.
 
-We have extended it further to be used for the Zora Protocol, so that users can delegate approvals to orther smart contracts to perform actions that `approved` users can do such as:
+We have extended it further to be used for the ZORA Protocol, so that users can delegate approvals to orther smart contracts to perform actions that `approved` users can do such as:
 
 - `setAsk`
 - `acceptBid`

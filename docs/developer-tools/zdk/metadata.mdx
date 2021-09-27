@@ -1,23 +1,21 @@
 ---
 id: metadata
 title: Metadata
+sidebar_position: 5
 ---
 
-The Zora protocol requires media that is minted on its smart contracts contain a URI pointing to its media.
+Tools that help format Metadata when minting ZORA NFTs
 
 ---
 
-As with the majority of ERC-721 compliant tokens, the Zora protocol assumes that metadata is stored off-chain on a hosted
-provider. Since the structure of the metadata is completely unenforceable on-chain, this protocol makes no assumption about
-its structure. Developers are free to use a metadata schema they feel suits their needs best.
-
+In the original ERC-721 specification, it was suggested that tokens should link to a metadata URI that contains a link to the specific content of the token within that JSON. 
+However, in the event that the URI for the content and metadata ever had to be changed, there would be no way for the public to ensure the integrity of both the metadata and content.
 :::note
-In the original ERC-721 specification, it was suggested that tokens should link to a metadata URI that contains a link to the specific content of the token within that JSON. However, in the event that the URI for the content and metadata ever had to be changed, there would be no way for the public to ensure the integrity of both the metadata and content.
 
-To remedy this, the Zora protocol explicitly separates content URIs and metadata URIs, providing `sha256` checksums for each. This allows anyone the ability to quickly verify the integrity of hosted media at any time.
+The ZORA protocol explicitly separates content URIs and metadata URIs and provides a `sha256` checksum for each. This allows anyone the ability to quickly verify the integrity of hosted media at any time.
 :::
 
-In order to allow the Zora community to integrate with your metadata schema, we provide a [media metadata schema repository](https://github.com/ourzora/media-metadata-schemas),
+In order to allow the ZORA community to integrate with your metadata schema, we provide a [media metadata schema repository](https://github.com/ourzora/media-metadata-schemas),
 that can serve as the source of truth for community supported metadata schemas. These schemas are defined as JSON schemas,
 and generate Types, Parsers, Generators, and Validators that are automatically served through the ZDK.
 
@@ -32,7 +30,7 @@ const metadata = {
   version: 'zora-20200101', // The version of metadata you are generating
   name: someName,
   description: someDescription,
-  mimeType: someMimeType,
+  mimeType: someMimeType, // Media type: audio, image, etc etc 
 }
 
 const minified = generateMetadata(metadata.version, metadata)

@@ -1,27 +1,31 @@
 ---
 id: auction-house
 title: Auction House
----
-
-The Zora Auction House is an open and permissionless system that allows any creator, community, platform or DAO to create
-and run their own curated auction houses.
+sidebar_position: 3
 
 ---
 
-As an extension to the Zora protocol, we provide an open and permissionless auction house, allowing any creator, community,
-platform, or DAO to create and run their own curated auction houses.
+This module provides tools for making it easy to sell any ERC-721 NFT
 
-The ZDK provides access to the Auction House contract, allowing anyone to create, partake, or curate their own auction.
+---
+
+The ZORA Auction House is an open and permissionless system that allows any creator, community, or DAO to sell an NFT.
+The part of the ZDK provides easy access to the Auction House contract, allowing anyone to create, partake, or curate their own auction.
+
+
+<!-- **[Auction House diagram goes here]** -->
 
 ## Constructor
 
-Similarly to instantiating the [Zora Protocol Module](../zdk/zora-protocol), the Auction House Module requires an ethers.js Signer or Provider,
-and the chain ID you are interacting with.
+Similarly to instantiating the `ZORA NFT Module`, the `Auction House Module` requires an ethers.js `Signer` or `Provider`,
+and the `chainID` of the network you are interacting with. 
+
+You can learn more about connecting to ethers.js [here](./introduction#connecting-to-ethersjs) 
 
 | **Name**         | **Type**           | **Description**                                                      |
 | ---------------- | ------------------ | -------------------------------------------------------------------- |
-| signerOrProvider | Signer \| Provider | The from address of the media transfer                               |
-| chainId          | number             | The chain ID for the Ethereum chain. 1 for mainnet, or 4 for rinkeby |
+| signerOrProvider | Signer \| Provider | The Wallet or JSON RPC Provider connected to Ethereum                |
+| chainId          | number             | The `chainID` for the network. 1 for Ethereum Mainnet, or 4 for Rinkeby |
 
 ```typescript
 import { AuctionHouse } from '@zoralabs/zdk'
@@ -123,7 +127,7 @@ import { Wallet } from 'ethers'
 
 const wallet = Wallet.createRandom()
 
-// 1. Connect to the Auction House and Zora Protocol
+// 1. Connect to the Auction House and ZORA Protocol
 const auctionHouse = new AuctionHouse(wallet, 1)
 const zora = new Zora(wallet, 1)
 
@@ -185,7 +189,9 @@ await auctionHouse.createBid(auctionId, amount)
 
 ## End an Auction
 
-Once an auction's timer has run out, anyone is able to end the auction. Ending an auction pays out the auction creator
+Once an auction's timer has run out, anyone is able to end the auction. 
+
+Ending an auction pays out the auction creator
 and curator, and transfers the token to the auction winner. If the auction is run using a Zora NFT, the auction also respects
 perpetual equity for the creator and any bid shares that may be present on the token.
 
