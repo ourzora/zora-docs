@@ -50,7 +50,7 @@ var customPrismTheme: PrismTheme = {
       },
     },
     {
-      types: ['keyword', 'function'],
+      types: ['keyword', 'function', 'object', 'property-query'],
       style: {
         color: '#3574EF'
       },

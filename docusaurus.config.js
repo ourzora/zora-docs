@@ -48,7 +48,7 @@ module.exports = {
     },
     prism: {
       theme: darkCodeTheme,
-      additionalLanguages: ["solidity"],
+      additionalLanguages: ["solidity", "graphql"],
     },
     algolia: {
       apiKey: 'YOUR_API_KEY',
