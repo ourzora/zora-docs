@@ -5,17 +5,25 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+@font-face {
+  font-family: 'Inter', sans-serif;
+  src: url('https://fonts.googleapis.com/css2?family=Inter:wght@700&display=swap');
+}
+
 .codeBlockContainer {
   margin-bottom: var(--ifm-leading);
-  border-radius: var(--ifm-global-radius);
   box-shadow: var(--ifm-global-shadow-lw);
   overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  background-color: #1f1f1f99;
+  border-radius: 4px;
 }
 
 .codeBlockContent {
   position: relative;
   /*rtl:ignore*/
   direction: ltr;
+  font-family: 'Inter';
 }
 
 .codeBlockTitle {
