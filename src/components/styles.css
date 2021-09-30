@@ -272,7 +272,138 @@ a:hover {
   }
 }
 
-@media only screen and (max-width: 375px) {
+@media only screen and (max-width: 979px) {
+  .getting-started-card {
+    width: 209px;
+    height: 265.6px;
+    padding: 11px;
+  }
+
+  .getting-started-container {
+    gap: 11px;
+    padding: 4px;
+  }
+
+  .doc-title {
+    font-size: 17px;
+    margin-right: 38px;
+    margin-bottom: 38px;
+    line-height: 24px;
+  }
+
+  .doc-number {
+    font-size: 19px;
+    margin-bottom: 58px;
+    line-height: 24px;
+  }
+
+  .doc-subtopic {
+    font-size: 9px;
+    line-height: 14px;
+  }
+
+  .tools-card {
+    width: 209px;
+    height: 102px;
+    top: 160px;
+    padding: 15px;
+  }
+
+  .tools-title {
+    font-size: 13px;
+    margin-bottom: 5px;
+    margin-right: 41px;
+    line-height: 19px;
+  }
+
+  .tools-paragraph {
+    font-size: 8px;
+    line-height: 14px;
+  }
+
+  .tools-version {
+    margin-top: 3px;
+    font-size: 6px;
+    line-height: 11px;
+  }
+
+  .projectCard {
+    width: 154px;
+    height: 77px;
+  }
+
+  .projectContainer {
+    gap: 13px;
+    margin-right: 5px;
+  }
+}
+
+@media only screen and (max-width: 664px) {
+  .getting-started-card {
+    width: 146px;
+    height: 185px;
+    padding: 8px;
+  }
+
+  .getting-started-container {
+    gap: 8px;
+    padding: 3px;
+  }
+
+  .doc-title {
+    font-size: 12px;
+    margin-right: 27px;
+    line-height: 17px;
+  }
+
+  .doc-number {
+    font-size: 13px;
+    margin-bottom: 41px;
+    line-height: 17px;
+  }
+
+  .doc-subtopic {
+    font-size: 6px;
+    line-height: 10px;
+  }
+
+  .tools-card {
+    width: 146px;
+    height: 71px;
+    top: 112px;
+    padding: 10px;
+  }
+
+  .tools-title {
+    font-size: 9px;
+    margin-bottom: 3px;
+    margin-right: 29px;
+    line-height: 13px;
+  }
+
+  .tools-paragraph {
+    font-size: 6px;
+    line-height: 10px;
+  }
+
+  .tools-version {
+    margin-top: 2px;
+    font-size: 4px;
+    line-height: 8px;
+  }
+
+  .projectCard {
+    width: 108px;
+    height: 54px;
+  }
+
+  .projectContainer {
+    gap: 9px;
+    margin-right: 3px;
+  }
+}
+
+@media only screen and (max-width: 500px) {
   .getting-started-card {
     width: 335px;
     height: 219px;
@@ -336,5 +467,64 @@ a:hover {
 
   .projectContainer {
     gap: 15px;
+  }
+}
+
+@media only screen and (max-width: 349px) {
+  .getting-started-card {
+    width: 284.75px;
+    height: 186.15px;
+    padding: 15px;
+  }
+
+  .getting-started-container {
+    gap: 17px;
+    padding: 8px;
+  }
+
+  .doc-title {
+    font-size: 17px;
+    margin-right: 20.4px;
+    margin-bottom: 6.8px;
+    line-height: 25.5px;
+  }
+
+  .doc-number {
+    font-size: 25.5px;
+    margin-bottom: 33.15px;
+    line-height: 34px;
+  }
+
+  .doc-subtopic {
+    font-size: 13.6px;
+    line-height: 21.25px;
+  }
+
+  .tools-card {
+    width: 284.75px;
+    height: 109.65px;
+  }
+
+  .tools-title {
+    font-size: 17px;
+    margin-bottom: 8.5px;
+    margin-right: 77.35px;
+    line-height: 25.5px;
+  }
+
+  .tools-paragraph {
+    font-size: 12px;
+    line-height: 20.4px;
+  }
+
+  .tools-version {
+    margin-top: 5.4px;
+    font-size: 10.2px;
+    line-height: 17px;
+  }
+
+  .projectCard {
+    width: 136px;
+    height: 68px;
   }
 }
