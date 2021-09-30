@@ -25,6 +25,7 @@ import GithubIcon from '../../projectIcons/githubIcon.svg'
 import NavbarMenuExit from '../../../static/img/navbarMenuExit.svg'
 import HamburgerIcon from '../../../static/img/hamburgerIcon.svg'
 import SearchIcon from '../../../static/img/searchIcon.svg'
+import MobileSearchBar from '../MobileSearchBar'
 
 const DefaultNavItemPosition = 'right'
 
@@ -230,24 +231,26 @@ function Navbar() {
               className={styles.navbar__item__style}
             />
           ))}
-          <SearchIcon className={styles.searchIcon} />
-          {!mobileSidebar.shouldRender && <SearchBar />}
+          {!mobileSidebar.shouldRender && (<SearchBar />)}
         </div>
-        <div className="navbar__items navbar__items--right">
-          <a href="https://github.com/">
-            <GithubIcon className={styles.githubIcon} />
-          </a>
-          {!colorModeToggle.disabled && (
-            <Toggle
-              className={styles.toggle}
-              checked={colorModeToggle.isDarkTheme}
-              onChange={colorModeToggle.toggle}
-            />
-          )}
-          <a href="https://zora.co/">
-            <button className={styles.zoraCoButton}>Open Zora.co</button>
-          </a>
-        </div>
+        {!mobileSidebar.shouldRender && (
+          <>
+            <div className="navbar__items navbar__items--right">
+              <a href="https://github.com/">
+                <GithubIcon className={styles.githubIcon} />
+              </a>
+              {!colorModeToggle.disabled && (
+                <Toggle
+                  className={styles.toggle}
+                  checked={colorModeToggle.isDarkTheme}
+                  onChange={colorModeToggle.toggle}
+                />
+              )}
+              <a href="https://zora.co/">
+                <button className={styles.zoraCoButton}>Open Zora.co</button>
+              </a>
+            </div>
+          </>)}
       </div>
 
       <div
@@ -257,10 +260,13 @@ function Navbar() {
       />
 
       {mobileSidebar.shouldRender && (
+        <>
+        <MobileSearchBar />
         <NavbarMobileSidebar
           sidebarShown={mobileSidebar.shown}
-          toggleSidebar={mobileSidebar.toggle}
-        />
+            toggleSidebar={mobileSidebar.toggle}
+          />
+        </>
       )}
     </nav>
   )
