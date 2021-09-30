@@ -139,7 +139,7 @@ function NavbarMobileSidebar({ sidebarShown, toggleSidebar }) {
   return (
     <div className="navbar-sidebar">
       <div className="navbar-sidebar__brand">
-        <NavbarMenuExit className="navbar__menu__exit" />
+        <NavbarMenuExit className="navbar__menu__exit" onClick={toggleSidebar} />
         <Logo
           className="navbar__brand"
           imageClassName="navbar__logo"
@@ -164,6 +164,12 @@ function NavbarMobileSidebar({ sidebarShown, toggleSidebar }) {
               <NavbarItem mobile {...item} onClick={toggleSidebar} key={i} />
             ))}
           </ul>
+          <a href="https://zora.co/" className={styles.zoraCoTextA}>
+            <p className={styles.zoraCoText}>Open Zora.co</p>
+          </a>
+          <a href="https://github.com/">
+            <GithubIcon className={styles.githubIconSideBar} />
+          </a>
         </div>
 
         <div className="navbar-sidebar__item navbar-sidebar__item--secondary menu">
