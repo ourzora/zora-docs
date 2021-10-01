@@ -19,8 +19,7 @@
   background: #141414dd;
   backdrop-filter: blur(20px);
   z-index: 1;
-  position: absolute;
-  top: 624px;
+  margin-top: 624px;
   width: 100%;
   padding-left: 20px;
   padding-right: 20px;
@@ -28,6 +27,8 @@
   margin-right: auto;
   display: flex;
   justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
 
 .layoutFlexBox {
@@ -120,7 +121,7 @@
 
 @media only screen and (max-width: 1439px) {
   .layout {
-    top: 499.2px;
+    margin-top: 499.2px;
     padding-left: 16px;
     padding-right: 16px;
     padding-bottom: 148.8px;
@@ -176,7 +177,7 @@
 
 @media only screen and (max-width: 1151px) {
   .layout {
-    top: 424.32px;
+    margin-top: 424.32px;
     padding-left: 13.6px;
     padding-right: 13.6px;
     padding-bottom: 125.48px;
@@ -232,7 +233,7 @@
 
 @media only screen and (max-width: 979px) {
   .layout {
-    top: 297px;
+    margin-top: 297px;
     padding-left: 4px;
     padding-right: 4px;
     padding-bottom: 89px;
@@ -288,7 +289,7 @@
 
 @media only screen and (max-width: 664px) {
   .layout {
-    top: 208px;
+    margin-top: 208px;
     padding-left: 3px;
     padding-right: 3px;
     padding-bottom: 62px;
@@ -344,7 +345,7 @@
 
 @media only screen and (max-width: 500px) {
   .layout {
-    top: 388px;
+    margin-top: 388px;
     padding-left: 16px;
     padding-right: 16px;
     padding-bottom: 148.8px;
@@ -400,7 +401,7 @@
 
 @media only screen and (max-width: 349px) {
   .layout {
-    top: 329.8px;
+    margin-top: 329.8px;
     padding-left: 13.6px;
     padding-right: 13.6px;
     padding-bottom: 126.48px;

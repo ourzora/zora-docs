@@ -1,21 +1,21 @@
-import React from 'react'
-import Layout from '@theme/Layout'
-import styles from './index.module.css'
-import { GettingStartedCards } from '../components/GettingStartedCards'
-import { ToolsCards } from '../components/ToolsCards'
-import { ShaderComponent } from '../components/ShaderComponent'
-import ProjectsCards from '../components/ProjectsCards'
-import HomepageLogo from '../../static/img/homepageLogo.svg'
+import React from 'react';
+import Layout from '@theme/Layout';
+import styles from './index.module.css';
+import { GettingStartedCards } from '../components/GettingStartedCards';
+import { ToolsCards } from '../components/ToolsCards';
+import { ShaderComponent } from '../components/ShaderComponent';
+import ProjectsCards from '../components/ProjectsCards';
+import HomepageLogo from '../../static/img/homepageLogo.svg';
 
 export default function Home() {
   return (
     <Layout
       title={`ZoraOS☼☾`}
-      description="Description will go into a meta tag in <head />"
+      description='Description will go into a meta tag in <head />'
     >
       <ShaderComponent />
       <div>
-        <HomepageLogo className={styles.logoText}/>
+        <HomepageLogo className={styles.logoText} />
         <h2 className={styles.headerSubtitle}>FOR DEVELOPERS</h2>
       </div>
       <main className={styles.layout}>
@@ -32,5 +32,5 @@ export default function Home() {
         </div>
       </main>
     </Layout>
-  )
+  );
 }

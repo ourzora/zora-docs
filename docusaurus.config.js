@@ -35,11 +35,6 @@ module.exports = {
           label: 'Showcase',
           to: 'docs/showcase',
         },
-        {
-          position: 'left',
-          label: 'Open Zora.co',
-          to: 'https://zora.co/',
-        },
       ],
     },
     colorMode: {
@@ -54,6 +49,9 @@ module.exports = {
       apiKey: 'YOUR_API_KEY',
       indexName: 'YOUR_INDEX_NAME',
     },
+    footer: {
+      style: 'dark',
+    }
   },
   presets: [
     [
