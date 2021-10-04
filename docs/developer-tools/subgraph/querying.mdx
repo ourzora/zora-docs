@@ -11,13 +11,13 @@ To programmatically query the Zora Subgraph you can send queries to `https://api
 
 ---
 
-# Example Queries 
+# Example Queries
 
-##  Media
+## Media
 
 ### Media by Id
 
-```gql
+```graphql
 {
   media(id: "") {
     id
@@ -54,7 +54,7 @@ To programmatically query the Zora Subgraph you can send queries to `https://api
 
 ### Media by Creator
 
-```gql
+```graphql
 {
   media(where: { creator: "" }) {
     id
@@ -91,7 +91,7 @@ To programmatically query the Zora Subgraph you can send queries to `https://api
 
 ### Media by Owner
 
-```gql
+```graphql
 {
   media(where: { owner: "" }) {
     id
@@ -128,7 +128,7 @@ To programmatically query the Zora Subgraph you can send queries to `https://api
 
 ### Medias by Previous Owner
 
-```gql
+```graphql
 {
   media(where: { prevOwner: "" }) {
     id
@@ -167,7 +167,7 @@ To programmatically query the Zora Subgraph you can send queries to `https://api
 
 ### Bid by Id
 
-```gql
+```graphql
 {
   bid(id: "") {
     id
@@ -193,7 +193,7 @@ To programmatically query the Zora Subgraph you can send queries to `https://api
 
 ### Bids by Media
 
-```gql
+```graphql
 {
   bids(where: { media: "" }) {
     id
@@ -216,7 +216,7 @@ To programmatically query the Zora Subgraph you can send queries to `https://api
 
 ### Bids by Currency
 
-```gql
+```graphql
 {
   bids(where: { currency: "" }) {
     id
@@ -239,7 +239,7 @@ To programmatically query the Zora Subgraph you can send queries to `https://api
 
 ### Bids by Bidder
 
-```gql
+```graphql
 {
   bids(where: { bidder: "" }) {
     id
@@ -264,7 +264,7 @@ To programmatically query the Zora Subgraph you can send queries to `https://api
 
 ### Ask by Id
 
-```gql
+```graphql
 {
   ask(id: "") {
     id
@@ -286,7 +286,7 @@ To programmatically query the Zora Subgraph you can send queries to `https://api
 
 ### Ask by Asker
 
-```gql
+```graphql
 {
   asks(where: { owner: "" }) {
     id
@@ -308,7 +308,7 @@ To programmatically query the Zora Subgraph you can send queries to `https://api
 
 ### Ask by Currency
 
-```gql
+```graphql
 {
   asks(where: { currency: "" }) {
     id
@@ -332,7 +332,7 @@ To programmatically query the Zora Subgraph you can send queries to `https://api
 
 ### InactiveBid by Id
 
-```gql
+```graphql
 {
   inactiveBid(id: "") {
     id
@@ -359,7 +359,7 @@ To programmatically query the Zora Subgraph you can send queries to `https://api
 
 ### InactiveBids by Media
 
-```gql
+```graphql
 {
   inactiveBids(where: { media: "" }) {
     id
@@ -386,7 +386,7 @@ To programmatically query the Zora Subgraph you can send queries to `https://api
 
 ### InactiveBids by Bidder
 
-```gql
+```graphql
 {
   inactiveBids(where: { bidder: "" }) {
     id
@@ -415,7 +415,7 @@ To programmatically query the Zora Subgraph you can send queries to `https://api
 
 ### InactiveAsk by Id
 
-```gql
+```graphql
 {
   inactiveAsk(id: "") {
     id
@@ -438,7 +438,7 @@ To programmatically query the Zora Subgraph you can send queries to `https://api
 
 ### InactiveAsks by Media
 
-```gql
+```graphql
 {
   inactiveAsks(where: { media: "" }) {
     id
@@ -461,7 +461,7 @@ To programmatically query the Zora Subgraph you can send queries to `https://api
 
 ### InactiveAsks by Asker
 
-```gql
+```graphql
 {
   inactiveAsks(where: { owner: "" }) {
     id
@@ -486,7 +486,7 @@ To programmatically query the Zora Subgraph you can send queries to `https://api
 
 ### UriUpdate by Id
 
-```gql
+```graphql
 {
   uriupdate(id: "") {
     id
@@ -508,7 +508,7 @@ To programmatically query the Zora Subgraph you can send queries to `https://api
 
 ### UriUpdates by Updater
 
-```gql
+```graphql
 {
   uriupdates(where: { updater: "" }) {
     id
@@ -530,7 +530,7 @@ To programmatically query the Zora Subgraph you can send queries to `https://api
 
 ### UriUpdates by Media
 
-```gql
+```graphql
 {
   uriupdates(where: { media: "" }) {
     id
@@ -554,7 +554,7 @@ To programmatically query the Zora Subgraph you can send queries to `https://api
 
 ### Transfer by Id
 
-```gql
+```graphql
 {
   transfer(id: "") {
     id
@@ -573,7 +573,7 @@ To programmatically query the Zora Subgraph you can send queries to `https://api
 
 ### Transfers by Media
 
-```gql
+```graphql
 {
   transfers(where: { media: "" }) {
     id
@@ -592,7 +592,7 @@ To programmatically query the Zora Subgraph you can send queries to `https://api
 
 ### Transfers by From User
 
-```gql
+```graphql
 {
   transfers(where: { from: "" }) {
     id
@@ -611,7 +611,7 @@ To programmatically query the Zora Subgraph you can send queries to `https://api
 
 ### Transfers by To User
 
-```gql
+```graphql
 {
   transfers(where: { to: "" }) {
     id
@@ -632,7 +632,7 @@ To programmatically query the Zora Subgraph you can send queries to `https://api
 
 ### Currency by Id
 
-```gql
+```graphql
 {
   currency(id: "") {
     id
@@ -648,7 +648,7 @@ To programmatically query the Zora Subgraph you can send queries to `https://api
 
 ### User by Id
 
-```gql
+```graphql
 {
   user(id: "") {
     id

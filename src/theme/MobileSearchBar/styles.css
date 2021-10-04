@@ -1,0 +1,103 @@
+/**
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+:root {
+  --docsearch-primary-color: var(--ifm-color-primary);
+  --docsearch-text-color: var(--ifm-font-color-base);
+}
+
+.DocSearch-Button {
+  margin: 0;
+  transition: all var(--ifm-transition-fast)
+    var(--ifm-transition-timing-default);
+  width: 438px;
+  height: 40px;
+  left: calc(50% - 438px / 2);
+  top: calc(50% - 40px / 2);
+  background: #2f2f2f;
+  border-radius: 4px;
+}
+
+.DocSearch-Container {
+  z-index: calc(var(--ifm-z-index-fixed) + 1);
+}
+
+.DocSearch-Button-Key {
+  display: none;
+}
+
+.navbar__brand {
+  width: 90px;
+  height: 40px;
+  margin-left: 30px;
+}
+
+.DocSearch-Button-Placeholder {
+  height: 20px;
+  left: 51px;
+  top: 10px;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  color: #ffffff;
+  opacity: 0.5;
+}
+
+.DocSearch-Search-Icon {
+  left: 0%;
+  right: 0%;
+  top: 0%;
+  bottom: -0.63%;
+  margin-right: 12px;
+  margin-left: 10px;
+  width: 18px;
+  height: 16.1px;
+}
+
+.mobileSearchIcon {
+  width: 20px;
+  height: 20px;
+  margin-top: 10px;
+}
+
+@media screen and (max-width: 375px) {
+  .navbar__items navbar__items--center {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 1439px) {
+  .DocSearch-Button {
+    width: 350.4px;
+    height: 32px;
+    left: calc(50% - 350.4px / 2);
+    top: calc(50% - 32px / 2);
+  }
+
+  .navbar__brand {
+    width: 72px;
+    height: 32px;
+    margin-left: 24px;
+  }
+
+  .DocSearch-Button-Placeholder {
+    height: 16px;
+    left: 40.8px;
+    top: 8px;
+    font-size: 11.2px;
+  }
+
+  .DocSearch-Search-Icon {
+    bottom: -0.5%;
+    margin-right: 9.6px;
+    margin-left: 8px;
+    width: 14.4px;
+    height: 12.78px;
+  }
+}

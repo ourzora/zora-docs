@@ -1,4 +1,3 @@
-const lightCodeTheme = require('prism-react-renderer/themes/github')
 const darkCodeTheme = require('prism-react-renderer/themes/dracula')
 const math = require('remark-math')
 const katex = require('rehype-katex')
@@ -17,7 +16,7 @@ module.exports = {
     navbar: {
       logo: {
         alt: 'My Site Logo',
-        src: 'img/zoraTextLogo.svg',
+        src: 'img/zoraOrb.svg',
       },
       items: [
         {
@@ -36,11 +35,6 @@ module.exports = {
           label: 'Showcase',
           to: 'docs/showcase',
         },
-        {
-          href: 'https://github.com/facebook/docusaurus',
-          label: 'GitHub',
-          position: 'right',
-        },
       ],
     },
     colorMode: {
@@ -49,12 +43,15 @@ module.exports = {
     },
     prism: {
       theme: darkCodeTheme,
-      additionalLanguages: ["solidity"],
+      additionalLanguages: ["solidity", "graphql"],
     },
     algolia: {
       apiKey: 'YOUR_API_KEY',
       indexName: 'YOUR_INDEX_NAME',
     },
+    footer: {
+      style: 'dark',
+    }
   },
   presets: [
     [

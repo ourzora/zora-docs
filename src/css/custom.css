@@ -46,6 +46,7 @@ html[data-theme='dark'] {
   background-image: url('../../static/img/radialGradient.svg');
   background-repeat: no-repeat;
   background-position: center;
+  --docusaurus-btt-color: #000000;
 }
 
 a {
@@ -60,14 +61,132 @@ a {
   background-color: var(--ifm-color-emphasis-200) !important;
 }
 
-.navbar {
+.shader-canvas {
+  position: fixed;
+  top: 0;
+}
+
+.menu__link {
+  color: #808080;
+  margin-bottom: 15px;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+}
+
+.menu__link--active:not(.menu__link--sublist) {
+  color: #f2f2f2;
+  background: none;
+}
+
+.menu__link--active {
+  color: #f2f2f2;
+  background: none;
+}
+
+.menu__link:hover {
+  background: none;
+  color: #f2f2f2;
+}
+
+.navbar__menu__exit {
+  margin-left: 8px;
+}
+
+.navbar-sidebar__item,
+.navbar-sidebar__brand {
+  background: #141414;
+}
+
+.navbar--fixed-top {
+  background: rgba(20, 20, 20, 0.8);
   box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1),
     inset 0px -2px 0px rgba(255, 255, 255, 0.2);
   backdrop-filter: blur(40px);
   height: 80px;
 }
 
-.shader-canvas {
-  position: fixed;
-  top: 0;
+code {
+  font-family: 'DM Mono';
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 24px;
+  color: #f2f2f2;
+  background: rgba(31, 31, 31, 0.6);
+  border-radius: 4px;
+  border: 1px solid #4d4d4d;
+  padding: 2px 5px;
+}
+
+h1 {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: bold;
+  font-size: 50px;
+  line-height: 65px;
+  letter-spacing: -0.01em;
+  color: #f2f2f2;
+}
+
+h2 {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 40px;
+  line-height: 50px;
+  color: #f2f2f2;
+}
+
+h3 {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 35px;
+  line-height: 50px;
+  color: #f2f2f2;
+}
+
+h4 {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 30px;
+  line-height: 40px;
+  color: #f2f2f2;
+}
+
+h5 {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 30px;
+  color: #b3b3b3;
+}
+
+h6 {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 20px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #f2f2f2;
+}
+
+p {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 25px;
+  color: #f2f2f2;
+}
+
+@media only screen and (max-width: 996px) {
+  .navbar--fixed-top {
+    height: 60px;
+  }
 }

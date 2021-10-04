@@ -40,6 +40,11 @@ Hide toggle in small viewports
   line-height: 24px;
 }
 
+.zoraCoButton:hover {
+  color: white;
+  background: #4d4d4d;
+}
+
 .githubIcon {
   left: 0%;
   right: 0.41%;
@@ -62,13 +67,34 @@ Hide toggle in small viewports
   color: #f2f2f2;
 }
 
+.zoraCoTextWeight {
+  font-weight: normal;
+}
+
+.zoraCoText {
+  color: #f2f2f2;
+  margin-bottom: 30px;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 30px;
+  margin-left: 15px;
+}
+
+.githubIconSideBar {
+  left: 0%;
+  right: 0.41%;
+  bottom: 1.18%;
+  margin-left: 15px;
+}
+
 @media only screen and (max-width: 1439px) {
   .zoraCoButton {
     width: 97.6px;
     height: 32px;
     font-size: 11.2px;
   }
-  
+
   .githubIcon {
     left: 0%;
     right: 0.33%;
@@ -76,14 +102,32 @@ Hide toggle in small viewports
     margin-right: 25.6px;
     margin-top: 5.6px;
   }
-  
+
   .navbar__logo {
     width: 72px;
     height: 32px;
   }
-  
+
   .navbar__item__style {
     margin-right: 20px;
     font-size: 11.2px;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  .DocSearch-Button {
+    display: none;
+  }
+
+  .githubIcon {
+    display: none;
+  }
+
+  .zoraCoButton {
+    display: none;
+  }
+
+  .searchIcon {
+    margin-left: 150px;
   }
 }
