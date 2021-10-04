@@ -15,8 +15,10 @@ function Footer() {
     <div className={styles.footer}>
       <div className={styles.footerLinksFlexbox}>
         <div className={styles.textFlexbox}>
-          <QuestionsIcon className={styles.footerIcon} />
-          <h3 className={styles.footerTitle}>Questions?</h3>
+          <div className={styles.footerTitleFlexbox}>
+            <QuestionsIcon className={styles.footerIcon} />
+            <h3 className={styles.footerTitle}>Questions?</h3>
+          </div>
           <p className={styles.footerParagraph}>
             Get help in the #developers channel on {''}
             <a
@@ -31,8 +33,10 @@ function Footer() {
           </p>
         </div>
         <div className={styles.textFlexbox}>
-          <TwitterIcon className={styles.footerIcon} />
-          <h3 className={styles.footerTitle}>Stay updated</h3>
+          <div className={styles.footerTitleFlexbox}>
+            <TwitterIcon className={styles.footerIcon} />
+            <h3 className={styles.footerTitle}>Stay updated</h3>
+          </div>
           <p className={styles.footerParagraph}>
             Follow us on {''}
             <a
@@ -42,8 +46,7 @@ function Footer() {
               rel='noopener noreferrer'
             >
               Twitter
-            </a>
-            {''}
+            </a>{' '}
             for release updates.
           </p>
         </div>
