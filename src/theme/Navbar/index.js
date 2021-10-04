@@ -166,10 +166,10 @@ function NavbarMobileSidebar({ sidebarShown, toggleSidebar }) {
               <NavbarItem mobile {...item} onClick={toggleSidebar} key={i} />
             ))}
           </ul>
-          <a href='https://zora.co/' className={styles.zoraCoTextA}>
+          <a href='https://zora.co/' className={styles.zoraCoTextA} target="_blank" rel="noopener noreferrer">
             <p className={styles.zoraCoText}>Open Zora.co</p>
           </a>
-          <a href='https://github.com/'>
+          <a href='https://github.com/' target="_blank" rel="noopener noreferrer">
             <GithubIcon className={styles.githubIconSideBar} />
           </a>
         </div>
@@ -244,7 +244,7 @@ function Navbar() {
         {!mobileSidebar.shouldRender && (
           <>
             <div className='navbar__items navbar__items--right'>
-              <a href='https://github.com/'>
+              <a href='https://github.com/' target="_blank" rel="noopener noreferrer">
                 <GithubIcon className={styles.githubIcon} />
               </a>
               {!colorModeToggle.disabled && (
@@ -254,7 +254,7 @@ function Navbar() {
                   onChange={colorModeToggle.toggle}
                 />
               )}
-              <a href='https://zora.co/'>
+              <a href='https://zora.co/' target="_blank" rel="noopener noreferrer">
                 <button className={styles.zoraCoButton}>Open Zora.co</button>
               </a>
             </div>

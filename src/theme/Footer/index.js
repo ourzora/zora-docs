@@ -18,14 +18,33 @@ function Footer() {
           <QuestionsIcon className={styles.footerIcon} />
           <h3 className={styles.footerTitle}>Questions?</h3>
           <p className={styles.footerParagraph}>
-            Get help in the #developers channel on Discord.
+            Get help in the #developers channel on {''}
+            <a
+              className={styles.footerLink}
+              href='https://zora.community'
+              target='_blank'
+              rel='noopener noreferrer'
+            >
+              Discord
+            </a>
+            .
           </p>
         </div>
         <div className={styles.textFlexbox}>
           <TwitterIcon className={styles.footerIcon} />
           <h3 className={styles.footerTitle}>Stay updated</h3>
           <p className={styles.footerParagraph}>
-            Follow us on Twitter for release updates.
+            Follow us on {''}
+            <a
+              className={styles.footerLink}
+              href='https://twitter.com/ourzora'
+              target='_blank'
+              rel='noopener noreferrer'
+            >
+              Twitter
+            </a>
+            {''}
+            for release updates.
           </p>
         </div>
       </div>
