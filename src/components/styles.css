@@ -127,7 +127,6 @@
 
 .projectCard:hover {
   border: 2px solid #ffffff;
-  border-radius: 25px;
 }
 
 .projectContainer {
@@ -137,7 +136,6 @@
   flex-wrap: wrap;
   gap: 28px;
   margin-right: 10px;
-  margin-bottom: 53px;
 }
 
 a:hover {
@@ -202,6 +200,7 @@ a:hover {
   .projectCard {
     width: 258.6px;
     height: 129.6px;
+    border-radius: 16px;
   }
 
   .projectContainer {
@@ -268,6 +267,7 @@ a:hover {
   .projectCard {
     width: 219.81px;
     height: 110.16px;
+    border-radius: 13px;
   }
 
   .projectContainer {
@@ -279,7 +279,7 @@ a:hover {
 @media only screen and (max-width: 979px) {
   .getting-started-card {
     width: 209px;
-    height: 265.6px;
+    height: 233px;
     padding: 11px;
   }
 
@@ -334,6 +334,7 @@ a:hover {
   .projectCard {
     width: 154px;
     height: 77px;
+    border-radius: 10px;
   }
 
   .projectContainer {
@@ -345,7 +346,7 @@ a:hover {
 @media only screen and (max-width: 664px) {
   .getting-started-card {
     width: 146px;
-    height: 185px;
+    height: 183px;
     padding: 8px;
   }
 
@@ -399,6 +400,7 @@ a:hover {
   .projectCard {
     width: 108px;
     height: 54px;
+    border-radius: 7px;
   }
 
   .projectContainer {
@@ -467,6 +469,7 @@ a:hover {
   .projectCard {
     width: 160px;
     height: 80px;
+    border-radius: 10px;
   }
 
   .projectContainer {
@@ -530,5 +533,6 @@ a:hover {
   .projectCard {
     width: 136px;
     height: 68px;
+    border-radius: 10px;
   }
 }

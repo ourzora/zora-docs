@@ -19,7 +19,7 @@
   background: #141414dd;
   backdrop-filter: blur(20px);
   z-index: 1;
-  margin-top: 624px;
+  margin-top: 550px;
   width: 100%;
   padding-left: 20px;
   padding-right: 20px;
@@ -29,6 +29,7 @@
   justify-content: center;
   flex-direction: column;
   align-items: center;
+  padding-bottom: 53px;
 }
 
 .layoutFlexBox {
@@ -52,8 +53,8 @@
   flex-direction: row;
   padding-top: 39px;
   align-items: center;
-  gap: 76.5%;
-  margin-left: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
 }
 
 .viewAll {
@@ -63,11 +64,20 @@
   letter-spacing: 0.05em;
   text-transform: uppercase;
   color: #f2f2f2;
-  text-align: right;
+  padding: 10px 10px;
+  background: none;
+  border: none;
+  text-align: center;
 }
 
-.viewAll:hover {
-  text-decoration: underline;
+.viewAllLink {
+  margin-left: auto;
+  margin-right: 5px;
+}
+
+.viewAllLink:hover {
+  background: #4d4d4d;
+  border-radius: 4px;
 }
 
 .tools {
@@ -76,16 +86,16 @@
   line-height: 50px;
   color: #ffffff;
   margin-top: 72px;
-  margin-left: 7px;
+  padding-left: 5px;
 }
 
 .projects {
   font-weight: 500;
-  font-size: 30px;
+  font-size: 35px;
   line-height: 40px;
   color: #ffffff;
   margin-top: 107px;
-  margin-left: 8px;
+  padding-left: 5px;
 }
 
 .logoText {
@@ -104,7 +114,7 @@
   position: absolute;
   width: 168px;
   height: 20px;
-  top: 439px;
+  top: 420px;
   left: 0;
   right: 0;
   margin-left: auto;
@@ -124,7 +134,6 @@
     margin-top: 499.2px;
     padding-left: 16px;
     padding-right: 16px;
-    padding-bottom: 148.8px;
   }
 
   .layoutFlexBox {
@@ -138,7 +147,8 @@
 
   .gettingStartedFlexBox {
     padding-top: 31.2px;
-    margin-left: 7.4px;
+    padding-left: 5px;
+    padding-right: 5px;
   }
 
   .viewAll {
@@ -149,14 +159,14 @@
   .tools {
     font-size: 28px;
     margin-top: 57.6px;
-    margin-left: 5.6px;
+    padding-left: 5px;
     line-height: 40px;
   }
 
   .projects {
-    font-size: 24px;
+    font-size: 28px;
     margin-top: 85.6px;
-    margin-left: 6.4px;
+    padding-left: 5px;
     line-height: 32px;
   }
 
@@ -180,7 +190,6 @@
     margin-top: 424.32px;
     padding-left: 13.6px;
     padding-right: 13.6px;
-    padding-bottom: 125.48px;
   }
 
   .layoutFlexBox {
@@ -188,13 +197,14 @@
   }
 
   .gettingStarted {
-    font-size: 23.8px;
+    font-size: 24px;
     line-height: 34px;
   }
 
   .gettingStartedFlexBox {
     padding-top: 26.52px;
-    margin-left: 6.29px;
+    padding-left: 5px;
+    padding-right: 5px;
   }
 
   .viewAll {
@@ -203,16 +213,16 @@
   }
 
   .tools {
-    font-size: 23.8px;
+    font-size: 24px;
     margin-top: 48.96px;
-    margin-left: 4.76px;
+    padding-left: 5px;
     line-height: 34px;
   }
 
   .projects {
-    font-size: 20.4px;
+    font-size: 24px;
     margin-top: 72.76px;
-    margin-left: 5.44px;
+    padding-left: 5px;
     line-height: 27.2px;
   }
 
@@ -236,7 +246,6 @@
     margin-top: 297px;
     padding-left: 4px;
     padding-right: 4px;
-    padding-bottom: 89px;
   }
 
   .layoutFlexBox {
@@ -246,11 +255,13 @@
   .gettingStarted {
     font-size: 17px;
     line-height: 24px;
+    margin-top: 10px;
   }
 
   .gettingStartedFlexBox {
     padding-top: 19px;
-    margin-left: 4px;
+    padding-left: 5px;
+    padding-right: 5px;
   }
 
   .viewAll {
@@ -261,14 +272,14 @@
   .tools {
     font-size: 17px;
     margin-top: 34px;
-    margin-left: 3px;
+    padding-left: 5px;
     line-height: 24px;
   }
 
   .projects {
-    font-size: 14px;
+    font-size: 17px;
     margin-top: 51px;
-    margin-left: 3px;
+    padding-left: 5px;
     line-height: 19px;
   }
 
@@ -292,7 +303,6 @@
     margin-top: 208px;
     padding-left: 3px;
     padding-right: 3px;
-    padding-bottom: 62px;
   }
 
   .layoutFlexBox {
@@ -302,29 +312,31 @@
   .gettingStarted {
     font-size: 12px;
     line-height: 17px;
+    margin-top: 15px;
   }
 
   .gettingStartedFlexBox {
     padding-top: 13px;
-    margin-left: 3px;
+    padding-left: 5px;
+    padding-right: 5px;
   }
 
   .viewAll {
-    font-size: 4px;
-    line-height: 7px;
+    font-size: 6px;
+    line-height: 10px;
   }
 
   .tools {
     font-size: 12px;
     margin-top: 24px;
-    margin-left: 2px;
+    padding-left: 5px;
     line-height: 17px;
   }
 
   .projects {
-    font-size: 10px;
+    font-size: 12px;
     margin-top: 46px;
-    margin-left: 2px;
+    padding-left: 5px;
     line-height: 13px;
   }
 
@@ -348,7 +360,7 @@
     margin-top: 388px;
     padding-left: 16px;
     padding-right: 16px;
-    padding-bottom: 148.8px;
+    padding-bottom: 50px;
   }
 
   .layoutFlexBox {
@@ -362,13 +374,14 @@
 
   .gettingStartedFlexBox {
     padding-top: 35px;
-    margin-left: 7.4px;
-    gap: 37%;
+    padding-left: 5px;
+    padding-right: 5px;
   }
 
   .viewAll {
     font-size: 12px;
     line-height: 20px;
+    padding: 10px 10px;
   }
 
   .tools {
@@ -381,7 +394,7 @@
   .projects {
     font-size: 20px;
     margin-top: 35px;
-    margin-left: 6.4px;
+    padding-left: 5px;
     line-height: 30px;
   }
 
@@ -404,7 +417,6 @@
     margin-top: 329.8px;
     padding-left: 13.6px;
     padding-right: 13.6px;
-    padding-bottom: 126.48px;
   }
 
   .layoutFlexBox {
@@ -414,12 +426,13 @@
   .gettingStarted {
     font-size: 17px;
     line-height: 25.5px;
+    margin-left: 12px;
   }
 
   .gettingStartedFlexBox {
     padding-top: 29px;
-    margin-left: 6.29px;
-    gap: 31.45%;
+    padding-left: 5px;
+    padding-right: 5px;
   }
 
   .viewAll {
@@ -436,7 +449,7 @@
   .projects {
     font-size: 17px;
     margin-top: 25.5px;
-    margin-left: 5.44px;
+    padding-left: 5px;
     line-height: 25.5px;
   }
 

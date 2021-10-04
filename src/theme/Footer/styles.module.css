@@ -81,10 +81,24 @@
   color: #b3b3b3;
 }
 
+.footerLink:hover {
+  text-decoration: underline;
+}
+
 .footerTitleFlexbox {
   display: flex;
   gap: 10px;
   flex-direction: row;
+}
+
+@media only screen and (max-width: 620px) {
+  .footerTitle {
+    font-size: 14px;
+  }
+
+  .footerParagraph {
+    font-size: 12px;
+  }
 }
 
 @media only screen and (max-width: 500px) {

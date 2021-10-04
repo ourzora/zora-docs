@@ -40,6 +40,11 @@ Hide toggle in small viewports
   line-height: 24px;
 }
 
+.zoraCoButton:hover {
+  color: white;
+  background: #4d4d4d;
+}
+
 .githubIcon {
   left: 0%;
   right: 0.41%;

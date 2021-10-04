@@ -22,7 +22,9 @@ export default function Home() {
         <div className={styles.layoutFlexBox}>
           <div className={styles.gettingStartedFlexBox}>
             <p className={styles.gettingStarted}>Getting started</p>
-            <p className={styles.viewAll}>VIEW ALL</p>
+            <a className={styles.viewAllLink} href='docs/guides/introduction'>
+              <button className={styles.viewAll}>VIEW ALL</button>
+            </a>
           </div>
           <GettingStartedCards />
           <p className={styles.tools}>Tools</p>
