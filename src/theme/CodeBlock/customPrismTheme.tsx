@@ -16,13 +16,13 @@ var customPrismTheme: PrismTheme = {
     {
       types: ['string'],
       style: {
-        color: '#5DEAEA',
+        color: '#88e7e7',
       },
     },
     {
       types: ['number', 'boolean'],
       style: {
-        color: '#F1AB21',
+        color: '#e7b16e',
       },
     },
     {
@@ -34,7 +34,7 @@ var customPrismTheme: PrismTheme = {
     {
       types: ['class-name', 'attr-name'],
       style: {
-        color: '#F1AB21',
+        color: '#e7b16e',
       },
     },
     {
@@ -50,9 +50,15 @@ var customPrismTheme: PrismTheme = {
       },
     },
     {
-      types: ['keyword', 'function', 'object', 'property-query'],
+      types: ['keyword'],
       style: {
-        color: '#3574EF'
+        color: '#5188f5'
+      },
+    },
+    {
+      types: ['function', 'object', 'property-query'],
+      style: {
+        color: '#86d7ff',
       },
     },
     {
