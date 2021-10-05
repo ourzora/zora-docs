@@ -4,11 +4,11 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import React from 'react';
-import styles from './styles.module.css';
-import QuestionsIcon from '../../../static/img/questionsIcon.svg';
-import TwitterIcon from '../../../static/img/twitterIcon.svg';
-import ZoraLogo from '../../../static/img/homepageLogo.svg';
+import React from 'react'
+import styles from './styles.module.css'
+import QuestionsIcon from '../../../static/img/questionsIcon.svg'
+import TwitterIcon from '../../../static/img/twitterIcon.svg'
+import ZoraLogo from '../../../static/img/homepageLogo.svg'
 
 function Footer() {
   return (
@@ -23,9 +23,9 @@ function Footer() {
             Get help in the #developers channel on {''}
             <a
               className={styles.footerLink}
-              href='https://zora.community'
-              target='_blank'
-              rel='noopener noreferrer'
+              href="https://zora.community"
+              target="_blank"
+              rel="noopener noreferrer"
             >
               Discord
             </a>
@@ -41,9 +41,9 @@ function Footer() {
             Follow us on {''}
             <a
               className={styles.footerLink}
-              href='https://twitter.com/ourzora'
-              target='_blank'
-              rel='noopener noreferrer'
+              href="https://twitter.com/ourzora"
+              target="_blank"
+              rel="noopener noreferrer"
             >
               Twitter
             </a>{' '}
@@ -55,7 +55,7 @@ function Footer() {
         <ZoraLogo className={styles.zoraLogo} />
       </div>
     </div>
-  );
+  )
 }
 
-export default Footer;
+export default Footer

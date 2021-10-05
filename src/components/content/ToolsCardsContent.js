@@ -53,4 +53,4 @@ export const toolsCardsContent = [
     toolsParagraph:
       'A tool for developers to simply and reliably interact with the Zora Protocol.',
   },
-];
+]

@@ -25,7 +25,7 @@ audiences to engage and transact on digital media directly. Information wants to
 In an ideal ecosystem, audiences would enjoy the universal accessibility of media, and creators would enjoy more pricing power
 and stable returns on media which appreciates in value.
 
-In this paper, we propose Zora Protocol, a universal market protocol for media ownership. Zora provides a 
+In this paper, we propose Zora Protocol, a universal market protocol for media ownership. Zora provides a
 cryptographically-enforced registry of media independent of any platform. Media is openly accessible to audiences, curators,
 and third parties who wish to build on the token. Artificial scarcity on media copies need not be imposed, because the single
 market embedded in the token enables liquidity and value to accrue to the uniquely registered article. An embedded, permanent
@@ -74,6 +74,7 @@ and 95% of the bid’s value is transferred between the owner and previous owner
 previous sale of the piece.
 
 We define a bid in the protocol as a Solidity struct as follows:
+
 ```solidity
 struct Bid {
     // Amount of the currency being bid
@@ -108,19 +109,18 @@ suppose we have the following set of shares: 1.5%, 15%, 83.5%.
 
 We represent the shares as fractions with a common denominator as follows:
 
-
 $$
 S = \{\frac{n}{d}|\frac{15}{1000}, \frac{150}{1000}, \frac{835}{1000} \}
 $$
-
 
 We can use this representation to find the least common denominator.
 
 Therefore, given the least common denominator of 200, any valid bid must be divisible by 200. Note that at first read,
 this value may seem high, but recall that the majority of ERC-20 tokens in Ethereum have 18 decimals. Therefore, a bid for
-the above set of shares must be divisible by 5 * 10-15 units, which we assume to be an acceptable amount for this protocol.
+the above set of shares must be divisible by 5 \* 10-15 units, which we assume to be an acceptable amount for this protocol.
 
 ### Asks
+
 At any time, an owner of a piece of media may accept a valid bid. However, bids only represent the buy-side of a media market.
 Without a sell-side, liquidity will fragment into multiple different pools. This protocol therefore uses an ask mechanism that
 allows for bidders to automatically execute a trade if the ask is fulfilled.

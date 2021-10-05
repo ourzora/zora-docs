@@ -16,7 +16,7 @@ const highlightLinesRangeRegex = /{([\d,-]+)}/
 import customPrismTheme from './customPrismTheme'
 
 const getHighlightDirectiveRegex = (
-  languages = ['js', 'jsBlock', 'jsx', 'python', 'html'],
+  languages = ['js', 'jsBlock', 'jsx', 'python', 'html']
 ) => {
   // supported types of comments
   const comments = {
@@ -42,16 +42,11 @@ const getHighlightDirectiveRegex = (
     },
   } // supported directives
 
-  const directives = [
-    'highlight-next-line',
-    'highlight-start',
-    'highlight-end',
-  ].join('|') // to be more reliable, the opening and closing comment must match
+  const directives = ['highlight-next-line', 'highlight-start', 'highlight-end'].join('|') // to be more reliable, the opening and closing comment must match
 
   const commentPattern = languages
     .map(
-      (lang) =>
-        `(?:${comments[lang].start}\\s*(${directives})\\s*${comments[lang].end})`,
+      (lang) => `(?:${comments[lang].start}\\s*(${directives})\\s*${comments[lang].end})`
     )
     .join('|') // white space is allowed, but otherwise it should be on it's own line
 
@@ -143,9 +138,7 @@ export default function CodeBlock({
       const match = line.match(directiveRegex)
 
       if (match !== null) {
-        const directive = match
-          .slice(1)
-          .reduce((final, item) => final || item, undefined)
+        const directive = match.slice(1).reduce((final, item) => final || item, undefined)
 
         switch (directive) {
           case 'highlight-next-line':

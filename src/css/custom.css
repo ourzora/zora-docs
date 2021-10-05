@@ -37,11 +37,11 @@ html[data-theme='dark'] .docusaurus-highlight-code-line {
 }
 
 html[data-theme='dark'] {
-  --ifm-color-primary: #F2F2F2;
+  --ifm-color-primary: #f2f2f2;
   --ifm-color-primary-dark: #ffff;
   --ifm-color-primary-darker: #ffff;
   --ifm-color-primary-darkest: #ffff;
-  --ifm-navbar-link-hover-color: #F2F2F2;
+  --ifm-navbar-link-hover-color: #f2f2f2;
   --ifm-navbar-background-color: rgba(20, 20, 20, 0.8);
   --ifm-table-stripe-background: rgba(255, 255, 255, 0.03);
   background-image: url('../../static/img/radialGradient.svg');
@@ -108,8 +108,7 @@ html[data-theme='dark'] {
 
 .navbar--fixed-top {
   background: rgba(20, 20, 20, 0.8);
-  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1),
-    inset 0px -2px 0px rgba(255, 255, 255, 0.2);
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1), inset 0px -2px 0px rgba(255, 255, 255, 0.2);
   backdrop-filter: blur(40px);
   height: 80px;
 }
@@ -208,7 +207,9 @@ article {
 }
 
 /* Override docusaurus styling for space between paragraphds */
-.markdown > pre, .markdown > ul, .markdown > p {
+.markdown > pre,
+.markdown > ul,
+.markdown > p {
   margin-bottom: calc(var(--ifm-leading) * 1.5);
 }
 
@@ -229,7 +230,9 @@ table th {
   color: #b3b3b3;
 }
 
-table td, table th, table tr {
+table td,
+table th,
+table tr {
   border-width: 0;
 }
 

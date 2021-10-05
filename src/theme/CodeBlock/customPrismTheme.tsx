@@ -1,4 +1,4 @@
-import type { PrismTheme } from 'prism-react-renderer';
+import type { PrismTheme } from 'prism-react-renderer'
 
 var customPrismTheme: PrismTheme = {
   plain: {
@@ -52,7 +52,7 @@ var customPrismTheme: PrismTheme = {
     {
       types: ['keyword'],
       style: {
-        color: '#5188f5'
+        color: '#5188f5',
       },
     },
     {
@@ -68,6 +68,6 @@ var customPrismTheme: PrismTheme = {
       },
     },
   ],
-};
+}
 
-export default customPrismTheme;
+export default customPrismTheme

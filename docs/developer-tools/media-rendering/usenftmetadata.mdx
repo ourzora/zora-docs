@@ -70,8 +70,6 @@ import { MediaFetchAgent, Networks } from '@zoralabs/nft-hooks'
 const fetchAgent = new MediaFetchAgent(Networks.MAINNET)
 
 // Get result from the server
-const result = await fetchAgent.loadMetadata(
-  'https://ipfs.io/ipfs/METADATA_HASH',
-)
+const result = await fetchAgent.loadMetadata('https://ipfs.io/ipfs/METADATA_HASH')
 // result type is {metadata, valid}
 ```
