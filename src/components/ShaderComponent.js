@@ -7,7 +7,7 @@ import ExecutionEnvironment from '@docusaurus/ExecutionEnvironment';
 export const ShaderComponent = () => {
   if (ExecutionEnvironment.canUseDOM) {
     let GlslCanvas = require('glslCanvas').default;
-    const canvasRef = React.useRef(null);
+    const canvasRef = React.useRef();
     React.useEffect(() => {
       const canvas = canvasRef;
       var sandbox = new GlslCanvas(canvas.current);
