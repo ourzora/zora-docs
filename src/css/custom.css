@@ -37,20 +37,28 @@ html[data-theme='dark'] .docusaurus-highlight-code-line {
 }
 
 html[data-theme='dark'] {
-  --ifm-color-primary: #ffff;
+  --ifm-color-primary: #F2F2F2;
   --ifm-color-primary-dark: #ffff;
   --ifm-color-primary-darker: #ffff;
   --ifm-color-primary-darkest: #ffff;
-  --ifm-navbar-link-hover-color: #ffff;
+  --ifm-navbar-link-hover-color: #F2F2F2;
   --ifm-navbar-background-color: rgba(20, 20, 20, 0.8);
+  --ifm-table-stripe-background: rgba(255, 255, 255, 0.03);
   background-image: url('../../static/img/radialGradient.svg');
   background-repeat: no-repeat;
   background-position: center;
+  background-attachment: fixed;
   --docusaurus-btt-color: #000000;
 }
 
-a {
-  font-weight: bold;
+.markdown a,
+.markdown a:hover {
+  font-weight: 500;
+  text-decoration: underline;
+}
+
+.markdown a:hover {
+  opacity: 0.7;
 }
 
 .react-toggle-track {
@@ -165,7 +173,8 @@ h5 {
   color: #b3b3b3;
 }
 
-h6 {
+h6,
+th {
   font-family: 'Inter';
   font-style: normal;
   font-weight: 500;
@@ -183,6 +192,45 @@ p {
   font-size: 16px;
   line-height: 25px;
   color: #f2f2f2;
+}
+
+hr {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+code {
+  vertical-align: baseline;
+}
+
+article {
+  margin-top: calc(var(--ifm-leading) * 2);
+  max-width: 700px;
+}
+
+/* Override docusaurus styling for space between paragraphds */
+.markdown > pre, .markdown > ul, .markdown > p {
+  margin-bottom: calc(var(--ifm-leading) * 1.5);
+}
+
+table {
+  background: rgba(31, 31, 31, 0.6);
+  border: 2px solid rgba(255, 255, 255, 0.05);
+  border-radius: 4px;
+  width: fit-content;
+  max-width: 100%;
+}
+
+table tr {
+  width: 100%;
+}
+
+table th {
+  text-align: left;
+  color: #b3b3b3;
+}
+
+table td, table th, table tr {
+  border-width: 0;
 }
 
 @media only screen and (max-width: 996px) {
