@@ -51,6 +51,10 @@ html[data-theme='dark'] {
   --docusaurus-btt-color: #000000;
 }
 
+button {
+  cursor: pointer;
+}
+
 .markdown a,
 .markdown a:hover {
   font-weight: 500;
