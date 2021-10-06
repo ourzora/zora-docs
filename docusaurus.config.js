@@ -85,12 +85,12 @@ module.exports = {
     [
       'docusaurus2-dotenv',
       {
-        path: './.env',
         safe: false,
         systemvars: true,
         silent: false,
         expand: false,
         defaults: false,
+        INFURA: process.env.INFURA,
       },
     ],
   ],
