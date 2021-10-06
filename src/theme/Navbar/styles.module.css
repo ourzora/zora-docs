@@ -31,7 +31,7 @@ Hide toggle in small viewports
   background: #f2f2f2;
   border-radius: 4px;
   color: #000000;
-  padding: 0;
+  padding: 8px 15px;
   border: none;
   font-family: 'Inter';
   font-style: normal;
@@ -53,9 +53,9 @@ Hide toggle in small viewports
   margin-top: 7px;
 }
 
-.navbar__logo {
-  width: 90px;
-  height: 40px;
+.menuItemLinkMobile {
+  font-size: 18px;
+  color: #f2f2f2;
 }
 
 .navbar__item__style {
@@ -90,9 +90,10 @@ Hide toggle in small viewports
 
 @media only screen and (max-width: 1439px) {
   .zoraCoButton {
-    width: 97.6px;
+    width: 98px;
     height: 32px;
-    font-size: 11.2px;
+    font-size: 11px;
+    padding: 5px 12px;
   }
 
   .githubIcon {

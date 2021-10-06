@@ -101,9 +101,7 @@ type CurrencyInformation = {
   decimals: number // Decimals for currency
 }
 
-type useZNFT = (
-  id: string,
-) => {
+type useZNFT = (id: string) => {
   currencyLoaded: boolean
   error?: string // undefined if no error, string if error
   data?: NFTDataType // undefined in error or loading states

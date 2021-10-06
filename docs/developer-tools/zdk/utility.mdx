@@ -16,7 +16,7 @@ The utility functions can roughly be split into 3 categories:
 ## Type Constructors
 
 The Zora protocol utilizes a number of structs to encode data as parameters.
-The ZDK provides some type constructors that can perform some basic validation and return a properly formatted struct. 
+The ZDK provides some type constructors that can perform some basic validation and return a properly formatted struct.
 
 ### constructMediaData
 
@@ -24,12 +24,12 @@ The ZDK provides some type constructors that can perform some basic validation a
 - Validates that the URIs begins with `https://`.
 - Validates that the hashes are exactly 32 bytes in length.
 
-| **Name**     | **Type**     | **Description**                                    |
-| ------------ | ------------ | -------------------------------------------------- |
-| tokenURI     | string       | The uri where the media's content can be accessed  |
-| metadataURI  | string       | The uri where the media's metadata can be accessed |
-| contentHash  | BytesLike    | The sha256 hash of the media's content             |
-| metadataHash | BytesLike    | The sha256 hash of the media's metadata            |
+| **Name**     | **Type**  | **Description**                                    |
+| ------------ | --------- | -------------------------------------------------- |
+| tokenURI     | string    | The uri where the media's content can be accessed  |
+| metadataURI  | string    | The uri where the media's metadata can be accessed |
+| contentHash  | BytesLike | The sha256 hash of the media's content             |
+| metadataHash | BytesLike | The sha256 hash of the media's metadata            |
 
 ```typescript
 const contentHash = await sha256FromBuffer(Buffer.from('some content'))
@@ -47,10 +47,10 @@ const mediaData = constructMediaData(
 
 - Parses and Validates the currency address to ensure its a valid Ethereum Address
 
-| **Name**     | **Type**  | **Description**                                      |
-| --------- | ------------ | ---------------------------------------------------- |
-| currency  | string       | The currency address of the Ask                      |
-| amount    | BigNumberish | The amount of the Ask in the currency's atomic units |
+| **Name** | **Type**     | **Description**                                      |
+| -------- | ------------ | ---------------------------------------------------- |
+| currency | string       | The currency address of the Ask                      |
+| amount   | BigNumberish | The amount of the Ask in the currency's atomic units |
 
 ```typescript
 const dai = '0x6B175474E89094C44Da98b954EedeAC495271d0F'
@@ -83,12 +83,11 @@ const bid = constructBid(dai, decimal100.value, bidder, bidder, 33.3333)
 - Accepts `number` args, converts them to ethers `BigNumber` type with 18 decimals of precision.
 - Performs validation that the `BigNumber` representations sum to `100` in `BigNumber` form.
 
-| **Name**    | **Type**     | **Description**                                      |
-| ----------- | ------------ | ---------------------------------------------------- |
-| creator     | number       | The creator bidshare for the media                   |
-| owner       | number       | The owner bidshare for the media                     |
-| prevOwner   | number       | The prevOwner bidshare for the media                 |
-
+| **Name**  | **Type** | **Description**                      |
+| --------- | -------- | ------------------------------------ |
+| creator   | number   | The creator bidshare for the media   |
+| owner     | number   | The owner bidshare for the media     |
+| prevOwner | number   | The prevOwner bidshare for the media |
 
 ```typescript
 const bidShares = constructBidShares(10, 90, 0)
@@ -96,13 +95,13 @@ const bidShares = constructBidShares(10, 90, 0)
 
 ## Hashing Utilities
 
-All pieces of media minted on the Zora Protocol must etch a ```sha256``` hash of both its content and metadata onto the blockchain.
+All pieces of media minted on the Zora Protocol must etch a `sha256` hash of both its content and metadata onto the blockchain.
 As such it is important developers interacting with Zora have reliable ways to create and verify hashes of data of all
 types and sizes.
 
 :::note
-The majority of NFT protocols don't currently support storing integrity tools like a ```sha256``` checksum. This means that if
-the URL that other NFTs were to ever change, the NFT would become corrupted with no way to verify the originality of the media. 
+The majority of NFT protocols don't currently support storing integrity tools like a `sha256` checksum. This means that if
+the URL that other NFTs were to ever change, the NFT would become corrupted with no way to verify the originality of the media.
 
 By providing an on-chain integrity check, anyone is able to ensure that a Zora NFT has not been corrupted in any way.
 :::
@@ -111,9 +110,9 @@ By providing an on-chain integrity check, anyone is able to ensure that a Zora N
 
 Create a sha256 from a `Buffer` object
 
-| **Name**    | **Type**     | **Description**                                      |
-| ----------- | ------------ | ---------------------------------------------------- |
-| buffer      | Buffer       | The Buffer to be hashed                              |
+| **Name** | **Type** | **Description**         |
+| -------- | -------- | ----------------------- |
+| buffer   | Buffer   | The Buffer to be hashed |
 
 ```typescript
 const buf = await fs.readFile('path/to/file')
@@ -128,10 +127,9 @@ const otherHash = sha256FromBuffer(otherBuffer)
 Create a sha256 hash from a hex string.
 Hex string must be prefixed with `0x`
 
-| **Name**    | **Type**     | **Description**                                      |
-| ----------- | ------------ | ---------------------------------------------------- |
-| data        | string       | The hex encoded data to be hashed                    |
-
+| **Name** | **Type** | **Description**                   |
+| -------- | -------- | --------------------------------- |
+| data     | string   | The hex encoded data to be hashed |
 
 ```typescript
 const buf = Buffer.from('someContent')
@@ -144,10 +142,10 @@ const hash = sha256FromHexString(hexString)
 Create a sha256 hash from a local file.
 This is most useful for the hashing of large files. It uses a readStream to load bits into memory via a buffer and construct a hash as it consumes the contents of the file.
 
-| **Name**    | **Type**     | **Description**                                                 |
-| ----------- | ------------ | --------------------------------------------------------------- |
-| pathToFile  | string       | The path to the file to be hashed                               |
-| chunkSize   | number       | The chunk size in bytes for the read stream to read into memory |
+| **Name**   | **Type** | **Description**                                                 |
+| ---------- | -------- | --------------------------------------------------------------- |
+| pathToFile | string   | The path to the file to be hashed                               |
+| chunkSize  | number   | The chunk size in bytes for the read stream to read into memory |
 
 ```typescript
 const hash = await sha256FromFile('path/to/file', 16 * 1024)
@@ -167,17 +165,16 @@ We have extended it further to be used for the Zora Protocol, so that users can 
 - `updateMetadataURI`
 - `transfer`
 
-
 For now, the signer must be an `ethers` `Wallet` object. But soon we will support any `Signer`.
 
-| **Name**    | **Type**     | **Description**                                      |
-| ----------- | ------------ | ---------------------------------------------------- |
-| owner       | Wallet       | The owners's wallet                                  |
-| toAddress   | string       | The address being granted the permit                 |
-| mediaId     | number       | The ID of the media                                  |
-| nonce       | number       | The permitNonce of the owner address                 |
-| deadline    | number       | The deadline of the signature to be included in a tx |
-| domain      | EIP712Domain | The EIP712Domain for the permit sig                  |
+| **Name**  | **Type**     | **Description**                                      |
+| --------- | ------------ | ---------------------------------------------------- |
+| owner     | Wallet       | The owners's wallet                                  |
+| toAddress | string       | The address being granted the permit                 |
+| mediaId   | number       | The ID of the media                                  |
+| nonce     | number       | The permitNonce of the owner address                 |
+| deadline  | number       | The deadline of the signature to be included in a tx |
+| domain    | EIP712Domain | The EIP712Domain for the permit sig                  |
 
 ```typescript
 const provider = new JsonRpcProvider()
@@ -240,15 +237,15 @@ const eipSig = await signMintWithSigMessage(
 
 Recover the address of the signing private key of a `Permit` message
 
-| **Name**    | **Type**        | **Description**                                      |
-| ----------- | --------------- | ---------------------------------------------------- |
-| owner       | Wallet          | The owners's wallet                                  |
-| toAddress   | string          | The address being granted the permit                 |
-| mediaId     | number          | The ID of the media                                  |
-| nonce       | number          | The permitNonce of the owner address                 |
-| deadline    | number          | The deadline of the signature to be included in a tx |
-| domain      | EIP712Domain    | The EIP712Domain for the permit sig                  |
-| sig         | EIP712Signature | The EIP712Signature to have an address recovered     |
+| **Name**  | **Type**        | **Description**                                      |
+| --------- | --------------- | ---------------------------------------------------- |
+| owner     | Wallet          | The owners's wallet                                  |
+| toAddress | string          | The address being granted the permit                 |
+| mediaId   | number          | The ID of the media                                  |
+| nonce     | number          | The permitNonce of the owner address                 |
+| deadline  | number          | The deadline of the signature to be included in a tx |
+| domain    | EIP712Domain    | The EIP712Domain for the permit sig                  |
+| sig       | EIP712Signature | The EIP712Signature to have an address recovered     |
 
 ```typescript
 const provider = new JsonRpcProvider()

@@ -43,7 +43,7 @@ module.exports = {
     },
     prism: {
       theme: darkCodeTheme,
-      additionalLanguages: ["solidity", "graphql"],
+      additionalLanguages: ['solidity', 'graphql'],
     },
     algolia: {
       apiKey: 'YOUR_API_KEY',
@@ -51,7 +51,7 @@ module.exports = {
     },
     footer: {
       style: 'dark',
-    }
+    },
   },
   presets: [
     [
@@ -60,8 +60,7 @@ module.exports = {
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
           // Please change this to your repo.
-          editUrl:
-            'https://github.com/facebook/docusaurus/edit/master/website/',
+          editUrl: 'https://github.com/facebook/docusaurus/edit/master/website/',
           remarkPlugins: [math],
           rehypePlugins: [katex],
         },
@@ -86,12 +85,12 @@ module.exports = {
     [
       'docusaurus2-dotenv',
       {
-        path: './.env',
         safe: false,
         systemvars: true,
         silent: false,
         expand: false,
         defaults: false,
+        INFURA: process.env.INFURA,
       },
     ],
   ],

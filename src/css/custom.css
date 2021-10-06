@@ -37,11 +37,11 @@ html[data-theme='dark'] .docusaurus-highlight-code-line {
 }
 
 html[data-theme='dark'] {
-  --ifm-color-primary: #F2F2F2;
+  --ifm-color-primary: #f2f2f2;
   --ifm-color-primary-dark: #ffff;
   --ifm-color-primary-darker: #ffff;
   --ifm-color-primary-darkest: #ffff;
-  --ifm-navbar-link-hover-color: #F2F2F2;
+  --ifm-navbar-link-hover-color: #f2f2f2;
   --ifm-navbar-background-color: rgba(20, 20, 20, 0.8);
   --ifm-table-stripe-background: rgba(255, 255, 255, 0.03);
   background-image: url('../../static/img/radialGradient.svg');
@@ -49,6 +49,10 @@ html[data-theme='dark'] {
   background-position: center;
   background-attachment: fixed;
   --docusaurus-btt-color: #000000;
+}
+
+button {
+  cursor: pointer;
 }
 
 .markdown a,
@@ -99,6 +103,7 @@ html[data-theme='dark'] {
 
 .navbar__menu__exit {
   margin-left: 8px;
+  margin-right: 11px;
 }
 
 .navbar-sidebar__item,
@@ -108,10 +113,18 @@ html[data-theme='dark'] {
 
 .navbar--fixed-top {
   background: rgba(20, 20, 20, 0.8);
-  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1),
-    inset 0px -2px 0px rgba(255, 255, 255, 0.2);
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1), inset 0px -2px 0px rgba(255, 255, 255, 0.2);
   backdrop-filter: blur(40px);
   height: 80px;
+}
+
+.navbar__logo {
+  width: 30px;
+  height: 30px;
+}
+
+.navbar__toggle {
+  margin-right: 0px;
 }
 
 code {
@@ -208,7 +221,9 @@ article {
 }
 
 /* Override docusaurus styling for space between paragraphds */
-.markdown > pre, .markdown > ul, .markdown > p {
+.markdown > pre,
+.markdown > ul,
+.markdown > p {
   margin-bottom: calc(var(--ifm-leading) * 1.5);
 }
 
@@ -229,8 +244,15 @@ table th {
   color: #b3b3b3;
 }
 
-table td, table th, table tr {
+table td,
+table th,
+table tr {
   border-width: 0;
+}
+
+.alert--secondary {
+  background: rgba(31, 31, 31, 0.6);
+  border: 1px solid hsla(0, 0%, 100%, 0.05);
 }
 
 @media only screen and (max-width: 996px) {
