@@ -14,7 +14,6 @@ export const ShaderComponent = () => {
       const rpcProvider = new ethers.providers.JsonRpcProvider(process.env.INFURA)
 
       rpcProvider.getBlockNumber().then((num) => {
-        console.log('****** ', num)
         sandbox.load(ShaderFragment)
         sandbox.setUniform('u_seed', Math.pow(num, 0.5))
       })
