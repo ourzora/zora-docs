@@ -21,7 +21,7 @@ import useWindowSize from '@theme/hooks/useWindowSize'
 import NavbarItem from '@theme/NavbarItem'
 import Logo from '@theme/Logo'
 import styles from './styles.module.css' // retrocompatible with v1
-import GithubIcon from '../../projectIcons/githubIcon.svg'
+import GithubIcon from '../../../static/img/githubIcon.svg'
 import NavbarMenuExit from '../../../static/img/navbarMenuExit.svg'
 import HamburgerIcon from '../../../static/img/hamburgerIcon.svg'
 import MobileSearchBar from '../MobileSearchBar'
@@ -160,7 +160,13 @@ function NavbarMobileSidebar({ sidebarShown, toggleSidebar }) {
         <div className="navbar-sidebar__item menu">
           <ul className="menu__list">
             {items.map((item, i) => (
-              <NavbarItem mobile {...item} onClick={toggleSidebar} key={i} />
+              <NavbarItem
+                mobile
+                {...item}
+                onClick={toggleSidebar}
+                key={i}
+                className={styles.menuItemLinkMobile}
+              />
             ))}
           </ul>
           <a

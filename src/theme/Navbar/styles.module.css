@@ -53,6 +53,11 @@ Hide toggle in small viewports
   margin-top: 7px;
 }
 
+.menuItemLinkMobile {
+  font-size: 18px;
+  color: #f2f2f2;
+}
+
 .navbar__item__style {
   margin-right: 25px;
   font-style: normal;
