@@ -14,42 +14,34 @@ function Footer() {
   return (
     <div className={styles.footer}>
       <div className={styles.footerLinksFlexbox}>
-        <div className={styles.textFlexbox}>
+        <a
+          className={styles.textFlexbox}
+          href="https://zora.community"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           <div className={styles.footerTitleFlexbox}>
             <QuestionsIcon className={styles.footerIcon} />
             <h3 className={styles.footerTitle}>Questions?</h3>
           </div>
           <p className={styles.footerParagraph}>
-            Get help in the #developers channel on {''}
-            <a
-              className={styles.footerLink}
-              href="https://zora.community"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Discord
-            </a>
-            .
+            Get help in the #developers channel on Discord.
           </p>
-        </div>
-        <div className={styles.textFlexbox}>
+        </a>
+        <a
+          href="https://twitter.com/ourzora"
+          target="_blank"
+          rel="noopener noreferrer"
+          className={styles.textFlexbox}
+        >
           <div className={styles.footerTitleFlexbox}>
             <TwitterIcon className={styles.footerIcon} />
             <h3 className={styles.footerTitle}>Stay updated</h3>
           </div>
           <p className={styles.footerParagraph}>
-            Follow us on {''}
-            <a
-              className={styles.footerLink}
-              href="https://twitter.com/ourzora"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Twitter
-            </a>{' '}
-            for release updates.
+            Follow us on Twitter for release updates.
           </p>
-        </div>
+        </a>
       </div>
       <div className={styles.logoFlexbox}>
         <ZoraLogo className={styles.zoraLogo} />
