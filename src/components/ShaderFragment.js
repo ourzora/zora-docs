@@ -27,7 +27,7 @@ float noise(in vec2 st) {
 }
 
 const mat2 m = mat2( 0.80,  0.60, -0.60,  0.80 );
-float fbm( vec2 p )
+mediump float fbm( vec2 p )
 {
     float f = 0.0;
     f += 0.500000* noise(p); p = m*p*2.02;
@@ -79,9 +79,9 @@ vec3 mapColor(vec3 c) {
 }
 
 void main() {
-    vec2 st = gl_FragCoord.xy/u_resolution.xy;
+    mediump vec2 st = gl_FragCoord.xy/u_resolution.xy;
     st.x *= u_resolution.x/u_resolution.y;
-    vec3 color = vec3(0.0);
+    lowp vec3 color = vec3(0.0);
     vec2 rand = vec2(random2(st) + u_time);
     float seed = 111. * random2(vec2(u_seed)).y;
     float t = abs(5.0- 5. *sin(u_time*.1));
@@ -90,6 +90,6 @@ void main() {
     st += noise(st*1.5 + seed)*t - u_time * 0.05;
     float fbm_st = fbm(st);
     color = vec3(smoothstep(.01,.15,fbm_st) - smoothstep(.13,.15,fbm(st * 0.5)));
-    vec3 mappedColor = mapColor(color) + vec3(random2(rand).x * 0.1);
+    lowp vec3 mappedColor = mapColor(color) + vec3(random2(rand).x * 0.1);
     gl_FragColor = vec4(mappedColor,1.0);
 }`
