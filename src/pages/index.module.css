@@ -10,8 +10,7 @@
 .layout {
   --ifm-color-primary: black;
   --ifm-hero-text-color: white;
-  background: #141414dd;
-  backdrop-filter: blur(20px);
+  background: #141414fa;
   z-index: 1;
   margin-top: 550px;
   width: 100%;
