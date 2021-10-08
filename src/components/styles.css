@@ -526,71 +526,138 @@ a:hover {
   }
 }
 
+/* Mobile */
 @media only screen and (max-width: 500px) {
   .getting-started-card {
-    width: 335px;
-    height: 219px;
-    padding: 15px;
+    width: 402px;
+    height: 270px;
+    padding: 18px;
+    padding-top: 24px;
   }
 
   .getting-started-container {
-    gap: 20px;
-    padding: 8px;
+    gap: 24px;
   }
 
   .doc-title {
-    font-size: 20px;
-    margin-right: 24px;
-    margin-bottom: 8px;
-    line-height: 30px;
+    font-size: 24px;
+    margin-right: 11px;
+    margin-bottom: 12px;
+    line-height: 36px;
   }
 
   .doc-number {
-    font-size: 30px;
-    margin-bottom: 39px;
-    line-height: 40px;
+    font-size: 36px;
+    margin-bottom: 60px;
+    line-height: 48px;
     font-weight: 500;
   }
 
   .doc-subtopic {
-    font-size: 16px;
-    line-height: 25px;
+    font-size: 19px;
+    line-height: 30px;
     font-weight: 500;
   }
 
   .tools-card {
-    width: 335px;
-    height: 129px;
-    top: 1255px;
-    padding: 15px;
+    width: 402px;
+    height: 190px;
+    padding: 18px;
+    padding-top: 24px;
   }
 
   .tools-title {
-    font-size: 20px;
-    margin-bottom: 10px;
-    margin-right: 91px;
-    line-height: 30px;
+    font-size: 24px;
+    margin-bottom: 12px;
+    margin-right: 109px;
+    line-height: 36px;
   }
 
   .tools-paragraph {
+    font-size: 17px;
+    line-height: 29px;
+  }
+
+  .tools-version {
+    margin-top: 6px;
     font-size: 14px;
     line-height: 24px;
   }
 
-  .tools-version {
-    margin-top: 6.4px;
-    font-size: 12px;
-    line-height: 20px;
-  }
-
   .projectCard {
-    width: 160px;
-    height: 80px;
-    border-radius: 10px;
+    width: 192px;
+    height: 96px;
+    border-radius: 12px;
   }
 
   .projectContainer {
-    gap: 15px;
+    gap: 18px;
+  }
+}
+
+@media only screen and (max-width: 425px) {
+  .getting-started-card {
+    width: 362px;
+    height: 243px;
+    padding: 16px;
+    padding-top: 22px;
+  }
+
+  .getting-started-container {
+    gap: 22px;
+  }
+
+  .doc-title {
+    font-size: 22px;
+    margin-right: 10px;
+    margin-bottom: 11px;
+    line-height: 32px;
+  }
+
+  .doc-number {
+    font-size: 32px;
+    margin-bottom: 54px;
+    line-height: 43px;
+  }
+
+  .doc-subtopic {
+    font-size: 17px;
+    line-height: 27px;
+  }
+
+  .tools-card {
+    width: 362px;
+    height: 171px;
+    padding: 16px;
+    padding-top: 22px;
+  }
+
+  .tools-title {
+    font-size: 22px;
+    margin-bottom: 11px;
+    margin-right: 98px;
+    line-height: 32px;
+  }
+
+  .tools-paragraph {
+    font-size: 15px;
+    line-height: 26px;
+  }
+
+  .tools-version {
+    margin-top: 5px;
+    font-size: 13px;
+    line-height: 22px;
+  }
+
+  .projectCard {
+    width: 173px;
+    height: 86px;
+    border-radius: 11px;
+  }
+
+  .projectContainer {
+    gap: 16px;
   }
 }
 
@@ -653,5 +720,75 @@ a:hover {
     width: 160px;
     height: 80px;
     border-radius: 15px;
+  }
+
+  .projectContainer {
+    gap: 15px;
+  }
+}
+
+@media only screen and (max-width: 359px) {
+  .getting-started-card {
+    width: 268px;
+    height: 180px;
+    padding: 12px;
+    padding-top: 16px;
+  }
+
+  .getting-started-container {
+    gap: 16px;
+  }
+
+  .doc-title {
+    font-size: 16px;
+    margin-right: 7px;
+    margin-bottom: 8px;
+    line-height: 24px;
+  }
+
+  .doc-number {
+    font-size: 24px;
+    margin-bottom: 40px;
+    line-height: 32px;
+  }
+
+  .doc-subtopic {
+    font-size: 13px;
+    line-height: 20px;
+  }
+
+  .tools-card {
+    width: 268px;
+    height: 126px;
+    padding: 12px;
+    padding-top: 16px;
+  }
+
+  .tools-title {
+    font-size: 16px;
+    margin-bottom: 8px;
+    margin-right: 73px;
+    line-height: 24px;
+  }
+
+  .tools-paragraph {
+    font-size: 11px;
+    line-height: 19px;
+  }
+
+  .tools-version {
+    margin-top: 4px;
+    font-size: 10px;
+    line-height: 16px;
+  }
+
+  .projectCard {
+    width: 128px;
+    height: 64px;
+    border-radius: 12px;
+  }
+
+  .projectContainer {
+    gap: 12px;
   }
 }
