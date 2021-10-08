@@ -260,6 +260,16 @@ table tr {
   margin-left: auto;
 }
 
+.table-of-contents__left-border {
+  border-left: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+@media (min-width: 997px) {
+  .sidebar_node_modules-\@docusaurus-theme-classic-lib-next-theme-DocSidebar-styles-module {
+    border-right: 2px solid rgba(255, 255, 255, 0.1);
+  }
+}
+
 @media only screen and (max-width: 996px) {
   .navbar--fixed-top {
     height: 60px;

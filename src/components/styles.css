@@ -266,6 +266,7 @@ a:hover {
   }
 }
 
+/* Tablet */
 @media only screen and (max-width: 1024px) {
   .getting-started-card {
     width: 301px;
