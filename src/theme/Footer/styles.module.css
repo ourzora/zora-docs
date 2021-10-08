@@ -25,24 +25,28 @@
   padding-bottom: 32px;
   display: flex;
   flex-direction: row;
+  transform-style: preserve-3d;
 }
 
 .footerTitle {
   font-family: 'Inter';
   font-style: normal;
   font-weight: 600;
-  font-size: 16px;
+  font-size: 15px;
   line-height: 25px;
   color: #f2f2f2;
+  margin: 0;
 }
 
 .footerParagraph {
   font-family: 'Inter';
   font-style: normal;
   font-weight: normal;
-  font-size: 16px;
+  font-size: 15px;
   line-height: 25px;
   color: #b3b3b3;
+  margin: 0;
+  transition: all var(--ifm-transition-fast) var(--ifm-transition-timing-default);
 }
 
 .zoraLogo {
@@ -60,6 +64,14 @@
   gap: 10px;
 }
 
+.textFlexbox:not(:last-child) {
+  margin-bottom: 15px;
+}
+
+.textFlexbox:hover .footerParagraph {
+  color: white;
+}
+
 .footerLinksFlexbox {
   display: flex;
   flex-direction: column;
@@ -72,16 +84,6 @@
   margin-left: auto;
   margin-right: 30px;
   margin-top: 20px;
-}
-
-.footerLink {
-  text-decoration: underline;
-  font-weight: normal;
-  color: #b3b3b3;
-}
-
-.footerLink:hover {
-  text-decoration: underline;
 }
 
 .footerTitleFlexbox {

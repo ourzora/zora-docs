@@ -24,6 +24,8 @@
   flex-direction: column;
   align-items: center;
   padding-bottom: 50px;
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
 }
 
 .layoutFlexBox {
