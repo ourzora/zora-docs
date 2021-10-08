@@ -255,6 +255,11 @@ table tr {
   border: 1px solid hsla(0, 0%, 100%, 0.05);
 }
 
+.row .col {
+  margin-right: auto;
+  margin-left: auto;
+}
+
 @media only screen and (max-width: 996px) {
   .navbar--fixed-top {
     height: 60px;
