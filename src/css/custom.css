@@ -264,10 +264,8 @@ table tr {
   border-left: 2px solid rgba(255, 255, 255, 0.1);
 }
 
-@media (min-width: 997px) {
-  .sidebar_node_modules-\@docusaurus-theme-classic-lib-next-theme-DocSidebar-styles-module {
-    border-right: 2px solid rgba(255, 255, 255, 0.1);
-  }
+.sidebar_node_modules-\@docusaurus-theme-classic-lib-next-theme-DocSidebar-styles-module {
+  border-right: 2px solid #4d4d4d;
 }
 
 @media only screen and (max-width: 996px) {
