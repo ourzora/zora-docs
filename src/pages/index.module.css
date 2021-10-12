@@ -376,33 +376,35 @@
   }
 }
 
+/* Mobile */
 @media only screen and (max-width: 800px) {
   .layout {
-    margin-top: 264px;
-    padding-left: 19px;
-    padding-right: 19px;
+    margin-top: 671px;
+    padding-left: 35px;
+    padding-right: 35px;
     padding-bottom: 25px;
   }
 
   .layoutFlexBox {
-    width: 624px;
+    width: 578px;
   }
 
   .gettingStarted {
-    font-size: 13px;
-    line-height: 19px;
+    font-size: 35px;
+    line-height: 52px;
+    margin-left: 0px;
+    padding: 0px;
   }
 
   .gettingStartedFlexBox {
-    padding-top: 26px;
-    padding-left: 5px;
-    padding-right: 2px;
+    padding-top: 60px;
+    padding-left: 0px;
+    padding-right: 0px;
   }
 
   .viewAll {
-    font-size: 8px;
-    line-height: 13px;
-    padding: 6px 6px;
+    font-size: 20px;
+    line-height: 35px;
   }
 
   .viewAllLink {
@@ -414,59 +416,59 @@
   }
 
   .tools {
-    font-size: 13px;
-    margin-top: 26px;
-    line-height: 19px;
+    font-size: 35px;
+    margin-top: 52px;
+    line-height: 52px;
   }
 
   .projects {
-    font-size: 13px;
-    margin-top: 26px;
-    line-height: 19px;
+    font-size: 35px;
+    margin-top: 52px;
+    line-height: 44px;
   }
 
   .logoText {
-    width: 126px;
-    height: 42px;
-    top: 139px;
+    width: 343px;
+    height: 114px;
+    top: 274px;
   }
 
   .headerSubtitle {
-    width: 110px;
-    height: 13px;
-    top: 210px;
-    line-height: 64%;
-    font-size: 13px;
+    width: 294px;
+    height: 35px;
+    top: 466px;
+    font-size: 35px;
   }
 }
 
 @media only screen and (max-width: 664px) {
   .layout {
-    margin-top: 211px;
-    padding-left: 15px;
-    padding-right: 15px;
+    margin-top: 559px;
+    padding-left: 29px;
+    padding-right: 29px;
     padding-bottom: 20px;
   }
 
   .layoutFlexBox {
-    width: 499px;
+    width: 482px;
   }
 
   .gettingStarted {
-    font-size: 10px;
-    line-height: 15px;
+    font-size: 29px;
+    line-height: 43px;
+    margin-left: 0px;
+    padding: 0px;
   }
 
   .gettingStartedFlexBox {
-    padding-top: 21px;
-    padding-left: 5px;
-    padding-right: 2px;
+    padding-top: 50px;
+    padding-left: 0px;
+    padding-right: 0px;
   }
 
   .viewAll {
-    font-size: 6px;
-    line-height: 10px;
-    padding: 5px 5px;
+    font-size: 17px;
+    line-height: 29px;
   }
 
   .viewAllLink {
@@ -478,33 +480,31 @@
   }
 
   .tools {
-    font-size: 10px;
-    margin-top: 21px;
-    line-height: 15px;
+    font-size: 29px;
+    margin-top: 43px;
+    line-height: 43px;
   }
 
   .projects {
-    font-size: 10px;
-    margin-top: 21px;
-    line-height: 15px;
+    font-size: 29px;
+    margin-top: 43px;
+    line-height: 37px;
   }
 
   .logoText {
-    width: 121px;
-    height: 34px;
-    top: 111px;
+    width: 286px;
+    height: 95px;
+    top: 228px;
   }
 
   .headerSubtitle {
-    width: 90px;
-    height: 10px;
-    top: 168px;
-    line-height: 51%;
-    font-size: 10px;
+    width: 244px;
+    height: 29px;
+    top: 388px;
+    font-size: 29px;
   }
 }
 
-/* Mobile */
 @media only screen and (max-width: 500px) {
   .layout {
     margin-top: 466px;
