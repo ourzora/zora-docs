@@ -43,6 +43,7 @@ Hide toggle in small viewports
 .zoraCoButton:hover {
   color: white;
   background: #4d4d4d;
+  transition: 300ms ease-out;
 }
 
 .githubIcon {

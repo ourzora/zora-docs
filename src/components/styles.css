@@ -132,14 +132,15 @@
 .projectCard {
   width: 323px;
   height: 162px;
-  border: 1px solid rgba(255, 255, 255, 0.05);
   box-sizing: border-box;
   filter: drop-shadow(0px 5px 15px rgba(0, 0, 0, 0.12));
+  overflow: hidden;
   border-radius: 20px;
 }
 
-.projectCard:hover {
+.projectCard:hover .projectCardImage {
   transition: 300ms ease-out;
+  transform: scale(1.07);
 }
 
 .projectContainer {

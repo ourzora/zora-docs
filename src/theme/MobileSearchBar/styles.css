@@ -21,6 +21,10 @@
   border-radius: 4px;
 }
 
+.DocSearch-Button:hover {
+  transition: 300ms ease-out;
+}
+
 .DocSearch-Container {
   z-index: calc(var(--ifm-z-index-fixed) + 1);
 }
