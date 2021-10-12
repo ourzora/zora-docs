@@ -50,8 +50,6 @@
   flex-direction: row;
   padding-top: 50px;
   align-items: center;
-  padding-left: 5px;
-  padding-right: 5px;
   margin-bottom: 40px;
 }
 
@@ -84,7 +82,7 @@
   line-height: 50px;
   color: #ffffff;
   margin-top: 50px;
-  padding-left: 10px;
+  margin-right: auto;
 }
 
 .projects {
@@ -93,7 +91,7 @@
   line-height: 40px;
   color: #ffffff;
   margin-top: 50px;
-  padding-left: 10px;
+  margin-right: auto;
 }
 
 .logoText {
@@ -146,8 +144,6 @@
   .gettingStartedFlexBox {
     padding-top: 40px;
     margin-bottom: 32px;
-    padding-left: 12px;
-    padding-right: 12px;
   }
 
   .viewAll {
@@ -167,14 +163,12 @@
   .tools {
     font-size: 28px;
     margin-top: 40px;
-    padding-left: 12px;
     line-height: 40px;
   }
 
   .projects {
     font-size: 28px;
     margin-top: 40px;
-    padding-left: 12px;
     line-height: 32px;
   }
 
@@ -213,8 +207,6 @@
   .gettingStartedFlexBox {
     padding-top: 32px;
     margin-bottom: 26px;
-    padding-left: 10px;
-    padding-right: 8px;
   }
 
   .viewAll {
@@ -234,14 +226,12 @@
   .tools {
     font-size: 22px;
     margin-top: 32px;
-    padding-left: 10px;
     line-height: 32px;
   }
 
   .projects {
     font-size: 22px;
     margin-top: 32px;
-    padding-left: 10px;
     line-height: 26px;
   }
 
@@ -280,8 +270,6 @@
 
   .gettingStartedFlexBox {
     padding-top: 40px;
-    padding-left: 30px;
-    padding-right: 27px;
     margin-bottom: 30px;
   }
 
@@ -302,14 +290,12 @@
   .tools {
     font-size: 20px;
     margin-top: 40px;
-    padding-left: 30px;
     line-height: 30px;
   }
 
   .projects {
     font-size: 20px;
     margin-top: 40px;
-    padding-left: 30px;
     line-height: 30px;
   }
 
@@ -347,8 +333,6 @@
 
   .gettingStartedFlexBox {
     padding-top: 32px;
-    padding-left: 5px;
-    padding-right: 2px;
   }
 
   .viewAll {
@@ -368,14 +352,12 @@
   .tools {
     font-size: 16px;
     margin-top: 32px;
-    padding-left: 5px;
     line-height: 24px;
   }
 
   .projects {
     font-size: 16px;
     margin-top: 32px;
-    padding-left: 5px;
     line-height: 24px;
   }
 
@@ -434,14 +416,12 @@
   .tools {
     font-size: 13px;
     margin-top: 26px;
-    padding-left: 5px;
     line-height: 19px;
   }
 
   .projects {
     font-size: 13px;
     margin-top: 26px;
-    padding-left: 5px;
     line-height: 19px;
   }
 
@@ -500,14 +480,12 @@
   .tools {
     font-size: 10px;
     margin-top: 21px;
-    padding-left: 5px;
     line-height: 15px;
   }
 
   .projects {
     font-size: 10px;
     margin-top: 21px;
-    padding-left: 5px;
     line-height: 15px;
   }
 
@@ -560,15 +538,12 @@
     font-size: 24px;
     margin-top: 36px;
     line-height: 36px;
-    padding: 0px;
   }
 
   .projects {
     font-size: 24px;
     margin-top: 36px;
-    padding-left: 6px;
     line-height: 31px;
-    padding: 0px;
   }
 
   .logoText {
@@ -618,7 +593,6 @@
     font-size: 22px;
     margin-top: 32px;
     line-height: 32px;
-    padding: 0px;
   }
 
   .projects {
@@ -626,7 +600,6 @@
     margin-top: 32px;
     padding-left: 5px;
     line-height: 28px;
-    padding: 0px;
   }
 
   .logoText {
@@ -680,7 +653,6 @@
   .projects {
     font-size: 20px;
     margin-top: 30px;
-    padding-left: 5px;
     line-height: 26px;
   }
 
@@ -732,7 +704,6 @@
   .projects {
     font-size: 16px;
     margin-top: 24px;
-    padding-left: 5px;
     line-height: 21px;
   }
 

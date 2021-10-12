@@ -2,8 +2,8 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@500&display=swap');
 
 .getting-started-card {
-  width: 440px;
-  height: 476px;
+  width: auto;
+  height: auto;
   left: 0px;
   top: 0px;
   box-sizing: border-box;
@@ -16,14 +16,19 @@
 }
 
 .getting-started-card:hover {
-  border: 2px solid #ffffff;
+  border: 2px solid rgb(255, 255, 255, 0.25);
+  transition: 300ms ease-out;
+}
+
+.getting-started-card:hover .doc-subtopic {
+  color: #f2f2f2;
+  opacity: 1;
 }
 
 .getting-started-container {
-  display: flex;
-  flex-direction: row;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   align-items: center;
-  flex-wrap: wrap;
   justify-content: center;
   gap: 30px;
 }
@@ -60,9 +65,17 @@
   font-family: 'DM Mono', monospace;
 }
 
+.tools-container {
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
 .tools-card {
-  width: 440px;
-  height: 215px;
+  width: auto;
+  height: auto;
   box-sizing: border-box;
   border-radius: 4px;
   display: flex;
@@ -74,7 +87,12 @@
 }
 
 .tools-card:hover {
-  border: 2px solid #ffffff;
+  border: 2px solid rgb(255, 255, 255, 0.25);
+  transition: 300ms ease-out;
+}
+
+.tools-card:hover .tools-paragraph {
+  color: #f2f2f2;
 }
 
 .tools-title {
@@ -84,7 +102,6 @@
   line-height: 40px;
   color: #ffffff;
   margin-bottom: 10px;
-  margin-right: 86px;
 }
 
 .tools-paragraph {
@@ -109,6 +126,7 @@
   line-height: 24px;
   letter-spacing: -0.02em;
   text-transform: uppercase;
+  margin-left: auto;
 }
 
 .projectCard {
@@ -121,7 +139,7 @@
 }
 
 .projectCard:hover {
-  border: 2px solid #ffffff;
+  transition: 300ms ease-out;
 }
 
 .projectContainer {
@@ -138,8 +156,6 @@ a:hover {
 
 @media only screen and (max-width: 1439px) {
   .getting-started-card {
-    width: 352px;
-    height: 381px;
     padding: 20px;
   }
 
@@ -166,8 +182,6 @@ a:hover {
   }
 
   .tools-card {
-    width: 352px;
-    height: 172px;
     padding: 20px;
     padding-top: 24px;
   }
@@ -175,7 +189,6 @@ a:hover {
   .tools-title {
     font-size: 24px;
     margin-bottom: 8px;
-    margin-right: 68px;
     line-height: 32px;
   }
 
@@ -203,8 +216,6 @@ a:hover {
 
 @media only screen and (max-width: 1151px) {
   .getting-started-card {
-    width: 282px;
-    height: 305px;
     padding: 16px;
   }
 
@@ -231,8 +242,6 @@ a:hover {
   }
 
   .tools-card {
-    width: 282px;
-    height: 138px;
     padding: 16px;
     padding-top: 19px;
   }
@@ -240,7 +249,6 @@ a:hover {
   .tools-title {
     font-size: 19px;
     margin-bottom: 6px;
-    margin-right: 55px;
     line-height: 26px;
   }
 
@@ -269,10 +277,7 @@ a:hover {
 /* Tablet */
 @media only screen and (max-width: 1024px) {
   .getting-started-card {
-    width: 301px;
-    height: 219px;
     padding: 15px;
-    border: 2px solid #4d4d4d;
   }
 
   .getting-started-container {
@@ -299,17 +304,13 @@ a:hover {
   }
 
   .tools-card {
-    width: 301px;
-    height: 139px;
     padding: 15px;
     padding-top: 20px;
-    border: 2px solid #4d4d4d;
   }
 
   .tools-title {
     font-size: 20px;
     margin-bottom: 10px;
-    margin-right: 57px;
     line-height: 30px;
   }
 
@@ -337,8 +338,6 @@ a:hover {
 
 @media only screen and (max-width: 980px) {
   .getting-started-card {
-    width: 241px;
-    height: 175px;
     padding: 12px;
   }
 
@@ -364,8 +363,6 @@ a:hover {
   }
 
   .tools-card {
-    width: 241px;
-    height: 111px;
     padding: 13px;
     padding-top: 16px;
   }
@@ -373,7 +370,6 @@ a:hover {
   .tools-title {
     font-size: 16px;
     margin-bottom: 8px;
-    margin-right: 42px;
     line-height: 24px;
   }
 
@@ -401,8 +397,6 @@ a:hover {
 
 @media only screen and (max-width: 800px) {
   .getting-started-card {
-    width: 193px;
-    height: 140px;
     padding: 10px;
   }
 
@@ -428,8 +422,6 @@ a:hover {
   }
 
   .tools-card {
-    width: 193px;
-    height: 89px;
     padding: 10px;
     padding-top: 13px;
   }
@@ -437,7 +429,6 @@ a:hover {
   .tools-title {
     font-size: 13px;
     margin-bottom: 6px;
-    margin-right: 32px;
     line-height: 19px;
   }
 
@@ -465,8 +456,6 @@ a:hover {
 
 @media only screen and (max-width: 664px) {
   .getting-started-card {
-    width: 154px;
-    height: 112px;
     padding: 8px;
   }
 
@@ -492,8 +481,6 @@ a:hover {
   }
 
   .tools-card {
-    width: 154px;
-    height: 71px;
     padding: 8px;
     padding-top: 10px;
   }
@@ -501,7 +488,6 @@ a:hover {
   .tools-title {
     font-size: 10px;
     margin-bottom: 5px;
-    margin-right: 26px;
     line-height: 15px;
   }
 
@@ -530,8 +516,6 @@ a:hover {
 /* Mobile */
 @media only screen and (max-width: 500px) {
   .getting-started-card {
-    width: 402px;
-    height: 270px;
     padding: 18px;
     padding-top: 24px;
   }
@@ -561,8 +545,6 @@ a:hover {
   }
 
   .tools-card {
-    width: 402px;
-    height: 190px;
     padding: 18px;
     padding-top: 24px;
   }
@@ -570,7 +552,6 @@ a:hover {
   .tools-title {
     font-size: 24px;
     margin-bottom: 12px;
-    margin-right: 109px;
     line-height: 36px;
   }
 
@@ -598,8 +579,6 @@ a:hover {
 
 @media only screen and (max-width: 425px) {
   .getting-started-card {
-    width: 362px;
-    height: 243px;
     padding: 16px;
     padding-top: 22px;
   }
@@ -627,8 +606,6 @@ a:hover {
   }
 
   .tools-card {
-    width: 362px;
-    height: 171px;
     padding: 16px;
     padding-top: 22px;
   }
@@ -636,7 +613,6 @@ a:hover {
   .tools-title {
     font-size: 22px;
     margin-bottom: 11px;
-    margin-right: 98px;
     line-height: 32px;
   }
 
@@ -664,8 +640,6 @@ a:hover {
 
 @media only screen and (max-width: 375px) {
   .getting-started-card {
-    width: 335px;
-    height: 225px;
     padding: 15px;
     padding-top: 20px;
   }
@@ -693,8 +667,6 @@ a:hover {
   }
 
   .tools-card {
-    width: 335px;
-    height: 158px;
     padding: 15px;
     padding-top: 20px;
   }
@@ -702,7 +674,6 @@ a:hover {
   .tools-title {
     font-size: 20px;
     margin-bottom: 10px;
-    margin-right: 91px;
     line-height: 30px;
   }
 
@@ -730,8 +701,6 @@ a:hover {
 
 @media only screen and (max-width: 359px) {
   .getting-started-card {
-    width: 268px;
-    height: 180px;
     padding: 12px;
     padding-top: 16px;
   }
@@ -759,8 +728,6 @@ a:hover {
   }
 
   .tools-card {
-    width: 268px;
-    height: 126px;
     padding: 12px;
     padding-top: 16px;
   }
@@ -768,7 +735,6 @@ a:hover {
   .tools-title {
     font-size: 16px;
     margin-bottom: 8px;
-    margin-right: 73px;
     line-height: 24px;
   }
 
