@@ -115,9 +115,8 @@ button {
 }
 
 .navbar--fixed-top {
-  background: rgba(20, 20, 20, 0.8);
+  background: #141414fa;
   box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1), inset 0px -2px 0px rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(40px);
   height: 80px;
 }
 
@@ -223,7 +222,7 @@ article {
   max-width: 700px;
 }
 
-/* Override docusaurus styling for space between paragraphds */
+/* Override docusaurus styling for space between paragraphs */
 .markdown > pre,
 .markdown > ul,
 .markdown > p {
@@ -267,8 +266,12 @@ table tr {
   border-left: 2px solid rgba(255, 255, 255, 0.1);
 }
 
-.sidebar_node_modules-\@docusaurus-theme-classic-lib-next-theme-DocSidebar-styles-module {
-  border-right: 2px solid #4d4d4d;
+.docSidebarContainer_node_modules-\@docusaurus-theme-classic-lib-next-theme-DocPage-styles-module {
+  border-right: 2px solid #4d4d4d !important;
+}
+
+.docSidebarContainer_3Kbt {
+  border-right: 2px solid #4d4d4d !important;
 }
 
 @media only screen and (max-width: 996px) {

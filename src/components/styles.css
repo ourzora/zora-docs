@@ -130,8 +130,8 @@
 }
 
 .projectCard {
-  width: 323px;
-  height: 162px;
+  width: auto;
+  height: auto;
   box-sizing: border-box;
   filter: drop-shadow(0px 5px 15px rgba(0, 0, 0, 0.12));
   overflow: hidden;
@@ -206,12 +206,6 @@ a:hover {
     line-height: 19px;
   }
 
-  .projectCard {
-    width: 258px;
-    height: 130px;
-    border-radius: 16px;
-  }
-
   .projectContainer {
     gap: 22px;
   }
@@ -268,12 +262,6 @@ a:hover {
     margin-top: 5px;
     font-size: 8px;
     line-height: 15px;
-  }
-
-  .projectCard {
-    width: 206px;
-    height: 104px;
-    border-radius: 13px;
   }
 
   .projectContainer {
@@ -337,8 +325,6 @@ a:hover {
   }
 
   .projectCard {
-    width: 220px;
-    height: 110px;
     border-radius: 10px;
   }
 
@@ -397,12 +383,6 @@ a:hover {
     margin-top: 4px;
     font-size: 10px;
     line-height: 8px;
-  }
-
-  .projectCard {
-    width: 176px;
-    height: 88px;
-    border-radius: 8px;
   }
 
   .projectContainer {
@@ -469,12 +449,6 @@ a:hover {
     line-height: 35px;
   }
 
-  .projectCard {
-    width: 276px;
-    height: 138px;
-    border-radius: 17px;
-  }
-
   .projectContainer {
     gap: 26px;
     grid-template-columns: repeat(2, 1fr);
@@ -533,12 +507,6 @@ a:hover {
     margin-top: 7px;
     font-size: 17px;
     line-height: 29px;
-  }
-
-  .projectCard {
-    width: 230px;
-    height: 115px;
-    border-radius: 14px;
   }
 
   .projectContainer {
@@ -600,12 +568,6 @@ a:hover {
     line-height: 24px;
   }
 
-  .projectCard {
-    width: 192px;
-    height: 96px;
-    border-radius: 12px;
-  }
-
   .projectContainer {
     gap: 18px;
   }
@@ -663,12 +625,6 @@ a:hover {
     margin-top: 5px;
     font-size: 13px;
     line-height: 22px;
-  }
-
-  .projectCard {
-    width: 173px;
-    height: 86px;
-    border-radius: 11px;
   }
 
   .projectContainer {
@@ -730,12 +686,6 @@ a:hover {
     line-height: 20px;
   }
 
-  .projectCard {
-    width: 160px;
-    height: 80px;
-    border-radius: 15px;
-  }
-
   .projectContainer {
     gap: 15px;
   }
@@ -793,12 +743,6 @@ a:hover {
     margin-top: 4px;
     font-size: 10px;
     line-height: 16px;
-  }
-
-  .projectCard {
-    width: 128px;
-    height: 64px;
-    border-radius: 12px;
   }
 
   .projectContainer {
