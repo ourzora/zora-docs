@@ -47,7 +47,6 @@ html[data-theme='dark'] {
   background-image: url('../../static/img/radialGradient.svg');
   background-repeat: no-repeat;
   background-position: center;
-  background-attachment: fixed;
   --docusaurus-btt-color: #000000;
 }
 
