@@ -13,10 +13,9 @@ import { useBaseUrlUtils } from '@docusaurus/useBaseUrl'
 import Link from '@docusaurus/Link'
 import Head from '@docusaurus/Head'
 import useSearchQuery from '@theme/hooks/useSearchQuery'
-import { DocSearchButton, useDocSearchKeyboardEvents } from '@docsearch/react'
+import { useDocSearchKeyboardEvents } from '@docsearch/react'
 import useAlgoliaContextualFacetFilters from '@theme/hooks/useAlgoliaContextualFacetFilters'
 import { translate } from '@docusaurus/Translate'
-import styles from './styles.module.css'
 import SearchIcon from '../../../static/img/searchIcon.svg'
 
 let DocSearchModal = null

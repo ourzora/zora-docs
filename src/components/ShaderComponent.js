@@ -11,7 +11,7 @@ export const ShaderComponent = () => {
     React.useEffect(() => {
       const canvas = canvasRef
       var sandbox = new GlslCanvas(canvas.current)
-      const rpcProvider = new ethers.providers.JsonRpcProvider(process.env.INFURA)
+      const rpcProvider = new ethers.providers.JsonRpcProvider(process.env.RPC_ENDPOINT)
 
       rpcProvider.getBlockNumber().then((num) => {
         sandbox.load(ShaderFragment)

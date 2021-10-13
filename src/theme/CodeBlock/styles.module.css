@@ -15,7 +15,7 @@
   box-shadow: var(--ifm-global-shadow-lw);
   overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.05);
-  background-color: #1f1f1f99;
+  background: rgba(31, 31, 31, 0.6);
   border-radius: 4px;
 }
 

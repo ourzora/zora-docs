@@ -90,7 +90,7 @@ module.exports = {
         silent: false,
         expand: false,
         defaults: false,
-        INFURA: process.env.INFURA,
+        RPC_ENDPOINT: process.env.RPC_ENDPOINT,
       },
     ],
   ],

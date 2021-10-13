@@ -6,11 +6,7 @@ export const GettingStartedCards = () => {
   return (
     <div className={'getting-started-container'}>
       {gettingStartedContent.map((card, index) => (
-        <a
-          className={'getting-started-hover'}
-          href="/docs/guides/create-auction-house"
-          key={index}
-        >
+        <a href="/docs/guides/create-auction-house" key={index}>
           <div className={'getting-started-card'}>
             <p className={'doc-number'}>{card.docNumber}</p>
             <p className={'doc-title'}>{card.docTitle}</p>

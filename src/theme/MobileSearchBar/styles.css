@@ -21,6 +21,10 @@
   border-radius: 4px;
 }
 
+.DocSearch-Button:hover {
+  transition: 300ms ease-out;
+}
+
 .DocSearch-Container {
   z-index: calc(var(--ifm-z-index-fixed) + 1);
 }
@@ -32,7 +36,7 @@
 .navbar__brand {
   width: 30px;
   height: 30px;
-  margin: 0px 30px 0px 30px;
+  margin: 0px 30px 0px 14px;
 }
 
 .DocSearch-Button-Placeholder {

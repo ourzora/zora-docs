@@ -2,31 +2,35 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@500&display=swap');
 
 .getting-started-card {
-  width: 440px;
-  height: 476px;
+  width: auto;
+  height: auto;
   left: 0px;
   top: 0px;
   box-sizing: border-box;
   border-radius: 4px;
   display: flex;
   flex-direction: column;
-  padding: 31px;
+  padding: 25px;
   background: rgba(31, 31, 31, 0.6);
   border: 2px solid rgba(255, 255, 255, 0.05);
 }
 
 .getting-started-card:hover {
-  border: 2px solid #ffffff;
+  border: 2px solid rgb(255, 255, 255, 0.25);
+  transition: 300ms ease-out;
+}
+
+.getting-started-card:hover .doc-subtopic {
+  color: #f2f2f2;
+  opacity: 1;
 }
 
 .getting-started-container {
-  display: flex;
-  flex-direction: row;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   align-items: center;
-  flex-wrap: wrap;
   justify-content: center;
   gap: 30px;
-  padding: 10px;
 }
 
 .doc-title {
@@ -34,8 +38,8 @@
   font-weight: 500;
   font-size: 35px;
   line-height: 50px;
-  margin-right: 81px;
-  margin-bottom: 74px;
+  margin-right: 87px;
+  margin-bottom: 64px;
 }
 
 .doc-number {
@@ -61,33 +65,43 @@
   font-family: 'DM Mono', monospace;
 }
 
+.tools-container {
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
 .tools-card {
-  width: 440px;
-  height: 215px;
-  left: 0px;
-  top: 337px;
-  border: 2px solid #4d4d4d;
+  width: auto;
+  height: auto;
   box-sizing: border-box;
   border-radius: 4px;
   display: flex;
   flex-direction: column;
-  padding: 31px;
+  padding: 25px;
+  padding-top: 30px;
   background: rgba(31, 31, 31, 0.6);
   border: 2px solid rgba(255, 255, 255, 0.05);
 }
 
 .tools-card:hover {
-  border: 2px solid #ffffff;
+  border: 2px solid rgb(255, 255, 255, 0.25);
+  transition: 300ms ease-out;
+}
+
+.tools-card:hover .tools-paragraph {
+  color: #f2f2f2;
 }
 
 .tools-title {
   font-style: normal;
   font-weight: 500;
-  font-size: 29px;
+  font-size: 30px;
   line-height: 40px;
   color: #ffffff;
   margin-bottom: 10px;
-  margin-right: 86px;
 }
 
 .tools-paragraph {
@@ -108,33 +122,31 @@
   font-family: 'DM Mono', monospace;
   font-style: normal;
   font-weight: 500;
-  font-size: 13px;
+  font-size: 14px;
   line-height: 24px;
   letter-spacing: -0.02em;
   text-transform: uppercase;
+  margin-left: auto;
 }
 
 .projectCard {
   width: 323px;
   height: 162px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
   box-sizing: border-box;
+  filter: drop-shadow(0px 5px 15px rgba(0, 0, 0, 0.12));
+  overflow: hidden;
   border-radius: 20px;
-  display: inline-block;
-  box-shadow: 0px 5px 15px 0px #0000001f;
 }
 
-.projectCard:hover {
-  border: 2px solid #ffffff;
+.projectCard:hover .projectCardImage {
+  transition: 300ms ease-out;
+  transform: scale(1.07);
 }
 
 .projectContainer {
-  display: flex;
-  justify-content: center;
-  flex-direction: row;
-  flex-wrap: wrap;
-  gap: 28px;
-  margin-right: 10px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 27px;
 }
 
 a:hover {
@@ -143,314 +155,173 @@ a:hover {
 
 @media only screen and (max-width: 1439px) {
   .getting-started-card {
-    width: 352px;
-    height: 390.8px;
-    padding: 24.8px;
+    padding: 20px;
   }
 
   .getting-started-container {
-    gap: 24px;
-    padding: 8px;
+    gap: 19px;
+  }
+
+  .tools-container {
+    gap: 19px;
   }
 
   .doc-title {
     font-size: 28px;
-    margin-right: 65px;
-    margin-bottom: 59.2px;
+    margin-right: 70px;
+    margin-bottom: 51px;
     line-height: 40px;
   }
 
   .doc-number {
     font-size: 32px;
-    margin-bottom: 97.6px;
+    margin-bottom: 98px;
     line-height: 40px;
   }
 
   .doc-subtopic {
     font-size: 16px;
-    line-height: 25.5px;
+    line-height: 24px;
   }
 
   .tools-card {
-    width: 352px;
-    height: 172px;
-    top: 269.6px;
-    padding: 24.8px;
+    padding: 20px;
+    padding-top: 24px;
   }
 
   .tools-title {
-    font-size: 23px;
+    font-size: 24px;
     margin-bottom: 8px;
-    margin-right: 68.8px;
     line-height: 32px;
   }
 
   .tools-paragraph {
-    font-size: 14.4px;
+    font-size: 14px;
     line-height: 24px;
   }
 
   .tools-version {
-    margin-top: 6.4px;
-    font-size: 10.4px;
-    line-height: 19.2px;
+    margin-top: 6px;
+    font-size: 11px;
+    line-height: 19px;
   }
 
   .projectCard {
-    width: 258.6px;
-    height: 129.6px;
+    width: 258px;
+    height: 130px;
     border-radius: 16px;
   }
 
   .projectContainer {
-    gap: 22.4px;
-    margin-right: 8px;
+    gap: 22px;
   }
 }
 
 @media only screen and (max-width: 1151px) {
   .getting-started-card {
-    width: 299.2px;
-    height: 332.18px;
-    padding: 19.84px;
+    padding: 16px;
   }
 
   .getting-started-container {
-    gap: 20.4px;
-    padding: 6.8px;
+    gap: 15px;
+  }
+
+  .tools-container {
+    gap: 15px;
   }
 
   .doc-title {
-    font-size: 23.8px;
-    margin-right: 55.25px;
-    margin-bottom: 50.32px;
-    line-height: 34px;
+    font-size: 22px;
+    margin-right: 56px;
+    margin-bottom: 41px;
+    line-height: 32px;
   }
 
   .doc-number {
-    font-size: 27.2px;
-    margin-bottom: 82.96px;
-    line-height: 34px;
+    font-size: 26px;
+    margin-bottom: 78px;
+    line-height: 32px;
   }
 
   .doc-subtopic {
-    font-size: 13.6px;
-    line-height: 21.68px;
+    font-size: 13px;
+    line-height: 19px;
   }
 
   .tools-card {
-    width: 299.2px;
-    height: 146.2px;
-    top: 229.16px;
-    padding: 21.08px;
+    padding: 16px;
+    padding-top: 19px;
   }
 
   .tools-title {
-    font-size: 19.55px;
-    margin-bottom: 6.8px;
-    margin-right: 58.48px;
-    line-height: 27.2px;
+    font-size: 19px;
+    margin-bottom: 6px;
+    line-height: 26px;
   }
 
   .tools-paragraph {
-    font-size: 12.24px;
-    line-height: 20.4px;
+    font-size: 11px;
+    line-height: 19px;
   }
 
   .tools-version {
-    margin-top: 5.44px;
-    font-size: 8.84px;
-    line-height: 16.32px;
+    margin-top: 5px;
+    font-size: 8px;
+    line-height: 15px;
   }
 
   .projectCard {
-    width: 219.81px;
-    height: 110.16px;
+    width: 206px;
+    height: 104px;
     border-radius: 13px;
   }
 
   .projectContainer {
-    gap: 19.04px;
-    margin-right: 6.8px;
+    gap: 18px;
   }
 }
 
-@media only screen and (max-width: 979px) {
+/* Tablet */
+@media only screen and (max-width: 1024px) {
   .getting-started-card {
-    width: 209px;
-    height: 233px;
-    padding: 11px;
-  }
-
-  .getting-started-container {
-    gap: 11px;
-    padding: 4px;
-  }
-
-  .doc-title {
-    font-size: 17px;
-    margin-right: 38px;
-    margin-bottom: 38px;
-    line-height: 24px;
-  }
-
-  .doc-number {
-    font-size: 19px;
-    margin-bottom: 58px;
-    line-height: 24px;
-  }
-
-  .doc-subtopic {
-    font-size: 9px;
-    line-height: 14px;
-  }
-
-  .tools-card {
-    width: 209px;
-    height: 102px;
-    top: 160px;
-    padding: 15px;
-  }
-
-  .tools-title {
-    font-size: 13px;
-    margin-bottom: 5px;
-    margin-right: 41px;
-    line-height: 19px;
-  }
-
-  .tools-paragraph {
-    font-size: 8px;
-    line-height: 14px;
-  }
-
-  .tools-version {
-    margin-top: 3px;
-    font-size: 6px;
-    line-height: 11px;
-  }
-
-  .projectCard {
-    width: 154px;
-    height: 77px;
-    border-radius: 10px;
-  }
-
-  .projectContainer {
-    gap: 13px;
-    margin-right: 5px;
-  }
-}
-
-@media only screen and (max-width: 664px) {
-  .getting-started-card {
-    width: 146px;
-    height: 183px;
-    padding: 8px;
-  }
-
-  .getting-started-container {
-    gap: 8px;
-    padding: 3px;
-  }
-
-  .doc-title {
-    font-size: 12px;
-    margin-right: 27px;
-    line-height: 17px;
-  }
-
-  .doc-number {
-    font-size: 13px;
-    margin-bottom: 41px;
-    line-height: 17px;
-  }
-
-  .doc-subtopic {
-    font-size: 6px;
-    line-height: 10px;
-  }
-
-  .tools-card {
-    width: 146px;
-    height: 71px;
-    top: 112px;
-    padding: 10px;
-  }
-
-  .tools-title {
-    font-size: 9px;
-    margin-bottom: 3px;
-    margin-right: 29px;
-    line-height: 13px;
-  }
-
-  .tools-paragraph {
-    font-size: 6px;
-    line-height: 10px;
-  }
-
-  .tools-version {
-    margin-top: 2px;
-    font-size: 4px;
-    line-height: 8px;
-  }
-
-  .projectCard {
-    width: 108px;
-    height: 54px;
-    border-radius: 7px;
-  }
-
-  .projectContainer {
-    gap: 9px;
-    margin-right: 3px;
-  }
-}
-
-@media only screen and (max-width: 500px) {
-  .getting-started-card {
-    width: 335px;
-    height: 219px;
     padding: 15px;
   }
 
   .getting-started-container {
-    gap: 20px;
-    padding: 8px;
+    gap: 30px;
+  }
+
+  .tools-container {
+    gap: 30px;
   }
 
   .doc-title {
     font-size: 20px;
-    margin-right: 24px;
     margin-bottom: 8px;
     line-height: 30px;
+    margin-right: 0px;
   }
 
   .doc-number {
+    font-weight: 500;
     font-size: 30px;
     margin-bottom: 39px;
     line-height: 40px;
-    font-weight: 500;
   }
 
   .doc-subtopic {
     font-size: 16px;
     line-height: 25px;
-    font-weight: 500;
   }
 
   .tools-card {
-    width: 335px;
-    height: 129px;
-    top: 1255px;
     padding: 15px;
+    padding-top: 20px;
   }
 
   .tools-title {
     font-size: 20px;
     margin-bottom: 10px;
-    margin-right: 91px;
     line-height: 30px;
   }
 
@@ -460,7 +331,401 @@ a:hover {
   }
 
   .tools-version {
-    margin-top: 6.4px;
+    margin-top: 5px;
+    font-size: 12px;
+    line-height: 20px;
+  }
+
+  .projectCard {
+    width: 220px;
+    height: 110px;
+    border-radius: 10px;
+  }
+
+  .projectContainer {
+    gap: 29px;
+  }
+}
+
+@media only screen and (max-width: 980px) {
+  .getting-started-card {
+    padding: 12px;
+  }
+
+  .getting-started-container {
+    gap: 24px;
+  }
+
+  .tools-container {
+    gap: 24px;
+  }
+
+  .doc-title {
+    font-size: 16px;
+    line-height: 24px;
+    margin-bottom: 6px;
+  }
+
+  .doc-number {
+    font-size: 24px;
+    margin-bottom: 31px;
+    line-height: 32px;
+  }
+
+  .doc-subtopic {
+    font-size: 13px;
+    line-height: 20px;
+  }
+
+  .tools-card {
+    padding: 13px;
+    padding-top: 16px;
+  }
+
+  .tools-title {
+    font-size: 16px;
+    margin-bottom: 8px;
+    line-height: 24px;
+  }
+
+  .tools-paragraph {
+    font-size: 11px;
+    line-height: 19px;
+  }
+
+  .tools-version {
+    margin-top: 4px;
+    font-size: 10px;
+    line-height: 8px;
+  }
+
+  .projectCard {
+    width: 176px;
+    height: 88px;
+    border-radius: 8px;
+  }
+
+  .projectContainer {
+    gap: 23px;
+  }
+}
+
+/* Mobile */
+@media only screen and (max-width: 800px) {
+  .getting-started-card {
+    padding: 26px;
+    padding-top: 35px;
+  }
+
+  .getting-started-container {
+    gap: 35px;
+    grid-template-columns: none;
+  }
+
+  .tools-container {
+    gap: 35px;
+    grid-template-columns: none;
+  }
+
+  .doc-title {
+    font-size: 35px;
+    line-height: 52px;
+    margin-bottom: 17px;
+    margin-right: 16px;
+  }
+
+  .doc-number {
+    font-size: 52px;
+    margin-bottom: 86px;
+    line-height: 70px;
+    font-weight: 500;
+  }
+
+  .doc-subtopic {
+    font-size: 28px;
+    line-height: 43px;
+    font-weight: 500;
+  }
+
+  .tools-card {
+    padding: 26px;
+    padding-top: 35px;
+  }
+
+  .tools-title {
+    font-size: 35px;
+    margin-bottom: 17px;
+    line-height: 52px;
+  }
+
+  .tools-paragraph {
+    font-size: 24px;
+    line-height: 42px;
+  }
+
+  .tools-version {
+    margin-top: 8px;
+    font-size: 20px;
+    line-height: 35px;
+  }
+
+  .projectCard {
+    width: 276px;
+    height: 138px;
+    border-radius: 17px;
+  }
+
+  .projectContainer {
+    gap: 26px;
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media only screen and (max-width: 664px) {
+  .getting-started-card {
+    padding: 22px;
+    padding-top: 29px;
+  }
+
+  .getting-started-container {
+    gap: 29px;
+  }
+
+  .tools-container {
+    gap: 29px;
+  }
+
+  .doc-title {
+    font-size: 29px;
+    line-height: 43px;
+    margin-bottom: 14px;
+    margin-right: 13px;
+  }
+
+  .doc-number {
+    font-size: 43px;
+    margin-bottom: 72px;
+    line-height: 58px;
+  }
+
+  .doc-subtopic {
+    font-size: 23px;
+    line-height: 36px;
+  }
+
+  .tools-card {
+    padding: 22px;
+    padding-top: 29px;
+  }
+
+  .tools-title {
+    font-size: 29px;
+    margin-bottom: 14px;
+    line-height: 43px;
+  }
+
+  .tools-paragraph {
+    font-size: 20px;
+    line-height: 35px;
+  }
+
+  .tools-version {
+    margin-top: 7px;
+    font-size: 17px;
+    line-height: 29px;
+  }
+
+  .projectCard {
+    width: 230px;
+    height: 115px;
+    border-radius: 14px;
+  }
+
+  .projectContainer {
+    gap: 22px;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .getting-started-card {
+    padding: 18px;
+    padding-top: 24px;
+  }
+
+  .getting-started-container {
+    gap: 24px;
+  }
+
+  .tools-container {
+    gap: 24px;
+  }
+
+  .doc-title {
+    font-size: 24px;
+    margin-right: 11px;
+    margin-bottom: 12px;
+    line-height: 36px;
+  }
+
+  .doc-number {
+    font-size: 36px;
+    margin-bottom: 60px;
+    line-height: 48px;
+  }
+
+  .doc-subtopic {
+    font-size: 19px;
+    line-height: 30px;
+  }
+
+  .tools-card {
+    padding: 18px;
+    padding-top: 24px;
+  }
+
+  .tools-title {
+    font-size: 24px;
+    margin-bottom: 12px;
+    line-height: 36px;
+  }
+
+  .tools-paragraph {
+    font-size: 17px;
+    line-height: 29px;
+  }
+
+  .tools-version {
+    margin-top: 6px;
+    font-size: 14px;
+    line-height: 24px;
+  }
+
+  .projectCard {
+    width: 192px;
+    height: 96px;
+    border-radius: 12px;
+  }
+
+  .projectContainer {
+    gap: 18px;
+  }
+}
+
+@media only screen and (max-width: 425px) {
+  .getting-started-card {
+    padding: 16px;
+    padding-top: 22px;
+  }
+
+  .getting-started-container {
+    gap: 22px;
+  }
+
+  .tools-container {
+    gap: 22px;
+  }
+
+  .doc-title {
+    font-size: 22px;
+    margin-right: 10px;
+    margin-bottom: 11px;
+    line-height: 32px;
+  }
+
+  .doc-number {
+    font-size: 32px;
+    margin-bottom: 54px;
+    line-height: 43px;
+  }
+
+  .doc-subtopic {
+    font-size: 17px;
+    line-height: 27px;
+  }
+
+  .tools-card {
+    padding: 16px;
+    padding-top: 22px;
+  }
+
+  .tools-title {
+    font-size: 22px;
+    margin-bottom: 11px;
+    line-height: 32px;
+  }
+
+  .tools-paragraph {
+    font-size: 15px;
+    line-height: 26px;
+  }
+
+  .tools-version {
+    margin-top: 5px;
+    font-size: 13px;
+    line-height: 22px;
+  }
+
+  .projectCard {
+    width: 173px;
+    height: 86px;
+    border-radius: 11px;
+  }
+
+  .projectContainer {
+    gap: 16px;
+  }
+}
+
+@media only screen and (max-width: 375px) {
+  .getting-started-card {
+    padding: 15px;
+    padding-top: 20px;
+  }
+
+  .getting-started-container {
+    gap: 20px;
+  }
+
+  .tools-container {
+    gap: 20px;
+  }
+
+  .doc-title {
+    font-size: 20px;
+    margin-right: 9px;
+    margin-bottom: 10px;
+    line-height: 30px;
+  }
+
+  .doc-number {
+    font-size: 30px;
+    margin-bottom: 50px;
+    line-height: 40px;
+  }
+
+  .doc-subtopic {
+    font-size: 16px;
+    line-height: 25px;
+  }
+
+  .tools-card {
+    padding: 15px;
+    padding-top: 20px;
+  }
+
+  .tools-title {
+    font-size: 20px;
+    margin-bottom: 10px;
+    line-height: 30px;
+  }
+
+  .tools-paragraph {
+    font-size: 14px;
+    line-height: 24px;
+  }
+
+  .tools-version {
+    margin-top: 5px;
     font-size: 12px;
     line-height: 20px;
   }
@@ -468,7 +733,7 @@ a:hover {
   .projectCard {
     width: 160px;
     height: 80px;
-    border-radius: 10px;
+    border-radius: 15px;
   }
 
   .projectContainer {
@@ -476,62 +741,67 @@ a:hover {
   }
 }
 
-@media only screen and (max-width: 349px) {
+@media only screen and (max-width: 359px) {
   .getting-started-card {
-    width: 284.75px;
-    height: 186.15px;
-    padding: 15px;
+    padding: 12px;
+    padding-top: 16px;
   }
 
   .getting-started-container {
-    gap: 17px;
-    padding: 8px;
+    gap: 16px;
+  }
+
+  .tools-container {
+    gap: 16px;
   }
 
   .doc-title {
-    font-size: 17px;
-    margin-right: 20.4px;
-    margin-bottom: 6.8px;
-    line-height: 25.5px;
+    font-size: 16px;
+    margin-right: 7px;
+    margin-bottom: 8px;
+    line-height: 24px;
   }
 
   .doc-number {
-    font-size: 25.5px;
-    margin-bottom: 33.15px;
-    line-height: 34px;
+    font-size: 24px;
+    margin-bottom: 40px;
+    line-height: 32px;
   }
 
   .doc-subtopic {
-    font-size: 13.6px;
-    line-height: 21.25px;
+    font-size: 13px;
+    line-height: 20px;
   }
 
   .tools-card {
-    width: 284.75px;
-    height: 109.65px;
+    padding: 12px;
+    padding-top: 16px;
   }
 
   .tools-title {
-    font-size: 17px;
-    margin-bottom: 8.5px;
-    margin-right: 77.35px;
-    line-height: 25.5px;
+    font-size: 16px;
+    margin-bottom: 8px;
+    line-height: 24px;
   }
 
   .tools-paragraph {
-    font-size: 12px;
-    line-height: 20.4px;
+    font-size: 11px;
+    line-height: 19px;
   }
 
   .tools-version {
-    margin-top: 5.4px;
-    font-size: 10.2px;
-    line-height: 17px;
+    margin-top: 4px;
+    font-size: 10px;
+    line-height: 16px;
   }
 
   .projectCard {
-    width: 136px;
-    height: 68px;
-    border-radius: 10px;
+    width: 128px;
+    height: 64px;
+    border-radius: 12px;
+  }
+
+  .projectContainer {
+    gap: 12px;
   }
 }

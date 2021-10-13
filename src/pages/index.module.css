@@ -14,15 +14,15 @@
   z-index: 1;
   margin-top: 550px;
   width: 100%;
-  padding-left: 20px;
-  padding-right: 20px;
+  padding-left: 30px;
+  padding-right: 30px;
   margin-left: auto;
   margin-right: auto;
   display: flex;
   justify-content: center;
   flex-direction: column;
   align-items: center;
-  padding-bottom: 53px;
+  padding-bottom: 50px;
   -webkit-transform-style: preserve-3d;
   transform-style: preserve-3d;
 }
@@ -32,7 +32,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 1400px;
+  width: 1380px;
 }
 
 .gettingStarted {
@@ -41,15 +41,15 @@
   line-height: 50px;
   color: #f2f2f2;
   text-align: left;
+  margin-bottom: 0;
 }
 
 .gettingStartedFlexBox {
   display: flex;
   flex-direction: row;
-  padding-top: 39px;
+  padding-top: 50px;
   align-items: center;
-  padding-left: 5px;
-  padding-right: 5px;
+  padding-bottom: 40px;
 }
 
 .viewAll {
@@ -59,7 +59,7 @@
   letter-spacing: 0.05em;
   text-transform: uppercase;
   color: #f2f2f2;
-  padding: 10px 10px;
+  padding: 15px 10px 15px 10px;
   background: none;
   border: none;
   text-align: center;
@@ -80,8 +80,10 @@
   font-size: 35px;
   line-height: 50px;
   color: #ffffff;
-  margin-top: 72px;
-  padding-left: 5px;
+  padding-top: 50px;
+  margin-right: auto;
+  padding-bottom: 40px;
+  margin-bottom: 0;
 }
 
 .projects {
@@ -89,19 +91,21 @@
   font-size: 35px;
   line-height: 40px;
   color: #ffffff;
-  margin-top: 107px;
-  padding-left: 5px;
+  padding-top: 50px;
+  margin-right: auto;
+  padding-bottom: 40px;
+  margin-bottom: 0;
 }
 
 .logoText {
   position: absolute;
-  width: 322px;
-  height: 176px;
+  width: 311px;
+  height: 104px;
   left: 0;
   right: 0;
   margin-left: auto;
   margin-right: auto;
-  top: 224px;
+  top: 293px;
   color: #fbf6f4;
 }
 
@@ -109,7 +113,7 @@
   position: absolute;
   width: 168px;
   height: 20px;
-  top: 420px;
+  top: 439px;
   left: 0;
   right: 0;
   margin-left: auto;
@@ -119,20 +123,20 @@
   font-weight: 500;
   font-size: 20px;
   line-height: 100%;
-  letter-spacing: -0.02em;
   text-transform: uppercase;
   color: #ffffff;
 }
 
 @media only screen and (max-width: 1439px) {
   .layout {
-    margin-top: 499.2px;
-    padding-left: 16px;
-    padding-right: 16px;
+    margin-top: 440px;
+    padding-left: 24px;
+    padding-right: 24px;
+    padding-bottom: 40px;
   }
 
   .layoutFlexBox {
-    width: 1120px;
+    width: 1100px;
   }
 
   .gettingStarted {
@@ -141,40 +145,48 @@
   }
 
   .gettingStartedFlexBox {
-    padding-top: 31.2px;
-    padding-left: 5px;
-    padding-right: 5px;
+    padding-top: 40px;
+    padding-bottom: 32px;
   }
 
   .viewAll {
-    font-size: 9.6px;
+    font-size: 10px;
     line-height: 16px;
+    padding: 12px 8px 12px 8px;
+  }
+
+  .viewAllLink {
+    margin-right: 4px;
+  }
+
+  .viewAllLink:hover {
+    border-radius: 3px;
   }
 
   .tools {
     font-size: 28px;
-    margin-top: 57.6px;
-    padding-left: 5px;
+    padding-top: 40px;
     line-height: 40px;
+    padding-bottom: 32px;
   }
 
   .projects {
     font-size: 28px;
-    margin-top: 85.6px;
-    padding-left: 5px;
+    padding-top: 40px;
     line-height: 32px;
+    padding-bottom: 32px;
   }
 
   .logoText {
-    width: 257.6px;
-    height: 140.8px;
-    top: 179.2px;
+    width: 249px;
+    height: 83px;
+    top: 234px;
   }
 
   .headerSubtitle {
     width: 135px;
     height: 16px;
-    top: 351.2px;
+    top: 351px;
     line-height: 80%;
     font-size: 16px;
   }
@@ -182,184 +194,80 @@
 
 @media only screen and (max-width: 1151px) {
   .layout {
-    margin-top: 424.32px;
-    padding-left: 13.6px;
-    padding-right: 13.6px;
+    margin-top: 352px;
+    padding-left: 19px;
+    padding-right: 19px;
+    padding-bottom: 32px;
   }
 
   .layoutFlexBox {
-    width: 952px;
+    width: 1000px;
   }
 
   .gettingStarted {
-    font-size: 24px;
-    line-height: 34px;
+    font-size: 22px;
+    line-height: 32px;
   }
 
   .gettingStartedFlexBox {
-    padding-top: 26.52px;
-    padding-left: 5px;
-    padding-right: 5px;
+    padding-top: 32px;
+    padding-bottom: 26px;
   }
 
   .viewAll {
-    font-size: 8.16px;
-    line-height: 13.6px;
+    font-size: 8px;
+    line-height: 13px;
+    padding: 10px 6px 10px 6px;
+  }
+
+  .viewAllLink {
+    margin-right: 3px;
+  }
+
+  .viewAllLink:hover {
+    border-radius: 2px;
   }
 
   .tools {
-    font-size: 24px;
-    margin-top: 48.96px;
-    padding-left: 5px;
-    line-height: 34px;
+    font-size: 22px;
+    padding-top: 32px;
+    line-height: 32px;
+    padding-bottom: 26px;
   }
 
   .projects {
-    font-size: 24px;
-    margin-top: 72.76px;
-    padding-left: 5px;
-    line-height: 27.2px;
+    font-size: 22px;
+    padding-top: 32px;
+    line-height: 26px;
+    padding-bottom: 26px;
   }
 
   .logoText {
-    width: 218.96px;
-    height: 119.68px;
-    top: 152.32px;
+    width: 199px;
+    height: 66px;
+    top: 187px;
   }
 
   .headerSubtitle {
-    width: 108px;
-    height: 12px;
-    top: 299px;
-    line-height: 68%;
+    width: 110px;
+    height: 13px;
+    top: 281px;
+    line-height: 64%;
     font-size: 13px;
   }
 }
 
-@media only screen and (max-width: 979px) {
+/* Tablet */
+@media only screen and (max-width: 1024px) {
   .layout {
-    margin-top: 297px;
-    padding-left: 4px;
-    padding-right: 4px;
+    margin-top: 412px;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-bottom: 39px;
   }
 
   .layoutFlexBox {
-    width: 666px;
-  }
-
-  .gettingStarted {
-    font-size: 17px;
-    line-height: 24px;
-    margin-top: 10px;
-  }
-
-  .gettingStartedFlexBox {
-    padding-top: 19px;
-    padding-left: 5px;
-    padding-right: 5px;
-  }
-
-  .viewAll {
-    font-size: 6px;
-    line-height: 10px;
-  }
-
-  .tools {
-    font-size: 17px;
-    margin-top: 34px;
-    padding-left: 5px;
-    line-height: 24px;
-  }
-
-  .projects {
-    font-size: 17px;
-    margin-top: 51px;
-    padding-left: 5px;
-    line-height: 19px;
-  }
-
-  .logoText {
-    width: 153px;
-    height: 84px;
-    top: 106px;
-  }
-
-  .headerSubtitle {
-    width: 86px;
-    height: 8px;
-    top: 209px;
-    line-height: 48%;
-    font-size: 10px;
-  }
-}
-
-@media only screen and (max-width: 664px) {
-  .layout {
-    margin-top: 208px;
-    padding-left: 3px;
-    padding-right: 3px;
-  }
-
-  .layoutFlexBox {
-    width: 466px;
-  }
-
-  .gettingStarted {
-    font-size: 12px;
-    line-height: 17px;
-    margin-top: 15px;
-  }
-
-  .gettingStartedFlexBox {
-    padding-top: 13px;
-    padding-left: 5px;
-    padding-right: 5px;
-  }
-
-  .viewAll {
-    font-size: 6px;
-    line-height: 10px;
-  }
-
-  .tools {
-    font-size: 12px;
-    margin-top: 24px;
-    padding-left: 5px;
-    line-height: 17px;
-  }
-
-  .projects {
-    font-size: 12px;
-    margin-top: 46px;
-    padding-left: 5px;
-    line-height: 13px;
-  }
-
-  .logoText {
-    width: 107px;
-    height: 59px;
-    top: 74px;
-  }
-
-  .headerSubtitle {
-    width: 60px;
-    height: 6px;
-    top: 146px;
-    line-height: 34%;
-    font-size: 7px;
-  }
-}
-
-@media only screen and (max-width: 500px) {
-  .layout {
-    margin-top: 388px;
-    padding-left: 16px;
-    padding-right: 16px;
-    padding-bottom: 50px;
-  }
-
-  .layoutFlexBox {
-    width: 345px;
+    width: 964px;
   }
 
   .gettingStarted {
@@ -368,35 +276,424 @@
   }
 
   .gettingStartedFlexBox {
-    padding-top: 35px;
-    padding-left: 5px;
-    padding-right: 5px;
+    padding-top: 40px;
+    padding-bottom: 30px;
   }
 
   .viewAll {
     font-size: 12px;
     line-height: 20px;
-    padding: 10px 10px;
+    padding: 15px 10px 15px 10px;
+  }
+
+  .viewAllLink {
+    margin-right: 5px;
+  }
+
+  .viewAllLink:hover {
+    border-radius: 4px;
   }
 
   .tools {
     font-size: 20px;
-    margin-top: 35px;
-    margin-left: 0px;
+    padding-top: 40px;
     line-height: 30px;
+    padding-bottom: 30px;
   }
 
   .projects {
     font-size: 20px;
-    margin-top: 35px;
-    padding-left: 5px;
+    padding-top: 40px;
     line-height: 30px;
+    padding-bottom: 30px;
   }
 
   .logoText {
-    width: 197.5px;
-    height: 66.32px;
-    top: 175.5px;
+    width: 198px;
+    height: 66px;
+    top: 217px;
+  }
+
+  .headerSubtitle {
+    width: 168px;
+    height: 20px;
+    top: 328px;
+    line-height: 100%;
+    font-size: 20px;
+  }
+}
+
+@media only screen and (max-width: 980px) {
+  .layout {
+    margin-top: 330px;
+    padding-left: 24px;
+    padding-right: 24px;
+    padding-bottom: 31px;
+  }
+
+  .layoutFlexBox {
+    width: 770px;
+  }
+
+  .gettingStarted {
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .gettingStartedFlexBox {
+    padding-top: 32px;
+    padding-bottom: 24px;
+  }
+
+  .viewAll {
+    font-size: 10px;
+    line-height: 16px;
+    padding: 12px 8px 12px 8px;
+  }
+
+  .viewAllLink {
+    margin-right: 4px;
+  }
+
+  .viewAllLink:hover {
+    border-radius: 3px;
+  }
+
+  .tools {
+    font-size: 16px;
+    padding-top: 32px;
+    line-height: 24px;
+    padding-bottom: 24px;
+  }
+
+  .projects {
+    font-size: 16px;
+    padding-top: 32px;
+    line-height: 24px;
+    padding-bottom: 24px;
+  }
+
+  .logoText {
+    width: 158px;
+    height: 53px;
+    top: 174px;
+  }
+
+  .headerSubtitle {
+    width: 135px;
+    height: 16px;
+    top: 262px;
+    line-height: 80%;
+    font-size: 16px;
+  }
+}
+
+/* Mobile */
+@media only screen and (max-width: 800px) {
+  .layout {
+    margin-top: 671px;
+    padding-left: 35px;
+    padding-right: 35px;
+    padding-bottom: 62px;
+  }
+
+  .layoutFlexBox {
+    width: 578px;
+  }
+
+  .gettingStarted {
+    font-size: 35px;
+    line-height: 52px;
+    margin-left: 0px;
+    padding: 0px;
+  }
+
+  .gettingStartedFlexBox {
+    padding-top: 62px;
+    padding-bottom: 42px;
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+
+  .viewAll {
+    font-size: 24px;
+    line-height: 42px;
+    padding: 31px 20px 31px 20px;
+  }
+
+  .viewAllLink {
+    margin-right: 0px;
+  }
+
+  .viewAllLink:hover {
+    border-radius: 8px;
+  }
+
+  .tools {
+    font-size: 35px;
+    line-height: 52px;
+    padding-top: 62px;
+    padding-bottom: 42px;
+  }
+
+  .projects {
+    font-size: 35px;
+    line-height: 44px;
+    padding-top: 62px;
+    padding-bottom: 42px;
+  }
+
+  .logoText {
+    width: 343px;
+    height: 114px;
+    top: 274px;
+  }
+
+  .headerSubtitle {
+    width: 294px;
+    height: 35px;
+    top: 466px;
+    font-size: 35px;
+  }
+}
+
+@media only screen and (max-width: 664px) {
+  .layout {
+    margin-top: 559px;
+    padding-left: 29px;
+    padding-right: 29px;
+    padding-bottom: 52px;
+  }
+
+  .layoutFlexBox {
+    width: 482px;
+  }
+
+  .gettingStarted {
+    font-size: 29px;
+    line-height: 43px;
+    margin-left: 0px;
+    padding: 0px;
+  }
+
+  .gettingStartedFlexBox {
+    padding-top: 52px;
+    padding-bottom: 35px;
+  }
+
+  .viewAll {
+    font-size: 20px;
+    line-height: 35px;
+    padding: 26px 17px 26px 17px;
+  }
+
+  .viewAllLink:hover {
+    border-radius: 7px;
+  }
+
+  .tools {
+    font-size: 29px;
+    line-height: 43px;
+    padding-top: 52px;
+    padding-bottom: 35px;
+  }
+
+  .projects {
+    font-size: 29px;
+    line-height: 37px;
+    padding-top: 52px;
+    padding-bottom: 35px;
+  }
+
+  .logoText {
+    width: 286px;
+    height: 95px;
+    top: 228px;
+  }
+
+  .headerSubtitle {
+    width: 244px;
+    height: 29px;
+    top: 388px;
+    font-size: 29px;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .layout {
+    margin-top: 466px;
+    padding-left: 24px;
+    padding-right: 24px;
+    padding-bottom: 43px;
+  }
+
+  .layoutFlexBox {
+    width: 402px;
+  }
+
+  .gettingStarted {
+    font-size: 24px;
+    line-height: 36px;
+    margin-left: 0px;
+    padding: 0px;
+  }
+
+  .gettingStartedFlexBox {
+    padding-top: 43px;
+    padding-bottom: 29px;
+  }
+
+  .viewAll {
+    font-size: 17px;
+    line-height: 29px;
+    padding: 22px 14px 22px 14px;
+  }
+
+  .viewAllLink:hover {
+    border-radius: 6px;
+  }
+
+  .tools {
+    font-size: 24px;
+    line-height: 36px;
+    padding-top: 43px;
+    padding-bottom: 29px;
+  }
+
+  .projects {
+    font-size: 24px;
+    line-height: 31px;
+    padding-top: 43px;
+    padding-bottom: 29px;
+  }
+
+  .logoText {
+    width: 238px;
+    height: 79px;
+    top: 190px;
+  }
+
+  .headerSubtitle {
+    width: 202px;
+    height: 24px;
+    top: 323px;
+    font-size: 24px;
+  }
+}
+
+@media only screen and (max-width: 425px) {
+  .layout {
+    margin-top: 419px;
+    padding-left: 22px;
+    padding-right: 22px;
+    padding-bottom: 36px;
+  }
+
+  .layoutFlexBox {
+    width: 362px;
+  }
+
+  .gettingStarted {
+    font-size: 22px;
+    line-height: 32px;
+    margin-left: 0px;
+    padding: 0px;
+  }
+
+  .gettingStartedFlexBox {
+    padding-top: 36px;
+    padding-bottom: 24px;
+  }
+
+  .viewAll {
+    font-size: 14px;
+    line-height: 24px;
+    padding: 18px 12px 18px 12px;
+  }
+
+  .viewAllLink:hover {
+    border-radius: 5px;
+  }
+
+  .tools {
+    font-size: 22px;
+    line-height: 32px;
+    padding-top: 36px;
+    padding-bottom: 24px;
+  }
+
+  .projects {
+    font-size: 22px;
+    line-height: 28px;
+    padding-top: 36px;
+    padding-bottom: 24px;
+  }
+
+  .logoText {
+    width: 214px;
+    height: 71px;
+    top: 171px;
+  }
+
+  .headerSubtitle {
+    width: 185px;
+    height: 22px;
+    top: 291px;
+    font-size: 22px;
+  }
+}
+
+@media only screen and (max-width: 375px) {
+  .layout {
+    margin-top: 388px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 30px;
+  }
+
+  .layoutFlexBox {
+    width: 335px;
+  }
+
+  .gettingStarted {
+    font-size: 20px;
+    line-height: 30px;
+    margin-left: 0px;
+  }
+
+  .gettingStartedFlexBox {
+    padding-top: 30px;
+    padding-bottom: 20px;
+  }
+
+  .viewAll {
+    font-size: 12px;
+    line-height: 20px;
+    padding: 15px 10px 15px 10px;
+  }
+
+  .viewAllLink:hover {
+    border-radius: 4px;
+  }
+
+  .tools {
+    font-size: 20px;
+    line-height: 30px;
+    padding-top: 30px;
+    padding-bottom: 20px;
+  }
+
+  .projects {
+    font-size: 20px;
+    line-height: 26px;
+    padding-top: 30px;
+    padding-bottom: 20px;
+  }
+
+  .logoText {
+    width: 198px;
+    height: 66px;
+    top: 158px;
   }
 
   .headerSubtitle {
@@ -407,56 +704,62 @@
   }
 }
 
-@media only screen and (max-width: 349px) {
+@media only screen and (max-width: 359px) {
   .layout {
-    margin-top: 329.8px;
-    padding-left: 13.6px;
-    padding-right: 13.6px;
+    margin-top: 310px;
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-bottom: 24px;
   }
 
   .layoutFlexBox {
-    width: 320px;
+    width: 271px;
   }
 
   .gettingStarted {
-    font-size: 17px;
-    line-height: 25.5px;
-    margin-left: 12px;
+    font-size: 16px;
+    line-height: 24px;
   }
 
   .gettingStartedFlexBox {
-    padding-top: 29px;
-    padding-left: 5px;
-    padding-right: 5px;
+    padding-top: 24px;
+    padding-bottom: 16px;
   }
 
   .viewAll {
-    font-size: 10.2px;
-    line-height: 17px;
+    font-size: 10px;
+    line-height: 16px;
+    padding: 12px 8px 12px 8px;
+  }
+
+  .viewAllLink:hover {
+    border-radius: 3px;
   }
 
   .tools {
-    font-size: 17px;
-    margin-top: 29.75px;
-    line-height: 25.5px;
+    font-size: 16px;
+    line-height: 24px;
+    padding-top: 24px;
+    padding-bottom: 16px;
   }
 
   .projects {
-    font-size: 17px;
-    margin-top: 25.5px;
-    padding-left: 5px;
-    line-height: 25.5px;
+    font-size: 16px;
+    line-height: 21px;
+    padding-top: 24px;
+    padding-bottom: 16px;
   }
 
   .logoText {
-    width: 167.88px;
-    height: 56.37px;
-    top: 149.18px;
+    width: 158px;
+    height: 53px;
+    top: 126px;
   }
 
   .headerSubtitle {
-    width: 168px;
-    height: 17px;
-    top: 228.7px;
+    width: 134px;
+    height: 16px;
+    top: 215px;
+    font-size: 16px;
   }
 }
