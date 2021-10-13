@@ -76,6 +76,9 @@ button {
 .shader-canvas {
   position: fixed;
   top: 0;
+  backface-visibility: hidden;
+  perspective: 1000;
+  -webkit-perspective: 1000;
 }
 
 .menu__link {
