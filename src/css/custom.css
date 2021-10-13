@@ -271,6 +271,10 @@ table tr {
   border-right: 2px solid #4d4d4d !important;
 }
 
+.docSidebarContainer_3Kbt {
+  border-right: 2px solid #4d4d4d !important;
+}
+
 @media only screen and (max-width: 996px) {
   .navbar--fixed-top {
     height: 60px;
