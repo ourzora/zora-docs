@@ -189,12 +189,12 @@
 }
 
 /* Mobile */
-@media only screen and (max-width: 800px) {
+/* @media only screen and (max-width: 800px) {
   .layout {
-    margin-top: 671px;
-    padding-left: 35px;
-    padding-right: 35px;
-    padding-bottom: 62px;
+    margin-top: 388px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 30px;
   }
 
   .gettingStarted {
@@ -251,7 +251,7 @@
     top: 466px;
     font-size: 35px;
   }
-}
+} */
 
 @media only screen and (max-width: 375px) {
   .layout {
