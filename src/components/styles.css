@@ -13,11 +13,11 @@
   padding: 25px;
   background: rgba(31, 31, 31, 0.6);
   border: 2px solid rgba(255, 255, 255, 0.05);
+  transition: 300ms ease-out;
 }
 
 .getting-started-card:hover {
   border: 2px solid rgb(255, 255, 255, 0.25);
-  transition: 300ms ease-out;
 }
 
 .getting-started-card:hover .doc-subtopic {
@@ -84,11 +84,11 @@
   padding-top: 30px;
   background: rgba(31, 31, 31, 0.6);
   border: 2px solid rgba(255, 255, 255, 0.05);
+  transition: 300ms ease-out;
 }
 
 .tools-card:hover {
   border: 2px solid rgb(255, 255, 255, 0.25);
-  transition: 300ms ease-out;
 }
 
 .tools-card:hover .tools-paragraph {
@@ -136,10 +136,10 @@
   filter: drop-shadow(0px 5px 15px rgba(0, 0, 0, 0.12));
   overflow: hidden;
   border-radius: 20px;
+  transition: 300ms ease-out;
 }
 
 .projectCard:hover .projectCardImage {
-  transition: 300ms ease-out;
   transform: scale(1.07);
 }
 
