@@ -189,7 +189,7 @@
 }
 
 /* Mobile */
-@media only screen and (max-width: 800px) {
+/* @media only screen and (max-width: 800px) {
   .layout {
     margin-top: 671px;
     padding-left: 35px;
@@ -251,9 +251,9 @@
     top: 466px;
     font-size: 35px;
   }
-}
+} */
 
-@media only screen and (max-width: 375px) {
+@media only screen and (max-width: 800px) {
   .layout {
     margin-top: 388px;
     padding-left: 20px;
@@ -265,17 +265,24 @@
     font-size: 20px;
     line-height: 30px;
     margin-left: 0px;
+    padding: 0px;
   }
 
   .gettingStartedFlexBox {
     padding-top: 30px;
     padding-bottom: 20px;
+    padding-left: 0px;
+    padding-right: 0px;
   }
 
   .viewAll {
     font-size: 12px;
     line-height: 20px;
     padding: 10px 15px 10px 15px;
+  }
+
+  .viewAllLink {
+    margin-right: 0px;
   }
 
   .viewAllLink:hover {
