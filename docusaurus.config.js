@@ -5,17 +5,17 @@ const katex = require('rehype-katex')
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
 module.exports = {
   title: 'Zora',
-  url: 'https://your-docusaurus-test-site.com',
+  url: 'zora.engineering',
   baseUrl: '/',
   onBrokenLinks: 'ignore',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/zoraOrb.svg',
-  organizationName: 'facebook', // Usually your GitHub org/user name.
-  projectName: 'docusaurus', // Usually your repo name.
+  organizationName: 'ourzora',
+  projectName: 'ZoraOS Documentation',
   themeConfig: {
     navbar: {
       logo: {
-        alt: 'My Site Logo',
+        alt: 'ZoraOs Documentation Logo',
         src: 'img/zoraOrb.svg',
       },
       items: [
