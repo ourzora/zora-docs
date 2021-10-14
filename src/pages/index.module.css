@@ -189,7 +189,7 @@
 }
 
 /* Mobile */
-/* @media only screen and (max-width: 800px) {
+@media only screen and (max-width: 800px) {
   .layout {
     margin-top: 671px;
     padding-left: 35px;
@@ -251,9 +251,9 @@
     top: 466px;
     font-size: 35px;
   }
-} */
+}
 
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 375px) {
   .layout {
     margin-top: 388px;
     padding-left: 20px;

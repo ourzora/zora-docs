@@ -220,7 +220,7 @@ a:hover {
 }
 
 /* Mobile */
-/* @media only screen and (max-width: 800px) {
+@media only screen and (max-width: 800px) {
   .getting-started-card {
     padding: 26px;
     padding-top: 35px;
@@ -240,6 +240,7 @@ a:hover {
     font-size: 35px;
     line-height: 52px;
     margin-bottom: 17px;
+    margin-right: 16px;
   }
 
   .doc-number {
@@ -281,9 +282,9 @@ a:hover {
     gap: 26px;
     grid-template-columns: repeat(2, 1fr);
   }
-} */
+}
 
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 375px) {
   .getting-started-card {
     padding: 15px;
     padding-top: 20px;
