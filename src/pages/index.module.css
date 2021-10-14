@@ -32,6 +32,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  max-width: 1440px;
 }
 
 .gettingStarted {
@@ -187,71 +188,6 @@
     font-size: 20px;
   }
 }
-
-/* Mobile */
-/* @media only screen and (max-width: 800px) {
-  .layout {
-    margin-top: 388px;
-    padding-left: 20px;
-    padding-right: 20px;
-    padding-bottom: 30px;
-  }
-
-  .gettingStarted {
-    font-size: 35px;
-    line-height: 52px;
-    margin-left: 0px;
-    padding: 0px;
-  }
-
-  .gettingStartedFlexBox {
-    padding-top: 62px;
-    padding-bottom: 42px;
-    padding-left: 0px;
-    padding-right: 0px;
-  }
-
-  .viewAll {
-    font-size: 24px;
-    line-height: 42px;
-    padding: 20px 31px 20px 31px;
-  }
-
-  .viewAllLink {
-    margin-right: 0px;
-  }
-
-  .viewAllLink:hover {
-    border-radius: 8px;
-  }
-
-  .tools {
-    font-size: 35px;
-    line-height: 52px;
-    padding-top: 62px;
-    padding-bottom: 42px;
-  }
-
-  .projects {
-    font-size: 35px;
-    line-height: 44px;
-    padding-top: 62px;
-    padding-bottom: 42px;
-  }
-
-  .logoText {
-    width: 343px;
-    height: 114px;
-    top: 274px;
-  }
-
-  .headerSubtitle {
-    width: 294px;
-    height: 35px;
-    top: 466px;
-    font-size: 35px;
-  }
-} */
 
 @media only screen and (max-width: 375px) {
   .layout {
