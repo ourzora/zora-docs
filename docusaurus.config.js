@@ -10,7 +10,7 @@ module.exports = {
   onBrokenLinks: 'ignore',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/zoraOrb.svg',
-  organizationName: 'facebook', // Usually your GitHub org/user name.
+  organizationName: 'ourzora', // Usually your GitHub org/user name.
   projectName: 'docusaurus', // Usually your repo name.
   themeConfig: {
     navbar: {

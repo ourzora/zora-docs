@@ -1,28 +1,23 @@
 ---
 id: entities
 title: Entities
-sidebar_position: 2
+sidebar_position: 3
 ---
 
 ---
 
-One benefit of GraphQL is that it is self-documenting. The best way to view the current tables, field names and possible
-queries one could make is through a GraphQL client UI. 
-
-:::note
-
-You can begin making queries in our hosted GraphQL [playground](https://ourZORA.github.io/indexer-playground/) on both Ethereum Mainnet and Rinkeby.
-
-:::
+You can begin making queries in our hosted GraphQL [playground](https://ourZORA.github.io/indexer-playground/) on both `Ethereum Mainnet` and `Rinkeby`.
 
 ## Ethereum Data
 
 The ZORA Indexer stores the raw data for Transactions and Event Logs that it finds "interesting", namely transactions that interact
 with the ZORA Protocol, and transactions that result in a transfer of an ERC-721 NFT Contract it is indexing.
 
+
+### Transaciton
 ```graphql
-# Ethereum transaction data
-Transaction {
+{
+  Transaction {
   # Fields
   blockHash
   blockNumber
@@ -44,12 +39,14 @@ Transaction {
   eventLogs
   <event table name>Events # i.e. auctionApprovalUpdatedEvents)
   mediaMints # see MediaMint table for context
+  }
 }
 ```
 
+### Event Log
 ```graphql
-# Ethereum event log data
-EventLog {
+{
+  EventLog {
   # Fields
   address
   blockHash
@@ -65,6 +62,7 @@ EventLog {
   <event table name>Event # i.e. auctionApprovalUpdatedEvent
   mediaMints # see MediaMint table for context
   transaction
+  }
 }
 ```
 
@@ -75,10 +73,11 @@ any block number, the aggregate view will mirror the view of the object on the b
 `Auction` are the three aggregate tables. Read more about them below.
 
 ### Token
-Non ZORA ERC-721 NFT
+Non ZORA ERC-721 NFTs
 
 ```gql
-Token {
+{
+  Token {
   # Fields
   address # contract address
   id # format: <address>-<tokenId> i.e. 0x7C2668BD0D3c050703CEcC956C11Bd520c26f7d4-241
@@ -92,16 +91,6 @@ Token {
   tokenId
   tokenURI
 
-<<<<<<< HEAD
-  # Relationships
-  auctions # all Auctions for this token
-  <event table name>Event # i.e. auctionApprovalUpdatedEvent
-  media # Zora Media info (only available for Zora NFTs)
-  metadata # metadata json blob, if exists
-  mintTransferEvent # TokenTransferEvent where .from is the 0x00... address
-  tokenContract # TokenContract has information like name and symbol
-  transferEvents # all TokenTransferEvents
-=======
   // Relationships
   auctions // all Auctions for this token
   <event table name>Event // i.e. auctionApprovalUpdatedEvent
@@ -110,16 +99,17 @@ Token {
   mintTransferEvent // TokenTransferEvent where .from is the 0x00... address
   tokenContract // TokenContract has information like name and symbol
   transferEvents // all TokenTransferEvents
->>>>>>> f0fa5e9 (toUpperCase Zora in docs)
+  }
 }
 ```
 
 ### Media
 
-ZORA NFT - view [Media.sol](https://github.com/ourZORA/core/blob/master/contracts/Media.sol) for context
+ZORA NFTs - view [Media.sol](https://github.com/ourZORA/core/blob/master/contracts/Media.sol) for context
 
 ```gql
-Media {
+{
+  Media {
   # Fields
   address # always the same contract address, makes many relationships possible
   contentHash
@@ -146,6 +136,7 @@ Media {
   tokenMetadataURIUpdatedEvents # array of MediaTokenMetadataURIUpdatedEvents
   tokenURIUpdatedEvents # array of MediaTokenURIUpdatedEvents
   transferEvents # array of TokenTransferEvents
+  }
 }
 ```
 
@@ -154,7 +145,8 @@ ZORA Auction House - view [AuctionHouse.sol](https://github.com/ourZORA/auction-
 
 ```gql
 // many Auction fields and relationships can be null depending on the state of the auction
-Auction {
+{
+  Auction {
   # Fields
   amountTokenOwnerReceived
   approved
@@ -174,18 +166,6 @@ Auction {
   tokenOwner
   winner
 
-<<<<<<< HEAD
-  # Relationships
-  approvalEvents # array of AuctionApprovalEvents
-  bidEvents # array of AuctionBidEvents
-  canceledEvent # single AuctionCanceledEvent
-  createdEvent # single AuctionCreatedEvent
-  durationExtendedEvents # array of AuctionDurationExtendedEvents
-  endedEvent # single AuctionEndedEvent
-  media # single Media object if the token is a Zora NFT
-  reservePriceUpdatedEvents # array of AuctionReservePriceUpdatedEvents
-  token # single Token object
-=======
   // Relationships
   approvalEvents // array of AuctionApprovalEvents
   bidEvents // array of AuctionBidEvents
@@ -196,7 +176,7 @@ Auction {
   media // single Media object if the token is a ZORA NFT
   reservePriceUpdatedEvents // array of AuctionReservePriceUpdatedEvents
   token // single Token object
->>>>>>> f0fa5e9 (toUpperCase Zora in docs)
+  }
 }
 ```
 
@@ -206,22 +186,19 @@ Protocol event tables are generally named by the format:
 
 `<contract name><exact name for the event>Event.`
 
-Currently we watch ZORA's AuctionHouse events, which have the prefix **Auction**; ZORA Media and Market events, which have prefixes
-**Media** and **Market**; and generic 721 events which have the prefix **Token**. The field names should match the specific contract
+* ZORA's Auction House events have the prefix `Auction` 
+* ZORA Media and Market events have prefixes `Media` and `Market`
+* Generic 721 events have the prefix `Token`. 
+
+The field names should match the specific contract
 event field names (exception: a struct in an event will be flattened into all the struct field names), plus there are several
-other useful fields that all **Event** tables share.
+other useful fields that all `Event` tables share.
 
-Below is an example of one Event table.
-
-<<<<<<< HEAD
-```graphql
-# Zora AuctionHouse AuctionBid event - see contract for more context
-=======
 ```gql
 // ZORA AuctionHouse AuctionBid event - see contract for more context
->>>>>>> f0fa5e9 (toUpperCase Zora in docs)
 
-AuctionBidEvent {
+{
+  AuctionBidEvent {
   # common Event fields
   address # contract that emitted event
   blockNumber
@@ -248,29 +225,33 @@ AuctionBidEvent {
 
   # event-specific relationships
   auction # all Auction__ events have this
+  }
 }
 ```
 
 ## Other Tables
 
-TokenContract is how the Indexer keeps track of the contracts it is monitoring.
+`TokenContract` is how the Indexer keeps track of the contracts it is monitoring.
 
 ```graphql
-TokenContract {
+{
+  TokenContract {
   # fields
   address
   deployedAtBlockNumber
   name
   supportsMetadata # supports ERC721Metadata standard
   symbol
+  }
 }
 ```
 
-TokenMetadata stores a metadata json blob and information associating it with a specific token. There may be many TokenMetadata
+`TokenMetadata` stores a metadata JSON blob and information associating it with a specific token. There may be many `TokenMetadata`
 entries with the same URI and thus same metadata.
 
 ```graphql
-TokenMetadata {
+{
+  TokenMetadata {
   # fields
   address # Token address
   id # uuid, ignore
@@ -280,5 +261,6 @@ TokenMetadata {
 
   # relationships
   token
+  }
 }
 ```

@@ -4,13 +4,13 @@ title: useNFTMetadata
 sidebar_position: 3
 ---
 
-Fetches Metadata information for zNFT (ZORA NFT)
+Fetches NFT metadata from a URL
 
 ---
 
-This hook makes a request to fetch metadata from the zNFT's `metadataURI`.
+This hook makes a request to fetch metadata from a NFT's `metadataURI`.
 
-Most metadata servers allow remote JSON fetches, including all ZORA NFTs. There is a chance this request could fail when the server
+Most metadata servers allow remote JSON fetches, however, there is a chance this request could fail when the server
 does not allow cross-origin requests. Requests are set with a 10 second timeout to allow showing the user an error message
 instead of an indefinite loader. 
 
@@ -28,7 +28,7 @@ type useNFTMetadataType = {
 }
 ```
 
-To use the hook, simply pass in the URL to fetch:
+To use the hook, simply pass in the metadata URL to fetch:
 
 ```typescript
 import { useNFTMetadata } from '@zoralabs/nft-hooks'
@@ -37,25 +37,16 @@ const MediaDataDisplay = ({ uri: string }) => {
   const { error, metadata } = useNFTMetadata(uri)
 
   if (metadata) {
-    if (metadata.version === 'catalog-20210202') {
-      return (
-        <div>
-          <h2>
-            Song: {metadata.body.title} Artist: {metadata.body.artist}
-          </h2>
-          {metadata.body.notes && <p>{metadata.body.notes}</p>}
-        </div>
-      )
-    }
-    // If not a catalog NFT, can render the metadata title and description fields
-    //  from the first zNFT metadata standard.
     return (
       <div>
-        <h2>{metadata.title}</h2>
+        <h2>
+          Name: {metadata.name}
+        </h2>
         <p>{metadata.description}</p>
       </div>
     )
   }
+
   if (error) {
     return <div>Error loading metadata</div>
   }
@@ -63,7 +54,7 @@ const MediaDataDisplay = ({ uri: string }) => {
 }
 ```
 
-Alternatively, the same information can be fetched using the base MediaFetchAgentfor server-side or non-react use:
+Alternatively, the same information can be fetched using the base `MediaFetchAgent` for server-side or non-React use:
 
 ```typescript
 import { MediaFetchAgent, Networks } from '@zoralabs/nft-hooks'

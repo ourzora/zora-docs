@@ -10,8 +10,8 @@ A repo to bootstrap your own permissionless auction house with the ZORA protocol
 
 ---
 
-ZORA has created a [Github Repo](https://github.com/ourzora/create-auction-house) that makes it easy for you to launch your own auction house interface.
-Compatible with any ERC-721 token contract, quickly list and sell NFTs using the ZORA Auction House contract.
+ZORA has created a [Github Repo](https://github.com/ourzora/create-auction-house) that makes it easy for anyone to launch their own auction house.
+Compatible with any ERC-721 token contract, quickly list and sell NFTs using the ZORA Auction House smart contract.
 
 Getting Started:
 
@@ -38,7 +38,7 @@ npx create-next-app project-name -e https://github.com/ourzora/create-auction-ho
 </TabItem>
 </Tabs>
 
-The application accepts the below environment variables. You WILL however need to specify the network ID along with either a Curator ID or a Contract Address. 
+The application accepts the below environment variables. You will need to specify the network ID along with either a `Curator Address` or a `Contract Address`. 
 Once you have created your repo locally, make sure to install all dependencies by running yarn.
 
 Next, modify the values below in the .env file:
@@ -50,13 +50,13 @@ NEXT_PUBLIC_DEFAULT_DESCRIPTION=[default meta description]
 
 NEXT_PUBLIC_BASE_URL=[production-url]
 
-# NETWORK ID: 1 for Ethereum Mainnet / 4 for Rinkeby Testnet
+# NETWORK ID: Ethereum Mainnet(1) Rinkeby Testnet(4)
 
 NEXT_PUBLIC_NETWORK_ID=1
 
-NEXT_PUBLIC_CURATORS_ID=[The address of a curator or creator]
+NEXT_PUBLIC_CURATORS_ID=[The address of a curator or NFT creator]
 
-NEXT_PUBLIC_TARGET_CONTRACT_ADDRESS=[the address of the token contract]
+NEXT_PUBLIC_TARGET_CONTRACT_ADDRESS=[the address of the NFT contract]
 ```
 
 Run `yarn dev` to run the development server locally at `localhost:3000`

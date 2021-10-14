@@ -5,7 +5,7 @@ sidebar_position: 1
 
 ---
 
-A hook that makes it easy to get data for any ERC-721 NFT
+Fetches all data for a ERC-721 NFT
 
 ---
 
@@ -17,8 +17,9 @@ You can use the `NFTFetchConfiguration` wrapper component to fetch data on other
 
 :::
 
-The main types are within the result `data.nft` object. This object contains the on-chain NFT data itself. The pricing
-information can be found in `data.pricing` which corresponds to data on-chain for ZORA's perpetual zNFT auctions along with the auction house functionality.
+The main types are within the `data.nft` object which contains the on-chain NFT data. 
+The pricing information is in `data.pricing` which corresponds to data on-chain for ZORA's Auction House and the
+perpetual zNFT auctions.
 
 ```ts
 import {useNFT} from "@zoralabs/nft-hooks";
@@ -131,6 +132,6 @@ import {MediaFetchAgent, Networks} from "@zoralabs/nft-hooks";
 const fetchAgent = new MediaFetchAgent(Networks.MAINNET);
 
 // Get result from the server
-const result = await fetchAgent.loadZNFTData("2");
+const result = await fetchAgent.loadNFTData("0x8d04a8c79ceb0889bdd12acdf3fa9d207ed3ff63","2");
 // result type is NFTDataType
 ```

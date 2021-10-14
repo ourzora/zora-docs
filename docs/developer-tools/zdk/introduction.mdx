@@ -11,28 +11,23 @@ The ZORA Development Kit (ZDK) makes it easy to interact with the ZORA Protocol
 
 ---
 
-<br/>
-
-The ZDK has a couple key components, which can be used to read and write to the ZORA protocol:
+## ZDK Key Components
 * [ZORA NFT Module:](/docs/developer-tools/zdk/zora-nfts) Provides read and write access to the ZORA NFT contracts
 
-* [Auction House Module:](/docs/developer-tools/zdk/auction-house) Tools for making it easy to sell any ERC-721 NFT
+* [Auction House Module:](/docs/developer-tools/zdk/auction-house) Tools for selling an ERC-721 NFT
 
-* [Utility Module:](/docs/developer-tools/zdk/utility) Utility tools to simplify interacting with the ZDK
+* [Utility Module:](/docs/developer-tools/zdk/utility) Utility tools for interacting with the ZDK
 
-* [Metadata Module:](/docs/developer-tools/zdk/metadata) Tools to help format Metadata when minting ZORA NFTs
+* [Metadata Module:](/docs/developer-tools/zdk/metadata) Formats metadata for minting ZORA NFTs
 
 * [User Info Module:](/docs/developer-tools/zdk/user-info) Maps Ethereum addresses to ZORA user profiles
 
-* [Addresses Module:](/docs/developer-tools/zdk/addresses) Allows for quick access of ZORA contract addresses on different supported networks
+* [Addresses Module:](/docs/developer-tools/zdk/addresses) Provides ZORA contract addresses for different networks
 
-<br/>
 
 <!-- **[ZDK Diagram goes here]** -->
 
-## Getting started
-
-You can install the developer kit with either ```yarn``` or ```npm```
+## Installing
 
 <Tabs
   defaultValue="yarn"
@@ -57,7 +52,6 @@ npm install -S @zoralabs/zdk
 </TabItem>
 </Tabs>
 
-<br/>
 
 ## Connecting to Ethers.js 
 
@@ -69,13 +63,12 @@ The ZDK exposes utilities for the [ZORA Smart Contracts](../smart-contracts/smar
 
 :::
 
-In order for your application to interact with the blockchain, you will need to establish a connection to a node. 
+In order for your application to interact with the blockchain, you will need to establish a connection with a node. 
 This can be done by passing an RPC url from a node provider into ethers.js. 
 If you are trying to test out the SDK you can set up an [Infura](https://infura.io/product/ethereum) or [Alchemy](https://www.alchemy.com/supernode) account. 
 
 In addition, users can pass in a connection to a node when they connect their wallet to your application.
-We have a guide on how to [connect a wallet in React](../../guides/react-connect-wallet) if you are curious on how to have a user connect their wallet.
-
+We also have a short guide on how to [connect a wallet in React](../../guides/react-connect-wallet).
 
 ```typescript
 import { Zora } from '@zoralabs/zdk'
@@ -93,3 +86,4 @@ const totalSupply = await zora.fetchTotalMedia()
 
 console.log(totalSupply) // total supply of ZORA NFTs minted on the Ethereum Mainnet
 ```
+

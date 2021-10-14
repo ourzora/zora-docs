@@ -5,25 +5,20 @@ sidebar_position: 4
 
 ---
 
-The utility module provides tools for making easier to interact with the ZDK
+Utility tools for interacting with the ZDK
 
 ---
 
-The utility functions can roughly be split into 3 categories:
+The utility functions are split into 3 categories:
 
 - [Type Constructors:](./utility#type-constructors) Performs basic validation and return a properly formatted struct
-- [Hash Utilities:](./utility#hashing-utilities) Create and verify sha256 hashes
+- [Hash Utilities:](./utility#hashing-utilities) Creates and verifying sha256 hashes
 - [EIP-712 Utilities](./utility#eip-712-utilities) Tools for signing data with a private key
 
 ## Type Constructors
 
-<<<<<<< HEAD
-The Zora protocol utilizes a number of structs to encode data as parameters.
-The ZDK provides some type constructors that can perform some basic validation and return a properly formatted struct.
-=======
 The ZORA protocol utilizes a number of structs to encode data as parameters.
 The ZDK provides some type constructors that can perform some basic validation and return a properly formatted struct. 
->>>>>>> f0fa5e9 (toUpperCase Zora in docs)
 
 ### constructMediaData
 
@@ -163,7 +158,7 @@ const hash = await sha256FromFile('path/to/file', 16 * 1024)
 
 [Permit](https://eips.ethereum.org/EIPS/eip-2612) was specified as an extension of ERC-20 standard to allow for users to issue `approval` to accounts without needing `ETH`.
 
-We have extended it further to be used for the ZORA Protocol, so that users can delegate approvals to orther smart contracts to perform actions that `approved` users can do such as:
+We have extended it further to be used for the ZORA Protocol, so that users can delegate approvals to other smart contracts to perform actions that `approved` users can do such as:
 
 - `setAsk`
 - `acceptBid`
@@ -181,6 +176,7 @@ For now, the signer must be an `ethers` `Wallet` object. But soon we will suppor
 | nonce     | number       | The permitNonce of the owner address                 |
 | deadline  | number       | The deadline of the signature to be included in a tx |
 | domain    | EIP712Domain | The EIP712Domain for the permit sig                  |
+
 
 ```typescript
 const provider = new JsonRpcProvider()
