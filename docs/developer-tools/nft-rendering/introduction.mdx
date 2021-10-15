@@ -8,17 +8,17 @@ custom_edit_url: https://github.com/ourzora/zora-docs/blob/main/docs/developer-t
 import Tabs from '@theme/Tabs'
 import TabItem from '@theme/TabItem'
 
-Tools for displaying NFTs
+##### Tools for displaying NFTs
 
 ---
 
 ZORA provides additional developer tools for making it easy to display NFTs.
 These tools assume a React frontend and are written in `Typescript`.
 
-### NFT Components
+## NFT Components
 
 This library is made up of React components that can be used to render ERC-721 NFTs.
-Default styling and fetching URLs are included with the library along with caching mechanisms and ability to easily customize strings, render components, and add different styling.
+Default styling and fetching URLs are included with the library along with caching mechanisms and the ability to easily customize strings, render components, and add different styling.
 
 Links direct to ZORA.co interfaces, but can be overridden by building out the functionality with the [ZDK](../../../docs/developer-tools/zdk/introduction).
 
@@ -47,17 +47,17 @@ npm install @zoralabs/nft-components --save
 </TabItem>
 </Tabs>
 
-NFT Preview Component
+##### NFT Preview Component
 
-![nftPreview](https://raw.githubusercontent.com/ourzora/zora-docs/content_update/static/img/nftPreview.png?token=AMVZ5RWJAQEH4K4EOYRXJ5DBOJIZY)
+![nftPreview](https://raw.githubusercontent.com/ourzora/zora-docs/main/static/img/nftPreview.png?token=AMVZ5RV66QAUQ3GRLI4OZ2LBOMRCK)
 
-NFT Full Page Component
+##### NFT Full Page Component
 
-![nftFullPage](https://raw.githubusercontent.com/ourzora/zora-docs/content_update/static/img/nftFullPage.png?token=AMVZ5RU3BROH5TITN7RQOODBOJIY2)
+![nftFullPage](https://raw.githubusercontent.com/ourzora/zora-docs/main/static/img/nftFullPage.png?token=AMVZ5RTNS4OCNCA2PSXB6S3BOMRCG)
 
 <br />
 
-### NFT Hooks
+## NFT Hooks
 
 This library consists of a data fetch class and associated React hooks to load NFT data.
 The API both batches and caches requests, meaning you can use the hooks across a page without needing to worry about
@@ -70,8 +70,6 @@ significant performance penalties.
 | [useNFTContent](/docs/developer-tools/nft-rendering/nft-hooks/useNFTContent)   | Fetches content for rendering from content URL in the metadata |
 
 <br />
-
-### Getting Started
 
 <Tabs
   defaultValue="yarn"
@@ -113,7 +111,7 @@ function MyNFT() {
 }
 ```
 
-### Network Configuration
+## Network Configuration
 
 To set the network configuration, wrap the hooks used with the `NFTFetchConfiguration` component.
 
@@ -129,7 +127,7 @@ function NFTGallery() {
 }
 ```
 
-### Development
+## Development
 
 1. `git clone https://github.com/ourzora/nft-hooks`
 2. `cd nft-hooks`

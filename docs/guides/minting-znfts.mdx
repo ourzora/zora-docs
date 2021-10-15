@@ -4,13 +4,13 @@ title: Mint an NFT
 custom_edit_url: https://github.com/ourzora/zora-docs/blob/main/docs/guides/minting-znfts.mdx
 ---
 
-Programmatically mint an NFT on ZORA
+##### Programmatically mint an NFT on ZORA
 
 ---
 
 To create new ZORA NFT using the ZDK, you must call the `mint` function. The `mint` function on a `Zora` instance expects two parameters: `MediaData` and `BidShares`
 
-### MediaData
+## MediaData
 
 ```typescript
 const metadata = {
@@ -24,14 +24,14 @@ const metadata = {
 To construct the metadata for a zNFT, use the `generateMetadata` function defined in `metadata.ts`.
 For more info visit the [Generate Metadata](../developer-tools/zdk/metadata#generate-metadata) section.
 
-#### URIs
+### URIs
 
 - **tokenURI:** A pointer to where a zNFT's content is hosted
 - **metadataURI:** A pointer to where a zNFT's metadata is hosted
 
 ZORA strongly recommends hosting both the content and metadata on a _decentralized_ storage provider such as [IPFS](https://ipfs.io/) or [arweave](https://www.arweave.org/).
 
-#### Hashes
+### Hashes
 
 - **contentHash:** A `sha256` hash of the content the zNFT's represents
 - **metadataHash:** A `sha256` hash of the zNFT's metadata
