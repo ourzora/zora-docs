@@ -231,11 +231,13 @@ a:hover {
   .getting-started-container {
     gap: 35px;
     grid-template-columns: none;
+    grid-template-columns: repeat(1, 1fr);
   }
 
   .tools-container {
     gap: 35px;
     grid-template-columns: none;
+    grid-template-columns: repeat(1, 1fr);
   }
 
   .doc-title {
@@ -294,12 +296,10 @@ a:hover {
 
   .getting-started-container {
     gap: 20px;
-    grid-template-columns: none;
   }
 
   .tools-container {
     gap: 20px;
-    grid-template-columns: none;
   }
 
   .doc-title {
