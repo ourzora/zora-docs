@@ -4,7 +4,7 @@ const katex = require('rehype-katex')
 
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
 module.exports = {
-  title: 'Zora',
+  title: 'Zora Docs',
   url: 'https://docs.zora.co',
   baseUrl: '/',
   onBrokenLinks: 'ignore',
