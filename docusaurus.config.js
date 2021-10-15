@@ -53,10 +53,12 @@ module.exports = {
       style: 'dark',
     },
     image: 'img/previewImage.png',
-    gtag: {
-      trackingID: GTAG_ID,
-      anonymizeIP: true,
-    },
+    ...(process.env.GTAG_ID && {
+      gtag: {
+        trackingID: process.env.GTAG_ID || '',
+        anonymizeIP: true,
+      },
+    }),
   },
   presets: [
     [
