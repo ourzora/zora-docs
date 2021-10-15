@@ -13,8 +13,8 @@ You can begin making queries in our hosted GraphQL [playground](https://ourZORA.
 The ZORA Indexer stores the raw data for Transactions and Event Logs that it finds "interesting", namely transactions that interact
 with the ZORA Protocol and transactions that result in a transfer of an ERC-721 NFT contract.
 
-
 ### Transaciton
+
 ```graphql
 {
   Transaction {
@@ -44,6 +44,7 @@ with the ZORA Protocol and transactions that result in a transfer of an ERC-721 
 ```
 
 ### Event Log
+
 ```graphql
 {
   EventLog {
@@ -73,6 +74,7 @@ any block number, the aggregate view will mirror the view of the object on the b
 `Auction` are the three aggregate tables.
 
 ### Token
+
 Non ZORA ERC-721 NFTs
 
 ```gql
@@ -110,37 +112,38 @@ ZORA NFTs - view [Media.sol](https://github.com/ourZORA/core/blob/master/contrac
 ```gql
 {
   Media {
-  # Fields
-  address # always the same contract address, makes many relationships possible
-  contentHash
-  contentURI
-  creator
-  creatorBidShare
-  metadataHash
-  metadataURI
-  mintTransferEventId
-  owner
-  ownerBidShare
-  prevOwner
-  prevOwnerBidShare
-  tokenId
+    # Fields
+    address # always the same contract address, makes many relationships possible
+    contentHash
+    contentURI
+    creator
+    creatorBidShare
+    metadataHash
+    metadataURI
+    mintTransferEventId
+    owner
+    ownerBidShare
+    prevOwner
+    prevOwnerBidShare
+    tokenId
 
-  # Relationships
-  askEvents # array of MarketAskEvents
-  asks # array of MarketAsks
-  auctions # array of Auctions for this token
-  bidEvents # array of MarketBidEvents
-  bids # array of MarketBids
-  metadata # metadata json blob
-  token # Token
-  tokenMetadataURIUpdatedEvents # array of MediaTokenMetadataURIUpdatedEvents
-  tokenURIUpdatedEvents # array of MediaTokenURIUpdatedEvents
-  transferEvents # array of TokenTransferEvents
+    # Relationships
+    askEvents # array of MarketAskEvents
+    asks # array of MarketAsks
+    auctions # array of Auctions for this token
+    bidEvents # array of MarketBidEvents
+    bids # array of MarketBids
+    metadata # metadata json blob
+    token # Token
+    tokenMetadataURIUpdatedEvents # array of MediaTokenMetadataURIUpdatedEvents
+    tokenURIUpdatedEvents # array of MediaTokenURIUpdatedEvents
+    transferEvents # array of TokenTransferEvents
   }
 }
 ```
 
 ### Auction
+
 ZORA Auction House - view [AuctionHouse.sol](https://github.com/ourZORA/auction-house/blob/main/contracts/AuctionHouse.sol) contract for more context
 
 ```gql
@@ -186,9 +189,9 @@ Protocol event tables are generally named by the following format:
 
 `<contract name><exact name for the event>Event.`
 
-* ZORA's Auction House events have the prefix `Auction` 
-* ZORA Media and Market events have prefixes `Media` and `Market`
-* Generic ERC-721 events have the prefix `Token`. 
+- ZORA's Auction House events have the prefix `Auction`
+- ZORA Media and Market events have prefixes `Media` and `Market`
+- Generic ERC-721 events have the prefix `Token`.
 
 The field names should match the specific contract
 event field names (exception: a struct in an event will be flattened into all the struct field names), plus there are several
@@ -236,12 +239,12 @@ other useful fields that all `Event` tables share.
 ```graphql
 {
   TokenContract {
-  # fields
-  address
-  deployedAtBlockNumber
-  name
-  supportsMetadata # supports ERC721Metadata standard
-  symbol
+    # fields
+    address
+    deployedAtBlockNumber
+    name
+    supportsMetadata # supports ERC721Metadata standard
+    symbol
   }
 }
 ```
@@ -252,15 +255,15 @@ entries with the same URI and thus the same metadata.
 ```graphql
 {
   TokenMetadata {
-  # fields
-  address # Token address
-  id # uuid, ignore
-  json # data blob
-  tokenId
-  tokenURI
+    # fields
+    address # Token address
+    id # uuid, ignore
+    json # data blob
+    tokenId
+    tokenURI
 
-  # relationships
-  token
+    # relationships
+    token
   }
 }
 ```

@@ -2,7 +2,6 @@
 id: utility
 title: Utility
 sidebar_position: 4
-
 ---
 
 Utility tools for interacting with the ZDK
@@ -16,10 +15,11 @@ The utility functions are split into 3 categories:
 - [EIP-712 Utilities](./utility#eip-712-utilities) Tools for signing data with a private key
 
 ## Type Constructors
+
 ---
 
 The ZORA protocol utilizes a number of structs to encode data as parameters.
-The ZDK provides some type constructors that can perform some basic validation and return a properly formatted struct. 
+The ZDK provides some type constructors that can perform some basic validation and return a properly formatted struct.
 
 ### constructMediaData
 
@@ -97,13 +97,14 @@ const bidShares = constructBidShares(10, 90, 0)
 ```
 
 ## Hashing Utilities
+
 ---
 
-All NFTs minted on the ZORA Protocol store a ```sha256``` hash of both its content and metadata.
+All NFTs minted on the ZORA Protocol store a `sha256` hash of both its content and metadata.
 This tool makes it easy for developers to both create and verify hashes.
 
-The majority of NFT protocols don't currently support storing integrity tools like a ```sha256``` checksum. This means that if
-the metadata URL were to ever change, the NFT would become corrupted with no way to verify the originality of the data. 
+The majority of NFT protocols don't currently support storing integrity tools like a `sha256` checksum. This means that if
+the metadata URL were to ever change, the NFT would become corrupted with no way to verify the originality of the data.
 
 By providing an on-chain integrity check, anyone is able to ensure that a ZORA NFT has not been corrupted in any way.
 
@@ -141,7 +142,7 @@ const hash = sha256FromHexString(hexString)
 ### sha256FromFile
 
 Create a `sha256` hash from a local file.
-This is most useful for the hashing of large files. 
+This is most useful for the hashing of large files.
 It uses a `readStream` to load bits into memory via a buffer and construct a hash as it consumes the contents of the file.
 
 | **Name**   | **Type** | **Description**                                                 |
@@ -154,6 +155,7 @@ const hash = await sha256FromFile('path/to/file', 16 * 1024)
 ```
 
 ## EIP-712 Utilities
+
 ---
 
 [EIP-712](https://eips.ethereum.org/EIPS/eip-712) is a standard for hashing and signing of data.
@@ -181,7 +183,6 @@ The signer must be an ethers `Wallet` object.
 | deadline  | number       | The deadline of the signature to be included in a tx |
 | domain    | EIP712Domain | The EIP712Domain for the permit sig                  |
 
-
 ```typescript
 const provider = new JsonRpcProvider()
 const [mainWallet, otherWallet] = generatedWallets(provider)
@@ -206,8 +207,8 @@ A user can sign a `mintWithSig` message and use a trusted relayer to relay the t
 | **Name**       | **Type**     | **Description**                                      |
 | -------------- | ------------ | ---------------------------------------------------- |
 | owner          | Wallet       | The owners's wallet                                  |
-| contentHash    | BytesLike    | The `sha256` hash of the media's content               |
-| metadataHash   | BytesLike    | The `sha256` hash of the media's metadata              |
+| contentHash    | BytesLike    | The `sha256` hash of the media's content             |
+| metadataHash   | BytesLike    | The `sha256` hash of the media's metadata            |
 | creatorShareBN | BigNumber    | The creator share of the media                       |
 | nonce          | number       | The mintWithSigNonce of the owner address            |
 | deadline       | number       | The deadline of the signature to be included in a tx |
@@ -291,8 +292,8 @@ Recover the address of the signing private key of a `mintWithSig` message
 | **Name**       | **Type**        | **Description**                                      |
 | -------------- | --------------- | ---------------------------------------------------- |
 | owner          | Wallet          | The owners's wallet                                  |
-| contentHash    | BytesLike       | The `sha256` hash of the media's content               |
-| metadataHash   | BytesLike       | The `sha256` hash of the media's metadata              |
+| contentHash    | BytesLike       | The `sha256` hash of the media's content             |
+| metadataHash   | BytesLike       | The `sha256` hash of the media's metadata            |
 | creatorShareBN | BigNumber       | The creator share of the media                       |
 | nonce          | number          | The mintWithSigNonce of the owner address            |
 | deadline       | number          | The deadline of the signature to be included in a tx |

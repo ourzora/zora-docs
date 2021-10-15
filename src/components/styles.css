@@ -1,4 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@500&display=swap');
 
 .getting-started-card {
@@ -13,11 +12,11 @@
   padding: 25px;
   background: rgba(31, 31, 31, 0.6);
   border: 2px solid rgba(255, 255, 255, 0.05);
+  transition: 300ms ease-out;
 }
 
 .getting-started-card:hover {
   border: 2px solid rgb(255, 255, 255, 0.25);
-  transition: 300ms ease-out;
 }
 
 .getting-started-card:hover .doc-subtopic {
@@ -28,9 +27,8 @@
 .getting-started-container {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  align-items: center;
-  justify-content: center;
   gap: 30px;
+  grid-auto-rows: 1fr;
 }
 
 .doc-title {
@@ -38,7 +36,6 @@
   font-weight: 500;
   font-size: 35px;
   line-height: 50px;
-  margin-right: 87px;
   margin-bottom: 64px;
 }
 
@@ -63,14 +60,21 @@
   color: #ffffff;
   opacity: 0.7;
   font-family: 'DM Mono', monospace;
+  margin-bottom: 0px;
+  margin-top: auto;
+}
+
+.doc-link {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 .tools-container {
-  align-items: center;
-  justify-content: center;
   gap: 30px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: 1fr;
 }
 
 .tools-card {
@@ -84,11 +88,11 @@
   padding-top: 30px;
   background: rgba(31, 31, 31, 0.6);
   border: 2px solid rgba(255, 255, 255, 0.05);
+  transition: 300ms ease-out;
 }
 
 .tools-card:hover {
   border: 2px solid rgb(255, 255, 255, 0.25);
-  transition: 300ms ease-out;
 }
 
 .tools-card:hover .tools-paragraph {
@@ -102,6 +106,7 @@
   line-height: 40px;
   color: #ffffff;
   margin-bottom: 10px;
+  margin-right: 10px;
 }
 
 .tools-paragraph {
@@ -136,10 +141,17 @@
   filter: drop-shadow(0px 5px 15px rgba(0, 0, 0, 0.12));
   overflow: hidden;
   border-radius: 20px;
+  outline: 2px solid rgba(255, 255, 255, 0.02);
+}
+
+.projectCardImage {
+  transition: all 300ms ease-out;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
 }
 
 .projectCard:hover .projectCardImage {
-  transition: 300ms ease-out;
   transform: scale(1.07);
 }
 
@@ -151,122 +163,6 @@
 
 a:hover {
   text-decoration: none;
-}
-
-@media only screen and (max-width: 1439px) {
-  .getting-started-card {
-    padding: 20px;
-  }
-
-  .getting-started-container {
-    gap: 19px;
-  }
-
-  .tools-container {
-    gap: 19px;
-  }
-
-  .doc-title {
-    font-size: 28px;
-    margin-right: 70px;
-    margin-bottom: 51px;
-    line-height: 40px;
-  }
-
-  .doc-number {
-    font-size: 32px;
-    margin-bottom: 98px;
-    line-height: 40px;
-  }
-
-  .doc-subtopic {
-    font-size: 16px;
-    line-height: 24px;
-  }
-
-  .tools-card {
-    padding: 20px;
-    padding-top: 24px;
-  }
-
-  .tools-title {
-    font-size: 24px;
-    margin-bottom: 8px;
-    line-height: 32px;
-  }
-
-  .tools-paragraph {
-    font-size: 14px;
-    line-height: 24px;
-  }
-
-  .tools-version {
-    margin-top: 6px;
-    font-size: 11px;
-    line-height: 19px;
-  }
-
-  .projectContainer {
-    gap: 22px;
-  }
-}
-
-@media only screen and (max-width: 1151px) {
-  .getting-started-card {
-    padding: 16px;
-  }
-
-  .getting-started-container {
-    gap: 15px;
-  }
-
-  .tools-container {
-    gap: 15px;
-  }
-
-  .doc-title {
-    font-size: 22px;
-    margin-right: 56px;
-    margin-bottom: 41px;
-    line-height: 32px;
-  }
-
-  .doc-number {
-    font-size: 26px;
-    margin-bottom: 78px;
-    line-height: 32px;
-  }
-
-  .doc-subtopic {
-    font-size: 13px;
-    line-height: 19px;
-  }
-
-  .tools-card {
-    padding: 16px;
-    padding-top: 19px;
-  }
-
-  .tools-title {
-    font-size: 19px;
-    margin-bottom: 6px;
-    line-height: 26px;
-  }
-
-  .tools-paragraph {
-    font-size: 11px;
-    line-height: 19px;
-  }
-
-  .tools-version {
-    margin-top: 5px;
-    font-size: 8px;
-    line-height: 15px;
-  }
-
-  .projectContainer {
-    gap: 18px;
-  }
 }
 
 /* Tablet */
@@ -287,7 +183,6 @@ a:hover {
     font-size: 20px;
     margin-bottom: 8px;
     line-height: 30px;
-    margin-right: 0px;
   }
 
   .doc-number {
@@ -333,306 +228,8 @@ a:hover {
   }
 }
 
-@media only screen and (max-width: 980px) {
-  .getting-started-card {
-    padding: 12px;
-  }
-
-  .getting-started-container {
-    gap: 24px;
-  }
-
-  .tools-container {
-    gap: 24px;
-  }
-
-  .doc-title {
-    font-size: 16px;
-    line-height: 24px;
-    margin-bottom: 6px;
-  }
-
-  .doc-number {
-    font-size: 24px;
-    margin-bottom: 31px;
-    line-height: 32px;
-  }
-
-  .doc-subtopic {
-    font-size: 13px;
-    line-height: 20px;
-  }
-
-  .tools-card {
-    padding: 13px;
-    padding-top: 16px;
-  }
-
-  .tools-title {
-    font-size: 16px;
-    margin-bottom: 8px;
-    line-height: 24px;
-  }
-
-  .tools-paragraph {
-    font-size: 11px;
-    line-height: 19px;
-  }
-
-  .tools-version {
-    margin-top: 4px;
-    font-size: 10px;
-    line-height: 8px;
-  }
-
-  .projectContainer {
-    gap: 23px;
-  }
-}
-
 /* Mobile */
 @media only screen and (max-width: 800px) {
-  .getting-started-card {
-    padding: 26px;
-    padding-top: 35px;
-  }
-
-  .getting-started-container {
-    gap: 35px;
-    grid-template-columns: none;
-  }
-
-  .tools-container {
-    gap: 35px;
-    grid-template-columns: none;
-  }
-
-  .doc-title {
-    font-size: 35px;
-    line-height: 52px;
-    margin-bottom: 17px;
-    margin-right: 16px;
-  }
-
-  .doc-number {
-    font-size: 52px;
-    margin-bottom: 86px;
-    line-height: 70px;
-    font-weight: 500;
-  }
-
-  .doc-subtopic {
-    font-size: 28px;
-    line-height: 43px;
-    font-weight: 500;
-  }
-
-  .tools-card {
-    padding: 26px;
-    padding-top: 35px;
-  }
-
-  .tools-title {
-    font-size: 35px;
-    margin-bottom: 17px;
-    line-height: 52px;
-  }
-
-  .tools-paragraph {
-    font-size: 24px;
-    line-height: 42px;
-  }
-
-  .tools-version {
-    margin-top: 8px;
-    font-size: 20px;
-    line-height: 35px;
-  }
-
-  .projectContainer {
-    gap: 26px;
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media only screen and (max-width: 664px) {
-  .getting-started-card {
-    padding: 22px;
-    padding-top: 29px;
-  }
-
-  .getting-started-container {
-    gap: 29px;
-  }
-
-  .tools-container {
-    gap: 29px;
-  }
-
-  .doc-title {
-    font-size: 29px;
-    line-height: 43px;
-    margin-bottom: 14px;
-    margin-right: 13px;
-  }
-
-  .doc-number {
-    font-size: 43px;
-    margin-bottom: 72px;
-    line-height: 58px;
-  }
-
-  .doc-subtopic {
-    font-size: 23px;
-    line-height: 36px;
-  }
-
-  .tools-card {
-    padding: 22px;
-    padding-top: 29px;
-  }
-
-  .tools-title {
-    font-size: 29px;
-    margin-bottom: 14px;
-    line-height: 43px;
-  }
-
-  .tools-paragraph {
-    font-size: 20px;
-    line-height: 35px;
-  }
-
-  .tools-version {
-    margin-top: 7px;
-    font-size: 17px;
-    line-height: 29px;
-  }
-
-  .projectContainer {
-    gap: 22px;
-  }
-}
-
-@media only screen and (max-width: 500px) {
-  .getting-started-card {
-    padding: 18px;
-    padding-top: 24px;
-  }
-
-  .getting-started-container {
-    gap: 24px;
-  }
-
-  .tools-container {
-    gap: 24px;
-  }
-
-  .doc-title {
-    font-size: 24px;
-    margin-right: 11px;
-    margin-bottom: 12px;
-    line-height: 36px;
-  }
-
-  .doc-number {
-    font-size: 36px;
-    margin-bottom: 60px;
-    line-height: 48px;
-  }
-
-  .doc-subtopic {
-    font-size: 19px;
-    line-height: 30px;
-  }
-
-  .tools-card {
-    padding: 18px;
-    padding-top: 24px;
-  }
-
-  .tools-title {
-    font-size: 24px;
-    margin-bottom: 12px;
-    line-height: 36px;
-  }
-
-  .tools-paragraph {
-    font-size: 17px;
-    line-height: 29px;
-  }
-
-  .tools-version {
-    margin-top: 6px;
-    font-size: 14px;
-    line-height: 24px;
-  }
-
-  .projectContainer {
-    gap: 18px;
-  }
-}
-
-@media only screen and (max-width: 425px) {
-  .getting-started-card {
-    padding: 16px;
-    padding-top: 22px;
-  }
-
-  .getting-started-container {
-    gap: 22px;
-  }
-
-  .tools-container {
-    gap: 22px;
-  }
-
-  .doc-title {
-    font-size: 22px;
-    margin-right: 10px;
-    margin-bottom: 11px;
-    line-height: 32px;
-  }
-
-  .doc-number {
-    font-size: 32px;
-    margin-bottom: 54px;
-    line-height: 43px;
-  }
-
-  .doc-subtopic {
-    font-size: 17px;
-    line-height: 27px;
-  }
-
-  .tools-card {
-    padding: 16px;
-    padding-top: 22px;
-  }
-
-  .tools-title {
-    font-size: 22px;
-    margin-bottom: 11px;
-    line-height: 32px;
-  }
-
-  .tools-paragraph {
-    font-size: 15px;
-    line-height: 26px;
-  }
-
-  .tools-version {
-    margin-top: 5px;
-    font-size: 13px;
-    line-height: 22px;
-  }
-
-  .projectContainer {
-    gap: 16px;
-  }
-}
-
-@media only screen and (max-width: 375px) {
   .getting-started-card {
     padding: 15px;
     padding-top: 20px;
@@ -640,15 +237,16 @@ a:hover {
 
   .getting-started-container {
     gap: 20px;
+    grid-template-columns: repeat(1, 1fr);
   }
 
   .tools-container {
     gap: 20px;
+    grid-template-columns: repeat(1, 1fr);
   }
 
   .doc-title {
     font-size: 20px;
-    margin-right: 9px;
     margin-bottom: 10px;
     line-height: 30px;
   }
@@ -657,11 +255,13 @@ a:hover {
     font-size: 30px;
     margin-bottom: 50px;
     line-height: 40px;
+    font-weight: 500;
   }
 
   .doc-subtopic {
     font-size: 16px;
     line-height: 25px;
+    font-weight: 500;
   }
 
   .tools-card {
@@ -688,64 +288,6 @@ a:hover {
 
   .projectContainer {
     gap: 15px;
-  }
-}
-
-@media only screen and (max-width: 359px) {
-  .getting-started-card {
-    padding: 12px;
-    padding-top: 16px;
-  }
-
-  .getting-started-container {
-    gap: 16px;
-  }
-
-  .tools-container {
-    gap: 16px;
-  }
-
-  .doc-title {
-    font-size: 16px;
-    margin-right: 7px;
-    margin-bottom: 8px;
-    line-height: 24px;
-  }
-
-  .doc-number {
-    font-size: 24px;
-    margin-bottom: 40px;
-    line-height: 32px;
-  }
-
-  .doc-subtopic {
-    font-size: 13px;
-    line-height: 20px;
-  }
-
-  .tools-card {
-    padding: 12px;
-    padding-top: 16px;
-  }
-
-  .tools-title {
-    font-size: 16px;
-    margin-bottom: 8px;
-    line-height: 24px;
-  }
-
-  .tools-paragraph {
-    font-size: 11px;
-    line-height: 19px;
-  }
-
-  .tools-version {
-    margin-top: 4px;
-    font-size: 10px;
-    line-height: 16px;
-  }
-
-  .projectContainer {
-    gap: 12px;
+    grid-template-columns: repeat(2, 1fr);
   }
 }

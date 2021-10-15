@@ -16,7 +16,7 @@ const metadata = {
   version: 'zora-20200101', // The version of metadata you are generating
   name: someName,
   description: someDescription,
-  mimeType: someMimeType, // Media type: audio, image, etc etc 
+  mimeType: someMimeType, // Media type: audio, image, etc etc
 }
 ```
 
@@ -24,14 +24,16 @@ To construct the metadata for a zNFT, use the `generateMetadata` function define
 For more info visit the [Generate Metadata](../developer-tools/zdk/metadata#generate-metadata) section.
 
 #### URIs
-* **tokenURI:** A pointer to where a zNFT's content is hosted 
-* **metadataURI:** A pointer to where a zNFT's metadata is hosted
 
-ZORA strongly recommends hosting both the content and metadata on a _decentralized_ storage provider such as [IPFS](https://ipfs.io/) or [arweave](https://www.arweave.org/). 
+- **tokenURI:** A pointer to where a zNFT's content is hosted
+- **metadataURI:** A pointer to where a zNFT's metadata is hosted
+
+ZORA strongly recommends hosting both the content and metadata on a _decentralized_ storage provider such as [IPFS](https://ipfs.io/) or [arweave](https://www.arweave.org/).
 
 #### Hashes
-* **contentHash:** A `sha256` hash of the content the zNFT's represents
-* **metadataHash:** A `sha256` hash of the zNFT's metadata 
+
+- **contentHash:** A `sha256` hash of the content the zNFT's represents
+- **metadataHash:** A `sha256` hash of the zNFT's metadata
 
 It is imperative that this hash is correct, because once it is written to the
 blockchain it **cannot** be changed. To generate this hash use any of the sha256 utils defined in the [ZDK utils](../developer-tools/zdk/utility#hashing-utilities).
@@ -75,9 +77,9 @@ type BidShares = {
 Each field represents the share that each stakeholder of a zNFT has on the **next** accepted bid. At the
 time of mint, the indivduals bid shares (creator, owner, prevOwner) **must** sum to 100.
 
-* **owner:** The equity (%) the current owner gets from the next accepted bid
-* **prevOwner:** The equity (%) the previous owner gets from the next accepted bid
-* **creator:** The immutable, perpetual equity (%) the creator gets from each accepted bid
+- **owner:** The equity (%) the current owner gets from the next accepted bid
+- **prevOwner:** The equity (%) the previous owner gets from the next accepted bid
+- **creator:** The immutable, perpetual equity (%) the creator gets from each accepted bid
 
 #### Example
 

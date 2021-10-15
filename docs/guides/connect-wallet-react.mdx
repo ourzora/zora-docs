@@ -1,7 +1,6 @@
 ---
 id: connect-wallet-react
 title: Connect a Wallet in React
-
 ---
 
 Connecting a user's wallet in React
@@ -13,21 +12,21 @@ By having a user connect their wallet to your application, you can communicate t
 
 :::note
 
-If your application _only_ needs to read data from the blockchain, we recommend using the [ZORA indexer](../developer-tools/indexer/introduction) which doesn't require a connection to a node. 
+If your application _only_ needs to read data from the blockchain, we recommend using the [ZORA indexer](../developer-tools/indexer/introduction) which doesn't require a connection to a node.
 
 :::
 
 In order to submit a transaction, you must provide an [ethers signer](https://docs.ethers.io/v5/api/signer/).
-The ZORA team typically uses [web3-react](https://github.com/NoahZinsmeister/web3-react) or [web3modal](https://github.com/web3modal/web3modal) to connect a user's wallet. 
+The ZORA team typically uses [web3-react](https://github.com/NoahZinsmeister/web3-react) or [web3modal](https://github.com/web3modal/web3modal) to connect a user's wallet.
 Once you set up these libraries, you can then pass in the wallet connection into the ZDK.
 
-```typescript 
+```typescript
 import { useWeb3React } from '@web3-react/core'
 
 function MyComponent() {
   const { library, chainId } = useWeb3React()
   // library is a ethers provider/signer instance
-  // Ethereum Mainnet (1) Rinkeby (4) for the chainId 
+  // Ethereum Mainnet (1) Rinkeby (4) for the chainId
 
   const auctionHouse = useMemo(() => {
     if (library && chainId) {

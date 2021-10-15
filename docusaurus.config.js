@@ -4,18 +4,18 @@ const katex = require('rehype-katex')
 
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
 module.exports = {
-  title: 'Zora',
-  url: 'https://your-docusaurus-test-site.com',
+  title: 'Zora Docs',
+  url: 'https://docs.zora.co',
   baseUrl: '/',
   onBrokenLinks: 'ignore',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/zoraOrb.svg',
-  organizationName: 'ourzora', // Usually your GitHub org/user name.
-  projectName: 'docusaurus', // Usually your repo name.
+  organizationName: 'ourzora',
+  projectName: 'Zora Docs',
   themeConfig: {
     navbar: {
       logo: {
-        alt: 'My Site Logo',
+        alt: 'Zora Docs Logo',
         src: 'img/zoraOrb.svg',
       },
       items: [
@@ -52,6 +52,24 @@ module.exports = {
     footer: {
       style: 'dark',
     },
+    image: 'img/previewImage.png',
+    ...(process.env.GTAG_ID && {
+      gtag: {
+        trackingID: process.env.GTAG_ID || '',
+        anonymizeIP: true,
+      },
+    }),
+    metadatas: [
+      {
+        name: 'title',
+        content: 'Zora Docs',
+      },
+      {
+        name: 'description',
+        content:
+          'Zora makes it easy for developers to get started building with NFTs by providing tools for displaying, minting, and selling NFTs all in one place. ',
+      },
+    ],
   },
   presets: [
     [
@@ -59,9 +77,7 @@ module.exports = {
       {
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
-          // Please change this to your repo.
-          editUrl:
-            'https://github.com/ourzora/zora-docusaurus-v1/blob/main/',
+          editUrl: 'https://github.com/ourzora/zora-docs',
           remarkPlugins: [math],
           rehypePlugins: [katex],
         },
@@ -92,6 +108,7 @@ module.exports = {
         expand: false,
         defaults: false,
         RPC_ENDPOINT: process.env.RPC_ENDPOINT,
+        GTAG_ID: process.env.GTAG_ID,
       },
     ],
   ],

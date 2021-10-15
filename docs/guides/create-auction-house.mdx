@@ -3,8 +3,8 @@ id: create-auction-house
 title: Create an Auction House
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
+import Tabs from '@theme/Tabs'
+import TabItem from '@theme/TabItem'
 
 Build a permissionless Auction House with the ZORA protocol
 
@@ -14,6 +14,7 @@ ZORA has created a [Github Repo](https://github.com/ourzora/create-auction-house
 Compatible with any ERC-721 token contract, quickly list and sell NFTs using the ZORA Auction House smart contract.
 
 ### Getting Started
+
 <Tabs
   defaultValue="yarn"
   values={[
@@ -24,7 +25,7 @@ Compatible with any ERC-721 token contract, quickly list and sell NFTs using the
 <TabItem value="yarn">
 
 ```bash
-yarn create next-app project-name -e https://github.com/ourzora/create-auction-house 
+yarn create next-app project-name -e https://github.com/ourzora/create-auction-house
 ```
 
 </TabItem>
@@ -37,7 +38,7 @@ npx create-next-app project-name -e https://github.com/ourzora/create-auction-ho
 </TabItem>
 </Tabs>
 
-The application accepts the below environment variables. You will need to specify the network ID along with either a `Curator Address` or a `Contract Address`. 
+The application accepts the below environment variables. You will need to specify the network ID along with either a `Curator Address` or a `Contract Address`.
 Once you have created your repo locally, make sure to install all dependencies by running yarn.
 
 Next, modify the values below in the .env file:
@@ -60,12 +61,10 @@ NEXT_PUBLIC_TARGET_CONTRACT_ADDRESS=[the address of the NFT contract]
 
 Run `yarn dev` to run the development server locally at `localhost:3000`
 
-
 ### Going Live
 
-The easiest way to deploy your auction house is to use the [Vercel Platform](https://vercel.com/). 
+The easiest way to deploy your auction house is to use the [Vercel Platform](https://vercel.com/).
 Check out the [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details. Don't forget to update the necessary environment variables.
-
 
 ### Make it Yours
 

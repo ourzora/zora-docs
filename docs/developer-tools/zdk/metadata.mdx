@@ -8,10 +8,10 @@ Formats metadata for minting ZORA NFTs
 
 ---
 
-In the original ERC-721 specification, it was suggested that tokens should link to a `metadataURI` that contains a link to the specific content of the NFT. 
+In the original ERC-721 specification, it was suggested that tokens should link to a `metadataURI` that contains a link to the specific content of the NFT.
 However, in the event that the a creator needed to change the storage location there would be no way to ensure the integrity of both the metadata and content.
 
-ZORA NFTs explicitly separates `contentURIs` and `metadataURIs` and provides a `sha256` checksum for each. 
+ZORA NFTs explicitly separates `contentURIs` and `metadataURIs` and provides a `sha256` checksum for each.
 This allows anyone the ability to quickly verify the integrity of the data at any time if a URI has been updated.
 
 In order to allow the ZORA community to integrate with your metadata schema, we provide a [media metadata schema repository](https://github.com/ourzora/media-metadata-schemas),
@@ -29,7 +29,7 @@ const metadata = {
   version: 'zora-20200101', // The version of metadata you are generating
   name: someName,
   description: someDescription,
-  mimeType: someMimeType, // Media type: audio, image, etc etc 
+  mimeType: someMimeType, // Media type: audio, image, etc etc
 }
 
 const minified = generateMetadata(metadata.version, metadata)

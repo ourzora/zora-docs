@@ -1,6 +1,4 @@
-import type { PrismTheme } from 'prism-react-renderer'
-
-var customPrismTheme: PrismTheme = {
+var customPrismTheme = {
   plain: {
     color: '#F2F2F2',
     backgroundColor: '#1F1F1F4D',

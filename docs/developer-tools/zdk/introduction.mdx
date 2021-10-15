@@ -12,18 +12,18 @@ The ZORA Development Kit (ZDK) makes it easy to interact with the ZORA Protocol
 ---
 
 ### ZDK Key Components
-* [ZORA NFT Module:](/docs/developer-tools/zdk/zora-nfts) Provides read and write access to the ZORA NFT contracts
 
-* [Auction House Module:](/docs/developer-tools/zdk/auction-house) Tools for selling an ERC-721 NFT
+- [ZORA NFT Module:](/docs/developer-tools/zdk/zora-nfts) Provides read and write access to the ZORA NFT contracts
 
-* [Utility Module:](/docs/developer-tools/zdk/utility) Utility tools for interacting with the ZDK
+- [Auction House Module:](/docs/developer-tools/zdk/auction-house) Tools for selling an ERC-721 NFT
 
-* [Metadata Module:](/docs/developer-tools/zdk/metadata) Formats metadata for minting ZORA NFTs
+- [Utility Module:](/docs/developer-tools/zdk/utility) Utility tools for interacting with the ZDK
 
-* [User Info Module:](/docs/developer-tools/zdk/user-info) Maps Ethereum addresses to ZORA user profiles
+- [Metadata Module:](/docs/developer-tools/zdk/metadata) Formats metadata for minting ZORA NFTs
 
-* [Addresses Module:](/docs/developer-tools/zdk/addresses) Provides ZORA contract addresses for different networks
+- [User Info Module:](/docs/developer-tools/zdk/user-info) Maps Ethereum addresses to ZORA user profiles
 
+- [Addresses Module:](/docs/developer-tools/zdk/addresses) Provides ZORA contract addresses for different networks
 
 <!-- **[ZDK Diagram goes here]** -->
 
@@ -52,8 +52,7 @@ npm install -S @zoralabs/zdk
 </TabItem>
 </Tabs>
 
-
-### Connecting to Ethers.js 
+### Connecting to Ethers.js
 
 The ZDK exposes utilities for the [ZORA Smart Contracts](../smart-contracts/smart-contracts) and uses an [ethers.js](https://docs.ethers.io/v5/) interface to interact with the Zora ecosystem.
 
@@ -63,9 +62,9 @@ The ZDK exposes utilities for the [ZORA Smart Contracts](../smart-contracts/smar
 
 :::
 
-In order for your application to interact with the blockchain, you will need to establish a connection with a node. 
-This can be done by passing an RPC url from a node provider into ethers.js. 
-If you are trying to test out the SDK you can set up an [Infura](https://infura.io/product/ethereum) or [Alchemy](https://www.alchemy.com/supernode) account. 
+In order for your application to interact with the blockchain, you will need to establish a connection with a node.
+This can be done by passing an RPC url from a node provider into ethers.js.
+If you are trying to test out the SDK you can set up an [Infura](https://infura.io/product/ethereum) or [Alchemy](https://www.alchemy.com/supernode) account.
 
 In addition, users can pass in a connection to a node when they connect their wallet to your application.
 We also have a short guide on how to [connect a wallet in React](../../guides/react-connect-wallet).
@@ -74,7 +73,7 @@ We also have a short guide on how to [connect a wallet in React](../../guides/re
 import { Zora } from '@zoralabs/zdk'
 import { Wallet } from 'ethers'
 
-const rpcURL = // you will get this from Infura or Alchemy 
+const rpcURL = // you will get this from Infura or Alchemy
 
 const provider = new ethers.providers.JsonRpcProvider(rpcURL);
 
@@ -86,4 +85,3 @@ const totalSupply = await zora.fetchTotalMedia()
 
 console.log(totalSupply) // total supply of ZORA NFTs minted on the Ethereum Mainnet
 ```
-

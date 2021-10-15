@@ -19,9 +19,6 @@
   top: calc(50% - 40px / 2);
   background: #2f2f2f;
   border-radius: 4px;
-}
-
-.DocSearch-Button:hover {
   transition: 300ms ease-out;
 }
 
@@ -72,37 +69,5 @@
 @media screen and (max-width: 375px) {
   .navbar__items navbar__items--center {
     display: none;
-  }
-}
-
-@media only screen and (max-width: 1439px) {
-  .DocSearch-Button {
-    width: 350.4px;
-    height: 32px;
-    left: calc(50% - 350.4px / 2);
-    top: calc(50% - 32px / 2);
-  }
-
-  .DocSearch-Button-Placeholder {
-    height: 16px;
-    left: 40.8px;
-    top: 8px;
-    font-size: 11.2px;
-  }
-
-  .DocSearch-Search-Icon {
-    bottom: -0.5%;
-    margin-right: 9.6px;
-    margin-left: 8px;
-    width: 14.4px;
-    height: 12.78px;
-  }
-}
-
-@media only screen and (max-width: 996px) {
-  .navbar__brand {
-    width: 30px;
-    height: 30px;
-    margin: 0px 0px 0px 5px;
   }
 }

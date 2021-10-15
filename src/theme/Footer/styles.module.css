@@ -92,17 +92,7 @@
   flex-direction: row;
 }
 
-@media only screen and (max-width: 620px) {
-  .footerTitle {
-    font-size: 14px;
-  }
-
-  .footerParagraph {
-    font-size: 12px;
-  }
-}
-
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: 800px) {
   .footer {
     flex-direction: column;
   }

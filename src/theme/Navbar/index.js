@@ -177,7 +177,11 @@ function NavbarMobileSidebar({ sidebarShown, toggleSidebar }) {
           >
             <p className={styles.zoraCoText}>Use Zora -&gt; </p>
           </a>
-          <a href="https://github.com/ourzora" target="_blank" rel="noopener noreferrer">
+          <a
+            href="https://github.com/ourzora/zora-docs"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <GithubIcon className={styles.githubIconSideBar} />
           </a>
         </div>
@@ -248,7 +252,11 @@ function Navbar() {
         {!mobileSidebar.shouldRender && (
           <>
             <div className="navbar__items navbar__items--right">
-              <a href="https://github.com/ourzora" target="_blank" rel="noopener noreferrer">
+              <a
+                href="https://github.com/ourzora/zora-docs"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <GithubIcon className={styles.githubIcon} />
               </a>
               {!colorModeToggle.disabled && (

@@ -10,34 +10,34 @@ import Artiva from '@site/static/img/projects/artiva.png'
 export const projectsContent = [
   {
     project: PartyBid,
-    link: '/docs/showcase',
+    link: 'https://partybid.app',
   },
   {
     project: PunkHouse,
-    link: '/docs/showcase',
+    link: 'https://punks.house/',
   },
   {
     project: Mirror,
-    link: '/docs/showcase',
+    link: 'https://mirror.xyz/',
   },
   {
     project: BlitHouse,
-    link: '/docs/showcase',
+    link: 'https://blit.house/',
   },
   {
     project: Fwb,
-    link: '/docs/showcase',
+    link: 'https://fwb.help/',
   },
   {
     project: Catalog,
-    link: '/docs/showcase',
+    link: 'https://catalog.works/',
   },
   {
     project: BrightMoments,
-    link: '/docs/showcase',
+    link: 'https://live.brightmoments.io/',
   },
   {
     project: Artiva,
-    link: '/docs/showcase',
+    link: 'https://artiva.app',
   },
 ]
