@@ -224,82 +224,18 @@ a:hover {
 /* Mobile */
 @media only screen and (max-width: 800px) {
   .getting-started-card {
-    padding: 26px;
-    padding-top: 35px;
-  }
-
-  .getting-started-container {
-    gap: 35px;
-    grid-template-columns: none;
-    grid-template-columns: repeat(1, 1fr);
-  }
-
-  .tools-container {
-    gap: 35px;
-    grid-template-columns: none;
-    grid-template-columns: repeat(1, 1fr);
-  }
-
-  .doc-title {
-    font-size: 35px;
-    line-height: 52px;
-    margin-bottom: 17px;
-    margin-right: 16px;
-  }
-
-  .doc-number {
-    font-size: 52px;
-    margin-bottom: 86px;
-    line-height: 70px;
-    font-weight: 500;
-  }
-
-  .doc-subtopic {
-    font-size: 28px;
-    line-height: 43px;
-    font-weight: 500;
-  }
-
-  .tools-card {
-    padding: 26px;
-    padding-top: 35px;
-  }
-
-  .tools-title {
-    font-size: 35px;
-    margin-bottom: 17px;
-    line-height: 52px;
-  }
-
-  .tools-paragraph {
-    font-size: 24px;
-    line-height: 42px;
-  }
-
-  .tools-version {
-    margin-top: 10px;
-    font-size: 20px;
-    line-height: 35px;
-  }
-
-  .projectContainer {
-    gap: 26px;
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media only screen and (max-width: 375px) {
-  .getting-started-card {
     padding: 15px;
     padding-top: 20px;
   }
 
   .getting-started-container {
     gap: 20px;
+    grid-template-columns: repeat(1, 1fr);
   }
 
   .tools-container {
     gap: 20px;
+    grid-template-columns: repeat(1, 1fr);
   }
 
   .doc-title {

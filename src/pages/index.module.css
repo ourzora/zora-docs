@@ -189,7 +189,7 @@
   }
 }
 
-@media only screen and (max-width: 375px) {
+@media only screen and (max-width: 800px) {
   .layout {
     margin-top: 388px;
     padding-left: 20px;

@@ -90,7 +90,7 @@ Hide toggle in small viewports
   margin-left: 15px;
 }
 
-@media only screen and (max-width: 400px) {
+@media only screen and (max-width: 800px) {
   .DocSearch-Button {
     display: none;
   }
