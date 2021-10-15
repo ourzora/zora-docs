@@ -7,14 +7,27 @@ sidebar_position: 1
 import Tabs from '@theme/Tabs'
 import TabItem from '@theme/TabItem'
 
-The Zora Development Kit (ZDK) is a tool for developers to simply and reliably interact with the Zora Protocol.
-The ZDK is written in Typescript.
+The ZORA Development Kit (ZDK) makes it easy to interact with the ZORA Protocol
 
 ---
 
-## Getting started
+### ZDK Key Components
+* [ZORA NFT Module:](/docs/developer-tools/zdk/zora-nfts) Provides read and write access to the ZORA NFT contracts
 
-To start, install the developer kit with `yarn` or `npm`
+* [Auction House Module:](/docs/developer-tools/zdk/auction-house) Tools for selling an ERC-721 NFT
+
+* [Utility Module:](/docs/developer-tools/zdk/utility) Utility tools for interacting with the ZDK
+
+* [Metadata Module:](/docs/developer-tools/zdk/metadata) Formats metadata for minting ZORA NFTs
+
+* [User Info Module:](/docs/developer-tools/zdk/user-info) Maps Ethereum addresses to ZORA user profiles
+
+* [Addresses Module:](/docs/developer-tools/zdk/addresses) Provides ZORA contract addresses for different networks
+
+
+<!-- **[ZDK Diagram goes here]** -->
+
+### Installing
 
 <Tabs
   defaultValue="yarn"
@@ -39,20 +52,38 @@ npm install -S @zoralabs/zdk
 </TabItem>
 </Tabs>
 
-The ZDK exposes utilities for the Zora contracts and an [ethers.js](https://docs.ethers.io/v5/) interface to interact with the Zora ecosystem.
+
+### Connecting to Ethers.js 
+
+The ZDK exposes utilities for the [ZORA Smart Contracts](../smart-contracts/smart-contracts) and uses an [ethers.js](https://docs.ethers.io/v5/) interface to interact with the Zora ecosystem.
 
 :::note
 
-The [ethers.js](https://docs.ethers.io/v5/) library is an incredibly powerful tool for interacting with the Ethereum blockchain. Most of the guides
-provided in this documentation interact with ethers.js as well.
+[ethers.js](https://docs.ethers.io/v5/) is a javascript library that is used to interact with the Ethereum blockchain.
 
 :::
 
-The ZDK currently provides 6 modules, which can be used in combination or separately to read and write to the Zora protocol:
+In order for your application to interact with the blockchain, you will need to establish a connection with a node. 
+This can be done by passing an RPC url from a node provider into ethers.js. 
+If you are trying to test out the SDK you can set up an [Infura](https://infura.io/product/ethereum) or [Alchemy](https://www.alchemy.com/supernode) account. 
 
-- Zora Module
-- Utility Module
-- Addresses Module
-- Metadata Module
-- User Information Module
-- Auction House Module
+In addition, users can pass in a connection to a node when they connect their wallet to your application.
+We also have a short guide on how to [connect a wallet in React](../../guides/react-connect-wallet).
+
+```typescript
+import { Zora } from '@zoralabs/zdk'
+import { Wallet } from 'ethers'
+
+const rpcURL = // you will get this from Infura or Alchemy 
+
+const provider = new ethers.providers.JsonRpcProvider(rpcURL);
+
+let wallet = Wallet.createRandom()
+wallet = wallet.connect(provider)
+
+const zora = new Zora(wallet, 1) //passing in 1 for Ethereum Mainnet
+const totalSupply = await zora.fetchTotalMedia()
+
+console.log(totalSupply) // total supply of ZORA NFTs minted on the Ethereum Mainnet
+```
+

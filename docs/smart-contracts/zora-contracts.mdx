@@ -1,0 +1,112 @@
+---
+id: zora-contracts
+title: ZORA Contracts
+sidebar_position: 1
+---
+
+import Tabs from '@theme/Tabs'
+import TabItem from '@theme/TabItem'
+
+An introduction to the smart contracts that comprise the Zora Protocol
+
+---
+
+### ZORA NFT Contracts
+ZORA NFTs extends the base ERC-721 NFT standard and allows anyone to easliy mint their own NFTs. 
+NFTs minted from this contract are known as `zNFTs` (aka cryptomedia) and have a few addtional characterists.
+
+##### ZORA NFTs vs Regular NFTs
+- zNFTs separate the content from the metadata by having both a `metadataURI` and a `contentURI`
+- zNFTs store a hash of both the metadata and the content
+- The `contentURI` and `metadataURI` linking to external storage can be updated, but a zNFT's metadata and content hashes can not
+
+##### ZORA NFTs are composed of two contracts 
+- The `Media` contract which mints and stores token data 
+- The `Market` contract which allows for built-in market functionality for zNFTs. 
+
+![have a look](https://raw.githubusercontent.com/ourzora/core/master/architecture.png)
+
+The source code for both contracts can be found in this [Github repository](https://github.com/ourzora/core).
+
+#### Media and Market Addresses
+
+| **Contract** | **Network**    | **Address**                                |
+| ------------ | -------------- | ------------------------------------------ |
+| Media        | Eth Mainnet        | 0xabEFBc9fD2F806065b4f3C237d4b59D9A97Bcac7 |
+| Market       | Eth Mainnet        | 0xE5BFAB544ecA83849c53464F85B7164375Bdaac1 |
+| Media        | Rinkeby        | 0x7C2668BD0D3c050703CEcC956C11Bd520c26f7d4 |
+| Market       | Rinkeby        | 0x85e946e1Bd35EC91044Dc83A5DdAB2B6A262ffA6 |
+| Media        | Polygon        | 0x6953190AAfD8f8995e8f47e8F014d0dB83E92300 |
+| Market       | Polygon        | 0xE20bd7dC76e09AEBC2A9A732AB6AEE616c5a17Eb |
+| Media        | Polygon Mumbai | 0xabEFBc9fD2F806065b4f3C237d4b59D9A97Bcac7 |
+| Market       | Polygon Mumbai | 0xE5BFAB544ecA83849c53464F85B7164375Bdaac1 |
+
+<Tabs
+  defaultValue="yarn"
+  values={[
+    { label: 'Yarn', value: 'yarn', },
+    { label: 'NPM', value: 'npm', }
+  ]
+}>
+<TabItem value="yarn">
+
+```bash
+yarn add @zoralabs/core
+```
+
+</TabItem>
+<TabItem value="npm">
+
+```bash
+npm i -S @zoralabs/core
+```
+
+</TabItem>
+</Tabs>
+
+<br/>
+
+### Auction House
+The ZORA Auction House contract is an open and permissionless system that allows any creator, community, platform or DAO to create and run their own curated auction houses for any ERC-721 NFT.
+
+These auction houses run reserve timed auctions, with special emphasis given to the role of curators. If an owner of an NFT chooses to list with a curator, that curator can charge a curator fee and has to approve any auction before it commences with that curators auction house. 
+Anyone is able to run an NFT auction on the protocol with no fee by simply not specifying a curator.
+
+The duration of auction can be set to any length, but if a bid is placed within the last 15 minutes, the countdown will reset back to 15 minutes. 
+This 15 minute reset window can continue as many times as necessary until the timer has ended. In addition, every bid must be 5% higher than the current bid amount. 
+
+
+
+The source code is available in this [Github repository](https://github.com/ourzora/auction-house). 
+
+#### Auction House Addresses
+| **Network**    | **Address**                                |
+| -------------- | ------------------------------------------ |
+| Eth Mainnet        | 0xE468cE99444174Bd3bBBEd09209577d25D1ad673 |
+| Rinkeby        | 0xE7dd1252f50B3d845590Da0c5eADd985049a03ce |
+| Polygon        | 0x48F1C97259Dc7f3900965391651693BaeBfd59A2 |
+| Polygon Mumbai | 0x6953190AAfD8f8995e8f47e8F014d0dB83E92300 |
+
+
+<Tabs
+  defaultValue="yarn"
+  values={[
+    { label: 'Yarn', value: 'yarn', },
+    { label: 'NPM', value: 'npm', }
+  ]
+}>
+<TabItem value="yarn">
+
+```bash
+yarn add @zoralabs/auction-house
+```
+
+</TabItem>
+<TabItem value="npm">
+
+```bash
+npm i -S @zoralabs/auction-house
+```
+
+</TabItem>
+</Tabs>

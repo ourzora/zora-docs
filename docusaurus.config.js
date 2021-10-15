@@ -10,7 +10,7 @@ module.exports = {
   onBrokenLinks: 'ignore',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/zoraOrb.svg',
-  organizationName: 'facebook', // Usually your GitHub org/user name.
+  organizationName: 'ourzora', // Usually your GitHub org/user name.
   projectName: 'docusaurus', // Usually your repo name.
   themeConfig: {
     navbar: {
@@ -60,7 +60,8 @@ module.exports = {
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
           // Please change this to your repo.
-          editUrl: 'https://github.com/facebook/docusaurus/edit/master/website/',
+          editUrl:
+            'https://github.com/ourzora/zora-docusaurus-v1/blob/main/',
           remarkPlugins: [math],
           rehypePlugins: [katex],
         },

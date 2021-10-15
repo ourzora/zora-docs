@@ -1,8 +1,73 @@
 ---
 id: create-auction-house
-title: Create An Auction House
+title: Create an Auction House
 ---
 
-A repo to bootstrap your own permissionless auction house with the ZORA protocol
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+Build a permissionless Auction House with the ZORA protocol
 
 ---
+
+ZORA has created a [Github Repo](https://github.com/ourzora/create-auction-house) that makes it easy for anyone to launch their own auction house.
+Compatible with any ERC-721 token contract, quickly list and sell NFTs using the ZORA Auction House smart contract.
+
+### Getting Started
+<Tabs
+  defaultValue="yarn"
+  values={[
+    { label: 'Yarn', value: 'yarn', },
+    { label: 'NPM', value: 'npm', }
+  ]
+}>
+<TabItem value="yarn">
+
+```bash
+yarn create next-app project-name -e https://github.com/ourzora/create-auction-house 
+```
+
+</TabItem>
+<TabItem value="npm">
+
+```bash
+npx create-next-app project-name -e https://github.com/ourzora/create-auction-house
+```
+
+</TabItem>
+</Tabs>
+
+The application accepts the below environment variables. You will need to specify the network ID along with either a `Curator Address` or a `Contract Address`. 
+Once you have created your repo locally, make sure to install all dependencies by running yarn.
+
+Next, modify the values below in the .env file:
+
+```
+NEXT_PUBLIC_APP_TITLE=[default app title]
+
+NEXT_PUBLIC_DEFAULT_DESCRIPTION=[default meta description]
+
+NEXT_PUBLIC_BASE_URL=[production-url]
+
+# NETWORK ID: Ethereum Mainnet(1) Rinkeby Testnet(4)
+
+NEXT_PUBLIC_NETWORK_ID=1
+
+NEXT_PUBLIC_CURATORS_ID=[The address of a curator or NFT creator]
+
+NEXT_PUBLIC_TARGET_CONTRACT_ADDRESS=[the address of the NFT contract]
+```
+
+Run `yarn dev` to run the development server locally at `localhost:3000`
+
+
+### Going Live
+
+The easiest way to deploy your auction house is to use the [Vercel Platform](https://vercel.com/). 
+Check out the [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details. Don't forget to update the necessary environment variables.
+
+
+### Make it Yours
+
+This repo builds off of [ZORA's NFT Components](../developer-tools/nft-rendering/introduction), you can go about customizing the components by viewing the details [here.](https://ourzora.github.io/nft-components/?path=/story/introduction--page)
+Feel free to leave feedback in the repository’s [issues](https://github.com/ourzora/create-auction-house).
