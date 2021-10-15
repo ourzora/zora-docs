@@ -1,17 +1,20 @@
 ---
 id: usenftmetadata
 title: useNFTMetadata
+sidebar_position: 3
 ---
 
-Hook to fetch NFT Metadata information
+Fetches NFT metadata from a URL
 
 ---
 
-This hook makes a request to fetch metadata from IPFS retrieved from the zNFT `metadataURI`.
+This hook makes a request to fetch metadata from a NFT's `metadataURI`.
 
-Most IPFS servers allow remote JSON fetches, including all Zora NFTs. There is a chance this request could fail when the server
+Most metadata servers allow for remote JSON fetches, however, there is a chance this request could fail when the server
 does not allow cross-origin requests. Requests are set with a 10 second timeout to allow showing the user an error message
-instead of an indefinite loader. Metadata information can be found in the [zora metadata schema repo](https://github.com/ourzora/media-metadata-schemas). Metadata validation can be
+instead of an indefinite loader.
+
+Metadata information can be found in the [ZORA metadata schema repo](https://github.com/ourzora/media-metadata-schemas). Metadata validation can be
 ignored optionally by passing in a second argument `{allowInvalid: true}` to the hook. By default, an error will be thrown for
 invalid metadata and the metadata result will be `undefined`.
 
@@ -21,11 +24,11 @@ Hook result type:
 type useNFTMetadataType = {
   error?: string // Error: can be thrown from invalid json, unparsable json, network request failure, network request timeout
   loading?: boolean // Easy indicator to determine if the NFT metadata is loading. Same as (!metadata && !error).
-  metadata?: any // Raw, validated zora metadata. A error will be thrown if the metadata does not validate.
+  metadata?: any // Raw, validated ZORA metadata. A error will be thrown if the metadata does not validate.
 }
 ```
 
-To use the hook, simply pass in the URL to fetch:
+Pass in the metadata URL to fetch the NFT data:
 
 ```typescript
 import { useNFTMetadata } from '@zoralabs/nft-hooks'
@@ -34,25 +37,14 @@ const MediaDataDisplay = ({ uri: string }) => {
   const { error, metadata } = useNFTMetadata(uri)
 
   if (metadata) {
-    if (metadata.version === 'catalog-20210202') {
-      return (
-        <div>
-          <h2>
-            Song: {metadata.body.title} Artist: {metadata.body.artist}
-          </h2>
-          {metadata.body.notes && <p>{metadata.body.notes}</p>}
-        </div>
-      )
-    }
-    // If not a catalog NFT, can render the metadata title and description fields
-    //  from the first zNFT metadata standard.
     return (
       <div>
-        <h2>{metadata.title}</h2>
+        <h2>Name: {metadata.name}</h2>
         <p>{metadata.description}</p>
       </div>
     )
   }
+
   if (error) {
     return <div>Error loading metadata</div>
   }
@@ -60,7 +52,7 @@ const MediaDataDisplay = ({ uri: string }) => {
 }
 ```
 
-Alternatively, the same information can be fetched using the base MediaFetchAgentfor server-side or non-react use:
+Alternatively, the same information can be fetched using the base `MediaFetchAgent` for server-side or non-React use:
 
 ```typescript
 import { MediaFetchAgent, Networks } from '@zoralabs/nft-hooks'

@@ -1,51 +1,64 @@
 ---
-id: zora-protocol
-title: Zora Protocol
+id: zora-nfts
+title: ZORA NFTs
+sidebar_position: 2
 ---
 
-The Zora module provides read/write access directly to the Zora protocol.
+Provides read and write access to the ZORA NFT contracts
 
 ---
 
-To instantiate the module, an ethers `Signer` or `Provider`, must be passed to the constructor. In addition,
-the `chainID`representing the Ethereum network you are trying to connect to. Zora currently supports Rinkeby (4) for testing, and Mainnet
-(1) for production.
+Details about the ZORA smart contracts can be found [here](../../smart-contracts/zora-contracts). To instantiate the module, an ethers.js `Signer` or `Provider`, must be passed to the constructor
+as well as the `chainID`.
+ZORA currently supports Ethereum Mainnet (1) and Rinkeby Testnet (4).
+
+You can learn more about connecting to ethers.js [here](./introduction#connecting-to-ethersjs).
+
+#### Constructor Arguments
 
 | **Name**         | **Type**           | **Description**                                              |
 | ---------------- | ------------------ | ------------------------------------------------------------ |
 | signerOrProvider | Signer \| Provider | The Wallet or JSON RPC Provider connected to Ethereum        |
 | chainId          | number             | The network to connect to. 1 for Mainnet, and 4 for Rinkeby. |
-| mediaAddress?    | string             | [Optional] The media address of a deployed zora protocol     |
-| marketAddress?   | string             | [Optional] The market address of a deployed zora protocol    |
+| mediaAddress?    | string             | [Optional] The Media contract address                        |
+| marketAddress?   | string             | [Optional] The Market contract address                       |
+
+<br />
 
 ```typescript
 import { Zora } from '@zoralabs/zdk'
 import { Wallet } from 'ethers'
 
-const wallet = Wallet.createRandom()
-const zora = new Zora(wallet, 1)
+// If you don't specify a //url//, Ethers connects to the default
+// (i.e. ``http:/\/localhost:8545``)
+const provider = new ethers.providers.JsonRpcProvider()
+
+let wallet = Wallet.createRandom()
+wallet = wallet.connect(provider)
+
+const zora = new Zora(wallet, 1) //passing in 1 for Ethereum Mainnet
 const totalSupply = await zora.fetchTotalMedia()
 ```
 
-When using a local blockchain, you must specify overrides for both `mediaAddress` and `marketAddress`. These should point
-to the addresses of deployed Zora media and market contracts on your local blockchain.
+If you are using a local blockchain, you must specify overrides for both `mediaAddress` and `marketAddress`. These should point
+to the addresses of the deployed ZORA media and market contracts on your local environment.
 
 ```typescript
-import { Zora } from '@zoralabs/sdk'
-import { Wallet } from 'ethers'
-
-const wallet = Wallet.createRandom()
 const zora = new Zora(wallet, 50, mediaAddress, marketAddress)
-const totalSupply = await zora.fetchTotalMedia()
 ```
 
 :::note
 
-To see a real life example of connecting to a user's wallet with Metamask or WalletConnect, see our [React Guide](../zdk/react-connecting-wallet)
+For more details on connecting to a user's wallet with Metamask or WalletConnect, see our [React Guide](../../../docs/guides/react-connect-wallet)
 
 :::
 
 ## Read Functions
+
+---
+
+All the functions that are able to read data from the ZORA NFT smart contracts.
+We recommend using the using the [NFT Rendering](../nft-rendering/introduction) and [Zora Indexer](../indexer/introduction) sections if you only want to get NFT data.
 
 ### fetchContentHash
 
@@ -130,7 +143,7 @@ Fetch the next mintWithSig nonce for an address
 
 ### fetchBalanceOf
 
-Fetch the balance of an address on an instance of the Zora Media Contract
+Fetch the balance of an address on an instance of the ZORA Media Contract
 
 | **Name** | **Type** | **Description**                                           |
 | -------- | -------- | --------------------------------------------------------- |
@@ -138,7 +151,7 @@ Fetch the balance of an address on an instance of the Zora Media Contract
 
 ### fetchOwnerOf
 
-Fetch the owner of a piece of media on an instance of the Zora Media Contract
+Fetch the owner of a piece of media on an instance of the ZORA Media Contract
 
 | **Name** | **Type**     | **Description**                                   |
 | -------- | ------------ | ------------------------------------------------- |
@@ -146,7 +159,7 @@ Fetch the owner of a piece of media on an instance of the Zora Media Contract
 
 ### fetchMediaOfOwnerByIndex
 
-Fetch the mediaId of the specified owner by index on an instance of the Zora Media Contract
+Fetch the mediaId of the specified owner by index on an instance of the ZORA Media Contract
 
 | **Name** | **Type**     | **Description**                       |
 | -------- | ------------ | ------------------------------------- |
@@ -183,10 +196,14 @@ Fetch if the specified operator is approved for all media owned by the specified
 
 | **Name** | **Type** | **Description**                 |
 | -------- | -------- | ------------------------------- |
-| owner    | string   | An address on the Zora Protocol |
-| operator | string   | An address on the Zora Protocol |
+| owner    | string   | An address on the ZORA Protocol |
+| operator | string   | An address on the ZORA Protocol |
 
 ## Write Functions
+
+---
+
+All the functions that are able to submit transactions to interact with the ZORA NFT smart contracts
 
 ### mint
 
@@ -295,7 +312,7 @@ As an approved address on a piece of media, revoke your approval.
 
 ### approve
 
-Grant approval to the specified address for the specified media on an instance of the Zora Media Contract
+Grant approval to the specified address for the specified media on an instance of the ZORA Media Contract
 
 | **Name** | **Type**     | **Description**                                  |
 | -------- | ------------ | ------------------------------------------------ |
@@ -304,7 +321,7 @@ Grant approval to the specified address for the specified media on an instance o
 
 ### setApprovalForAll
 
-Grant approval for all media owner by msg.sender on an instance of the Zora Media Contract
+Grant approval for all media owner by msg.sender on an instance of the ZORA Media Contract
 
 | **Name** | **Type** | **Description**                                               |
 | -------- | -------- | ------------------------------------------------------------- |
@@ -313,7 +330,7 @@ Grant approval for all media owner by msg.sender on an instance of the Zora Medi
 
 ### transferFrom
 
-Transfers the specified media to the specified to address on an instance of the Zora Media Contract
+Transfers the specified media to the specified to address on an instance of the ZORA Media Contract
 
 | **Name** | **Type**     | **Description**                        |
 | -------- | ------------ | -------------------------------------- |

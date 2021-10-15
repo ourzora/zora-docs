@@ -4,15 +4,105 @@ title: Introduction
 sidebar_position: 1
 ---
 
+Quick retrieval of NFT and ZORA related data
+
 ---
 
-In addition to the [subgraph](https://thegraph.com/legacy-explorer/subgraph/ourzora/zora-v1) on Graph Protocol,
-Zora maintains its own indexer that serves a GraphQL API full of useful information about the Zora protocol and
-the entire NFT universe.
+ZORA maintains its own indexer that serves a GraphQL API and provides information about the ZORA protocol and
+the broader NFT ecosystem.
 
-The Indexer watches the Zora Media, Market, and Auction House contracts as well as a set of arbitrary ERC-721
-contracts. Indexer also regularly fetches and refreshes ERC-721 metadata json data, so clients can query NFTs by their
-metadata properties. Currently Indexer only watches Ethereum networks, but is extensible to include other EVM networks.
+<!-- **[Indexer Diagram goes here]** -->
 
-Begin making example queries in our hosted GraphQL [playground](https://ourzora.github.io/indexer-playground/) on both
-Rinkeby and Mainnet.
+The Indexer watches the blockchain and regularly fetches and refreshes NFT metadata data which makes it easy to query NFTs by their
+metadata properties. The Indexer currently only watches `Ethereum Mainnet` and `Rinkeby Testnest` but will be extended to include other EVM networks in the future.
+
+:::note
+
+You can begin making queries in ZORA's hosted GraphQL [playground](https://ourZORA.github.io/indexer-playground/).
+
+:::
+
+## Querying the Indexer
+
+Make a `POST` request to the indexer url to query against the Indexer's GraphQL API.
+
+```bash
+# Ethereum Mainnet
+https://indexer-prod-mainnet.ZORA.co/v1/graphql
+```
+
+If you are making an unauthenticated request, make sure to include `X-Hasura-Role: anonymous` in the header of the request.
+
+### Fetching any NFT
+
+You can directly query for any ERC-721 NFT by querying the `Token` table. The example query below fetches the first 100 Blitmap `tokenIds` .
+You can check to see which NFT contracts are supported by querying the `TokenContract` table.
+
+```gql
+{
+  Token(
+    where: { address: { _eq: "0x8d04a8c79cEB0889Bdd12acdF3Fa9D207eD3Ff63" } }
+    order_by: { tokenId: asc }
+    limit: 100
+  ) {
+    tokenId
+    address
+    minter
+    owner
+    metadata {
+      json
+    }
+  }
+}
+```
+
+### Fetching a zNFT
+
+You can use the `Media` table to fetch information on ZORA NFTs (zNFTs). The example query below fetches the last 100 NFTs minted
+out of the ZORA Media contract.
+
+```gql
+{
+  Media(order_by: { tokenId: desc }, limit: 100) {
+    tokenId
+    creator
+    creatorBidShare
+    owner
+    contentURI
+    metadataURI
+    contentHash
+    metadataHash
+    metadata {
+      json
+    }
+  }
+}
+```
+
+### Fetching a ZORA Auction
+
+You can query for a ZORA Auction by using the `Auction` table. The example query below fetches the auctions that have had
+their reserve price met, but have not been finalized (listed in order of `auctionId`).
+
+```gql
+{
+  Auction(
+    where: { lastBidder: { _is_null: false }, _not: { endedEvent: {} } }
+    order_by: { auctionId: desc }
+    limit: 10
+  ) {
+    tokenContract
+    tokenId
+    tokenOwner
+    auctionCurrency
+    reservePrice
+    curator
+    curatorFee
+    approved
+    expiresAt
+    winner
+    lastBidder
+    lastBidAmount
+  }
+}
+```

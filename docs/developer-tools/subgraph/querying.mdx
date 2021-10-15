@@ -1,21 +1,26 @@
 ---
 id: querying
 title: Querying
+sidebar_position: 2
 ---
 
-# Querying for the Zora Subgraph
-
-To quickly query the Zora Subgraph you can navigate to The Graph's online [sandbox](https://thegraph.com/explorer/subgraph/ourzora/zora-v1) and execute arbitrary graphql queries.
-
-To programmatically query the Zora Subgraph you can send queries to `https://api.thegraph.com/subgraphs/name/ourzora/zora-v1`
+# Querying the ZORA Subgraph
 
 ---
 
-# Example Queries
+You can play around with the ZORA Subgraph using The Graph's online [sandbox](https://thegraph.com/explorer/subgraph/ourzora/zora-v1).
 
-## Media
+To programmatically query the ZORA Subgraph you can send queries to:
 
-### Media by Id
+`https://api.thegraph.com/subgraphs/name/ourzora/zora-v1`
+
+## ZORA NFT Queries (Media)
+
+---
+
+NFTs minted on ZORA (zNFTs) are also referred to as `media` in the subgraph
+
+### Get Media by Id
 
 ```graphql
 {
@@ -163,7 +168,11 @@ To programmatically query the Zora Subgraph you can send queries to `https://api
 }
 ```
 
-## Bids
+<br />
+
+## Bid Queries
+
+---
 
 ### Bid by Id
 
@@ -260,7 +269,11 @@ To programmatically query the Zora Subgraph you can send queries to `https://api
 }
 ```
 
-## Asks
+<br />
+
+## Asks Queries
+
+---
 
 ### Ask by Id
 
@@ -328,7 +341,11 @@ To programmatically query the Zora Subgraph you can send queries to `https://api
 }
 ```
 
-## InactiveBids
+<br />
+
+## InactiveBid Queries
+
+---
 
 ### InactiveBid by Id
 
@@ -411,7 +428,11 @@ To programmatically query the Zora Subgraph you can send queries to `https://api
 }
 ```
 
-## InactiveAsks
+<br />
+
+## InactiveAsk Queries
+
+---
 
 ### InactiveAsk by Id
 
@@ -482,7 +503,11 @@ To programmatically query the Zora Subgraph you can send queries to `https://api
 }
 ```
 
-## UriUpdates
+<br />
+
+## UriUpdate Queries
+
+---
 
 ### UriUpdate by Id
 
@@ -550,7 +575,11 @@ To programmatically query the Zora Subgraph you can send queries to `https://api
 }
 ```
 
-## Transfers
+<br />
+
+## Transfer Queries
+
+---
 
 ### Transfer by Id
 
@@ -628,7 +657,11 @@ To programmatically query the Zora Subgraph you can send queries to `https://api
 }
 ```
 
-## Currency
+<br />
+
+## Currency Query
+
+---
 
 ### Currency by Id
 
@@ -644,7 +677,11 @@ To programmatically query the Zora Subgraph you can send queries to `https://api
 }
 ```
 
-## User
+<br />
+
+## User Query
+
+---
 
 ### User by Id
 

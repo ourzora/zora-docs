@@ -1,22 +1,34 @@
 ---
-id: useznft
-title: useZNFT
+id: useNft
+title: useNFT
+sidebar_position: 1
 ---
 
-Hook to load zNFT and market on-chain information
+Fetches all data for a ERC-721 NFT
 
 ---
 
-This hook fetches data found on the blockchain from the given zNFT. The only argument for the hook is the NFT id. To fetch
-data for zNFTs on other networks, use the `NFTFetchConfiguration` wrapper component to set the correct network for loading the
-NFT data. The main types are within the result `data.nft` object. This object contains the on-chain NFT data itself. The pricing
-information can be found in `data.pricing` which corresponds to data on-chain for Zora's perpetual zNFT auctions along with the
-reserve auction functionality.
+This hook fetches data for a given ERC-721 NFT and takes in a `contractAddress` and `tokenId`.
 
-```typescript
-import { useZNFT } from '@zoralabs/nft-hooks'
+:::note
 
+You can use the `NFTFetchConfiguration` wrapper component to fetch data on other networks.
+
+:::
+
+The `data.nft` object contains the majority of the on-chain NFT data.
+The pricing information is in `data.pricing` which corresponds to on-chain data for ZORA's Auction House and the
+perpetual zNFT auctions.
+
+```ts
+import { useNFT } from '@zoralabs/nft-hooks'
+
+// Getting data for the NFT at contract address 0x8d04...ff63 with id 2
+const { data, error } = useNFT('0x8d04a8c79ceb0889bdd12acdf3fa9d207ed3ff63', '2')
+
+// All Data relating to an NFT
 type NFTDataType = {
+  // NFT Data
   nft: {
     id: string // ID of zNFT
     contract: {
@@ -34,6 +46,7 @@ type NFTDataType = {
     contentHash: string // sha256 hash of content
   }
 
+  // Bid/Auction Data
   pricing: {
     perpetual: {
       bids: {
@@ -106,14 +119,11 @@ type useZNFT = (id: string) => {
   error?: string // undefined if no error, string if error
   data?: NFTDataType // undefined in error or loading states
 }
-
-// Example with usage:
-const { chainNFT, loading } = useZNFT('2')
 ```
 
-Alternatively, the same information can be fetched using the base `MediaFetchAgent` for server-side or non-react use:
+Alternatively, the same information can be fetched using the base `MediaFetchAgent` for server-side or non-React use:
 
-```typescript
+```ts
 import { MediaFetchAgent, Networks } from '@zoralabs/nft-hooks'
 
 // Be careful making multiple instances of the fetch agent
@@ -121,6 +131,9 @@ import { MediaFetchAgent, Networks } from '@zoralabs/nft-hooks'
 const fetchAgent = new MediaFetchAgent(Networks.MAINNET)
 
 // Get result from the server
-const result = await fetchAgent.loadZNFTData('2')
+const result = await fetchAgent.loadNFTData(
+  '0x8d04a8c79ceb0889bdd12acdf3fa9d207ed3ff63',
+  '2'
+)
 // result type is NFTDataType
 ```
