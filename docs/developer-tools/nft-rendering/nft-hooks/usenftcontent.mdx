@@ -4,17 +4,17 @@ title: useNFTContent
 sidebar_position: 4
 ---
 
-Fetches content for rendering from content URL in the NFT metadata
+##### Fetches content for rendering from content URL in the NFT metadata
 
 ---
 
 This hook makes a request to fetch content based on a NFT's `contentURI`.
 
-Most metadata servers allow remote JSON fetches, including all ZORA NFTs. There is a chance this request could fail
-when the server does not allow cross-origin requests. Requests are set with a 10 second timeout to allow showing the user
+Most metadata servers allow remote JSON fetches, including all ZORA NFTs. There is a chance this request could fail. 
+Requests are set with a 10 second timeout to allow showing the user
 an error message instead of an indefinite loader.
 
-Hook result type:
+##### Hook Result Type
 
 ```typescript
 // This is a union type meaning one or another in typescript.

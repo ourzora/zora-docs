@@ -4,21 +4,21 @@ title: useNFTMetadata
 sidebar_position: 3
 ---
 
-Fetches NFT metadata from a URL
+##### Fetches NFT metadata from a URL
 
 ---
 
 This hook makes a request to fetch metadata from a NFT's `metadataURI`.
 
-Most metadata servers allow for remote JSON fetches, however, there is a chance this request could fail when the server
-does not allow cross-origin requests. Requests are set with a 10 second timeout to allow showing the user an error message
+Most metadata servers allow for remote JSON fetches, however, there is a chance this request could fail.
+Requests are set with a 10 second timeout to allow showing the user an error message
 instead of an indefinite loader.
 
 Metadata information can be found in the [ZORA metadata schema repo](https://github.com/ourzora/media-metadata-schemas). Metadata validation can be
 ignored optionally by passing in a second argument `{allowInvalid: true}` to the hook. By default, an error will be thrown for
 invalid metadata and the metadata result will be `undefined`.
 
-Hook result type:
+##### Hook Result Type
 
 ```typescript
 type useNFTMetadataType = {
