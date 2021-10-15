@@ -52,8 +52,11 @@ module.exports = {
     footer: {
       style: 'dark',
     },
-    og: 'img/previewImage',
-    twitter: 'img/previewImage',
+    image: 'img/previewImage.png',
+    gtag: {
+      trackingID: GTAG_ID,
+      anonymizeIP: true,
+    },
   },
   presets: [
     [
@@ -93,6 +96,7 @@ module.exports = {
         expand: false,
         defaults: false,
         RPC_ENDPOINT: process.env.RPC_ENDPOINT,
+        GTAG_ID: process.env.GTAG_ID,
       },
     ],
   ],
