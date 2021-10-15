@@ -28,12 +28,7 @@ module.exports = {
         {
           position: 'left',
           label: 'Guides',
-          to: 'docs/guides/introduction',
-        },
-        {
-          position: 'left',
-          label: 'Showcase',
-          to: 'docs/showcase',
+          to: '/docs/guides/connect-wallet-react',
         },
       ],
     },
