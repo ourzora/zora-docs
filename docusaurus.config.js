@@ -52,6 +52,8 @@ module.exports = {
     footer: {
       style: 'dark',
     },
+    og: 'img/previewImage',
+    twitter: 'img/previewImage',
   },
   presets: [
     [
