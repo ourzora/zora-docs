@@ -7,7 +7,7 @@ export default function ProjectsCards() {
     <div className={'projectContainer'}>
       {projectsContent.map((p, index) => (
         <div key={index} className={'projectCard'}>
-          <a href={p.link}>
+          <a href={p.link} target="_blank" rel="noreferer noopener">
             <img src={p.project} className={'projectCardImage'} />
           </a>
         </div>
