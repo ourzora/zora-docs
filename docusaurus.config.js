@@ -5,17 +5,17 @@ const katex = require('rehype-katex')
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
 module.exports = {
   title: 'Zora',
-  url: 'https://zora.engineering',
+  url: 'https://docs.zora.co',
   baseUrl: '/',
   onBrokenLinks: 'ignore',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/zoraOrb.svg',
   organizationName: 'ourzora',
-  projectName: 'ZoraOS Documentation',
+  projectName: 'Zora Docs',
   themeConfig: {
     navbar: {
       logo: {
-        alt: 'ZoraOs Documentation Logo',
+        alt: 'Zora Docs Logo',
         src: 'img/zoraOrb.svg',
       },
       items: [
@@ -59,6 +59,17 @@ module.exports = {
         anonymizeIP: true,
       },
     }),
+    metadatas: [
+      {
+        name: 'title',
+        content: 'Zora Docs',
+      },
+      {
+        name: 'description',
+        content:
+          'Zora makes it easy for developers to get started building with NFTs by providing tools for displaying, minting, and selling NFTs all in one place. ',
+      },
+    ],
   },
   presets: [
     [
@@ -66,8 +77,7 @@ module.exports = {
       {
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
-          // Please change this to your repo.
-          editUrl: 'https://github.com/facebook/docusaurus/edit/master/website/',
+          editUrl: 'https://github.com/ourzora/zora-docs',
           remarkPlugins: [math],
           rehypePlugins: [katex],
         },

@@ -9,10 +9,7 @@ import HomepageLogo from '../../static/img/homepageLogo.svg'
 
 export default function Home() {
   return (
-    <Layout
-      title={`ZoraOS☼☾`}
-      description="Description will go into a meta tag in <head />"
-    >
+    <Layout>
       <ShaderComponent />
       <div>
         <HomepageLogo className={styles.logoText} />
