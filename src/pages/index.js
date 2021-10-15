@@ -19,7 +19,7 @@ export default function Home() {
         <div className={styles.layoutFlexBox}>
           <div className={styles.gettingStartedFlexBox}>
             <p className={styles.gettingStarted}>Getting started</p>
-            <a className={styles.viewAllLink} href="docs/guides/introduction">
+            <a className={styles.viewAllLink} href="docs/guides/connect-wallet-react">
               <button className={styles.viewAll}>VIEW ALL</button>
             </a>
           </div>
