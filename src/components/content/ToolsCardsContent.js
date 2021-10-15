@@ -1,10 +1,10 @@
 export const toolsCardsContent = [
   {
-    toolsTitle: 'zNFT',
+    toolsTitle: 'ZORA NFTs',
     toolsVersion: 'v1.0.7',
     toolsParagraph:
       'An extension of the base ERC-721 NFT Protocol, enabling markets to be owned directly by token creators.',
-    toolsLink: 'https://github.com/ourzora/core',
+    toolsLink: '/docs/developer-tools/zdk/zora-nfts',
   },
   {
     toolsTitle: 'Auction House',
@@ -32,7 +32,7 @@ export const toolsCardsContent = [
     toolsVersion: 'v0.5.1',
     toolsParagraph:
       'React Hooks to retrieve pricing and NFT information to display on your own website.',
-    toolsLink: '/docs/developer-tools/media-rendering/nft-hooks',
+    toolsLink: '/docs/developer-tools/nft-rendering/nft-hooks/useNft',
   },
   {
     toolsTitle: 'NFT Components',
