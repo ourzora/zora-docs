@@ -4,7 +4,7 @@ title: Connect a Wallet in React
 
 ---
 
-Guide to connecting the user's wallet in react.
+Connecting a user's wallet in React
 
 ---
 
@@ -17,9 +17,9 @@ If your application _only_ needs to read data from the blockchain, we recommend 
 
 :::
 
-If you need to submit a transaction, you will need to provide an [ethers signer](https://docs.ethers.io/v5/api/signer/) for signing transactions.
-The ZORA team typically uses [web3-react](https://github.com/NoahZinsmeister/web3-react) or [web3modal](https://github.com/web3modal/web3modal) to connect the user's wallet. 
-Once you set up these libraries, you can then use that provider for the ZDK.
+In order to submit a transaction, you must provide an [ethers signer](https://docs.ethers.io/v5/api/signer/).
+The ZORA team typically uses [web3-react](https://github.com/NoahZinsmeister/web3-react) or [web3modal](https://github.com/web3modal/web3modal) to connect a user's wallet. 
+Once you set up these libraries, you can then pass in the wallet connection into the ZDK.
 
 ```typescript 
 import { useWeb3React } from '@web3-react/core'
@@ -44,8 +44,8 @@ function MyComponent() {
 
 #### Hosted URLs
 
-If you want to allow easy bidding and listing of NFTs, ZORA supports hosted urls where the user can interact with ZORA
-interface to list their NFTs or bid on NFTs without needing to setup any wallet login and the user can trust the [ZORA.co](https://zora.co/) site.
+If you want to allow easy bidding and listing of NFTs, ZORA supports hosted urls where the user can interact with the [ZORA.co](https://zora.co/)
+interface without you needing to setup any wallet login.
 
 ```typescript
 https://zora.co/auctions/{TOKEN_ADDRESS}/{TOKEN_ID}/list

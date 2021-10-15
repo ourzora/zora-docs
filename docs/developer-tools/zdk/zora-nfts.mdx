@@ -8,9 +8,9 @@ Provides read and write access to the ZORA NFT contracts
 
 ---
 
-Details about the ZORA smart contracts can be found [here](../../smart-contracts/zora-contracts). To instantiate the module, an ethers.js `Signer` or `Provider`, must be passed to the constructor.
-as well as the `chainID` representing the Blockchain network you are trying to connect to. ZORA currently supports Ethereum Mainnet
-(1) and Rinkeby Testnet (4).
+Details about the ZORA smart contracts can be found [here](../../smart-contracts/zora-contracts). To instantiate the module, an ethers.js `Signer` or `Provider`, must be passed to the constructor
+as well as the `chainID`. 
+ZORA currently supports Ethereum Mainnet (1) and Rinkeby Testnet (4).
  
 You can learn more about connecting to ethers.js [here](./introduction#connecting-to-ethersjs). 
 
@@ -52,11 +52,10 @@ For more details on connecting to a user's wallet with Metamask or WalletConnect
 
 :::
 
-<br/>
-
 ## Read Functions
+---
 
-All functions that are able to read data from the ZORA NFT smart contracts. 
+All the functions that are able to read data from the ZORA NFT smart contracts. 
 We recommend using the using the [NFT Rendering](../nft-rendering/introduction) and [Zora Indexer](../indexer/introduction) sections if you only want to get NFT data.
 
 ### fetchContentHash
@@ -198,11 +197,11 @@ Fetch if the specified operator is approved for all media owned by the specified
 | owner    | string   | An address on the ZORA Protocol |
 | operator | string   | An address on the ZORA Protocol |
 
-<br/>
 
 ## Write Functions
+---
 
-All functions that are able to submit transactions to interact with the ZORA NFT smart contracts
+All the functions that are able to submit transactions to interact with the ZORA NFT smart contracts
 
 ### mint
 

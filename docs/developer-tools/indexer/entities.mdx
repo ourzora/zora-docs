@@ -11,7 +11,7 @@ You can begin making queries in our hosted GraphQL [playground](https://ourZORA.
 ## Ethereum Data
 
 The ZORA Indexer stores the raw data for Transactions and Event Logs that it finds "interesting", namely transactions that interact
-with the ZORA Protocol, and transactions that result in a transfer of an ERC-721 NFT Contract it is indexing.
+with the ZORA Protocol and transactions that result in a transfer of an ERC-721 NFT contract.
 
 
 ### Transaciton
@@ -68,9 +68,9 @@ with the ZORA Protocol, and transactions that result in a transfer of an ERC-721
 
 ## Aggregated Tables
 
-Indexer keeps track of higher level, aggregated tables that represent that most up to date state of an object. At
+The Indexer keeps track of aggregated tables that represent the most up to date state of an object. At
 any block number, the aggregate view will mirror the view of the object on the blockchain. `Token`, `Media`, and
-`Auction` are the three aggregate tables. Read more about them below.
+`Auction` are the three aggregate tables.
 
 ### Token
 Non ZORA ERC-721 NFTs
@@ -182,13 +182,13 @@ ZORA Auction House - view [AuctionHouse.sol](https://github.com/ourZORA/auction-
 
 ## Event Tables
 
-Protocol event tables are generally named by the format:
+Protocol event tables are generally named by the following format:
 
 `<contract name><exact name for the event>Event.`
 
 * ZORA's Auction House events have the prefix `Auction` 
 * ZORA Media and Market events have prefixes `Media` and `Market`
-* Generic 721 events have the prefix `Token`. 
+* Generic ERC-721 events have the prefix `Token`. 
 
 The field names should match the specific contract
 event field names (exception: a struct in an event will be flattened into all the struct field names), plus there are several
@@ -247,7 +247,7 @@ other useful fields that all `Event` tables share.
 ```
 
 `TokenMetadata` stores a metadata JSON blob and information associating it with a specific token. There may be many `TokenMetadata`
-entries with the same URI and thus same metadata.
+entries with the same URI and thus the same metadata.
 
 ```graphql
 {

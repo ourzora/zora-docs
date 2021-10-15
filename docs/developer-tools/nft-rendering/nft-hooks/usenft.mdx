@@ -9,16 +9,16 @@ Fetches all data for a ERC-721 NFT
 
 ---
 
-This hook fetches data for a given ERC-721 NFT and takes in the `contractAddress` and `tokenId`. 
+This hook fetches data for a given ERC-721 NFT and takes in a `contractAddress` and `tokenId`. 
 
 :::note
 
-You can use the `NFTFetchConfiguration` wrapper component to fetch data on other networks
+You can use the `NFTFetchConfiguration` wrapper component to fetch data on other networks.
 
 :::
 
-The main types are within the `data.nft` object which contains the on-chain NFT data. 
-The pricing information is in `data.pricing` which corresponds to data on-chain for ZORA's Auction House and the
+The `data.nft` object contains the majority of the on-chain NFT data. 
+The pricing information is in `data.pricing` which corresponds to on-chain data for ZORA's Auction House and the
 perpetual zNFT auctions.
 
 ```ts
@@ -122,7 +122,7 @@ type useZNFT = (id: string) => {
 }
 ```
 
-Alternatively, the same information can be fetched using the base `MediaFetchAgent` for server-side or non-react use:
+Alternatively, the same information can be fetched using the base `MediaFetchAgent` for server-side or non-React use:
 
 ```ts
 import {MediaFetchAgent, Networks} from "@zoralabs/nft-hooks";

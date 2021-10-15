@@ -12,21 +12,23 @@ An introduction to the smart contracts that comprise the Zora Protocol
 ---
 
 ### ZORA NFT Contracts
-ZORA NFTs extends the base ERC-721 NFT Standard and allows anyone to easliy mint their own NFTs. 
-NFTs minted from this contract are known as `zNFTs` (aka cryptomedia) and have a few addtional characterists that make them different from regular ERC-721s.
+ZORA NFTs extends the base ERC-721 NFT standard and allows anyone to easliy mint their own NFTs. 
+NFTs minted from this contract are known as `zNFTs` (aka cryptomedia) and have a few addtional characterists.
 
 ##### ZORA NFTs vs Regular NFTs
 - zNFTs separate the content from the metadata by having both a `metadataURI` and a `contentURI`
-- zNFTs store a hash of both the metadata and content
-- The URI linking to external storage can be updated, but a zNFT's metadata and content hashes can not
-- Both the metadata and content storage location can be updated without having to worry about the integrity of the data
+- zNFTs store a hash of both the metadata and the content
+- The `contentURI` and `metadataURI` linking to external storage can be updated, but a zNFT's metadata and content hashes can not
 
-ZORA NFTs are composed of two contracts. 
-The `Media` contract mints and stores token data. The `Market` contract allows for built-in market functionality for zNFTs. 
+##### ZORA NFTs are composed of two contracts 
+- The `Media` contract which mints and stores token data 
+- The `Market` contract which allows for built-in market functionality for zNFTs. 
 
 ![have a look](https://raw.githubusercontent.com/ourzora/core/master/architecture.png)
 
 The source code for both contracts can be found in this [Github repository](https://github.com/ourzora/core).
+
+#### Media and Market Addresses
 
 | **Contract** | **Network**    | **Address**                                |
 | ------------ | -------------- | ------------------------------------------ |
@@ -65,9 +67,9 @@ npm i -S @zoralabs/core
 <br/>
 
 ### Auction House
-The ZORA Auction House is an open and permissionless system that allows any creator, community, platform or DAO to create and run their own curated auction houses for any ERC-721 compliant NFT.
+The ZORA Auction House contract is an open and permissionless system that allows any creator, community, platform or DAO to create and run their own curated auction houses for any ERC-721 NFT.
 
-These auction houses run reserve timed auctions for NFTs, with special emphasis given to the role of curators. If an owner of an NFT chooses to list with a curator, that curator can charge a curator fee and has to approve any auction before it commences with that curators auction house. 
+These auction houses run reserve timed auctions, with special emphasis given to the role of curators. If an owner of an NFT chooses to list with a curator, that curator can charge a curator fee and has to approve any auction before it commences with that curators auction house. 
 Anyone is able to run an NFT auction on the protocol with no fee by simply not specifying a curator.
 
 The duration of auction can be set to any length, but if a bid is placed within the last 15 minutes, the countdown will reset back to 15 minutes. 
@@ -77,6 +79,7 @@ This 15 minute reset window can continue as many times as necessary until the ti
 
 The source code is available in this [Github repository](https://github.com/ourzora/auction-house). 
 
+#### Auction House Addresses
 | **Network**    | **Address**                                |
 | -------------- | ------------------------------------------ |
 | Eth Mainnet        | 0xE468cE99444174Bd3bBBEd09209577d25D1ad673 |

@@ -12,7 +12,7 @@ the broader NFT ecosystem.
 
 <!-- **[Indexer Diagram goes here]** -->
 
-The Indexer watches the blockchain and regularly fetches and refreshes NFT metadata data. This makes it easy to query NFTs by their
+The Indexer watches the blockchain and regularly fetches and refreshes NFT metadata data which makes it easy to query NFTs by their
 metadata properties. The Indexer currently only watches `Ethereum Mainnet` and `Rinkeby Testnest` but will be extended to include other EVM networks in the future.
 
 :::note
@@ -34,7 +34,7 @@ If you are making an unauthenticated request, make sure to include `X-Hasura-Rol
 
 ### Fetching any NFT
 
-You can directly query for any ERC-721 NFT by querying the `Token` table. The example query fetches the first Blitmap 100 `tokenIds`. 
+You can directly query for any ERC-721 NFT by querying the `Token` table. The example query below fetches the first 100 Blitmap `tokenIds` . 
 You can check to see which NFT contracts are supported by querying the `TokenContract` table.
 
 ```gql
@@ -76,7 +76,7 @@ out of the ZORA Media contract.
 
 ### Fetching a ZORA Auction
 
-You can query for a ZORA Auction by using the `Auction` table. The example query fetches the auctions that have had
+You can query for a ZORA Auction by using the `Auction` table. The example query below fetches the auctions that have had
 their reserve price met, but have not been finalized (listed in order of `auctionId`).
 
 ```gql

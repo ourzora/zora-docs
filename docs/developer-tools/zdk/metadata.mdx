@@ -8,17 +8,17 @@ Formats metadata for minting ZORA NFTs
 
 ---
 
-In the original ERC-721 specification, it was suggested that tokens should link to a metadata URI that contains a link to the specific content of the token. 
+In the original ERC-721 specification, it was suggested that tokens should link to a `metadataURI` that contains a link to the specific content of the NFT. 
 However, in the event that the a creator needed to change the storage location there would be no way to ensure the integrity of both the metadata and content.
 
-ZORA NFTs explicitly separates content and metadata URIs and provides a `sha256` checksum for each. 
+ZORA NFTs explicitly separates `contentURIs` and `metadataURIs` and provides a `sha256` checksum for each. 
 This allows anyone the ability to quickly verify the integrity of the data at any time if a URI has been updated.
 
 In order to allow the ZORA community to integrate with your metadata schema, we provide a [media metadata schema repository](https://github.com/ourzora/media-metadata-schemas),
 that can serve as the source of truth for community supported metadata schemas. They are defined as JSON schemas,
 and generate Types, Parsers, Generators, and Validators that are automatically served through the ZDK.
 
-## Generate Metadata
+### Generate Metadata
 
 Given a schema version and some unformatted JSON, this method generates a valid, minified, and alphabetized JSON object.
 
@@ -35,7 +35,7 @@ const metadata = {
 const minified = generateMetadata(metadata.version, metadata)
 ```
 
-## Validate Metadata
+### Validate Metadata
 
 ```typescript
 import { validateMetadata } from '@zoralabs/zdk'
@@ -50,7 +50,7 @@ const metadata = {
 const isValid = validateMetadata(metadata.version, metadata)
 ```
 
-## Parse Metadata
+### Parse Metadata
 
 ```typescript
 import { parseMetadata } from '@zoralabs/zdk'
@@ -66,11 +66,11 @@ const metadata = `
 const parsed = parseMetadata('zora-20210101', metadata)
 ```
 
-## Define a new Schema
+### Define a new Schema
 
 To define a new schema, visit the [metadata schema repository](https://github.com/ourzora/media-metadata-schemas) and follow the instructions in the README.
 
-## Further Reading
+### Further Reading
 
 - [JSON-schema spec](https://datatracker.ietf.org/doc/html/draft-zyp-json-schema-04)
 - [JSON-schema wiki](https://github.com/json-schema/json-schema/wiki)
