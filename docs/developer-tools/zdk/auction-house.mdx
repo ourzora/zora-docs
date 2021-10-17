@@ -5,7 +5,7 @@ sidebar_position: 3
 custom_edit_url: https://github.com/ourzora/zora-docs/blob/main/docs/developer-tools/zdk/auction-house.mdx
 ---
 
-Tools for selling an ERC-721 NFT
+##### Tools for selling an ERC-721 NFT
 
 ---
 
@@ -145,7 +145,7 @@ const wallet = Wallet.createRandom()
 const auctionHouse = new AuctionHouse(wallet, 1)
 const zora = new Zora(wallet, 1)
 
-// 2. Approve the media to be placed on auction
+// 2. Approve the NFT to be placed on auction
 const approvalTx = await zora.approve(auctionHouse.address, tokenId)
 
 // 3. Await confirmation of the approval

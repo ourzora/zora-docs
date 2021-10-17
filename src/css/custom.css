@@ -168,7 +168,7 @@ h2 {
   font-family: 'Inter';
   font-style: normal;
   font-weight: 600;
-  font-size: 40px;
+  font-size: 35px;
   line-height: 50px;
   color: #f2f2f2;
 }
@@ -177,8 +177,8 @@ h3 {
   font-family: 'Inter';
   font-style: normal;
   font-weight: 500;
-  font-size: 35px;
-  line-height: 50px;
+  font-size: 25px;
+  line-height: 35px;
   color: #f2f2f2;
 }
 
@@ -186,8 +186,9 @@ h4 {
   font-family: 'Inter';
   font-style: normal;
   font-weight: 500;
-  font-size: 30px;
-  line-height: 40px;
+  font-size: 20px;
+  line-height: 30px;
+  letter-spacing: -0.5px;
   color: #f2f2f2;
 }
 
