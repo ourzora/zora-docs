@@ -270,6 +270,10 @@ table tr {
   border: 1px solid hsla(0, 0%, 100%, 0.05);
 }
 
+.row {
+  margin: 0px;
+}
+
 .row .col {
   margin-right: auto;
   margin-left: auto;
