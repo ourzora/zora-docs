@@ -38,6 +38,6 @@ export const toolsCardsContent = [
     toolsTitle: 'NFT Components',
     toolsVersion: 'v0.1.12',
     toolsParagraph: 'React components that allow for drop-in rendering of NFTs',
-    toolsLink: 'https://github.com/ourzora/nft-components',
+    toolsLink: '/docs/developer-tools/nft-rendering/introduction#nft-components',
   },
 ]

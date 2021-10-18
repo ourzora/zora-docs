@@ -86,11 +86,11 @@ button {
 }
 
 .shader-canvas {
-  position: fixed;
   top: 0;
   backface-visibility: hidden;
   perspective: 1000;
   -webkit-perspective: 1000;
+  height: 550px;
 }
 
 .menu__link {
@@ -270,6 +270,10 @@ table tr {
   border: 1px solid hsla(0, 0%, 100%, 0.05);
 }
 
+.row {
+  margin: 0px;
+}
+
 .row .col {
   margin-right: auto;
   margin-left: auto;
@@ -290,5 +294,17 @@ table tr {
 @media only screen and (max-width: 996px) {
   .navbar--fixed-top {
     height: 60px;
+  }
+}
+
+@media only screen and (max-width: 1024px) {
+  .shader-canvas {
+    height: 412px;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .shader-canvas {
+    height: 388px;
   }
 }

@@ -169,12 +169,7 @@ function NavbarMobileSidebar({ sidebarShown, toggleSidebar }) {
               />
             ))}
           </ul>
-          <a
-            href="https://zora.co/"
-            className={styles.zoraCoTextA}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          <a href="https://zora.co/" target="_blank" rel="noopener noreferrer">
             <p className={styles.zoraCoText}>Use Zora -&gt; </p>
           </a>
           <a
@@ -247,7 +242,7 @@ function Navbar() {
           {leftItems.map((item, i) => (
             <NavbarItem {...item} key={i} className={styles.navbar__item__style} />
           ))}
-          {!mobileSidebar.shouldRender && <SearchBar />}
+          <SearchBar />
         </div>
         {!mobileSidebar.shouldRender && (
           <>

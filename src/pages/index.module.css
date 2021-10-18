@@ -11,8 +11,6 @@
   --ifm-color-primary: black;
   --ifm-hero-text-color: white;
   background: #141414fa;
-  z-index: 1;
-  margin-top: 550px;
   width: 100%;
   padding-left: 30px;
   padding-right: 30px;
@@ -25,6 +23,7 @@
   padding-bottom: 50px;
   -webkit-transform-style: preserve-3d;
   transform-style: preserve-3d;
+  margin-top: -10px;
 }
 
 .layoutFlexBox {
@@ -130,7 +129,6 @@
 /* Tablet */
 @media only screen and (max-width: 1024px) {
   .layout {
-    margin-top: 412px;
     padding-left: 30px;
     padding-right: 30px;
     padding-bottom: 39px;
@@ -191,7 +189,6 @@
 
 @media only screen and (max-width: 800px) {
   .layout {
-    margin-top: 388px;
     padding-left: 20px;
     padding-right: 20px;
     padding-bottom: 30px;

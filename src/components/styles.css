@@ -136,12 +136,13 @@
 
 .projectCard {
   width: auto;
-  height: auto;
+  height: 100%;
   box-sizing: border-box;
   filter: drop-shadow(0px 5px 15px rgba(0, 0, 0, 0.12));
   overflow: hidden;
   border-radius: 20px;
-  outline: 2px solid rgba(255, 255, 255, 0.02);
+  -webkit-border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .projectCardImage {
@@ -159,6 +160,7 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 27px;
+  grid-auto-rows: 1fr;
 }
 
 a:hover {
@@ -221,6 +223,7 @@ a:hover {
 
   .projectCard {
     border-radius: 10px;
+    -webkit-border-radius: 10px;
   }
 
   .projectContainer {
