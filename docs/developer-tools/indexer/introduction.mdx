@@ -39,7 +39,7 @@ If you are making an unauthenticated request, make sure to include `X-Hasura-Rol
 You can directly view ERC-721 NFTs by querying the `Token` table. The example query below fetches the first 100 Blitmap `tokenIds` .
 Querying the `TokenContract` table will return all the currently supported NFT contract addresses.
 
-```gql
+```graphql
 {
   Token(
     where: { address: { _eq: "0x8d04a8c79cEB0889Bdd12acdF3Fa9D207eD3Ff63" } }
@@ -62,7 +62,7 @@ Querying the `TokenContract` table will return all the currently supported NFT c
 You can use the `Media` table to fetch information on ZORA NFTs (zNFTs). The example query below fetches the last 100 NFTs minted
 out of the ZORA Media contract.
 
-```gql
+```graphql
 {
   Media(order_by: { tokenId: desc }, limit: 100) {
     tokenId
@@ -85,7 +85,7 @@ out of the ZORA Media contract.
 You can query for a ZORA Auction by using the `Auction` table. The example query below fetches the auctions that have had
 their reserve price met, but have not been finalized (listed in order of `auctionId`).
 
-```gql
+```graphql
 {
   Auction(
     where: { lastBidder: { _is_null: false }, _not: { endedEvent: {} } }

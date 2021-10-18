@@ -14,32 +14,32 @@ You can begin making queries in our hosted GraphQL [playground](https://ourZORA.
 The ZORA Indexer stores the raw data for `Transactions` and `Event Logs` that it finds "interesting", namely transactions that interact
 with the ZORA Protocol or that result in a transfer of an ERC-721 NFT.
 
-### Transaciton
+### Transaction
 
 ```graphql
 {
   Transaction {
-  # Fields
-  blockHash
-  blockNumber
-  blockTimestamp
-  failureReason
-  from
-  gas
-  gasPrice
-  hash
-  input
-  network
-  nonce
-  status
-  to
-  transactionIndex
-  value
+    # Fields
+    blockHash
+    blockNumber
+    blockTimestamp
+    failureReason
+    from
+    gas
+    gasPrice
+    hash
+    input
+    network
+    nonce
+    status
+    to
+    transactionIndex
+    value
 
-  # Relationships
-  eventLogs
-  <event table name>Events # i.e. auctionApprovalUpdatedEvents)
-  mediaMints # see MediaMint table for context
+    # Relationships
+    eventLogs
+    <event table name>Events # i.e. auctionApprovalUpdatedEvents)
+    mediaMints # see MediaMint table for context
   }
 }
 ```
@@ -49,21 +49,21 @@ with the ZORA Protocol or that result in a transfer of an ERC-721 NFT.
 ```graphql
 {
   EventLog {
-  # Fields
-  address
-  blockHash
-  blockNumber
-  blockTimestamp
-  data
-  id # format: <transactionHash>-<logIndex> i.e. 0xbd7c2c6e978cc78e826ddc9404c769b6151cf762ac43e78bafade98b7d3dd5e1-24
-  logIndex
-  topics
-  transactionHash
+    # Fields
+    address
+    blockHash
+    blockNumber
+    blockTimestamp
+    data
+    id # format: <transactionHash>-<logIndex> i.e. 0xbd7c2c6e978cc78e826ddc9404c769b6151cf762ac43e78bafade98b7d3dd5e1-24
+    logIndex
+    topics
+    transactionHash
 
-  # Relationships
-  <event table name>Event # i.e. auctionApprovalUpdatedEvent
-  mediaMints # see MediaMint table for context
-  transaction
+    # Relationships
+    <event table name>Event # i.e. auctionApprovalUpdatedEvent
+    mediaMints # see MediaMint table for context
+    transaction
   }
 }
 ```
@@ -78,30 +78,30 @@ any block number, the aggregate view will mirror the view of the object on the b
 
 Non ZORA ERC-721 NFTs
 
-```gql
+```graphql
 {
   Token {
-  # Fields
-  address # contract address
-  id # format: <address>-<tokenId> i.e. 0x7C2668BD0D3c050703CEcC956C11Bd520c26f7d4-241
-  metadataId # this is a uuid to make the metadata relationship possible
-  mintTransferEventId # same format as EventLog id, to make mintTransferEvent relationship possible
-  minter # same as mintTransferEvent.to
-  name
-  owner
-  supportsMetadata
-  symbol
-  tokenId
-  tokenURI
+    # Fields
+    address # contract address
+    id # format: <address>-<tokenId> i.e. 0x7C2668BD0D3c050703CEcC956C11Bd520c26f7d4-241
+    metadataId # this is a uuid to make the metadata relationship possible
+    mintTransferEventId # same format as EventLog id, to make mintTransferEvent relationship possible
+    minter # same as mintTransferEvent.to
+    name
+    owner
+    supportsMetadata
+    symbol
+    tokenId
+    tokenURI
 
-  // Relationships
-  auctions // all Auctions for this token
-  <event table name>Event // i.e. auctionApprovalUpdatedEvent
-  media // ZORA Media info (only available for ZORA NFTs)
-  metadata // metadata json blob, if exists
-  mintTransferEvent // TokenTransferEvent where .from is the 0x00... address
-  tokenContract // TokenContract has information like name and symbol
-  transferEvents // all TokenTransferEvents
+    # Relationships
+    auctions # all Auctions for this token
+    <event table name>Event # i.e. auctionApprovalUpdatedEvent
+    media # ZORA Media info (only available for ZORA NFTs)
+    metadata # metadata json blob, if exists
+    mintTransferEvent # TokenTransferEvent where .from is the 0x00... address
+    tokenContract # TokenContract has information like name and symbol
+    transferEvents # all TokenTransferEvents
   }
 }
 ```
@@ -110,7 +110,7 @@ Non ZORA ERC-721 NFTs
 
 ZORA NFTs - view [Media.sol](https://github.com/ourZORA/core/blob/master/contracts/Media.sol) for context
 
-```gql
+```graphql
 {
   Media {
     # Fields
@@ -147,39 +147,39 @@ ZORA NFTs - view [Media.sol](https://github.com/ourZORA/core/blob/master/contrac
 
 ZORA Auction House - view [AuctionHouse.sol](https://github.com/ourZORA/auction-house/blob/main/contracts/AuctionHouse.sol) contract for more context
 
-```gql
-// many Auction fields and relationships can be null depending on the state of the auction
+```graphql
+# many Auction fields and relationships can be null depending on the state of the auction
 {
   Auction {
-  # Fields
-  amountTokenOwnerReceived
-  approved
-  auctionCurrency
-  auctionId
-  curator
-  curatorFee
-  curatorFeePercentage
-  duration # always current with AuctionDurationExtended events
-  expiresAt - firstBidTime + current duration
-  firstBidTime
-  lastBidAmount
-  lastBidder
-  reservePrice
-  tokenContract
-  tokenId
-  tokenOwner
-  winner
+    # Fields
+    amountTokenOwnerReceived
+    approved
+    auctionCurrency
+    auctionId
+    curator
+    curatorFee
+    curatorFeePercentage
+    duration # always current with AuctionDurationExtended events
+    expiresAt - firstBidTime + current duration
+    firstBidTime
+    lastBidAmount
+    lastBidder
+    reservePrice
+    tokenContract
+    tokenId
+    tokenOwner
+    winner
 
-  // Relationships
-  approvalEvents // array of AuctionApprovalEvents
-  bidEvents // array of AuctionBidEvents
-  canceledEvent // single AuctionCanceledEvent
-  createdEvent // single AuctionCreatedEvent
-  durationExtendedEvents // array of AuctionDurationExtendedEvents
-  endedEvent // single AuctionEndedEvent
-  media // single Media object if the token is a ZORA NFT
-  reservePriceUpdatedEvents // array of AuctionReservePriceUpdatedEvents
-  token // single Token object
+    # Relationships
+    approvalEvents # array of AuctionApprovalEvents
+    bidEvents # array of AuctionBidEvents
+    canceledEvent # single AuctionCanceledEvent
+    createdEvent # single AuctionCreatedEvent
+    durationExtendedEvents # array of AuctionDurationExtendedEvents
+    endedEvent # single AuctionEndedEvent
+    media # single Media object if the token is a ZORA NFT
+    reservePriceUpdatedEvents # array of AuctionReservePriceUpdatedEvents
+    token # single Token object
   }
 }
 ```
@@ -198,37 +198,37 @@ The field names should match the specific contract
 event field names (exception: a struct in an event will be flattened into all the struct field names), plus there are several
 other useful fields that all `Event` tables share.
 
-```gql
-// ZORA AuctionHouse AuctionBid event - see contract for more context
+```graphql
+# ZORA AuctionHouse AuctionBid event - see contract for more context
 
 {
   AuctionBidEvent {
-  # common Event fields
-  address # contract that emitted event
-  blockNumber
-  blockTimestamp
-  eventLogId
-  id # same format as EventLog, so same as eventLogId
-  logIndex
-  transactionHash
+    # common Event fields
+    address # contract that emitted event
+    blockNumber
+    blockTimestamp
+    eventLogId
+    id # same format as EventLog, so same as eventLogId
+    logIndex
+    transactionHash
 
-  # event-specific fields
-  auctionId
-  extended
-  firstBid
-  sender
-  tokenContract
-  tokenId
-  value
+    # event-specific fields
+    auctionId
+    extended
+    firstBid
+    sender
+    tokenContract
+    tokenId
+    value
 
-  # common Event relationships
-  eventLog
-  transaction
-  media
-  token
+    # common Event relationships
+    eventLog
+    transaction
+    media
+    token
 
-  # event-specific relationships
-  auction # all Auction__ events have this
+    # event-specific relationships
+    auction # all Auction__ events have this
   }
 }
 ```
