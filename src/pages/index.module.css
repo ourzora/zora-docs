@@ -11,8 +11,6 @@
   --ifm-color-primary: black;
   --ifm-hero-text-color: white;
   background: #141414fa;
-  z-index: 1;
-  margin-top: 550px;
   width: 100%;
   padding-left: 30px;
   padding-right: 30px;

@@ -86,11 +86,12 @@ button {
 }
 
 .shader-canvas {
-  position: fixed;
+  /* position: fixed; */
   top: 0;
   backface-visibility: hidden;
   perspective: 1000;
   -webkit-perspective: 1000;
+  height: 550px;
 }
 
 .menu__link {
