@@ -43,6 +43,7 @@ module.exports = {
     algolia: {
       apiKey: 'ab2d24b407e8c92887c8ad13d2c2f6e7',
       indexName: 'prod_DOCS',
+      appId: 'Y3X8RQAJBE',
     },
     footer: {
       style: 'dark',
