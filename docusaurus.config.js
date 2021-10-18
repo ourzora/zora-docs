@@ -41,8 +41,9 @@ module.exports = {
       additionalLanguages: ['solidity', 'graphql'],
     },
     algolia: {
-      apiKey: 'YOUR_API_KEY',
-      indexName: 'YOUR_INDEX_NAME',
+      apiKey: process.env.API_KEY,
+      indexName: process.env.INDEX_NAME,
+      appId: process.env.APPLICATION_ID,
     },
     footer: {
       style: 'dark',
