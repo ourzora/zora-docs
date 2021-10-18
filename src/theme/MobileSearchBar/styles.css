@@ -66,6 +66,12 @@
   margin-top: 10px;
 }
 
+@media only screen and (max-width: 996px) {
+  .DocSearch-Button {
+    display: none;
+  }
+}
+
 @media screen and (max-width: 375px) {
   .navbar__items navbar__items--center {
     display: none;
