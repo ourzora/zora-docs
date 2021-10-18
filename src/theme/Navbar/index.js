@@ -247,7 +247,6 @@ function Navbar() {
           {leftItems.map((item, i) => (
             <NavbarItem {...item} key={i} className={styles.navbar__item__style} />
           ))}
-          {!mobileSidebar.shouldRender && <SearchBar />}
         </div>
         {!mobileSidebar.shouldRender && (
           <>
