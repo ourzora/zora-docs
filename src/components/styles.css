@@ -165,10 +165,6 @@ a:hover {
   text-decoration: none;
 }
 
-.shader-canvas {
-  height: 800px;
-}
-
 /* Tablet */
 @media only screen and (max-width: 1024px) {
   .getting-started-card {
