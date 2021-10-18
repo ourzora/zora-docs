@@ -81,6 +81,7 @@ vec3 mapColor(vec3 c) {
 void main() {
     mediump vec2 st = gl_FragCoord.xy/u_resolution.xy;
     st.x *= u_resolution.x/u_resolution.y;
+    st *= 0.7;
     lowp vec3 color = vec3(0.0);
     vec2 rand = vec2(random2(st) + u_time);
     float seed = 111. * random2(vec2(u_seed)).y;
