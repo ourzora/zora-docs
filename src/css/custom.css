@@ -44,6 +44,7 @@ html[data-theme='dark'] {
   --ifm-navbar-link-hover-color: #f2f2f2;
   --ifm-navbar-background-color: rgba(20, 20, 20, 0.8);
   --ifm-table-stripe-background: rgba(255, 255, 255, 0.03);
+  --docsearch-hit-active-color: #000000;
   background-image: linear-gradient(0deg, hsla(0, 0%, 8%, 0.92), hsla(0, 0%, 8%, 0.92)),
     radial-gradient(47.6% 47.6% at 50% 50%, hsla(0, 0%, 8%, 0) 64.49%, #141414 100%),
     radial-gradient(
