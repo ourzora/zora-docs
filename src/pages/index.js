@@ -11,7 +11,7 @@ export default function Home() {
   return (
     <Layout>
       <ShaderComponent />
-      <div>
+      <div key="homepage-logo-wrapper">
         <HomepageLogo className={styles.logoText} />
         <h2 className={styles.headerSubtitle}>FOR DEVELOPERS</h2>
       </div>
