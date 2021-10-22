@@ -86,8 +86,12 @@ button {
   background-color: var(--ifm-color-emphasis-200) !important;
 }
 
-.shader-canvas,
 .shader-placeholder {
+  top: 0;
+  height: 550px;
+}
+
+.shader-canvas {
   top: 0;
   backface-visibility: hidden;
   perspective: 1000;
@@ -300,15 +304,21 @@ table tr {
 }
 
 @media only screen and (max-width: 1024px) {
-  .shader-canvas,
   .shader-placeholder {
+    height: 412px;
+  }
+
+  .shader-canvas {
     height: 412px;
   }
 }
 
 @media only screen and (max-width: 800px) {
-  .shader-canvas,
   .shader-placeholder {
+    height: 388px;
+  }
+
+  .shader-canvas {
     height: 388px;
   }
 }
