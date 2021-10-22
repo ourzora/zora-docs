@@ -99,6 +99,10 @@ button {
   height: 550px;
 }
 
+.shader-canvas .shader-placeholder {
+  display: none;
+}
+
 .menu__link {
   color: #808080;
   margin-bottom: 15px;
