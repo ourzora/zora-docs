@@ -14,10 +14,11 @@ To create new ZORA NFT using the ZDK, you must call the `mint` function. The `mi
 
 ```typescript
 const metadata = {
-  version: 'zora-20200101', // The version of metadata you are generating
+  version: 'zora-20210604', // The version of metadata you are generating
   name: someName,
   description: someDescription,
   mimeType: someMimeType, // Media type: audio, image, etc etc
+  image: "", // IPFS url for a preview image of the media on opensea
 }
 ```
 
@@ -44,11 +45,16 @@ blockchain it **cannot** be changed. To generate this hash use any of the sha256
 ```typescript
 import { constructMediaData, sha256FromBuffer, generateMetadata } from '@zoralabs/zdk'
 
-const metadataJSON = generateMetadata('zora-20210101', {
+const metadataJSON = generateMetadata('zora-20210604', {
   description: '',
   mimeType: 'text/plain',
   name: '',
-  version: 'zora-20210101',
+  // to make token work with opensea previews:
+  // include {image: "preview_image_ipfs"}
+  //  and {animation: "preview_video_audio_ipfs"} if there is a video or audio associated
+  // to show both an audio player and image, 
+  //  include the animation as audio and image as the poster image
+  version: 'zora-20210604',
 })
 
 const contentHash = sha256FromBuffer(Buffer.from('Ours Truly,'))
@@ -113,13 +119,15 @@ async function mintZNFT({
   mimeType: string,
   name: string,
   description: string,
-  previewImageUrl?: string = ''
+  previewImageUrl?: string
+  animationUrl?: string
 }) {
 
-  const metadataJSON = generateMetadata('zora-20210101', {
+  const metadataJSON = generateMetadata('zora-20210604', {
     description,
     mimeType: 'text/plain',
-    image_url: previewImageUrl
+    image: previewImageUrl,
+    animation_url: animationUrl,
     name,
     version: 'zora-20210604',
   })
