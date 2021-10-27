@@ -98,7 +98,7 @@ npm install @zoralabs/nft-hooks --save
 import { useZNFT, useNFTMetadata } from '@zoralabs/nft-hooks'
 
 function MyNFT() {
-  const { data } = useZNFT('20')
+  const { data } = useNFT('0xabEFBc9fD2F806065b4f3C237d4b59D9A97Bcac7', '20')
   const { metadata } = useNFTMetadata(data && data.metadataURI)
 
   return (
