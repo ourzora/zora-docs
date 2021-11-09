@@ -12,12 +12,56 @@ import TabItem from '@theme/TabItem'
 
 ---
 
-ZORA provides additional developer tools for making it easy to display NFTs.
-These tools assume a React frontend and are written in `TypeScript`.
+ZORA provides multiple tools for making it easy to display NFTs.
+
+##### Displaying Options
+- [NFT Iframe:](./introduction#nft-iframe) Embed NFTs into your own website
+- [NFT Components:](./introduction#nft-components) React components that can be used to render NFT content
+- [NFT Hooks:](./introduction#nft-hooks) Hooks for fetching NFT data
+
+NFT Components assumes a `React` frontend and NFT Hooks is written in `TypeScript`.
+
+---
+
+
+## NFT Iframe 
+Embed any NFT shown on [zora.co](https://zora.co/) into your own website. All iframes are mobile responsive and are compatible with text, images, videos, and audio.
+
+You can generate an iframe by entering in the [zora.co URL](https://zora.co/collections/zora/5846) for the NFT that you would like to display at [embed.zora.co](https://embed.zora.co/).
+
+<iframe src="https://embed.zora.co/0xabEFBc9fD2F806065b4f3C237d4b59D9A97Bcac7/5846?title=false&controls=false&loop=false&autoplay=false"
+  width="325" 
+  height="325" 
+  scrolling="no" 
+  allowtransparency="true" 
+  allowfullscreen="true" 
+  sandbox="allow-pointer-lock allow-same-origin allow-scripts allow-popups">
+</iframe>
+    
+<br/>
+<br/>
+
+```html
+<div style="max-width: 960px; margin: 0 auto; position: relative;">
+  <style>.nft-embed-wrapper > iframe {width: 100%!important; height:100%!important; border: 0; position: absolute; top: 0; left: 0;}</style>
+  <div class="nft-embed-wrapper" style="position: relative; width:100%; height:0; padding-bottom: 100%;">
+    <iframe 
+      src="https://embed.zora.co/0xabEFBc9fD2F806065b4f3C237d4b59D9A97Bcac7/5846?title=false&controls=false&loop=false&autoplay=false" width="100%" 
+      height="100%" 
+      scrolling="no" 
+      allowtransparency="true" 
+      allowfullscreen="true" 
+      sandbox="allow-pointer-lock allow-same-origin allow-scripts allow-popups">
+    </iframe>
+  <div>
+</div>
+```
+
+---
 
 ## NFT Components
 
-This library is made up of React components that can be used to render ERC-721 NFTs.
+This library is made up of `React` components that can be used to render ERC-721 NFTs.
 Default styling and fetching URLs are included with the library along with caching mechanisms and the ability to easily customize strings, render components, and add different styling.
 
 Links direct to ZORA.co interfaces, but can be overridden by building out the functionality with the [ZDK](../../../docs/developer-tools/zdk/introduction).
@@ -49,17 +93,18 @@ npm install @zoralabs/nft-components --save
 
 ##### NFT Preview Component
 
-![nftPreview](https://raw.githubusercontent.com/ourzora/zora-docs/main/static/img/nftPreview.png?token=AMVZ5RV66QAUQ3GRLI4OZ2LBOMRCK)
+![nftPreview](../../../static/img/nftPreview.png)
 
 ##### NFT Full Page Component
 
-![nftFullPage](https://raw.githubusercontent.com/ourzora/zora-docs/main/static/img/nftFullPage.png?token=AMVZ5RTNS4OCNCA2PSXB6S3BOMRCG)
+![nftFullPage](../../../static/img/nftFullPage.png)
 
-<br />
+
+---
 
 ## NFT Hooks
 
-This library consists of a data fetch class and associated React hooks to load NFT data.
+This library consists of a data fetch class and associated hooks to load NFT data.
 The API both batches and caches requests, meaning you can use the hooks across a page without needing to worry about
 significant performance penalties.
 

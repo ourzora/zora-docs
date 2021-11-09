@@ -110,7 +110,7 @@
 
 .headerSubtitle {
   position: absolute;
-  width: 168px;
+  width: 250px;
   height: 20px;
   top: 439px;
   left: 0;
@@ -123,6 +123,7 @@
   font-size: 20px;
   line-height: 100%;
   text-transform: uppercase;
+  text-align: center;
   color: #ffffff;
 }
 
@@ -179,7 +180,6 @@
   }
 
   .headerSubtitle {
-    width: 168px;
     height: 20px;
     top: 328px;
     line-height: 100%;
@@ -243,7 +243,6 @@
   }
 
   .headerSubtitle {
-    width: 168px;
     height: 20px;
     top: 269px;
     font-size: 20px;

@@ -13,7 +13,7 @@ export default function Home() {
       <ShaderComponent />
       <div>
         <HomepageLogo className={styles.logoText} />
-        <h2 className={styles.headerSubtitle}>FOR DEVELOPERS</h2>
+        <h2 className={styles.headerSubtitle}>THE NFT MARKETPLACE PROTOCOL</h2>
       </div>
       <main className={styles.layout}>
         <div className={styles.layoutFlexBox}>
@@ -26,7 +26,7 @@ export default function Home() {
           <GettingStartedCards />
           <p className={styles.tools}>Tools</p>
           <ToolsCards />
-          <p className={styles.projects}>Projects using ZORA</p>
+          <p className={styles.projects}>Projects building on ZORA</p>
           <ProjectsCards />
         </div>
       </main>
