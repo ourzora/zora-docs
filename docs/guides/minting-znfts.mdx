@@ -165,7 +165,7 @@ async function mintZNFT({
       (from: string, to: string, tokenId: BigNumber) => {
       if (
         from === "0x0000000000000000000000000000000000000000" &&
-        to === tx.from.address
+        to === tx.from
       ) {
         promise.resolve(tokenId);
       }
