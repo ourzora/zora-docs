@@ -22,6 +22,6 @@ export const ShaderComponent = () => {
     }, [])
     return <canvas className="shader-canvas" ref={canvasRef} />
   } else {
-    return <></>
+    return <div className="shader-canvas" />
   }
 }
