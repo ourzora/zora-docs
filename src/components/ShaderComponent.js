@@ -21,7 +21,7 @@ export const ShaderComponent = () => {
       canvas.current.style.width = '100%'
     }, [])
     return <canvas className="shader-canvas" ref={canvasRef} />
-  } else {
-    return <div className="shader-canvas" />
   }
+
+  return <canvas className="shader-canvas" />
 }
