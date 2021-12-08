@@ -41,9 +41,9 @@ module.exports = {
       additionalLanguages: ['solidity', 'graphql'],
     },
     algolia: {
-      apiKey: 'ab2d24b407e8c92887c8ad13d2c2f6e7',
-      indexName: 'prod_DOCS',
-      appId: 'Y3X8RQAJBE',
+      apiKey: 'ea9711802399936fa4d55c3033c4cfc5',
+      indexName: 'zora',
+      appId: 'BH4D9OD16A',
     },
     footer: {
       style: 'dark',
