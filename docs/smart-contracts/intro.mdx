@@ -1,0 +1,102 @@
+---
+id: zora-V3
+title: Introduction
+sidebar_position: 1
+---
+import Tabs from '@theme/Tabs'
+import TabItem from '@theme/TabItem'
+
+##### An introduction to the ZORA V3
+
+---
+ZORA V3 is comprised of a few core contracts and an ever expanding set of modules. 
+Modules are non-upgradable contracts that add specific functionality to the protocol. 
+
+* **Modules:** Contracts with specific functionality that can be added to ZORA V3
+
+* **Module Manager:** Manages which modules a user has approved to use their tokens and which new modules can be added to the protocol
+
+* **Transfer Helpers:** Handles transferring ERC-20 and ERC-721 tokens for the modules
+
+![zorav3diagram](../../static/img/zora_v3_diagram.png)
+
+<Tabs
+  defaultValue="yarn"
+  values={[
+    { label: 'Yarn', value: 'yarn', },
+    { label: 'NPM', value: 'npm', }
+  ]
+}>
+<TabItem value="yarn">
+
+```bash
+yarn add @zoralabs/v3
+```
+
+</TabItem>
+<TabItem value="npm">
+
+```bash
+npm i -S @zoralabs/v3
+```
+
+</TabItem>
+</Tabs>
+
+Source code for all ZORA V3 contracts can be found in this [Github repository](https://github.com/ourzora/v3).
+
+<br/>
+
+### ZORA V3 Core Addresses
+
+##### Ethereum Mainnet
+| **Contract**       | **Address**                                |
+| ------------       | ------------------------------------------ |
+| Module Manager     | 0x850A7c6fE2CF48eea1393554C8A3bA23f20CC401  |
+| ERC-721 TransferHelper  | 0x909e9efE4D87d1a6018C2065aE642b6D0447bc91  |
+| ERC-20 TransferHelper   | 0xCCA379FDF4Beda63c4bB0e2A3179Ae62c8716794  |
+
+##### Rinkeby Testnet
+| **Contract**       | **Address**                                |
+| ------------       | ------------------------------------------ |
+| Module Manager          | 0xa248736d3b73A231D95A5F99965857ebbBD42D85  |
+| ERC-721 TransferHelper  | 0x029AA5a949C9C90916729D50537062cb73b5Ac92  |
+| ERC-20 TransferHelper   | 0x408AbC192a5e9696085EBaFC7C5A88e19e66241b  |
+
+##### Ropsten Testnet
+| **Contract**       | **Address**                                |
+| ------------       | ------------------------------------------ |
+| Module Manager          | 0x3120f8A161bf8ae8C4287A66920E7Fd875b41805  |
+| ERC-721 TransferHelper  | 0x0afB6A47C303f85c5A6e0DC6c9b4c2001E6987ED  |
+| ERC-20 TransferHelper   | 0x88880cF1c91CD117040120813D28FEdC1CeCac41  |
+
+
+<br/>
+
+### Approving Tokens to V3
+Tokens must first be approved to their respective Transfer Helper contracts before being able to be used by the ZORA modules. 
+For example, all ERC-721 token approvals must be made to the ERC-721 Transfer Helper. 
+Once completed, the user will then need to approve which modules can access their approved tokens by submitting a transaction to the Module Manager.
+This means that a user will only need to approve each token contract to ZORA V3 once and then approve which ZORA modules can access to their tokens.
+
+<br/>
+
+### Approving Modules
+Users can either approve a single ZORA module or selectively batch approve certain modules. 
+Every time a new module is added to the protocol a user must opt in and approve the newly added module to access to their tokens.
+Approving a module means that all tokens that have been approved to the Trasnfer Helpers will be able to be accessed by that module.
+
+#### setApprovalForModule
+Approves a single module to access a user's tokens.
+```
+setApprovalForModule(address _moduleAddress, bool _approved)
+```
+
+#### setBatchApprovalForModules
+Approves a series of modules to access a user's tokens.
+```
+setBatchApprovalForModules(
+  address[] memory _moduleAddresses, 
+  bool _approved
+) 
+```

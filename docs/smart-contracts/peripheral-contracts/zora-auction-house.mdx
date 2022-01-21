@@ -1,0 +1,55 @@
+---
+id: zora-auction-house
+title: Auction House (V2)
+sidebar_position: 3
+---
+import Tabs from '@theme/Tabs'
+import TabItem from '@theme/TabItem'
+
+##### An introduction to the ZORA Auction House
+
+---
+
+The ZORA Auction House contract is an open and permissionless system that allows any creator, community, platform or DAO to create and run their own curated auction houses for any ERC-721 NFT.
+
+These auctions run as reserve timed auctions, with special emphasis given to the role of curators. If an owner of an NFT chooses to list with a curator, that curator can charge a curator fee and has to approve any auction before it commences with that curators auction house.
+Anyone is able to run an NFT auction on the protocol with no fee by simply not specifying a curator.
+
+The duration of auction can be set to any length, but if a bid is placed within the last 15 minutes, the countdown will reset back to 15 minutes.
+This 15 minute reset window can continue as many times as necessary until the timer has ended. In addition, every bid must be 5% higher than the current bid amount.
+
+The source code is available in this [Github repository](https://github.com/ourzora/auction-house).
+
+### Auction House Addresses
+
+| **Network**    | **Address**                                |
+| -------------- | ------------------------------------------ |
+| Eth Mainnet    | 0xE468cE99444174Bd3bBBEd09209577d25D1ad673 |
+| Rinkeby        | 0xE7dd1252f50B3d845590Da0c5eADd985049a03ce |
+| Polygon        | 0x48F1C97259Dc7f3900965391651693BaeBfd59A2 |
+| Polygon Mumbai | 0x6953190AAfD8f8995e8f47e8F014d0dB83E92300 |
+
+<Tabs
+  defaultValue="yarn"
+  values={[
+    { label: 'Yarn', value: 'yarn', },
+    { label: 'NPM', value: 'npm', }
+  ]
+}>
+<TabItem value="yarn">
+
+```bash
+yarn add @zoralabs/auction-house
+```
+
+</TabItem>
+<TabItem value="npm">
+
+```bash
+npm i -S @zoralabs/auction-house
+```
+
+</TabItem>
+</Tabs>
+
+---

@@ -73,7 +73,7 @@ module.exports = {
       {
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
-          editUrl: 'https://github.com/ourzora/zora-docs',
+          editUrl: 'https://github.com/ourzora/zora-docs/blob/main',
           remarkPlugins: [math],
           rehypePlugins: [katex],
         },
