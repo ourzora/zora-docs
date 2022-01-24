@@ -1,0 +1,134 @@
+---
+id: zora-v3-asks
+title: Asks 
+sidebar_position: 1
+---
+import Tabs from '@theme/Tabs'
+import TabItem from '@theme/TabItem'
+
+##### Sell an NFT at a specific asking price
+
+---
+The `Asks Module` allows anyone to sell a `ERC-721` NFT for a specific asking price. 
+You can view all of the `Ask V1 Module` contract code in this [Github Repo](https://github.com/ourzora/v3/blob/main/contracts/modules/Asks/V1/AsksV1.sol).
+
+### Asks V1 Addresses
+
+##### Ethereum Mainnet
+| **Contract**       | **Address**                                |
+| ------------       | ------------------------------------------ |
+| Asks V1            | 0xCe6cEf2A9028e1C3B21647ae3B4251038109f42a |
+| Royalty Engine     | 0x0385603ab55642cb4dd5de3ae9e306809991804f |
+
+##### Rinkeby Testnet
+| **Contract**       | **Address**                                |
+| ------------       | ------------------------------------------ |
+| Asks V1            | 0x850356153abBdFA1B473e2D86F2DF11a85B408B8 |
+| Royalty Engine     | 0x8d17687ea9a6bb6efA24ec11DcFab01661b2ddcd |
+
+##### Ropsten Testnet
+| **Contract**       | **Address**                                |
+| ------------       | ------------------------------------------ |
+| Asks V1            | 0x3e80102228295fFD120990d54e954C473EDE7280 |
+| Royalty Engine     | 0xFf5A6F7f36764aAD301B7C9E85A5277614Df5E26 |
+
+
+<br/>
+
+### Ask Structure
+An `ask` can be created by an owner or approved operator for any `ERC-721` token.
+There can only be one valid `ask` open at a time for a given NFT. 
+If an NFT is transferred to a new address the `ask` created by the previous address becomes invalid.
+However, if the NFT were to be transferred back to the address that created the ask it would be valid again. 
+
+
+* **seller:** The owner or approved address for an NFT
+* **sellerFundsRecipient:** The address to send funds to once the NFT is sold
+* **askCurrency:** ERC-20 token to accept, or address(0) for ETH
+* **findersFeeBps:** The bps of the sale amount to be sent to the referrer of the sale
+* **askPrice:** The sale price
+
+```
+struct Ask {
+  address seller;
+  address sellerFundsRecipient; 
+  address askCurrency;
+  uint16 findersFeeBps;
+  uint256 askPrice;
+}
+```
+
+<br/> 
+
+### Finders Fee
+
+The Finders Fee is the amount offered to the party that helped matched the buyer to the NFT.
+For example, a user creates an `ask` for one of the NFTs in their wallet. 
+If a finders fee was specified, then the interface that helped matched the NFT to the buyer could be entitled to that amount.
+Note that the Finders Fee is only charged if a buyer fills the `ask` on an NFT.
+
+<br/> 
+
+### Honoring Royalties
+Whenever an `ask` is filled, the `Ask V1 Module` respects any royalties in this [Royalty Registery](https://royaltyregistry.xyz/lookup) created by Manifold.
+If your NFT contract doesn't currenctly support royalites, the owner address of an NFT contract is able to manually set the royalty in the registry.
+
+<br/> 
+
+### Read Functions 
+
+#### askForNFT
+A public mapping that returns an `ask` given a NFT token contract address and token id. 
+Note that there can only ever be one `ask` open for an NFT at a time.
+
+`mapping(address => mapping(uint256 => Ask)) public askForNFT;`
+
+--- 
+
+### Write Functions
+
+#### createAsk 
+Puts an NFT up for sale at a specific asking price. 
+- Can be created by either the owner or approved operator of an NFT.
+- The `ask` currency can be any ERC-20 token or the `address(0)` for ETH.
+- `createAsk` will overwrite if there was a previous open `ask`.
+```
+function createAsk(
+  address _tokenContract,
+  uint256 _tokenId,
+  uint256 _askPrice,
+  address _askCurrency,
+  address _sellerFundsRecipient,
+  uint16 _findersFeeBps
+)
+```
+
+#### setAskPrice
+Updates the information for a specific `ask`.
+```
+function setAskPrice(
+  address _tokenContract,
+  uint256 _tokenId,
+  uint256 _askPrice,
+  address _askCurrency
+) 
+```
+
+#### cancelAsk
+Cancels an `ask` for an NFT by either the owner or an approved operator.
+```
+function cancelAsk(address _tokenContract, uint256 _tokenId)
+```
+
+#### fillAsk 
+Transfers the NFT to the buyer and sends the funds to the recipients.
+```
+function fillAsk(
+  address _tokenContract,
+  uint256 _tokenId,
+  address _finder
+)
+```
+<br/>
+
+All the source code for the `Asks V1` contract can be found [here](https://github.com/ourzora/v3/blob/main/contracts/modules/Asks/V1/AsksV1.sol).
