@@ -98,7 +98,7 @@ module.exports = {
     [
       'docusaurus2-dotenv',
       {
-        safe: false,
+        safe: true,
         systemvars: true,
         silent: false,
         expand: false,
