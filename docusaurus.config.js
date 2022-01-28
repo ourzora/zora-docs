@@ -103,8 +103,6 @@ module.exports = {
         silent: false,
         expand: false,
         defaults: false,
-        RPC_ENDPOINT: process.env.RPC_ENDPOINT,
-        GTAG_ID: process.env.GTAG_ID,
       },
     ],
   ],
