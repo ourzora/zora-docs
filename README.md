@@ -43,11 +43,19 @@ yarn install
 
 ## Local Development
 
+First, create a `.env` file with these variables. For ease, you can copy the contents of `.env.example` into that file:
+
+```console
+cp .env.example .env
+```
+
+Next, run this command:
+
 ```console
 yarn start
 ```
 
-This command starts a local development server and opens up a browser window. Most changes are reflected live without having to restart the server.
+This starts a local development server and opens up a browser window. Most changes are reflected live without having to restart the server.
 
 ## Build
 
