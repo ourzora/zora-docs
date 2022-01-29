@@ -18,7 +18,7 @@ export default function Home() {
       <main className={styles.layout}>
         <div className={styles.layoutFlexBox}>
           <div className={styles.gettingStartedFlexBox}>
-            <p className={styles.gettingStarted}>Getting started</p>
+            <p className={styles.gettingStarted}>Getting Started</p>
             <a className={styles.viewAllLink} href="docs/guides/connect-wallet-react">
               <button className={styles.viewAll}>VIEW ALL</button>
             </a>
@@ -26,7 +26,7 @@ export default function Home() {
           <GettingStartedCards />
           <p className={styles.tools}>Tools</p>
           <ToolsCards />
-          <p className={styles.projects}>Projects building on ZORA</p>
+          <p className={styles.projects}>Projects Building on ZORA</p>
           <ProjectsCards />
         </div>
       </main>

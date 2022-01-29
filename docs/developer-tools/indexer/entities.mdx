@@ -2,12 +2,36 @@
 id: entities
 title: Entities
 sidebar_position: 3
-custom_edit_url: https://github.com/ourzora/zora-docs/blob/main/docs/developer-tools/indexer/entities.mdx
 ---
 
 ---
 
 You can begin making queries in our hosted GraphQL [playground](https://ourZORA.github.io/indexer-playground/) on both `Ethereum Mainnet` and `Rinkeby`.
+
+## ZORA V3
+V3 is the latest version released from ZORA. You can learn more about it [here](../../v3-overview).
+### V3Ask
+The Ask Modules allows anyone to sell an NFT at a specfic asking price.
+```graphql
+{
+  V3Ask {
+    address
+    askCurrency
+    askPrice
+    buyer
+    finder
+    findersFeeBps
+    id
+    lastFilledEvent
+    seller
+    sellerFundsRecipient
+    status
+    tokenContract
+    tokenId
+  }
+}
+```
+
 
 ## Ethereum Data
 

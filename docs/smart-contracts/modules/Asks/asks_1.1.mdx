@@ -1,5 +1,5 @@
 ---
-id: zora-v3-asks-v1.1
+id: zora-v3-asks-latest
 title: Asks V1.1
 sidebar_position: 1
 ---
@@ -12,6 +12,9 @@ import TabItem from '@theme/TabItem'
 The `Asks Module` allows anyone to sell a `ERC-721` NFT for a specific asking price. 
 You can view all of the `Ask V1.1 Module` contract code in this [GitHub Repo](https://github.com/ourzora/v3/blob/main/contracts/modules/Asks/V1.1/AsksV1_1.sol).
 
+:::note 
+Check out our section on ZORA V3 if you are unfamiliar on what modules are.
+:::
 ### Asks V1.1 Addresses
 
 ##### Ethereum Mainnet
@@ -65,7 +68,7 @@ Note that the Finders Fee is only charged if a buyer fills the `ask` on an NFT.
 
 ### Honoring Royalties
 Whenever an `ask` is filled, the `Ask V1 Module` respects any royalties in this [Royalty Registery](https://royaltyregistry.xyz/lookup) created by Manifold.
-If your NFT contract doesn't currenctly support royalites, the owner address of an NFT contract is able to manually set the royalty in the registry.
+If your NFT contract doesn't currenctly support royalties, the owner address of an NFT contract is able to manually set the royalty in the registry.
 
 <br/> 
 
