@@ -18,7 +18,7 @@ export const projectsContent = [
   },
   {
     project: Fwb,
-    link: 'https://fwb.help/',
+    link: 'https://gallery.fwb.help/',
   },
   {
     project: Mirror,
