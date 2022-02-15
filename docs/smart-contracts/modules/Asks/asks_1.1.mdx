@@ -144,7 +144,8 @@ function cancelAsk(address _tokenContract, uint256 _tokenId)
 ```
 
 #### fillAsk 
-Transfers the NFT to the buyer and sends the funds to the recipients.
+Transfers the NFT to the buyer and sends the funds to the recipients. 
+If no `finder` address is provided, then you can submit the `address(0)` which will send all the funds to the seller.
 ```
 function fillAsk(
     address _tokenContract,
