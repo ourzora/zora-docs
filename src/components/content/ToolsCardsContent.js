@@ -26,13 +26,13 @@ export const toolsCardsContent = [
   },
   {
     toolsTitle: 'NFT Components',
-    toolsParagraph: 'React components that allow for drop-in rendering of NFTs',
+    toolsParagraph: 'React components that allow for drop-in rendering of NFTs.',
     toolsLink: '/docs/developer-tools/nft-rendering/introduction#nft-components',
   },
   {
-    toolsTitle: 'ZORA NFTs',
+    toolsTitle: 'ZORA Auction House',
     toolsParagraph:
-      'An extension of the base ERC-721 NFT Protocol, enabling markets to be owned directly by token creators.',
-    toolsLink: '/docs/developer-tools/zdk/zora-nfts',
+      'Allows anyone to permissionlessly run their own auctions for any ERC-721 NFT.',
+    toolsLink: '/docs/smart-contracts/zora-auction-house',
   }
 ]

@@ -13,8 +13,8 @@ export const gettingStartedContent = [
   },
   {
     docNumber: '03',
-    docTitle: 'Programmatically mint a ZORA NFT →',
-    docSubtopic: 'MINT AN NFT',
-    docLink: '/docs/guides/minting-znfts',
+    docTitle: 'Connect a Wallet to your React App →',
+    docSubtopic: 'REACT',
+    docLink: '/docs/guides/connect-wallet-react',
   },
 ]
