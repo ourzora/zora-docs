@@ -51,7 +51,7 @@ module.exports = {
     image: 'img/previewImage.png',
     ...(process.env.GTAG_ID && {
       gtag: {
-        trackingID: process.env.GTAG_ID || '',
+        trackingID: process.env.GTAG_ID,
         anonymizeIP: true,
       },
     }),
@@ -98,11 +98,11 @@ module.exports = {
     [
       'docusaurus2-dotenv',
       {
-        safe: true,
+        safe: false,
         systemvars: true,
         silent: false,
         expand: false,
-        defaults: false,
+        defaults: true,
       },
     ],
   ],

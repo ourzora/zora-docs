@@ -29,7 +29,7 @@ Second, once the assets have been approved to the Transfer Helpers, the nessary 
 1. Approving Tokens to the Transfer Helpers
 2. Approving Modules in the Module Manager
 
-<br/>
+<br />
 
 ---
 ### Approving a Transfer Helper
@@ -41,30 +41,54 @@ Once a token is approved to the Transfer Helper it can then be used by any appro
 Selling an ERC-721 using ZORA V3 requires that the ERC-721 Transfer Helper has been approved as an operator and has access to move the NFT in the event of a sale.
 
 **Note:** The ABIs for all ZORA V3 contracts can be found in the `@zoralabs/v3` npm package.
+
+To import the ABIs and typechain types (if using typescript) these 3 npm pacakges should be installed:
+
+`yarn add @zoralabs/v3 ethers`
+
+or if using npm:
+
+`npm install @zoralabs/v3 ethers`
+
 ```javascript
 import { ethers } from "ethers";
-import { erc721ABI, moduelManagerABI } from "../yourABIFile.js";
+import addressesMainnet from "@zoralabs/v3/dist/addresses/1.json";
+import { IERC721__factory } from "@zoralabs/v3/dist/typechain/factories/IERC721__factory";
+import { IERC20__factory } from "@zoralabs/v3/dist/typechain/factories/IERC20__factory";
+import { ZoraModuleManager__factory } from "@zoralabs/v3/dist/typechain/factories/ZoraModuleManager__factory";
 
-const provider = new ethers.providers.JsonRpcProvider(); // If you don't specify a url, Ethers connects to localhost
-const erc721TransferHelperAddress = "0x909e9efE4D87d1a6018C2065aE642b6D0447bc91"; // Mainnet Ethereum
+// This should be an ethers.js signer instance: 
+// You can get the signer from a wallet using web3modal/rainbowkit/blocknative wallet etc.
+// See: https://docs.ethers.io/v5/api/signer/
+const provider = new ethers.providers.Web3Provider(web3.currentProvider, 1);
+const signer = await provider.getSigner();
+
+const moduleManagerAddress = addressesMainnet.ZoraModuleManager;
+// Initialize NFT demo contract
 const nftContractAddress = "0x8d04a8c79cEB0889Bdd12acdF3Fa9D207eD3Ff63"; // Blitmap NFT Contract
-
-const erc721Contract = new ethers.Contract(nftContractAddress, erc721ABI, provider);
-const moduelManagerContract = new ethers.Contract(moduleMananagerAddress, moduelManagerABI, provider);
+const erc721Contract = ERC721__factory.connect(nftContractAddress, signer);
+// Initialize ERC20 currency demo contract
+const erc20ContractAddress = "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48"; // USDC token address
+const erc20Contract = ERC20__factory.connect(nftContractAddress, signer);
+// Initialize Zora V3 Module Manager contract 
+const moduleManagerContract = ZoraModuleManager__factory.connect(addressesMainnet.ZoraModuleManager, signer);
 ```
 
 First, check if the ERC-721 Transfer Helper has the ability to access the NFTs for the user's address. 
 If not, submit a transaction either calling the `setApprovalForAll` to approve all NFTs or call `approve` to granually approve a specific `tokenId`.
+
 ```javascript
-const approved = await erc721Contract.isApprovedForAll(owner, erc721TransferHelperAddress);
-if(!approved) {
-    await erc721Contract.setApprovalForAll(erc721TransferHelperAddress, true);
-}
-// or check and approve a specific tokenId
-const tokenId = "1";
-const approvedAddress = await erc721Contract.getApproved(tokenId);
-if(approvedAddress !== erc721TransferHelperAddress) {
-    await erc721Contract.approve(erc721TransferHelperAddress, tokenId);
+const erc721TransferHelperAddress = zoraV3Addresses.ERC721TransferHelper;
+const approved = await erc721Contract.isApprovedForAll(
+  owner, // Owner of NFTs within this contract
+  erc721TransferHelperAddress // V3 Module Transfer Helper to approve
+);
+
+// If the approval is not already granted, add it.
+if (!approved) {
+  // Warning: This method requires a signer, not a provider.
+  // A signer interfaces with a wallet. You can use walletconnect or injected web3.
+  await erc721Contract.setApprovalForAll(erc721TransferHelperAddress, true);
 }
 ```
 
@@ -72,9 +96,9 @@ if(approvedAddress !== erc721TransferHelperAddress) {
 If a user needs to purchase an NFT with an ERC-20 they will first need to approve their tokens to the ERC-20 Transfer Helper.
 ```javascript
 const approvedAmount = await erc20Contract.allowance(owner, erc721TransferHelperAddress);
-const infiniteApproval = (2^256-1)
-if(approvedAmount === 0) {
-    await erc20Contract.approve(owner, erc721TransferHelperAddress, infiniteApproval);
+const infiniteApprovalAmount = ethers.constants.MaxUint256;
+if (approvedAmount === 0) {
+    await erc20Contract.approve(owner, erc721TransferHelperAddress, infiniteApprovalAmount);
 }
 ```
 
@@ -85,14 +109,14 @@ Once all the nessary tokens have been approved to the correct Transfer Helpers,
 the user will then need to submit a transaction to allow the correct ZORA modules to have access to their assets.
 For example, if a user would like to sell an NFT via the `Asks v1.1 Module` they will need to allow that module to use their approved assets.
 ```javascript
-const asks1_1_Address = "0x6170B3C3A54C3d8c854934cBC314eD479b2B29A3"; // Mainnet Ethereum
-await moduelManagerContract.setApprovalForModule(asks1_1_Address, true);
+await zoraModuleAddresses.setApprovalForModule(zoraV3Addresses.AsksV1_1, true);
 ```
 
 Or a user can batch approve modules in single transaction by passing in an array of module addresses.
 ``` javascript
-const zoraModuleAddresses = ["0x6170B3C3A54C3d8c854934cBC314eD479b2B29A3", "0x76744367ae5a056381868f716bdf0b13ae1aeaa3"]; // Asks v1.1 and Offers v1.0
-await moduelManagerContract.setBatchApprovalForModules(
+// Asks v1.1 and Offers v1.0
+const zoraModuleAddresses = [zoraV3Addresses.AsksV1_1, zoraV3Addresses.OffersV1];
+await moduleManagerContract.setBatchApprovalForModules(
   zoraModuleAddresses, 
   true
 );
@@ -113,7 +137,7 @@ By revoking access to the Transfer Helper you will remove the ability for all ZO
 
 ```javascript
 const approved = await erc721Contract.isApprovedForAll(owner, erc721TransferHelperAddress);
-if(approved) {
+if (approved) {
     await erc721Contract.setApprovalForAll(erc721TransferHelperAddress, false);
 }
 ```
@@ -122,23 +146,23 @@ if(approved) {
 
 ```javascript
 const approvedAmount = await erc20Contract.allowance(owner, erc721TransferHelperAddress);
-if(approvedAmount !== "0") {
+if (approvedAmount !== "0") {
     await erc20Contract.approve(owner, erc721TransferHelperAddress, "0");
 }
 ```
 
 #### Revoking Module Manager
 If you would like the ZORA Transfer Helpers to still have access to your assets, but you would like to restrict certain modules you can either revoke a singe module or batch revoke.
-##### Single Module
 
+##### Single Module
 ```javascript
-const asks1_1_Address = "0x6170B3C3A54C3d8c854934cBC314eD479b2B29A3"; // Mainnet Ethereum
-await moduelManagerContract.setApprovalForModule(asks1_1_Address, false);
+await moduleManagerContract.setApprovalForModule(zoraV3Addresses.AsksV1_1, false);
 ```
+
 ##### Multiple Modules
 ``` javascript
-const zoraModuleAddresses = ["0x6170B3C3A54C3d8c854934cBC314eD479b2B29A3", "0x76744367ae5a056381868f716bdf0b13ae1aeaa3"]; // Asks v1.1 and Offers v1.0
-await moduelManagerContract.setBatchApprovalForModules(
+const zoraModuleAddresses = [zoraV3Addresses.AsksV1_1, zoraV3Addresses.OffersV1]; // Asks v1.1 and Offers v1.0
+await moduleManagerContract.setBatchApprovalForModules(
   zoraModuleAddresses, 
   false
 );
