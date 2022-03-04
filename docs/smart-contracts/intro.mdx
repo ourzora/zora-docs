@@ -107,6 +107,8 @@ For example, all ERC-721 token approvals must be made to the ERC-721 Transfer He
 Once completed, the user will then need to approve which modules can access their approved tokens by submitting a transaction to the Module Manager.
 This means that a user will only need to approve each token contract to ZORA V3 once and then approve which ZORA modules can access to their tokens.
 
+We have created a guide on approving to ZORA V3 if you would like to [learn more](../../docs/guides/v3-approvals).
+
 <br/>
 
 ### Approving Modules
@@ -127,4 +129,19 @@ setBatchApprovalForModules(
   address[] memory _moduleAddresses, 
   bool _approved
 ) 
+```
+
+#### setApprovalForModuleBySig
+Sets approval for a module given an EIP-712 signature
+
+```
+setApprovalForModuleBySig(
+  address _module,
+  address _user,
+  bool _approved,
+  uint256 _deadline,
+  uint8 _v,
+  bytes32 _r,
+  bytes32 _s
+)
 ```

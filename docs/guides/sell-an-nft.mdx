@@ -1,0 +1,180 @@
+---
+id: sell-an-nft
+title: Selling an NFT
+sidebar_position: 2
+---
+
+##### Get started selling an NFT using the ZORA protocol
+
+---
+ZORA allows anyone to easily sell any ERC-721 NFT at a fixed price and comes with multiple benefits including:
+
+- **Permissionless** - No one can stop or censor sales
+- **No Protocol Fee** - ZORA doesn't take a cut of the final sale amount
+- **Gas Efficient** - Almost 50% less gas than buying on OpenSea
+- **Instant Royalty Payout** - Royalties are paid out as soon as the sale confirms
+
+---
+
+### Asks Module
+ZORA V3 is composed of a few core contracts and an ever expanding set of modules. 
+The `Asks Module` allows an ERC-721 NFT to be sold at a fixed price. 
+This guide will walk you through how to interact with the `Asks v1.1`.
+
+You can read more about the latest version of the `Asks Module` [here](/docs/smart-contracts/modules/Asks/zora-v3-asks-latest).
+
+### Approving Tokens to ZORA
+Before getting started with the `Asks Module`, we recommend that you check out our guide on how to [approve tokens to ZORA V3](/docs/guides/v3-approvals). 
+TLDR, ZORA V3 requires that assets be approved to a Transfer Helper and the user must also approve the `Asks 1.1 Module` in the Module Manager.
+
+---
+
+### Creating an Ask
+Once a user has approved their ERC-721 NFT to the ERC-721 Transfer Helper and approved the Asks Module in the Module Manager, they are ready to create an `ask`.
+The core components of an `ask` are as follows:
+
+```
+struct Ask {
+  address seller;
+  address sellerFundsRecipient; 
+  address askCurrency;
+  uint16 findersFeeBps;
+  uint256 askPrice;
+}
+```
+
+* **seller:** The owner or approved address for an NFT
+* **sellerFundsRecipient:** The address to send funds to once the NFT is sold
+* **askCurrency:** ERC-20 token to accept, or address(0) for ETH
+* **findersFeeBps:** The bps of the sale amount to be sent to the referrer of the sale
+* **askPrice:** The sale price
+
+##### Create Ask Parameters
+```
+function createAsk(
+  address _tokenContract,
+  uint256 _tokenId,
+  uint256 _askPrice,
+  address _askCurrency,
+  address _sellerFundsRecipient,
+  uint16 _findersFeeBps
+)
+```
+##### Calling Create Ask
+Imagine that I would like to sell a blitmap with `tokenId` 1.
+After approving the ERC-721 Transfer Helper to be able to move my blitmaps and approving the `Asks 1.1 Module` in the Module Manger, I am ready to create an `ask`.
+In the example below, I am setting the sale price to 100 ETH.
+If I were pricing the NFT in an ERC-20 I would pass in the ERC-20 token address as the `askCurrency`.
+However, since I am pricing the sale in ETH I am passing in the `0 address`.
+
+Lastly, I am adding an incentive by setting the Finders Fee to 2% (200 Basis Points) of the sale amount. 
+Meaning whoever helps find the buyer for this NFT will recieve a 2 ETH reward (100 ETH x 2%).
+```javascript
+import { ethers } from "ethers";
+import { askModuleABI } from "../yourABIFile.js";
+
+const provider = new ethers.providers.JsonRpcProvider(); // If you don't specify a url, Ethers connects to localhost 
+const asksModuleAddress = "0x6170B3C3A54C3d8c854934cBC314eD479b2B29A3"; // Asks v1.1 Mainnet Ethereum
+const blitmapAddress = "0x8d04a8c79cEB0889Bdd12acdF3Fa9D207eD3Ff63"; // Blitmap NFT Contract
+const askPrice = ethers.utils.parseEther("100") // 100 ETH Sale Price
+const ownerAddress = "0xF296178d553C8Ec21A2fBD2c5dDa8CA9ac905A00";
+const findersFeeBps = "200"; // 2% Finders Fee
+
+const askModuleContract = new ethers.Contract(asksModuleAddress, askModuleABI, provider);
+await askModuleContract.createAsk(
+  blitmapAddress,
+  "1", // Token Id
+  askPrice,
+  "0x0000000000000000000000000000000000000000", // 0 address for ETH sale
+  ownerAddress,
+  findersFeeBps
+)
+```
+
+##### Setting the Finders Fee
+The Finders Fee is an optional amount that can be included when an `ask` is created.
+This amount can be awarded to the party that helped matched the buyer to the NFT.
+The Finders Fee is set in basis points, so if you wanted 1% of the sale amount to go to the finder then you would set `findersFeeBps` to 100 (1% x 100).
+
+---
+
+### Filling an Ask
+Once an `ask` has been created it can be filled by anyone. 
+If the NFT is priced in an ERC-20 token then the person trying to fill the `ask` must approve their tokens to the [ERC-20 Transfer Helper](/docs/guides/v3-approvals#approving-a-transfer-helper) 
+and then approve the `Ask 1.1 Module` in the Module Manager.
+
+
+```
+function fillAsk(
+    address _tokenContract,
+    uint256 _tokenId,
+    address _fillCurrency,
+    uint256 _fillAmount,
+    address _finder
+) 
+```
+
+```javascript
+const blitmapAddress = "0x8d04a8c79cEB0889Bdd12acdF3Fa9D207eD3Ff63"; // Blitmap NFT Contract
+const fillAmount = ethers.utils.parseEther("100") // 100 ETH Sale Price
+const finder = "0xF296178d553C8Ec21A2fBD2c5dDa8CA9ac905A00"; // Can be the 0 address if no address is specified
+
+const askModuleContract = new ethers.Contract(asksModuleAddress, askModuleABI, provider);
+await askModuleContract.fillAsk(
+  blitmapAddress,
+  "1", // Token Id
+  "0x0000000000000000000000000000000000000000", // 0 address for ETH sale
+  fillAmount,
+  finder
+)
+```
+
+##### The Finder Address 
+The `finder` address can be set to the `0 address` if no address is provided. 
+This will skip over the Finders Fee logic in the contract and will send the total sale amount to the seller's address.
+
+---
+
+### Updating an Ask
+An `ask` can be updated at anytime, but it can only be updated by the owner of the NFT.
+```
+function setAskPrice(
+  address _tokenContract,
+  uint256 _tokenId,
+  uint256 _askPrice,
+  address _askCurrency
+) 
+```
+In this case I am updating the price from 100 ETH to 110 ETH.
+```javascript
+const blitmapAddress = "0x8d04a8c79cEB0889Bdd12acdF3Fa9D207eD3Ff63"; // Blitmap NFT Contract
+const askPrice = ethers.utils.parseEther("110") // 110 ETH Sale Price
+
+await askModuleContract.setAskPrice(
+  blitmapAddress,
+  "1", // Token Id
+  askPrice,
+  "0x0000000000000000000000000000000000000000", // 0 address for ETH sale
+)
+```
+
+--- 
+
+### Cancelling an Ask
+An `ask` can be cancelled by either the token owner or an approved operator. 
+Note that transferring an NFT from the address that originally created the ask will temporarily invalidate the `ask`.
+However, if the NFT is ever transferred back to the original address then the `ask` will become valid again.
+It is always a best to directly cancel an open `ask` rather than transfer the NFT to a different address.
+```
+function cancelAsk(address _tokenContract, uint256 _tokenId)
+
+```
+
+```javascript
+const blitmapAddress = "0x8d04a8c79cEB0889Bdd12acdF3Fa9D207eD3Ff63"; // Blitmap NFT Contract
+
+await askModuleContract.cancelAsk(
+  blitmapAddress,
+  "1", // Token Id
+)
+```
