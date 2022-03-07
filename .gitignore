@@ -1,6 +1,9 @@
 # Dependencies
 /node_modules
 
+# Nextjs
+.next
+
 # Production
 /build
 
