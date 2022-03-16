@@ -7,6 +7,17 @@ export const toolsCardsContent = [
     toolsLink: '/docs/smart-contracts/modules/Asks/zora-v3-asks-latest',
   },
   {
+    toolsTitle: 'NFT Hooks',
+    toolsParagraph:
+      'React Hooks to retrieve pricing and NFT information to display on your own website.',
+    toolsLink: '/docs/developer-tools/nft-rendering/nft-hooks/useNft',
+  },
+  {
+    toolsTitle: 'NFT Components',
+    toolsParagraph: 'React components that allow for drop-in rendering of NFTs.',
+    toolsLink: '/docs/developer-tools/nft-rendering/introduction#nft-components',
+  },
+  {
     toolsTitle: 'ZDK',
     toolsParagraph:
       'A tool for developers to simply and reliably interact with the Zora Protocol.',
@@ -17,17 +28,6 @@ export const toolsCardsContent = [
     toolsParagraph:
       'A GraphQL API with indexed data from the Zora protocol and the entire NFT universe.',
     toolsLink: '/docs/developer-tools/indexer/introduction',
-  },
-  {
-    toolsTitle: 'NFT Hooks',
-    toolsParagraph:
-      'React Hooks to retrieve pricing and NFT information to display on your own website.',
-    toolsLink: '/docs/developer-tools/nft-rendering/nft-hooks/useNft',
-  },
-  {
-    toolsTitle: 'NFT Components',
-    toolsParagraph: 'React components that allow for drop-in rendering of NFTs.',
-    toolsLink: '/docs/developer-tools/nft-rendering/introduction#nft-components',
   },
   {
     toolsTitle: 'ZORA Auction House',

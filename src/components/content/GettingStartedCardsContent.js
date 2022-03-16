@@ -7,14 +7,14 @@ export const gettingStartedContent = [
   },
   {
     docNumber: '02',
-    docTitle: 'Build a custom NFT Auction House →',
-    docSubtopic: 'AUCTION HOUSE',
-    docLink: '/docs/guides/create-auction-house',
+    docTitle: 'Sell an NFT at a Fixed Price →',
+    docSubtopic: 'ZORA V3',
+    docLink: '/docs/guides/sell-nft-fixed-price',
   },
   {
     docNumber: '03',
-    docTitle: 'Connect a Wallet to your React App →',
-    docSubtopic: 'REACT',
-    docLink: '/docs/guides/connect-wallet-react',
+    docTitle: 'Build a custom NFT Auction House →',
+    docSubtopic: 'AUCTION HOUSE',
+    docLink: '/docs/guides/create-auction-house',
   },
 ]

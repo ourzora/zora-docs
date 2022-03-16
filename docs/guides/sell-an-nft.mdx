@@ -19,9 +19,9 @@ Selling an NFT via the `Asks Module` comes with multiple benefits including:
 ---
 
 ### Asks Module
-ZORA V3 is composed of a few core contracts and an ever expanding set of modules. 
+ZORA V3 is composed of a few core contracts and an ever-expanding set of modules. 
 The `Asks Module` allows an ERC-721 NFT to be sold at a fixed price. 
-This guide will walk you through how to interact with the `Asks v1.1`.
+This guide will walk you through how to interact with the `Asks v1.1` module.
 
 You can read more about the latest version of the `Asks Module` [here](/docs/smart-contracts/modules/Asks/zora-v3-asks-latest).
 
@@ -33,7 +33,7 @@ Before getting started with the `Asks Module`, we **strongly** recommend that yo
 :::
 
 TLDR, ZORA V3 requires that a user approves their assets to a Transfer Helper contract as well as approve the `Asks v1.1 Module` in the Module Manager contract.
-Note that token approvals to ZORA are a one time approval per token contract per user address.
+Note that token approvals to ZORA are a one-time approval per token contract per user address.
 In addition, each module only ever needs to be approved once per user address.
 
 ---
@@ -72,13 +72,12 @@ function createAsk(
 ##### Calling Create Ask
 Imagine that I would like to sell a Blitmap with `tokenId` 1.
 After approving the ERC-721 Transfer Helper to be able to move my Blitmaps and approving the `Asks 1.1 Module` in the Module Manger, I am ready to create an `ask`.
-In the example below, I am setting the sale price to 100 ETH.
+In the example below, I set the sale price to 100 ETH.
 If I were pricing the NFT in an ERC-20, I would pass in the ERC-20 token address as the `askCurrency`.
-However, since I am pricing the sale in ETH I am passing in the `0 address`.
+However, since the sale is priced in ETH I need to set the `0 address`.
 
 Lastly, I am adding an incentive by setting the Finders Fee to 2% (200 Basis Points) of the sale amount. 
-Meaning whoever helps find the buyer for this NFT will recieve a 2 ETH reward (100 ETH x 2%).
-
+Meaning whoever helps find the buyer for this NFT will receive a 2 ETH reward (100 ETH x 2%).
 
 The ABIs for all ZORA V3 contracts can be found in the `@zoralabs/v3` npm package.
 You can use the following 2 packages to import the ABIs and typechain types (if using typescript):
@@ -163,8 +162,8 @@ await askModuleContract.fillAsk(
 
 ##### The Finder Address 
 The `finder` is an address of the party that helped matched the buyer to the NFT and is awarded the Finders Fee. 
-The `finder` address can be set to the `0 address` if no address is provided or no Finders Fee is set. 
-This will skip over the Finders Fee logic in the contract and will send the total sale amount to the seller's address.
+The `finder` address can be set to the `0 address` if no address is provided or no Finder's Fee is set. 
+This will skip over the Finder's Fee logic in the contract and will send the total sale amount to the seller's address.
 
 ---
 
@@ -194,10 +193,10 @@ await askModuleContract.setAskPrice(
 --- 
 
 ### Cancelling an Ask
-An `ask` can be cancelled by either the token owner or an approved operator. 
+An `ask` can be canceled by either the token owner or an approved operator. 
 Note that transferring an NFT from the address that originally created the `ask` will temporarily invalidate the `ask`.
 However, if the NFT is ever transferred back to the original address then the `ask` will become valid again.
-It is always a best to directly cancel an `ask` rather than transfer the NFT to a different address.
+It is always best to directly cancel an `ask` rather than transfer the NFT to a different address.
 ```
 function cancelAsk(address _tokenContract, uint256 _tokenId)
 ```
