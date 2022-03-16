@@ -12,20 +12,19 @@ However, before being able to interact with specific functionality certain appro
 
 ![zorav3diagram](../../static/img/zora_v3_diagram.png)
 
-V3 is comprised of a few core contracts and an ever expanding set of modules. 
+V3 is comprised of a few core contracts and an ever-expanding set of modules. 
 Modules are non-upgradable contracts that provide specific functionality.
-The ZORA core contracts include **Token Transfer Helpers** and the **Module Mananger**.
+The ZORA core contracts include **Token Transfer Helpers** and the **Module Manager**.
 
 - **Transfer Helper:** Handles transferring ERC-20 and ERC-721 tokens for the modules
 - **Module Manager:** Manages which modules a user has approved to use their tokens
 
 ### Required Approvals
 
-Before being able to intereact with specific modules, there are a few approvals steps that are required.
+Before interacting with specific modules, there are a few approvals steps that are required.
 First, any assets that are going to be moved by ZORA must have their respective Transfer Helper approved to the token contract.
 For example, if you would like to sell an NFT, the ERC-721 Transfer Helper address must be approved to the NFT contract as an operator.
-Second, once the assets have been approved to the Transfer Helpers, the nessary modules must be approved in the Module Manager by the user.
-
+Second, once the assets have been approved to the Transfer Helpers, the necessary modules must be approved in the Module Manager by the user.
 
 ##### Approval Steps
 1. Approve Tokens to the Transfer Helpers
@@ -86,8 +85,8 @@ In addition, each module only ever needs to be approved once per user address.
 :::
 
 ##### ERC-721 Tokens
-ZORA V3 requires that the ERC-721 Transfer Helper has been approved as an operator in order to be able to move the NFT.
-First, check if the ERC-721 Transfer Helper has the ability to access the NFTs for the user's address. 
+ZORA V3 requires that the ERC-721 Transfer Helper has been approved as an operator to be able to move the NFT.
+First, check if the ERC-721 Transfer Helper can access the NFTs for the user's address. 
 Then submit a transaction calling the `setApprovalForAll` to approve all NFTs if not already approved.
 
 ```
@@ -141,7 +140,7 @@ if (approvedAmount === "0") {
 ### Approving Modules in the Module Manager
 Once all the nessary tokens have been approved to the correct Transfer Helpers, 
 the user will then need to submit a transaction to allow specific ZORA modules to have access to their assets.
-For example, if a user would like to sell an NFT via the `Asks v1.1 Module` they will need to approve that module in the Module Manage in order for the `Asks 1.1 Module` to be able to transfer the NFT in the event of a sale.
+For example, if a user would like to sell an NFT via the `Asks v1.1 Module` they will need to approve that module in the Module Manager for the `Asks 1.1 Module` to be able to transfer the NFT in the event of a sale.
 
 ##### Single Module
 A user can approve a single module by calling `setApprovalForModule` with the address of the module they would like to approve and a boolean.
@@ -183,8 +182,8 @@ await moduleManagerContract.setBatchApprovalForModules(
 ---
 
 ### Revoking Access
-At some point a user might want to revoke ZORA's abililty to access their assets. 
-Approvals to ZORA can be revoked at any time and there are two ways to revoke.
+At some point, a user might want to revoke ZORA's ability to access their assets. 
+Approvals to ZORA can be revoked at any time and there are two ways to do it.
 
 #### Revoking Transfer Helper
 By revoking access to the Transfer Helper you will remove the ability for all ZORA modules to be able to move the asset.
