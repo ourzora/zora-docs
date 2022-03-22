@@ -1,0 +1,735 @@
+---
+id: zora-api-sample-queries
+title: Sample Queries
+sidebar_position: 3
+---
+
+import Tabs from '@theme/Tabs'
+import TabItem from '@theme/TabItem'
+
+# Sample Queries
+
+##### Example queries for the ZORA API
+
+---
+
+:::note 
+Please reference our **GraphQL Playground here.**
+
+Note that more robust responses are possible for the following queries.
+These examples are meant to be simple and don't return all the data that is possible in a response.
+:::
+
+### Get NFT Data for an Address
+Fetches the data for ERC-721 NFTs held in an owner's address.
+
+<Tabs
+  defaultValue="query"
+  values={[
+    { label: 'Query', value: 'query', },
+    { label: 'Response', value: 'response', }
+  ]
+}>
+<TabItem value="query">
+
+```graphql
+query BrecksNFTs {
+  tokens(network: {network: ETHEREUM, chain: MAINNET}, pagination: {limit: 10, offset: 0}, sort: {sortKey: MINTED, sortDirection: ASC}, query: {ownerAddresses: ["breck.eth"]}) {
+    nodes {
+      collectionAddress
+      name
+      tokenId
+    }
+  }
+}
+```
+
+</TabItem>
+<TabItem value="response">
+
+```json
+{
+  "data": {
+    "tokens": {
+      "nodes": [
+        {
+          "collectionAddress": "0xabefbc9fd2f806065b4f3c237d4b59d9a97bcac7",
+          "name": "Zora",
+          "tokenId": "8"
+        },
+        {
+          "collectionAddress": "0xabefbc9fd2f806065b4f3c237d4b59d9a97bcac7",
+          "name": "Zora",
+          "tokenId": "151"
+        },
+        {
+          "collectionAddress": "0xabefbc9fd2f806065b4f3c237d4b59d9a97bcac7",
+          "name": "Zora",
+          "tokenId": "305"
+        },
+        {
+          "collectionAddress": "0xabefbc9fd2f806065b4f3c237d4b59d9a97bcac7",
+          "name": "Zora",
+          "tokenId": "674"
+        },
+        {
+          "collectionAddress": "0xabefbc9fd2f806065b4f3c237d4b59d9a97bcac7",
+          "name": "Zora",
+          "tokenId": "837"
+        },
+        {
+          "collectionAddress": "0xabefbc9fd2f806065b4f3c237d4b59d9a97bcac7",
+          "name": "Zora",
+          "tokenId": "988"
+        },
+        {
+          "collectionAddress": "0xabefbc9fd2f806065b4f3c237d4b59d9a97bcac7",
+          "name": "Zora",
+          "tokenId": "2148"
+        },
+        {
+          "collectionAddress": "0xabefbc9fd2f806065b4f3c237d4b59d9a97bcac7",
+          "name": "Zora",
+          "tokenId": "2302"
+        },
+        {
+          "collectionAddress": "0xabefbc9fd2f806065b4f3c237d4b59d9a97bcac7",
+          "name": "Zora",
+          "tokenId": "2342"
+        },
+        {
+          "collectionAddress": "0x82262bfba3e25816b4c720f1070a71c7c16a8fc4",
+          "name": "Solvency by Ezra Miller",
+          "tokenId": "170"
+        }
+      ]
+    }
+  }
+}
+```
+
+</TabItem>
+</Tabs>
+
+<br/>
+
+### Preview Collections
+Fetches data for NFT collections. A collection is a group of NFTs that all share a single contract.
+
+<Tabs
+  defaultValue="query"
+  values={[
+    { label: 'Query', value: 'query', },
+    { label: 'Response', value: 'response', }
+  ]
+}>
+<TabItem value="query">
+
+```graphql
+query ListCollections {
+  collections(network: {network: ETHEREUM, chain: MAINNET}, pagination: {limit: 10, offset: 0}, sort: {sortKey: CREATED, sortDirection: ASC}) {
+    nodes {
+      address
+      name
+      symbol
+    }
+  }
+}
+```
+
+</TabItem>
+<TabItem value="response">
+
+```json
+{
+  "data": {
+    "collections": {
+      "nodes": [
+        {
+          "address": "0x06012c8cf97bead5deae237070f9587f8e7a266d",
+          "name": "CryptoKitties",
+          "symbol": "CK"
+        },
+        {
+          "address": "0xabefbc9fd2f806065b4f3c237d4b59d9a97bcac7",
+          "name": "Zora",
+          "symbol": "ZORA"
+        },
+        {
+          "address": "0x21e94d5e353713cc707cdd89a87d736a74492bbc",
+          "name": "刘星逸的绘画作品",
+          "symbol": "LUCKY"
+        },
+        {
+          "address": "0xcde30e7a7f37022a705cd1415046d322e1428578",
+          "name": "UNIQUΞ",
+          "symbol": "UNQ"
+        },
+        {
+          "address": "0xb3a268ad0517018902915496c62394356652018a",
+          "name": "Delirium",
+          "symbol": "THE MADNESS OF OUR MEDIA, A COLLECTIBLE HEADLINE EVERYDAY"
+        },
+        {
+          "address": "0x8a59b9f658c3dac396a9c380a5a8044b02caf68c",
+          "name": "hexis.wtf",
+          "symbol": "hexis.wtf"
+        },
+        {
+          "address": "0xa73f081be79c5e98f71467363caa69ba75095440",
+          "name": "muffins",
+          "symbol": "ETH"
+        },
+        {
+          "address": "0x97f1482116f6459ed7156f1e4fc76b023c9b4bb3",
+          "name": "William M. Peaster's Mintbase Shop",
+          "symbol": "WMP"
+        },
+        {
+          "address": "0xbb564e2befb25924a1b9fe1f42ecf13a3180a750",
+          "name": "",
+          "symbol": ""
+        },
+        {
+          "address": "0xe95009106cd4f7052cc585704883e17f7acbe7f4",
+          "name": "",
+          "symbol": ""
+        }
+      ]
+    }
+  }
+}
+```
+
+</TabItem>
+</Tabs>
+
+<br/>
+
+### Preview Tokens in a Collection
+Fetches a list of NFTs that have been indexed within a certain collection.
+
+<Tabs
+  defaultValue="query"
+  values={[
+    { label: 'Query', value: 'query', },
+    { label: 'Response', value: 'response', }
+  ]
+}>
+<TabItem value="query">
+
+```graphql
+query PreviewCryptoCovens {
+  tokens(network: {network: ETHEREUM, chain: MAINNET}, pagination: {limit: 10, offset: 0}, sort: {sortKey: MINTED, sortDirection: ASC}, query: {collectionAddresses: ["0x5180db8f5c931aae63c74266b211f580155ecac8"]}) {
+    nodes {
+      collectionAddress
+      tokenId
+      name
+    }
+  }
+}
+```
+
+</TabItem>
+<TabItem value="response">
+
+```json
+{
+  "data": {
+    "tokens": {
+      "nodes": [
+        {
+          "collectionAddress": "0x5180db8f5c931aae63c74266b211f580155ecac8",
+          "tokenId": "129",
+          "name": "Crypto Coven"
+        },
+        {
+          "collectionAddress": "0x5180db8f5c931aae63c74266b211f580155ecac8",
+          "tokenId": "130",
+          "name": "Crypto Coven"
+        },
+        {
+          "collectionAddress": "0x5180db8f5c931aae63c74266b211f580155ecac8",
+          "tokenId": "131",
+          "name": "Crypto Coven"
+        },
+        {
+          "collectionAddress": "0x5180db8f5c931aae63c74266b211f580155ecac8",
+          "tokenId": "132",
+          "name": "Crypto Coven"
+        },
+        {
+          "collectionAddress": "0x5180db8f5c931aae63c74266b211f580155ecac8",
+          "tokenId": "133",
+          "name": "Crypto Coven"
+        },
+        {
+          "collectionAddress": "0x5180db8f5c931aae63c74266b211f580155ecac8",
+          "tokenId": "134",
+          "name": "Crypto Coven"
+        },
+        {
+          "collectionAddress": "0x5180db8f5c931aae63c74266b211f580155ecac8",
+          "tokenId": "135",
+          "name": "Crypto Coven"
+        },
+        {
+          "collectionAddress": "0x5180db8f5c931aae63c74266b211f580155ecac8",
+          "tokenId": "605",
+          "name": "Crypto Coven"
+        },
+        {
+          "collectionAddress": "0x5180db8f5c931aae63c74266b211f580155ecac8",
+          "tokenId": "606",
+          "name": "Crypto Coven"
+        },
+        {
+          "collectionAddress": "0x5180db8f5c931aae63c74266b211f580155ecac8",
+          "tokenId": "607",
+          "name": "Crypto Coven"
+        }
+      ]
+    }
+  }
+}
+```
+
+</TabItem>
+</Tabs>
+
+<br />
+
+### Preview Highest Sales for a Collection 
+Fetches a list of NFTs by descending sale price.
+
+<Tabs
+  defaultValue="query"
+  values={[
+    { label: 'Query', value: 'query', },
+    { label: 'Response', value: 'response', }
+  ]
+}>
+<TabItem value="query">
+
+```graphql
+query CryptoCovenSalesByPriceDesc {
+  sales(network: {network: ETHEREUM, chain: MAINNET}, pagination: {limit: 2, offset: 0}, sort: {sortKey: ETH_PRICE, sortDirection: DESC}, query: {collectionAddresses: ["0x5180db8f5c931aae63c74266b211f580155ecac8"]}) {
+    nodes {
+      collectionAddress
+      saleType
+      sellerAddress
+      buyerAddress
+      tokenId
+      price {
+        ethPrice {
+          decimal
+          currency {
+            name
+            decimals
+            address
+          }
+          raw
+        }
+        nativePrice {
+          decimal
+          raw
+          currency {
+            address
+            decimals
+            name
+          }
+        }
+        usdcPrice {
+          currency {
+            address
+            decimals
+            name
+          }
+          raw
+          decimal
+        }
+      }
+    }
+  }
+}
+```
+
+</TabItem>
+<TabItem value="response">
+
+```json
+{
+  "data": {
+    "sales": {
+      "nodes": [
+        {
+          "collectionAddress": "0x5180db8f5c931aae63c74266b211f580155ecac8",
+          "saleType": "OPENSEA_SINGLE_SALE",
+          "sellerAddress": "0x95724798d703e87196375be5f8fbf136d862f033",
+          "buyerAddress": "0x930af7923b8b5f8d3461ad1999ceeb8a62884b19",
+          "tokenId": "8942",
+          "price": {
+            "ethPrice": {
+              "decimal": 1.333,
+              "currency": {
+                "name": "ETH",
+                "decimals": 18,
+                "address": "0x0000000000000000000000000000000000000000"
+              },
+              "raw": "1333000000000000000"
+            },
+            "nativePrice": {
+              "decimal": 1.333,
+              "raw": "1333000000000000000",
+              "currency": {
+                "address": "0x0000000000000000000000000000000000000000",
+                "decimals": 18,
+                "name": "ETH"
+              }
+            },
+            "usdcPrice": {
+              "currency": {
+                "address": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+                "decimals": 6,
+                "name": "USDC"
+              },
+              "raw": "5067190268626655510528",
+              "decimal": 5067.190268626656
+            }
+          }
+        },
+        {
+          "collectionAddress": "0x5180db8f5c931aae63c74266b211f580155ecac8",
+          "saleType": "OPENSEA_SINGLE_SALE",
+          "sellerAddress": "0x4955d905336c9751734c62ac56ac4aec0f3053b3",
+          "buyerAddress": "0x930af7923b8b5f8d3461ad1999ceeb8a62884b19",
+          "tokenId": "5032",
+          "price": {
+            "ethPrice": {
+              "decimal": 1.2,
+              "currency": {
+                "name": "ETH",
+                "decimals": 18,
+                "address": "0x0000000000000000000000000000000000000000"
+              },
+              "raw": "1200000000000000000"
+            },
+            "nativePrice": {
+              "decimal": 1.2,
+              "raw": "1200000000000000000",
+              "currency": {
+                "address": "0x0000000000000000000000000000000000000000",
+                "decimals": 18,
+                "name": "ETH"
+              }
+            },
+            "usdcPrice": {
+              "currency": {
+                "address": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+                "decimals": 6,
+                "name": "USDC"
+              },
+              "raw": "4562579289681269096448",
+              "decimal": 4562.579289681269
+            }
+          }
+        }
+      ]
+    }
+  }
+}
+```
+
+</TabItem>
+</Tabs>
+
+<br />
+
+### Collection Owner Count
+Fetches the number of address that own an NFT in a collection.
+
+<Tabs
+  defaultValue="query"
+  values={[
+    { label: 'Query', value: 'query', },
+    { label: 'Response', value: 'response', }
+  ]
+}>
+<TabItem value="query">
+
+```graphql
+query NumberOfOwners {
+  aggregateStat(
+		query: {collectionAddresses: ["0x335eeef8e93a7a757d9e7912044d9cd264e2b2d8"]}, 
+		network: {network: ETHEREUM, chain: MAINNET}, 
+		statType: OWNER_COUNT
+	) {
+    stat {
+      ... on IntValue {
+        value
+      }
+    }
+  }
+}
+```
+
+</TabItem>
+<TabItem value="response">
+
+```json
+{
+  "data": {
+    "aggregateStat": {
+      "stat": {
+        "value": 177
+      }
+    }
+  }
+}
+```
+
+</TabItem>
+</Tabs>
+
+<br />
+
+### Collection Total Sales Volume
+Fetches the total sales volume of a collection across all markets.
+
+<Tabs
+  defaultValue="query"
+  values={[
+    { label: 'Query', value: 'query', },
+    { label: 'Response', value: 'response', }
+  ]
+}>
+<TabItem value="query">
+
+```graphql
+query TotalSales {
+  aggregateStat(
+		query: {collectionAddresses: ["0x335eeef8e93a7a757d9e7912044d9cd264e2b2d8"]}, 
+		network: {network: ETHEREUM, chain: MAINNET}, 
+		statType: SALES_VOLUME
+	) {
+    stat {
+      ... on FloatValue {
+        value
+      }
+    }
+  }
+}
+```
+
+</TabItem>
+<TabItem value="response">
+
+```json
+{
+  "data": {
+    "aggregateStat": {
+      "stat": {
+        "value": 16.879749
+      }
+    }
+  }
+}
+```
+
+</TabItem>
+</Tabs>
+
+<br />
+
+### NFT Collection Attributes
+Fetches information on all the attributes in a collection.
+<Tabs
+  defaultValue="query"
+  values={[
+    { label: 'Query', value: 'query', },
+    { label: 'Response', value: 'response', }
+  ]
+}>
+<TabItem value="query">
+
+```graphql
+query AggregateAttributesByCollectionAddress {
+  aggregateAttributes(
+		query: {collectionAddresses: ["0x5180db8f5c931aae63c74266b211f580155ecac8"], 
+    }, 
+		network: {network: ETHEREUM, chain: MAINNET}
+	) {
+    traitType
+    valueMetrics {
+      count
+      percent
+      value
+    }
+  }
+}
+```
+
+</TabItem>
+<TabItem value="response">
+
+```json
+{
+  "data": {
+    "aggregateAttributes": [
+      {
+        "traitType": "Skin Tone",
+        "valueMetrics": [
+          {
+            "count": 2,
+            "percent": 33.33,
+            "value": "Dusk"
+          },
+          {
+            "count": 1,
+            "percent": 16.67,
+            "value": "Night"
+          },
+          {
+            "count": 3,
+            "percent": 50,
+            "value": "Dawn"
+          }
+        ]
+      },
+      {
+        "traitType": "Body Shape",
+        "valueMetrics": [
+          {
+            "count": 2,
+            "percent": 33.33,
+            "value": "Lithe"
+          },
+          {
+            "count": 2,
+            "percent": 33.33,
+            "value": "Soft"
+          },
+          {
+            "count": 2,
+            "percent": 33.33,
+            "value": "Chiseled"
+          }
+        ]
+      },
+    ]
+  }
+}
+```
+
+</TabItem>
+</Tabs>
+
+<br />
+
+### Get Token’s Ask and Transfer Events
+Fetches a token with its active ZORA V3 Ask (Buy Now) and NFT Transfer events by collection address and token id.
+
+<Tabs
+  defaultValue="query"
+  values={[
+    { label: 'Query', value: 'query', },
+    { label: 'Response', value: 'response', }
+  ]
+}>
+<TabItem value="query">
+
+```graphql
+query TokenV3AsksAndTransfers {
+  tokenMarkets(network: {network: ETHEREUM, chain: MAINNET}, pagination: {limit: 10, offset: 0}, sort: {sortKey: MINTED, sortDirection: ASC}, filter: {marketFilters: [{marketType: V3_ASK, statuses: [ACTIVE]}]}, query: {tokens: {address: "0x5180db8f5c931aae63c74266b211f580155ecac8", tokenId: "608"}}) {
+    nodes {
+      token {
+        collectionAddress
+        tokenId
+      }
+      markets {
+        collectionAddress
+        marketType
+        status
+        properties {
+          ... on V3Ask {
+            address
+            askCurrency
+            askPrice {
+              ethPrice {
+                decimal
+              }
+            }
+            findersFeeBps
+            seller
+          }
+        }
+      }
+      events(pagination: {limit: 10, offset: 0}, sort: {sortKey: CREATED, sortDirection: ASC}, filter: {eventTypes: [TRANSFER_EVENT]}) {
+        nodes {
+          eventType
+          collectionAddress
+          properties {
+            ... on TransferEvent {
+              fromAddress
+              toAddress
+            }
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+</TabItem>
+<TabItem value="response">
+
+```json
+{
+  "data": {
+    "tokenMarkets": {
+      "nodes": [
+        {
+          "token": {
+            "collectionAddress": "0x5180db8f5c931aae63c74266b211f580155ecac8",
+            "tokenId": "608"
+          },
+          "markets": [
+            {
+              "collectionAddress": "0x5180db8f5c931aae63c74266b211f580155ecac8",
+              "marketType": "V3_ASK",
+              "status": "ACTIVE",
+              "properties": {
+                "address": "0x6170b3c3a54c3d8c854934cbc314ed479b2b29a3",
+                "askCurrency": "0x0000000000000000000000000000000000000000",
+                "askPrice": {
+                  "ethPrice": {
+                    "decimal": 2.3
+                  }
+                },
+                "findersFeeBps": 0,
+                "seller": "0x92572aae1c9c4ba92011a6a56579c79dbb272cd8"
+              }
+            }
+          ],
+          "events": {
+            "nodes": [
+              {
+                "eventType": "TRANSFER_EVENT",
+                "collectionAddress": "0x5180db8f5c931aae63c74266b211f580155ecac8",
+                "properties": {
+                  "fromAddress": "0x0000000000000000000000000000000000000000",
+                  "toAddress": "0xeb3009d9a216bce0991f1a511756de080a064a39"
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}
+```
+
+</TabItem>
+</Tabs>

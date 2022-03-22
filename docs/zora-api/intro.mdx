@@ -1,0 +1,83 @@
+---
+id: zora-api-intro
+title: Introduction
+sidebar_position: 1
+---
+
+# Introduction to the API
+
+##### ZORA API: The one-stop shop for all your NFT data needs
+
+---
+
+The ZORA API is a **GraphQL API** that makes it easy to retrieve NFT metadata at scale, create your own marketplace, analyze sales activity, monitor on-chain events, and much more. 
+:::note
+
+GraphQL Playground:
+
+:::
+
+##### Key Features:
+- Standardized NFT Metadata
+- NFT Contract Events
+- Marketplace Sales Data (ZORA, OpenSea, LooksRare, 0x, etc.)
+- Adaptable to Different Chains and Token Standards
+- Automatically syncs new NFTs deployed to the blockchain
+
+
+## Getting Started
+If you are unfamilar with GraphQL, we recommend that you [check out this resource](https://www.howtographql.com/basics/0-introduction/). 
+In addition, here are some key considerations to take into account before using the API.
+
+- The API currently only supports `ERC-721` NFTs on `Ethereum Mainnet` . However, we plan to support other chains and tokens standards in the near future.
+- All queries can be run without specifying arguments, but it is suggested the you provide arguments for quicker responses.
+- Maximum nodes allowed in a response is 500, but it can be set to a specific size within the `pagination` argument.
+- There is a list of [sample queries here](./zora-api-sample-queries) that will help you understand simple API queries.
+
+---
+
+### Authentication
+
+---
+
+### Queries
+
+##### Core Entities
+
+- `token`: Information about a single token
+- `tokens`: Information for multiple tokens
+- `collections`: NFT collection information
+- `events`: Contract event information, e.g. Sales, Transfers, Mints, Market events
+- `markets`: Data for specific ZORA markets, e.g. Buy Now, Auctions
+- `sales`: Historical sales data from ZORA, OpenSea, LooksRare, 0x, and more.
+- `tokenMarkets`: Retrieve token, market data, and event information
+
+##### Aggregated Entities
+
+- `aggregateAttributes`: Gets the total set of NFT attributes
+- `aggregateStat`: Returns counts, sales volume, and other useful statistics
+
+---
+
+### Common Query Arguments
+
+- `network`: The network to grab NFT data from
+- `query`: General arguments that grab a specific set of NFT data
+- `filter`:  Filters down the results from the `query` arguments into a smaller data set
+- `pagination`:  A way to set the size and starting point of the response
+- `sort`: Sorts the returned data
+
+---
+
+### Example Collections
+
+We’ve indexed collections from all across `Ethereum Mainnet`, here are some examples collections you can interact with.
+
+- `Zorbs`: 0xCa21d4228cDCc68D4e23807E5e370C07577Dd152
+- `Crypto Dickbutts`: 0x42069ABFE407C60cf4ae4112bEDEaD391dBa1cdB
+- `Crypto Coven`: 0x5180db8F5c931aaE63c74266b211F580155ecac8
+
+:::note
+#### Sample Queries
+We have created is a list of [example queries here](./zora-api-sample-queries) that will help you get started.
+:::

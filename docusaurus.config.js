@@ -27,8 +27,18 @@ module.exports = {
         },
         {
           position: 'left',
+          label: 'Contracts',
+          to: '/docs/smart-contracts/zora-V3',
+        },
+        {
+          position: 'left',
+          label: 'API',
+          to: '/docs/zora-api/zora-api-intro',
+        },
+        {
+          position: 'left',
           label: 'Guides',
-          to: '/docs/guides/connect-wallet-react',
+          to: '/docs/guides/v3-approvals',
         },
       ],
     },

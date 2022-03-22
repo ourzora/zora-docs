@@ -170,7 +170,7 @@ function NavbarMobileSidebar({ sidebarShown, toggleSidebar }) {
             ))}
           </ul>
           <a href="https://zora.co/" target="_blank" rel="noopener noreferrer">
-            <p className={styles.zoraCoText}>Use Zora -&gt; </p>
+            <p className={styles.zoraCoText}>Zora.co</p>
           </a>
           <a
             href="https://github.com/ourzora/zora-docs"
@@ -262,7 +262,7 @@ function Navbar() {
                 />
               )}
               <a href="https://zora.co/" target="_blank" rel="noopener noreferrer">
-                <button className={styles.zoraCoButton}>Use Zora -&gt;</button>
+                <button className={styles.zoraCoButton}>Zora.co</button>
               </a>
             </div>
           </>
