@@ -1,0 +1,503 @@
+---
+id: zora-v3-auctions-latest
+title: Introduction
+sidebar_position: 1
+---
+
+import Tabs from '@theme/Tabs'
+import TabItem from '@theme/TabItem'
+
+##### Sell an NFT using a reserve auction
+
+---
+The `Auctions Module` allows anyone to sell an ERC-721 NFT using a reserve auction.
+In a reserve auction, the seller sets a minimum price and only if a bid meets or exceeds the price will auction timer start.
+You can view all of the `Auctions Module v1.0` code in this [GitHub Repo](https://github.com/ourzora/v3/tree/main/contracts/modules/ReserveAuction).
+
+
+
+## Auction Variants
+There are four different variants for the Auction Module. Each variant comes with different features and associated gas costs.
+
+
+| Contract                                             | Supports ETH | Supports ERC-20 | Supports Finders Fee | Gas Costs |
+|------------------------------------------------------|----------------|----------------|-----------------------|-----------|
+|[CoreETH](./zora-v3-auctions-coreETH-1.0)|   ✅           |   🚫            |     🚫                | Lowest    |
+|[CoreERC20](./zora-v3-auctions-coreERC20-1.0)         |   ✅           |   ✅            |     🚫                | Medium    |
+|[FindersETH](./zora-v3-auctions-finderETH-1.0)       |   ✅           |   🚫            |     ✅                | Medium    |
+|[FindersERC20](./zora-v3-auctions-finderERC20-1.0)|   ✅           |   ✅            |     ✅                | Highest   |
+
+
+#### Finders Fee
+The Finders Fee is an optional amount offered to the party that helped match the highest bidder to the NFT. 
+For example, a user creates an `auction` for one of the NFTs in their wallet. 
+If a Finders Fee was specified, then the interface that helped match the NFT to the highest bidder could be entitled to that amount. 
+Note that the Finders Fee is only charged if the auction completes.
+
+
+#### Gas Costs 
+Testing this line
+
+#### Key Considerations ✅
+- An auction can be created by an owner or approved operator for any ERC-721 token.
+- The auction timer will start when a bid is greater than or equal to the reserve price
+- The NFT is only taken into custody when the first valid bid has been submitted
+- The timer will be set back to 15 minutes if a bid is summitted within the last 15 minutes
+- The percentage difference for a new bid must be greater than or equal to 10%
+- Royalties are paid out using the [Manifold Royalty Registry](https://royaltyregistry.xyz/lookup) when an auction ends
+
+---
+
+## Auctions V1.0 Addresses
+
+#### Mainnet Deployments
+---
+##### Ethereum - 1
+| **Contract**       | **Address**                                 |
+| ------------------ | ------------------------------------------ |
+| CoreETH            | 0x5f7072E1fA7c01dfAc7Cf54289621AFAaD2184d0 |
+| CoreERC20          | 0x53172d999a299198a935f9E424f9f8544e3d4292 |
+| FindersETH         | 0x9458E29713B98BF452ee9B2C099289f533A5F377 |
+| FindersERC20       | 0xd1adAF05575295710dE1145c3c9427c364A70a7f |
+| Royalty Engine     | 0x0385603ab55642cb4dd5de3ae9e306809991804f |
+
+
+#### Testnet Deployments
+---
+##### Ropsten - 3
+| **Contract**       | **Address**                                 |
+| -------------------|---------------------------------------------|
+| CoreETH            | 0xF57A73D355680Df3945Da7853A1F1F9149C7DA4D |
+| CoreERC20          | 0x818F7A204B7C82ae1CAE37E1921B855584da67D9 |
+| FindersETH         | 0xbfF7B9C643bDE6fDb43b4f7c60Ea29C31D4621Df |
+| FindersERC20       | 0xB447467220617330445FABce737d1512A0205531 |
+| Royalty Engine     | 0xFf5A6F7f36764aAD301B7C9E85A5277614Df5E26 |
+
+##### Rinkeby - 4
+| **Contract**       | **Address**                                 |
+| -------------------|---------------------------------------------|
+| CoreETH            | 0x3feAf4c06211680e5969A86aDB1423Fc8AD9e994 |
+| CoreERC20          | 0x9eb86B88D13eD0e38348AB951b55a26cA468A262 |
+| FindersETH         | 0x1b5A56DEa3d9760c6b14B709B9cf0ef9AaCD2730 |
+| FindersERC20       | 0x81950e0CD9c51564583bFB80EC3d40f2B915A956 |
+| Royalty Engine     | 0x8d17687ea9a6bb6efA24ec11DcFab01661b2ddcd |
+
+
+<!-- ---
+
+## Variant Interfaces
+
+### CoreETH
+The CoreETH variant has the lowest gas costs, however, bids can only be placed in ETH and Finder Fees are not supported.
+
+#### Auction Structure
+
+- `seller`: The address of the seller
+- `reservePrice`: The reserve price to start the auction
+- `sellerFundsRecipient`: The address where funds are sent after the auction
+- `highestBid`: The highest bid of the auction
+- `highestBidder`: The address of the highest bidder
+- `duration`: The length of time that the auction runs after the first bid is placed
+- `startTime`: The time that the first bid can be placed
+- `firstBidTime`: The time that the first bid is placed
+
+```
+struct Auction {
+    address seller;
+    uint96 reservePrice;
+    address sellerFundsRecipient;
+    uint96 highestBid;
+    address highestBidder;
+    uint32 duration;
+    uint32 startTime;
+    uint32 firstBidTime;
+}
+```
+
+<br/>
+
+#### supportsInterface
+Implements [EIP-165](https://eips.ethereum.org/EIPS/eip-165) for standard interface detection with an id of `0x01ffc9a7`.
+
+```
+function supportsInterface(bytes4 _interfaceId) returns (bool)
+```
+
+<br/>
+
+#### createAuction
+Creates an auction for a given ERC-721 NFT. There can only be one auction at a time for a given NFT.
+
+```
+function createAuction(
+    address _tokenContract,
+    uint256 _tokenId,
+    uint256 _duration,
+    uint256 _reservePrice,
+    address _sellerFundsRecipient,
+    uint256 _startTime
+) 
+```
+
+<br/>
+
+
+#### setAuctionReservePrice
+Updates the auction reserve price for a given NFT
+
+```
+function setAuctionReservePrice(
+    address _tokenContract,
+    uint256 _tokenId,
+    uint256 _reservePrice
+)
+```
+
+<br/>
+
+#### cancelAuction 
+Cancels the auction for a given NFT.
+
+```
+function cancelAuction(address _tokenContract, uint256 _tokenId)
+```
+
+<br/>
+
+#### createBid
+Places a bid on the auction for a given NFT. 
+The bid percentage difference must be greater than or equal to 10% of the previous bid.
+
+```
+function createBid(address _tokenContract, uint256 _tokenId)
+```
+
+<br/>
+
+#### settleAuction
+Ends the auction for a given NFT by sending the NFT to the highest bidder and the funds to the seller. 
+Note, that this module honors royalty payouts.
+```
+function settleAuction(address _tokenContract, uint256 _tokenId)
+```
+
+---
+
+### CoreERC20
+The CoreERC20 variant supports bids in ETH and ERC-20s, but doesn't not support Finders Fee.
+
+#### Auction Structure
+
+- `seller`: The address of the seller
+- `reservePrice`: The reserve price to start the auction
+- `sellerFundsRecipient`: The address where funds are sent after the auction
+- `highestBid`: The highest bid of the auction
+- `highestBidder`: The address of the highest bidder
+- `duration`: The length of time that the auction runs after the first bid is placed
+- `startTime`: The time that the first bid can be placed
+- `currency`: The address of the ERC-20 token, or `address(0)` for ETH, required for a bid
+- `firstBidTime`: The time that the first bid is placed
+
+```
+struct Auction {
+    address seller;
+    uint96 reservePrice;
+    address sellerFundsRecipient;
+    uint96 highestBid;
+    address highestBidder;
+    uint48 duration;
+    uint48 startTime;
+    address currency;
+    uint96 firstBidTime;
+}
+```
+
+<br/>
+
+#### supportsInterface
+Implements [EIP-165](https://eips.ethereum.org/EIPS/eip-165) for standard interface detection with an id of `0x01ffc9a7`.
+
+```
+function supportsInterface(bytes4 _interfaceId) returns (bool)
+```
+
+<br/>
+
+#### createAuction
+Creates an auction for a given ERC-721 NFT. There can only be one auction at a time for a given NFT.
+
+```
+function createAuction(
+    address _tokenContract,
+    uint256 _tokenId,
+    uint256 _duration,
+    uint256 _reservePrice,
+    address _sellerFundsRecipient,
+    uint256 _startTime,
+    address _bidCurrency
+) 
+```
+
+<br/>
+
+
+#### setAuctionReservePrice
+Updates the auction reserve price for a given NFT
+
+```
+function setAuctionReservePrice(
+    address _tokenContract,
+    uint256 _tokenId,
+    uint256 _reservePrice
+)
+```
+
+<br/>
+
+#### cancelAuction 
+Cancels the auction for a given NFT.
+
+```
+function cancelAuction(address _tokenContract, uint256 _tokenId)
+```
+
+<br/>
+
+#### createBid
+Places a bid on the auction for a given NFT. 
+The bid percentage difference must be greater than or equal to 10% of the previous bid.
+
+```
+function createBid(
+    address _tokenContract,
+    uint256 _tokenId,
+    uint256 _amount
+)
+```
+
+<br/>
+
+#### settleAuction
+Ends the auction for a given NFT by sending the NFT to the highest bidder and the funds to the seller. 
+Note, that this module honors royalty payouts.
+```
+function settleAuction(address _tokenContract, uint256 _tokenId)
+```
+
+
+
+---
+
+### FindersETH
+The FindersETH variant supports bids in ETH and supports Finders Fee.
+
+#### Auction Structure
+
+- `seller`: The address of the seller
+- `reservePrice`: The reserve price to start the auction
+- `sellerFundsRecipient`: The address where funds are sent after the auction
+- `highestBid`: The highest bid of the auction
+- `highestBidder`: The address of the highest bidder
+- `duration`: The length of time that the auction runs after the first bid is placed
+- `startTime`: The time that the first bid can be placed
+- `firstBidTime`: The time that the first bid is placed
+- `finder`: The address that referred the highest bid
+- `findersFeeBps`: The fee that is sent to the referrer of the highest bid
+
+```
+struct Auction {
+    address seller;
+    uint96 reservePrice;
+    address sellerFundsRecipient;
+    uint96 highestBid;
+    address highestBidder;
+    uint48 duration;
+    uint48 startTime;
+    uint80 firstBidTime;
+    address finder;
+    uint16 findersFeeBps;
+}
+```
+
+<br/>
+
+#### supportsInterface
+Implements [EIP-165](https://eips.ethereum.org/EIPS/eip-165) for standard interface detection with an id of `0x01ffc9a7`.
+
+```
+function supportsInterface(bytes4 _interfaceId) returns (bool)
+```
+
+<br/>
+
+#### createAuction
+Creates an auction for a given ERC-721 NFT. There can only be one auction at a time for a given NFT.
+
+```
+function createAuction(
+    address _tokenContract,
+    uint256 _tokenId,
+    uint256 _duration,
+    uint256 _reservePrice,
+    address _sellerFundsRecipient,
+    uint256 _startTime,
+    uint256 _findersFeeBps
+)
+```
+
+<br/>
+
+
+#### setAuctionReservePrice
+Updates the auction reserve price for a given NFT
+
+```
+function setAuctionReservePrice(
+    address _tokenContract,
+    uint256 _tokenId,
+    uint256 _reservePrice
+)
+```
+
+<br/>
+
+#### cancelAuction 
+Cancels the auction for a given NFT.
+
+```
+function cancelAuction(address _tokenContract, uint256 _tokenId)
+```
+
+<br/>
+
+#### createBid
+Places a bid on the auction for a given NFT. 
+The bid percentage difference must be greater than or equal to 10% of the previous bid.
+
+```
+function createBid(
+    address _tokenContract,
+    uint256 _tokenId,
+    address _finder
+)
+```
+
+<br/>
+
+#### settleAuction
+Ends the auction for a given NFT by sending the NFT to the highest bidder and the funds to the seller. 
+Note, this module honors royalty payouts.
+
+```
+function settleAuction(address _tokenContract, uint256 _tokenId)
+```
+
+---
+
+### FindersERC20
+The FindersERC20 variant supports bids in ETH/ERC20s and supports Finders Fees, but has the highest gas costs.
+
+#### Auction Structure
+
+- `seller`: The address of the seller
+- `reservePrice`: The reserve price to start the auction
+- `sellerFundsRecipient`: The address where funds are sent after the auction
+- `highestBid`: The highest bid of the auction
+- `highestBidder`: The address of the highest bidder
+- `duration`: The length of time that the auction runs after the first bid is placed
+- `startTime`: The time that the first bid can be placed
+- `currency`: The address of the ERC-20 token, or `address(0)` for ETH, required for a bid
+- `firstBidTime`: The time that the first bid is placed
+- `finder`: The address that referred the highest bid
+- `findersFeeBps`: The fee that is sent to the referrer of the highest bid
+
+```
+struct Auction {
+    address seller;
+    uint96 reservePrice;
+    address sellerFundsRecipient;
+    uint96 highestBid;
+    address highestBidder;
+    uint80 duration;
+    uint96 startTime;
+    address currency;
+    uint96 firstBidTime;
+    address finder;
+    uint16 findersFeeBps;
+}
+```
+
+<br/>
+
+#### supportsInterface
+Implements [EIP-165](https://eips.ethereum.org/EIPS/eip-165) for standard interface detection with an id of `0x01ffc9a7`.
+
+```
+function supportsInterface(bytes4 _interfaceId) returns (bool)
+```
+
+<br/>
+
+#### createAuction
+Creates an auction for a given ERC-721 NFT. There can only be one auction at a time for a given NFT.
+
+```
+function createAuction(
+    address _tokenContract,
+    uint256 _tokenId,
+    uint256 _duration,
+    uint256 _reservePrice,
+    address _sellerFundsRecipient,
+    uint256 _startTime,
+    address _bidCurrency,
+    uint256 _findersFeeBps
+) 
+```
+
+<br/>
+
+
+#### setAuctionReservePrice
+Updates the auction reserve price for a given NFT
+
+```
+function setAuctionReservePrice(
+    address _tokenContract,
+    uint256 _tokenId,
+    uint256 _reservePrice
+)
+```
+
+<br/>
+
+#### cancelAuction 
+Cancels the auction for a given NFT.
+
+```
+function cancelAuction(address _tokenContract, uint256 _tokenId)
+```
+
+<br/>
+
+#### createBid
+Places a bid on the auction for a given NFT. 
+The bid percentage difference must be greater than or equal to 10% of the previous bid.
+
+```
+function createBid(
+    address _tokenContract,
+    uint256 _tokenId,
+    uint256 _amount,
+    address _finder
+)
+```
+
+<br/>
+
+#### settleAuction
+Ends the auction for a given NFT by sending the NFT to the highest bidder and the funds to the seller. 
+Note, that this module honors royalty payouts.
+
+```
+function settleAuction(address _tokenContract, uint256 _tokenId)
+``` -->
