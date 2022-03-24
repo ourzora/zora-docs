@@ -1,15 +1,16 @@
 ---
-id: zora-v3-auctions-finderERC20-1.0
-title: FinderERC20
-sidebar_position: 5
+id: zora-v3-auctions-ListingETH
+title: ListingETH
+sidebar_position: 1
 ---
-This variant supports bids in ETH/ERC20s and supports Finders Fees, but has the highest gas costs.
+Supports bids in ETH and supports Listing Fee.
 
 ---
 
 :::note
-All deployed addresses can be found on the [Auctions introduction page](./zora-v3-auctions-latest#auctions-v10-addresses).
+All deployed addresses can be found on the [Auctions introduction page](../zora-v3-auctions-latest#auctions-v10-addresses).
 :::
+
 
 ### Auction Structure
 
@@ -20,10 +21,9 @@ All deployed addresses can be found on the [Auctions introduction page](./zora-v
 - `highestBidder`: The address of the highest bidder
 - `duration`: The length of time that the auction runs after the first bid is placed
 - `startTime`: The time that the first bid can be placed
-- `currency`: The address of the ERC-20 token, or `address(0)` for ETH, required for a bid
 - `firstBidTime`: The time that the first bid is placed
-- `finder`: The address that referred the highest bid
-- `findersFeeBps`: The fee that is sent to the referrer of the highest bid
+- `listingFeeRecipient`: The address that listed the auction
+- `listingFeeBps`: The fee that is sent to the lister of the auction
 
 ```
 struct Auction {
@@ -32,19 +32,18 @@ struct Auction {
     address sellerFundsRecipient;
     uint96 highestBid;
     address highestBidder;
-    uint80 duration;
-    uint96 startTime;
-    address currency;
-    uint96 firstBidTime;
-    address finder;
-    uint16 findersFeeBps;
+    uint48 duration;
+    uint48 startTime;
+    uint80 firstBidTime;
+    address listingFeeRecipient;
+    uint16 listingFeeBps;
 }
 ```
 
 <br/>
 
 ### supportsInterface
-Implements [EIP-165](https://eips.ethereum.org/EIPS/eip-165) for standard interface detection with an id of `0x01ffc9a7`.
+Implements [EIP-165](https://eips.ethereum.org/EIPS/eip-165) for standard interface detection.
 
 ```
 function supportsInterface(bytes4 _interfaceId) returns (bool)
@@ -63,9 +62,9 @@ function createAuction(
     uint256 _reservePrice,
     address _sellerFundsRecipient,
     uint256 _startTime,
-    address _bidCurrency,
-    uint256 _findersFeeBps
-) 
+    uint256 _listingFeeBps,
+    address _listingFeeRecipient
+)
 ```
 
 <br/>
@@ -98,19 +97,14 @@ Places a bid on the auction for a given NFT.
 The bid percentage difference must be greater than or equal to 10% of the previous bid.
 
 ```
-function createBid(
-    address _tokenContract,
-    uint256 _tokenId,
-    uint256 _amount,
-    address _finder
-)
+function createBid(address _tokenContract, uint256 _tokenId)
 ```
 
 <br/>
 
 ### settleAuction
 Ends the auction for a given NFT by sending the NFT to the highest bidder and the funds to the seller. 
-Note, that this module honors royalty payouts.
+Note, that this module honors royalty payouts and also support Listing Fees.
 
 ```
 function settleAuction(address _tokenContract, uint256 _tokenId)

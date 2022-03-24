@@ -1,15 +1,14 @@
 ---
-id: zora-v3-auctions-coreETH-1.0
-title: CoreETH
+id: zora-v3-auctions-coreERC20
+title: CoreERC20
 sidebar_position: 2
 ---
-
-This variant has the lowest gas costs, however, bids can only be placed in ETH and Finder Fees are not supported.
+Supports bids in ETH and ERC-20s, but doesn't support other auction features.
 
 ---
 
 :::note
-All deployed addresses can be found on the [Auctions introduction page](./zora-v3-auctions-latest#auctions-v10-addresses).
+All deployed addresses can be found on the [Auctions introduction page](../zora-v3-auctions-latest#auctions-v10-addresses).
 :::
 
 ### Auction Structure
@@ -22,6 +21,7 @@ All deployed addresses can be found on the [Auctions introduction page](./zora-v
 - `duration`: The length of time that the auction runs after the first bid is placed
 - `startTime`: The time that the first bid can be placed
 - `firstBidTime`: The time that the first bid is placed
+- `currency`: The address of the ERC-20 token, or `address(0)` for ETH, required for a bid
 
 ```
 struct Auction {
@@ -30,16 +30,17 @@ struct Auction {
     address sellerFundsRecipient;
     uint96 highestBid;
     address highestBidder;
-    uint32 duration;
-    uint32 startTime;
-    uint32 firstBidTime;
+    uint48 duration;
+    uint48 startTime;
+    uint96 firstBidTime;
+    address currency;
 }
 ```
 
 <br/>
 
 ### supportsInterface
-Implements [EIP-165](https://eips.ethereum.org/EIPS/eip-165) for standard interface detection with an id of `0x01ffc9a7`.
+Implements [EIP-165](https://eips.ethereum.org/EIPS/eip-165) for standard interface detection.
 
 ```
 function supportsInterface(bytes4 _interfaceId) returns (bool)
@@ -57,7 +58,8 @@ function createAuction(
     uint256 _duration,
     uint256 _reservePrice,
     address _sellerFundsRecipient,
-    uint256 _startTime
+    uint256 _startTime,
+    address _bidCurrency
 ) 
 ```
 
@@ -91,7 +93,11 @@ Places a bid on the auction for a given NFT.
 The bid percentage difference must be greater than or equal to 10% of the previous bid.
 
 ```
-function createBid(address _tokenContract, uint256 _tokenId)
+function createBid(
+    address _tokenContract,
+    uint256 _tokenId,
+    uint256 _amount
+)
 ```
 
 <br/>

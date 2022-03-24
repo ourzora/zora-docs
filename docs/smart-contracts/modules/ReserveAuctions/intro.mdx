@@ -1,0 +1,91 @@
+---
+id: zora-v3-reserve-auctions-intro
+title: Introduction
+sidebar_position: 1
+---
+
+import Tabs from '@theme/Tabs'
+import TabItem from '@theme/TabItem'
+
+##### Sell an NFT using a reserve auction
+
+---
+These `Auction Modules` allow anyone to sell an ERC-721 NFT using a reserve auction.
+In a reserve auction, the seller sets a minimum price and only if a bid meets or exceeds the price will the auction timer start.
+You can view all of the code for the `Reserve Auction Modules` in this [GitHub Repo](https://github.com/ourzora/v3/tree/main/contracts/modules/ReserveAuction).
+
+
+
+## Reserve Auction Variants
+There are a number of variants for the `Reserve Auction`. Each variant comes with different features and associated gas costs.
+
+
+| Contract                                             | Supports ETH | Supports ERC-20  | Supports Finders Fee| Supports Listing Fee |
+|------------------------------------------------------|----------------|----------------|---------------------|----------------------|
+|[CoreETH](./core/zora-v3-auctions-coreETH)             |   ✅           |   🚫            |     🚫              |  🚫
+|[CoreERC20](./core/zora-v3-auctions-coreERC20)         |   ✅           |   ✅            |     🚫              |  🚫
+|[FindersETH](./finders/zora-v3-auctions-finderETH)        |   ✅           |   🚫            |     ✅              |  🚫
+|[FindersERC20](./finders/zora-v3-auctions-finderERC20)    |   ✅           |   ✅            |     ✅              |  🚫
+|[ListingETH](./listing/zora-v3-auctions-listingERC20)      |   ✅           |   🚫            |     🚫              |   ✅
+|[ListingERC20](./listing/zora-v3-auctions-listingERC20)    |   ✅           |   ✅            |     🚫              |   ✅
+
+#### Gas Costs
+Testing this line
+
+#### Finders Fee
+The Finders Fee is an amount offered to the party that helped match the highest bidder to the NFT.
+For example, a user creates an `auction` for one of the NFTs in their wallet. 
+If a Finders Fee was specified, then the interface that helped match the NFT to the highest bidder could be entitled to that amount. 
+Note that the Finders Fee is only charged if the auction completes.
+
+#### Listing Fee
+The Listing Fee is an amount that can be charged by a party for helping put an NFT up for auction.
+Note that the Listing Fee is only charged if the auction completes.
+
+---
+
+## Key Considerations
+- An auction can be created by an owner or approved operator for any ERC-721 token.
+- The auction timer will start when a bid is greater than or equal to the reserve price.
+- The NFT is only taken into custody when the first valid bid has been submitted.
+- The timer will be set back to 15 minutes if a bid is summitted within the last 15 minutes.
+- The percentage difference for a new bid must be greater than or equal to 10%.
+- Royalties are paid out using the [Manifold Royalty Registry](https://royaltyregistry.xyz/lookup) when an auction ends.
+
+---
+
+## Auction Module Addresses
+
+#### Mainnet Deployments
+---
+##### Ethereum - 1
+| **Contract**       | **Address**                                 |
+| ------------------ | ------------------------------------------ |
+| CoreETH            | 0x5f7072E1fA7c01dfAc7Cf54289621AFAaD2184d0 |
+| CoreERC20          | 0x53172d999a299198a935f9E424f9f8544e3d4292 |
+| FindersETH         | 0x9458E29713B98BF452ee9B2C099289f533A5F377 |
+| FindersERC20       | 0xd1adAF05575295710dE1145c3c9427c364A70a7f |
+| ListingETH         | 0x1E58bE778aCae2744c1185ea1cE542f304860B96 |
+| ListingERC20       | 0x1e009dEC13A2A441b3Aa133Bd320FF5B16B22E71 |
+
+#### Testnet Deployments
+---
+##### Ropsten - 3
+| **Contract**       | **Address**                                 |
+| -------------------|---------------------------------------------|
+| CoreETH            | 0xF57A73D355680Df3945Da7853A1F1F9149C7DA4D |
+| CoreERC20          | 0x818F7A204B7C82ae1CAE37E1921B855584da67D9 |
+| FindersETH         | 0xbfF7B9C643bDE6fDb43b4f7c60Ea29C31D4621Df |
+| FindersERC20       | 0xB447467220617330445FABce737d1512A0205531 |
+| ListingETH         | 🚫 |
+| ListingERC20       | 🚫 |
+
+##### Rinkeby - 4
+| **Contract**       | **Address**                                 |
+| -------------------|---------------------------------------------|
+| CoreETH            | 0x3feAf4c06211680e5969A86aDB1423Fc8AD9e994 |
+| CoreERC20          | 0x9eb86B88D13eD0e38348AB951b55a26cA468A262 |
+| FindersETH         | 0x1b5A56DEa3d9760c6b14B709B9cf0ef9AaCD2730 |
+| FindersERC20       | 0x81950e0CD9c51564583bFB80EC3d40f2B915A956 |
+| ListingETH         | 0x665814dA60D1Ddc23Fa1F69C1F5B5CAF63ab24b3 |
+| ListingERC20       | 0x7a91CfC8C1Aec9EfdBaaCb47C6D41268524D47D4 |
