@@ -1,6 +1,6 @@
 ---
 id: zora-V3
-title: Intro to V3
+title: Introduction
 sidebar_position: 1
 ---
 import Tabs from '@theme/Tabs'
@@ -9,55 +9,8 @@ import TabItem from '@theme/TabItem'
 ##### An introduction to the ZORA V3
 
 ---
-ZORA V3 is comprised of a few core contracts and an ever-expanding set of modules. 
-Modules are non-upgradable contracts that add specific functionality to the protocol.
 
-* **Modules:** Contracts with specific functionality that can be added to ZORA V3
-
-* **Module Manager:** Manages which modules a user has approved to use their tokens and which new modules can be added to the protocol
-
-* **Transfer Helpers:** Handles transferring ERC-20 and ERC-721 tokens for the modules
-
-![zorav3diagram](../../static/img/zora_v3_diagram.png)
-
-
-### Supported V3 Modules
-
-| Module Name                                                           | Mainnet Deployment | Zora.co  |   API       |
-|-----------------------------------------------------------------------|--------------------|----------|-------------|
-| [Asks](./modules/Asks/zora-v3-asks-latest#ethereum---1)               |     ✅             |   ✅      |    ✅       |
-| [Auctions](./modules/ReserveAuctions/zora-v3-reserve-auctions-intro)   |     ✅             |   🔜      |    🔜       |
-<br/>
-
-<Tabs
-  defaultValue="yarn"
-  values={[
-    { label: 'Yarn', value: 'yarn', },
-    { label: 'NPM', value: 'npm', }
-  ]
-}>
-<TabItem value="yarn">
-
-```bash
-yarn add @zoralabs/v3
-```
-
-</TabItem>
-<TabItem value="npm">
-
-```bash
-npm i -S @zoralabs/v3
-```
-
-</TabItem>
-</Tabs>
-
-Source code for all ZORA V3 contracts can be found in this [GitHub repository](https://github.com/ourzora/v3).
-If you are interested to contributing to ZORA V3 you can learn more [here](https://github.com/ourzora/v3#contributing).
-
-<br/>
-
-### ZORA V3 Core Addresses
+### V3 Core Addresses
 
 #### Mainnet Deployments
 ---
@@ -106,9 +59,68 @@ If you are interested to contributing to ZORA V3 you can learn more [here](https
 | ERC-20 TransferHelper   | 0xCCA379FDF4Beda63c4bB0e2A3179Ae62c8716794 |
 | Protocol Fee Settings   | 0x9641169A1374b77E052E1001c5a096C29Cd67d35 |
 
+<br/> 
 
+:::note
+The addresses for specific **ZORA modules** can be found in the Modules folder linked in the chart below.
+:::
+
+---
+
+### Supported V3 Modules
+
+| Module Name                                                           | Mainnet Deployment | API      |   Zora.co    |
+|-----------------------------------------------------------------------|--------------------|----------|--------------|
+| [Asks](./modules/Asks/zora-v3-asks-latest)                             |     ✅             |   ✅      |    ✅       |
+| [Auctions](./modules/ReserveAuctions/zora-v3-reserve-auctions-intro)   |     ✅             |   🔜      |    🔜       |
 
 <br/>
+
+### Installing V3
+You can begin building with ZORA V3 by installing the v3 package. 
+This package supports `typechain` to make it easier to get started.
+
+<Tabs
+  defaultValue="yarn"
+  values={[
+    { label: 'Yarn', value: 'yarn', },
+    { label: 'NPM', value: 'npm', }
+  ]
+}>
+<TabItem value="yarn">
+
+```bash
+yarn add @zoralabs/v3
+```
+
+</TabItem>
+<TabItem value="npm">
+
+```bash
+npm i -S @zoralabs/v3
+```
+
+</TabItem>
+</Tabs>
+
+Source code for all ZORA V3 contracts can be found in this [GitHub repository](https://github.com/ourzora/v3).
+If you are interested to contributing to ZORA V3 you can learn more [here](https://github.com/ourzora/v3#contributing).
+
+<br/>
+
+### Getting Started
+
+ZORA V3 is comprised of a few core contracts and an ever-expanding set of modules. 
+Modules are non-upgradable contracts that add specific functionality to the protocol.
+
+* **Modules:** Contracts with specific functionality that can be added to ZORA V3
+
+* **Module Manager:** Manages which modules a user has approved to use their tokens and which new modules can be added to the protocol
+
+* **Transfer Helpers:** Handles transferring ERC-20 and ERC-721 tokens for the modules
+
+![zorav3diagram](../../static/img/zora_v3_diagram.png)
+
 
 ### Approving Tokens to V3
 Tokens must first be approved to their respective Transfer Helper contracts before being able to be used by the ZORA modules. 
@@ -116,7 +128,9 @@ For example, all ERC-721 token approvals must be made to the ERC-721 Transfer He
 Once completed, the user will then need to approve which modules can access their approved tokens by submitting a transaction to the Module Manager.
 This means that a user will only need to approve each token contract to ZORA V3 once and then approve which ZORA modules can access to their tokens.
 
+:::note
 We have created a guide on approving to ZORA V3 if you would like to [learn more](../../docs/guides/v3-approvals).
+:::
 
 <br/>
 
