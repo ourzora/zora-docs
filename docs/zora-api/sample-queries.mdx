@@ -20,8 +20,8 @@ Note that more robust responses are possible for the following queries.
 These examples are meant to be simple and don't return all the data that is possible in a response.
 :::
 
-### Get NFT Data for an Address
-Fetches the data for ERC-721 NFTs held in an owner's address.
+### Get NFT Data and count for an address
+Fetches the data for ERC-721 NFTs held in an owner's address and the number of NFTs the address owns.
 
 <Tabs
   defaultValue="query"
@@ -34,7 +34,14 @@ Fetches the data for ERC-721 NFTs held in an owner's address.
 
 ```graphql
 query BrecksNFTs {
-  tokens(network: {network: ETHEREUM, chain: MAINNET}, pagination: {limit: 10, offset: 0}, sort: {sortKey: MINTED, sortDirection: ASC}, query: {ownerAddresses: ["breck.eth"]}) {
+  aggregateStat(where: {ownerAddresses: ["breck.eth"]}, networks: [{network: ETHEREUM, chain: MAINNET}], statType: NFT_COUNT) {
+    stat {
+      ... on IntValue {
+        value
+      }
+    }
+  }
+  tokens(networks: [{network: ETHEREUM, chain: MAINNET}], pagination: {limit: 10, offset: 0}, sort: {sortKey: MINTED, sortDirection: ASC}, where: {ownerAddresses: ["breck.eth"]}) {
     nodes {
       collectionAddress
       name
@@ -50,6 +57,11 @@ query BrecksNFTs {
 ```json
 {
   "data": {
+    "aggregateStat": {
+      "stat": {
+        "value": 36
+      }
+    },
     "tokens": {
       "nodes": [
         {
@@ -127,7 +139,7 @@ Fetches data for NFT collections. A collection is a group of NFTs that all share
 
 ```graphql
 query ListCollections {
-  collections(network: {network: ETHEREUM, chain: MAINNET}, pagination: {limit: 10, offset: 0}, sort: {sortKey: CREATED, sortDirection: ASC}) {
+  collections(networks: [{network: ETHEREUM, chain: MAINNET}], pagination: {limit: 8, offset: 0}, sort: {sortKey: CREATED, sortDirection: ASC}) {
     nodes {
       address
       name
@@ -184,16 +196,6 @@ query ListCollections {
           "address": "0x97f1482116f6459ed7156f1e4fc76b023c9b4bb3",
           "name": "William M. Peaster's Mintbase Shop",
           "symbol": "WMP"
-        },
-        {
-          "address": "0xbb564e2befb25924a1b9fe1f42ecf13a3180a750",
-          "name": "",
-          "symbol": ""
-        },
-        {
-          "address": "0xe95009106cd4f7052cc585704883e17f7acbe7f4",
-          "name": "",
-          "symbol": ""
         }
       ]
     }
@@ -220,7 +222,7 @@ Fetches a list of NFTs that have been indexed within a certain collection.
 
 ```graphql
 query PreviewCryptoCovens {
-  tokens(network: {network: ETHEREUM, chain: MAINNET}, pagination: {limit: 10, offset: 0}, sort: {sortKey: MINTED, sortDirection: ASC}, query: {collectionAddresses: ["0x5180db8f5c931aae63c74266b211f580155ecac8"]}) {
+  tokens(networks: [{network: ETHEREUM, chain: MAINNET}], pagination: {limit: 10, offset: 0}, sort: {sortKey: MINTED, sortDirection: ASC}, where: {collectionAddresses: ["0x5180db8f5c931aae63c74266b211f580155ecac8"]}) {
     nodes {
       collectionAddress
       tokenId
@@ -313,7 +315,7 @@ Fetches a list of NFTs by descending sale price.
 
 ```graphql
 query CryptoCovenSalesByPriceDesc {
-  sales(network: {network: ETHEREUM, chain: MAINNET}, pagination: {limit: 2, offset: 0}, sort: {sortKey: ETH_PRICE, sortDirection: DESC}, query: {collectionAddresses: ["0x5180db8f5c931aae63c74266b211f580155ecac8"]}) {
+  sales(networks: [{network: ETHEREUM, chain: MAINNET}], pagination: {limit: 2, offset: 0}, sort: {sortKey: ETH_PRICE, sortDirection: DESC}, where: {collectionAddresses: ["0x5180db8f5c931aae63c74266b211f580155ecac8"]}) {
     nodes {
       collectionAddress
       saleType
@@ -460,8 +462,8 @@ Fetches the number of address that own an NFT in a collection.
 ```graphql
 query NumberOfOwners {
   aggregateStat(
-		query: {collectionAddresses: ["0x335eeef8e93a7a757d9e7912044d9cd264e2b2d8"]}, 
-		network: {network: ETHEREUM, chain: MAINNET}, 
+		where: {collectionAddresses: ["0x335eeef8e93a7a757d9e7912044d9cd264e2b2d8"]}, 
+		networks: [{network: ETHEREUM, chain: MAINNET}], 
 		statType: OWNER_COUNT
 	) {
     stat {
@@ -508,8 +510,8 @@ Fetches the total sales volume of a collection across all markets.
 ```graphql
 query TotalSales {
   aggregateStat(
-		query: {collectionAddresses: ["0x335eeef8e93a7a757d9e7912044d9cd264e2b2d8"]}, 
-		network: {network: ETHEREUM, chain: MAINNET}, 
+		where: {collectionAddresses: ["0x335eeef8e93a7a757d9e7912044d9cd264e2b2d8"]}, 
+		networks: [{network: ETHEREUM, chain: MAINNET}], 
 		statType: SALES_VOLUME
 	) {
     stat {
@@ -555,9 +557,9 @@ Fetches information on all the attributes in a collection.
 ```graphql
 query AggregateAttributesByCollectionAddress {
   aggregateAttributes(
-		query: {collectionAddresses: ["0x5180db8f5c931aae63c74266b211f580155ecac8"], 
+		where: {collectionAddresses: ["0x5180db8f5c931aae63c74266b211f580155ecac8"], 
     }, 
-		network: {network: ETHEREUM, chain: MAINNET}
+		networks: [{network: ETHEREUM, chain: MAINNET}]
 	) {
     traitType
     valueMetrics {
@@ -640,7 +642,7 @@ Fetches a token with its active ZORA V3 Ask (Buy Now) and NFT Transfer events by
 
 ```graphql
 query TokenV3AsksAndTransfers {
-  tokenMarkets(network: {network: ETHEREUM, chain: MAINNET}, pagination: {limit: 10, offset: 0}, sort: {sortKey: MINTED, sortDirection: ASC}, filter: {marketFilters: [{marketType: V3_ASK, statuses: [ACTIVE]}]}, query: {tokens: {address: "0x5180db8f5c931aae63c74266b211f580155ecac8", tokenId: "608"}}) {
+  tokenMarkets(networks: [{network: ETHEREUM, chain: MAINNET}], pagination: {limit: 10, offset: 0}, sort: {sortKey: MINTED, sortDirection: ASC}, filter: {marketFilters: [{marketType: V3_ASK, statuses: [ACTIVE]}]}, where: {tokens: {address: "0x5180db8f5c931aae63c74266b211f580155ecac8", tokenId: "608"}}) {
     nodes {
       token {
         collectionAddress
