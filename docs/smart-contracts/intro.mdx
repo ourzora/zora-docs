@@ -6,13 +6,14 @@ sidebar_position: 1
 import Tabs from '@theme/Tabs'
 import TabItem from '@theme/TabItem'
 
-##### An introduction to the ZORA V3
+##### An introduction to the ZORA V3 smart contracts
 
 ---
+## V3 Core Addresses
 
-### V3 Core Addresses
+Source code for all ZORA V3 contracts can be found in this [GitHub repository](https://github.com/ourzora/v3).
 
-#### Mainnet Deployments
+### Mainnet Deployments
 ---
 ##### Ethereum - 1
 | **Contract**            | **Address**                                |
@@ -32,7 +33,7 @@ import TabItem from '@theme/TabItem'
 
 <br/>
 
-#### Testnet Deployments
+### Testnet Deployments
 ---
 ##### Ropsten - 3
 | **Contract**            | **Address**                                |
@@ -65,20 +66,21 @@ import TabItem from '@theme/TabItem'
 The addresses for specific **ZORA modules** can be found in the Modules folder linked in the chart below.
 :::
 
----
-
 ### Supported V3 Modules
 
-| Module Name                                                           | Mainnet Deployment | API      |   Zora.co    |
-|-----------------------------------------------------------------------|--------------------|----------|--------------|
-| [Asks](./modules/Asks/zora-v3-asks-latest)                             |     ✅             |   ✅      |    ✅       |
-| [Auctions](./modules/ReserveAuctions/zora-v3-reserve-auctions-intro)   |     ✅             |   🔜      |    🔜       |
+| Module Name                                                                  | Mainnet Deployment | V3 Package | API          |   Zora.co    |
+|------------------------------------------------------------------------------|--------------------|------------|--------------|--------------|
+| [Asks](./modules/Asks/zora-v3-asks-latest)                                   |     ✅             |   ✅        |    ✅        |  ✅
+| [Offers](./modules/Offers/zora-v3-offers-latest)                             |     ✅             |   ✅        |    🔜        |  🔜
+| [Reserve Auction](./modules/ReserveAuctions/zora-v3-reserve-auctions-intro)  |     ✅             |   ✅        |    🔜        |  🔜
 
-<br/>
+---
 
-### Installing V3
+## Getting Started
+
+### Installing the V3 Package
 You can begin building with ZORA V3 by installing the v3 package. 
-This package supports `typechain` to make it easier to get started.
+This package provides ZORA contract address, ABIs, and supports `typechain` to make it easier to get started.
 
 <Tabs
   defaultValue="yarn"
@@ -106,9 +108,6 @@ npm i -S @zoralabs/v3
 Source code for all ZORA V3 contracts can be found in this [GitHub repository](https://github.com/ourzora/v3).
 If you are interested to contributing to ZORA V3 you can learn more [here](https://github.com/ourzora/v3#contributing).
 
-<br/>
-
-### Getting Started
 
 ZORA V3 is comprised of a few core contracts and an ever-expanding set of modules. 
 Modules are non-upgradable contracts that add specific functionality to the protocol.
@@ -128,9 +127,12 @@ For example, all ERC-721 token approvals must be made to the ERC-721 Transfer He
 Once completed, the user will then need to approve which modules can access their approved tokens by submitting a transaction to the Module Manager.
 This means that a user will only need to approve each token contract to ZORA V3 once and then approve which ZORA modules can access to their tokens.
 
+
 :::note
-We have created a guide on approving to ZORA V3 if you would like to [learn more](../../docs/guides/v3-approvals).
+We have created a guide on ZORA V3 approvals if you would like to [learn more](../../docs/guides/v3-approvals).
 :::
+
+Lastly, if a user is trying to make a purchase with just ETH then they **don't need to approve Transfer Helpers or ZORA modules**.
 
 <br/>
 
