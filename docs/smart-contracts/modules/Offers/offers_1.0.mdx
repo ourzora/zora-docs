@@ -14,8 +14,8 @@ You can view all of the `Offers V1.0 Module` contract code in this [GitHub Repo]
 
 ### Mainnet Deployments
 ---
-| **Network**       | **Address** |
-| ----------------- |-------------|
+| **Network**       | **Address**                                |
+|-------------------|--------------------------------------------|
 | Ethereum - 1      | 0x76744367ae5a056381868f716bdf0b13ae1aeaa3 |
 
 ### Testnet Deployments
@@ -76,9 +76,10 @@ mapping(address => mapping(uint256 => uint256[])) public offersForNFT;
 ### createOffer
 Creates an `offer` for a specific NFT which can be made in either ETH or an ERC-20 token and returns the `offerId` of the newly created `offer`.
 
-- ZORA takes custory of the amount until either the `offer` is filled or cancelled
-- The user must first approve the ERC-20 Transfer Helper to move their assets if the `offer` is created with an ERC-20 token
-- No approvals are needed if the currency of the `offer` is ETH
+- ZORA takes custody of the amount until either the `offer` is filled or canceled
+- The user must first approve the [ERC-20 Transfer Helper](../../../../smart-contracts/zora-V3#approving-tokens-to-v3) if the `offer` currency is an ERC-20 token
+- No approvals are needed if the `offer` currency is ETH
+
 ```
 function createOffer(
     address _tokenContract,
@@ -114,8 +115,8 @@ function fillOffer(
 Updates either the price, currency, or both for a given `offer`. 
 
 - Increasing the amount requires that the user provide more collateral
-- Decreasing the amount will refunded the delta back to the creator address
-- Updating the currency to be an ERC-20 will require that the user first approves the ERC-20 Transfer Helper
+- Decreasing the amount will refund the difference back to the `offer` maker address
+- Updating the currency to an ERC-20 will require that the user approve the ERC-20 Transfer Helper if they haven't already approved that token.
 ```
 function setOfferAmount(
     address _tokenContract,
