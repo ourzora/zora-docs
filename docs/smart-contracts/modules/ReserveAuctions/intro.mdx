@@ -16,7 +16,7 @@ You can view all of the code for the `Reserve Auction Modules` in this [GitHub R
 
 ## Reserve Auction Addresses
 
-#### Mainnet Deployments
+### Mainnet Deployments
 ---
 ##### Ethereum - 1
 | **Contract**       | **Address**                                 |
@@ -28,7 +28,7 @@ You can view all of the code for the `Reserve Auction Modules` in this [GitHub R
 | ListingETH         | 0x1E58bE778aCae2744c1185ea1cE542f304860B96 |
 | ListingERC20       | 0x1e009dEC13A2A441b3Aa133Bd320FF5B16B22E71 |
 
-#### Testnet Deployments
+### Testnet Deployments
 ---
 ##### Ropsten - 3
 | **Contract**       | **Address**                                 |
@@ -59,32 +59,28 @@ There are serveral variants for the `Reserve Auction`. Each variant comes with d
 |------------------------------------------------------|----------------|----------------|---------------------|----------------------|
 |[CoreETH](./core/zora-v3-auctions-coreETH)             |   ✅           |   🚫            |     🚫              |  🚫
 |[CoreERC20](./core/zora-v3-auctions-coreERC20)         |   ✅           |   ✅            |     🚫              |  🚫
-|[FindersETH](./finders/zora-v3-auctions-finderETH)        |   ✅           |   🚫            |     ✅              |  🚫
-|[FindersERC20](./finders/zora-v3-auctions-finderERC20)    |   ✅           |   ✅            |     ✅              |  🚫
-|[ListingETH](./listing/zora-v3-auctions-listingERC20)      |   ✅           |   🚫            |     🚫              |   ✅
-|[ListingERC20](./listing/zora-v3-auctions-listingERC20)    |   ✅           |   ✅            |     🚫              |   ✅
+|[FindersETH](./finders/zora-v3-auctions-finderETH)     |   ✅           |   🚫            |     ✅              |  🚫
+|[FindersERC20](./finders/zora-v3-auctions-finderERC20) |   ✅           |   ✅            |     ✅              |  🚫
+|[ListingETH](./listing/zora-v3-auctions-listingERC20)  |   ✅           |   🚫            |     🚫              |   ✅
+|[ListingERC20](./listing/zora-v3-auctions-listingERC20)|   ✅           |   ✅            |     🚫              |   ✅
 
-#### Gas Costs
-Testing this line
-
-#### Finder's Fee
+### Finder's Fee
 The Finder's Fee is an amount offered to the party that helped match the highest bidder to the NFT.
+
 For example, a user creates an `auction` for one of the NFTs in their wallet. 
 If a Finder's Fee was specified, then the interface that helped match the NFT to the highest bidder could be entitled to that amount. 
 Note that the Finder's Fee is only charged if the auction completes.
 
-#### Listing Fee
+### Listing Fee
 The Listing Fee is an amount that can be charged by a party for helping put an NFT up for auction.
 Note that the Listing Fee is only charged if the auction completes.
 
 ---
 
-## Key Considerations
-- An auction can be created by an owner or approved operator for any ERC-721 token.
-- The auction timer will start when a bid is greater than or equal to the reserve price.
+## Key Considerations 🔑
+- An `auction` can be created by an owner or approved operator for any ERC-721 token.
+- The `auction` timer will start when a bid is greater than or equal to the reserve price.
 - The NFT is only taken into custody after the first valid bid is submitted.
 - The timer will be set back to 15 minutes if a bid is submitted within the last 15 minutes.
 - The percentage difference for a new bid must be greater than or equal to 10%.
 - Royalties are paid out using the [Manifold Royalty Registry](https://royaltyregistry.xyz/lookup) when an auction ends.
-
----
