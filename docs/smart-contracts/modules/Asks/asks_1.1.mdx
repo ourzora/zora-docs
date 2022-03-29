@@ -9,66 +9,42 @@ import TabItem from '@theme/TabItem'
 ##### Sell an NFT at a specific asking price
 
 ---
-The `Asks Module` allows anyone to sell an `ERC-721` NFT for a specific asking price. 
+The `Asks Module` allows anyone to sell an ERC-721 NFT for a specific asking price. 
 You can view all of the `Ask V1.1 Module` contract code in this [GitHub Repo](https://github.com/ourzora/v3/blob/main/contracts/modules/Asks/V1.1/AsksV1_1.sol).
 
-:::note 
-Check out our section on ZORA V3 if you are unfamiliar on what modules are.
-:::
-### Asks V1.1 Addresses
+## Contract Addresses
 
-#### Mainnet Deployments
+### Mainnet Deployments
 ---
-##### Ethereum - 1
-| **Contract**       | **Address**                                 |
-| ------------       | ------------------------------------------ |
-| Asks V1.1          | 0x6170B3C3A54C3d8c854934cBC314eD479b2B29A3 |
-| Royalty Engine     | 0x0385603ab55642cb4dd5de3ae9e306809991804f |
-
-##### Polygon - 137
-| **Contract**       | **Address**                                |
-| ------------       | ------------------------------------------ |
-| Asks V1.1          | 0x3634e984Ba0373Cfa178986FD19F03ba4dD8E469 |
-| Royalty Engine     | 0x28EdFcF0Be7E86b07493466e7631a213bDe8eEF2 |
+| **Network**       | **Address**                                |
+| ----------------- | ------------------------------------------ |
+| Ethereum - 1      | 0x6170B3C3A54C3d8c854934cBC314eD479b2B29A3 |
+| Polygon - 137     | 0x3634e984Ba0373Cfa178986FD19F03ba4dD8E469 |
 
 <br/> 
 
-#### Testnet Deployments
+### Testnet Deployments
 ---
-
-##### Ropsten - 3
-| **Contract**       | **Address**                                |
-| ------------       | ------------------------------------------ |
-| Asks V1.1          | 0x3e80102228295fFD120990d54e954C473EDE7280 |
-| Royalty Engine     | 0xFf5A6F7f36764aAD301B7C9E85A5277614Df5E26 |
-
-##### Rinkeby - 4
-| **Contract**       | **Address**                                |
-| ------------       | ------------------------------------------ |
-| Asks V1.1          | 0xA98D3729265C88c5b3f861a0c501622750fF4806 |
-| Royalty Engine     | 0x8d17687ea9a6bb6efA24ec11DcFab01661b2ddcd |
-
-##### Mumbai - 80001
-| **Contract**       | **Address**                                |
-| ------------       | ------------------------------------------ |
-| Asks V1.1          | 0xCe6cEf2A9028e1C3B21647ae3B4251038109f42a |
-| Royalty Engine     | 0x0a01E11887f727D1b1Cd81251eeEE9BEE4262D07 |
-
+| **Network**       | **Address**                                |
+| ----------------- | ------------------------------------------ |
+| Ropsten - 3       | 0x3e80102228295fFD120990d54e954C473EDE7280 |
+| Rinkeby - 4       | 0xA98D3729265C88c5b3f861a0c501622750fF4806 |
+| Mumbai - 80001    | 0xCe6cEf2A9028e1C3B21647ae3B4251038109f42a |
 
 <br/>
 
-### Ask Structure
-An `ask` can be created by an owner or approved operator for any `ERC-721` token.
+## Ask Structure
+An `ask` can be created by an owner or approved operator for any ERC-721 token.
 There can only be one valid `ask` open at a time for a given NFT. 
 If an NFT is transferred to a new address the `ask` created by the previous address becomes invalid.
 However, if the NFT were to be transferred back to the address that created the ask it would be valid again. 
 
 
-* **seller:** The owner or approved address for an NFT
-* **sellerFundsRecipient:** The address to send funds to once the NFT is sold
-* **askCurrency:** ERC-20 token to accept, or address(0) for ETH
-* **findersFeeBps:** The bps of the sale amount to be sent to the referrer of the sale
-* **askPrice:** The sale price
+* `seller`: The owner or approved address for an NFT
+* `sellerFundsRecipient`: The address to send funds to once the NFT is sold
+* `askCurrency`: ERC-20 token to accept, or address(0) for ETH
+* `findersFeeBps`: The bps of the sale amount to be sent to the referrer of the sale
+* `askPrice`: The sale price
 
 ```
 struct Ask {
@@ -98,7 +74,9 @@ If your NFT contract doesn't currently support royalties, the owner address of a
 To calculate the percentage of a Royalty you can call `getRoyaltyView` on the Royalty engine with the token contract address, token id, and a value of 1e18 (1 ETH in wei) to get the splits and calculate the percentages based on the response.
 <br/> 
 
-### Read Functions 
+---
+
+## Storage
 
 #### askForNFT
 A public mapping that returns an `ask` given an NFT token contract address and token id. 
@@ -108,9 +86,9 @@ Note that there can only ever be one `ask` open for an NFT at a time.
 
 --- 
 
-### Write Functions
+## Functions
 
-#### createAsk 
+### createAsk 
 Puts an NFT up for sale at a specific asking price. 
 - Can be created by either the owner or approved operator of an NFT.
 - The `ask` currency can be any ERC-20 token or the `address(0)` for ETH.
@@ -126,7 +104,9 @@ function createAsk(
 )
 ```
 
-#### setAskPrice
+<br/>
+
+### setAskPrice
 Updates the information for a specific `ask`.
 ```
 function setAskPrice(
@@ -137,13 +117,17 @@ function setAskPrice(
 ) 
 ```
 
-#### cancelAsk
+<br/>
+
+### cancelAsk
 Cancels an `ask` for an NFT by either the owner or an approved operator.
 ```
 function cancelAsk(address _tokenContract, uint256 _tokenId)
 ```
 
-#### fillAsk 
+<br/>
+
+### fillAsk 
 Transfers the NFT to the buyer and sends the funds to the recipients. 
 If no `finder` address is provided or no Finders Fee is set, then you can submit the `finder` as the `0 address` which will send all the funds to the seller.
 ```
