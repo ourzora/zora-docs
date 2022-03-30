@@ -1,0 +1,250 @@
+---
+id: api-punks-market
+title: Get NFT Market Data
+sidebar_position: 3
+displayed_sidebar: apiSidebar
+---
+
+import Tabs from '@theme/Tabs'
+import TabItem from '@theme/TabItem'
+
+##### Use the Zora API to replicate the CryptoPunk Marketplace
+
+---
+<!-- Recreate the Punks Market -->
+## Getting Started
+
+This guide will help you gets a better understanding of what is possible with the Zora API.
+
+[CryptoPunks website](https://cryptopunks.app/)
+:::note
+
+GraphiQL Playground: https://api.zora.co/graphql
+
+API Endpoint: https://api.zora.co
+
+:::
+
+## Overall Stats
+
+![overallStats](../../static/img/punks/overallStats.png)
+
+<Tabs
+  defaultValue="query"
+  values={[
+    { label: 'Query', value: 'query', },
+    { label: 'Response', value: 'response', }
+  ]
+}>
+<TabItem value="query">
+
+```graphql
+```
+
+</TabItem>
+<TabItem value="response">
+
+```json
+```
+</TabItem>
+</Tabs>
+
+
+## Recent Transactions
+
+![recentTx](../../static/img/punks/recentTx.png)
+
+<Tabs
+  defaultValue="query"
+  values={[
+    { label: 'Query', value: 'query', },
+    { label: 'Response', value: 'response', }
+  ]
+}>
+<TabItem value="query">
+
+```graphql
+```
+
+</TabItem>
+<TabItem value="response">
+
+```json
+```
+</TabItem>
+</Tabs>
+
+
+## Punk Types
+
+![punkTypes](../../static/img/punks/punkTypes.png)
+
+<Tabs
+  defaultValue="query"
+  values={[
+    { label: 'Query', value: 'query', },
+    { label: 'Response', value: 'response', }
+  ]
+}>
+<TabItem value="query">
+
+```graphql
+```
+
+</TabItem>
+<TabItem value="response">
+
+```json
+```
+</TabItem>
+</Tabs>
+
+## Punk Attributes
+
+
+![punkAttributes](../../static/img/punks/punkAttributes.png)
+
+<Tabs
+  defaultValue="query"
+  values={[
+    { label: 'Query', value: 'query', },
+    { label: 'Response', value: 'response', }
+  ]
+}>
+<TabItem value="query">
+
+```graphql
+```
+
+</TabItem>
+<TabItem value="response">
+
+```json
+```
+</TabItem>
+</Tabs>
+
+## Recent Sales
+
+![recentPunkSales](../../static/img/punks/punkSales2.png)
+
+<Tabs
+  defaultValue="query"
+  values={[
+    { label: 'Query', value: 'query', },
+    { label: 'Response', value: 'response', }
+  ]
+}>
+<TabItem value="query">
+
+```graphql
+```
+
+</TabItem>
+<TabItem value="response">
+
+```json
+```
+</TabItem>
+</Tabs>
+
+## Attribute Counts
+
+
+![attributeCount](../../static/img/punks/attributeCount.png)
+
+<Tabs
+  defaultValue="query"
+  values={[
+    { label: 'Query', value: 'query', },
+    { label: 'Response', value: 'response', }
+  ]
+}>
+<TabItem value="query">
+
+```graphql
+```
+
+</TabItem>
+<TabItem value="response">
+
+```json
+```
+</TabItem>
+</Tabs>
+
+
+## Punk Count by Address
+
+![punkHolders](../../static/img/punks/punkHolders.png)
+
+
+<Tabs
+  defaultValue="query"
+  values={[
+    { label: 'Query', value: 'query', },
+    { label: 'Response', value: 'response', }
+  ]
+}>
+<TabItem value="query">
+
+```graphql
+```
+
+</TabItem>
+<TabItem value="response">
+
+```json
+```
+</TabItem>
+</Tabs>
+
+
+## Top Sales
+By using the `sales` query with `collectionAddress` of the Punks contract and filtering by `LARVA_LABS_SALE` we are able to grab largest sales in Punk history. 
+
+![punkSales](../../static/img/punks/punkSales.png)
+
+<Tabs
+  defaultValue="query"
+  values={[
+    { label: 'Query', value: 'query', },
+    { label: 'Response', value: 'response', }
+  ]
+}>
+<TabItem value="query">
+
+```graphql
+query PunkSales {
+  sales(
+    sort:{sortKey: ETH_PRICE, sortDirection: DESC}, 
+    networks: {chain: MAINNET, network: ETHEREUM}, 
+    filter: {saleFilters: {saleType: LARVA_LABS_SALE}}, 
+    where: {collectionAddresses: ["0xb47e3cd837dDF8e4c57F05d70Ab865de6e193BBB"]}, 
+    pagination: {limit: 12}
+    ) {
+    nodes {
+      tokenId,
+      transactionInfo {
+        blockTimestamp
+      },
+      price {
+        ethPrice {
+          decimal
+        },
+        usdcPrice {
+          decimal
+        }
+      }
+    }
+  }
+}
+```
+
+</TabItem>
+<TabItem value="response">
+
+```json
+```
+</TabItem>
+</Tabs>

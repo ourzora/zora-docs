@@ -1,7 +1,6 @@
 ---
 id: zora-api-sample-queries
 title: Sample Queries
-sidebar_position: 3
 ---
 
 import Tabs from '@theme/Tabs'
@@ -13,14 +12,14 @@ import TabItem from '@theme/TabItem'
 
 ---
 
+These examples are meant to be simple and help you gain a basic understanding of how the API functions.
+Please note that the API is able to handle much more detailed queries than the ones provided below.
 :::note 
-Please reference our **GraphQL Playground here.**
+Please reference our GraphiQL Playground: https://api.zora.co/graphql
 
-Note that more robust responses are possible for the following queries.
-These examples are meant to be simple and don't return all the data that is possible in a response.
 :::
 
-### Get NFT Data and count for an address
+### Get NFT Data and Count for an Address
 Fetches the data for ERC-721 NFTs held in an owner's address and the number of NFTs the address owns.
 
 <Tabs
@@ -34,18 +33,19 @@ Fetches the data for ERC-721 NFTs held in an owner's address and the number of N
 
 ```graphql
 query BrecksNFTs {
-  aggregateStat(where: {ownerAddresses: ["breck.eth"]}, networks: [{network: ETHEREUM, chain: MAINNET}], statType: NFT_COUNT) {
-    stat {
-      ... on IntValue {
-        value
-      }
-    }
-  }
   tokens(networks: [{network: ETHEREUM, chain: MAINNET}], pagination: {limit: 10, offset: 0}, sort: {sortKey: MINTED, sortDirection: ASC}, where: {ownerAddresses: ["breck.eth"]}) {
     nodes {
       collectionAddress
       name
       tokenId
+    }
+  }
+
+  aggregateStat(where: {ownerAddresses: ["breck.eth"]}, networks: [{network: ETHEREUM, chain: MAINNET}], statType: NFT_COUNT) {
+    stat {
+      ... on IntValue {
+        value
+      }
     }
   }
 }
