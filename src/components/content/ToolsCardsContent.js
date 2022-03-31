@@ -4,7 +4,7 @@ export const toolsCardsContent = [
     // toolsVersion: 'v1.1',
     toolsParagraph:
       'Asks is a feature from ZORA V3 that allows anyone to sell an NFT at a specific asking price.',
-    toolsLink: '/docs/smart-contracts/modules/Asks/zora-v3-asks-latest',
+    toolsLink: '/docs/smart-contracts/modules/Asks/zora-v3-asks-intro',
   },
   {
     toolsTitle: 'NFT Hooks',

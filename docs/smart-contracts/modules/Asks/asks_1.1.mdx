@@ -1,7 +1,6 @@
 ---
-id: zora-v3-asks-latest
+id: zora-v3-asks-v1.1
 title: Asks V1.1
-sidebar_position: 1
 ---
 import Tabs from '@theme/Tabs'
 import TabItem from '@theme/TabItem'
@@ -35,7 +34,7 @@ You can view all of the `Ask V1.1 Module` contract code in this [GitHub Repo](ht
 
 ## Ask Structure
 An `ask` can be created by an owner or approved operator for any ERC-721 token.
-There can only be one valid `ask` open at a time for a given NFT. 
+There can only be one `ask` open at a time for a given NFT.
 If an NFT is transferred to a new address the `ask` created by the previous address becomes invalid.
 However, if the NFT were to be transferred back to the address that created the ask it would be valid again. 
 
@@ -82,7 +81,7 @@ To calculate the percentage of a Royalty you can call `getRoyaltyView` on the Ro
 A public mapping that returns an `ask` given an NFT token contract address and token id. 
 Note that there can only ever be one `ask` open for an NFT at a time.
 
-`mapping(address => mapping(uint256 => Ask)) public askForNFT;`
+`mapping(address => mapping(uint256 => Ask)) public askForNFT`
 
 --- 
 

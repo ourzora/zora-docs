@@ -42,8 +42,9 @@ struct Auction {
     uint16 listingFeeBps;
 }
 ```
+---
 
-<br/>
+## Functions
 
 ### supportsInterface
 Implements [EIP-165](https://eips.ethereum.org/EIPS/eip-165) for standard interface detection.
@@ -52,7 +53,7 @@ Implements [EIP-165](https://eips.ethereum.org/EIPS/eip-165) for standard interf
 function supportsInterface(bytes4 _interfaceId) returns (bool)
 ```
 
-<br/>
+## Functions
 
 ### createAuction
 Creates an auction for a given ERC-721 NFT. There can only be one auction at a time for a given NFT.

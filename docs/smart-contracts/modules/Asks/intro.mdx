@@ -1,0 +1,57 @@
+---
+id: zora-v3-asks-intro
+title: Introduction
+sidebar_position: 1
+---
+
+import Tabs from '@theme/Tabs'
+import TabItem from '@theme/TabItem'
+
+##### Sell an NFT at a fixed price
+
+---
+The `Asks Modules` allow for the sale of an ERC-721 at a fixed price.
+You can view the code for all `Asks Modules` in this [GitHub Repo](https://github.com/ourzora/v3/tree/main/contracts/modules/Asks).
+
+## Asks Addresses
+
+### Mainnet Deployments
+---
+##### Ethereum - 1
+| **Contract**       | **Address**                                |
+| -------------------|--------------------------------------------|
+| CoreETH            | 0x34Aa9CBb80dc0b3d82D04900C02FB81468DafcAb |
+| CoreERC20          | Soon ™️ |
+
+
+### Testnet Deployments
+---
+##### Ropsten - 3
+| **Contract**       | **Address**                                |
+| -------------------|--------------------------------------------|
+| CoreETH            | 0x032e29122873bE11F7885ed636b1f06135D6A033 |
+| CoreERC20          | Soon ™️ |
+
+##### Rinkeby - 4
+| **Contract**       | **Address**                                |
+| -------------------|--------------------------------------------|
+| CoreETH            | 0xA8389b0FBe3508bB10925D9f0C1618d0DaF54c74 |
+| CoreERC20          | Soon ™️ |
+
+
+
+## Asks Module Variants
+There are several variants for the `Asks Module`. Each variant comes with different features and associated gas costs.
+
+| Contract                                              | Supports ETH | Supports ERC-20  |
+|-------------------------------------------------------|----------------|----------------|
+|[CoreETH](./core/zora-v3-asks-coreETH)                 |   ✅           |   🚫            |
+|CoreERC20 - Soon ™️                                     |   ✅           |   ✅            |
+
+---
+
+## Key Considerations 🔑
+- An `ask` can be created by an owner or approved operator for any ERC-721 token.
+- There can only be one `ask` open at a time for a given NFT.
+- Creating an `ask` for an ERC-721 token requires that the owner has previously approved the [ERC-721 Transfer Helper](../../../smart-contracts/zora-V3#approving-tokens-to-v3) for it to be valid.
+- Royalties are paid out using the [Manifold Royalty Registry](https://royaltyregistry.xyz/lookup) when an `ask` is filled.

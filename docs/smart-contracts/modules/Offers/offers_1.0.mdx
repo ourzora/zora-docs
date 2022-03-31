@@ -55,18 +55,18 @@ Note that the Finders Fee is only charged if a buyer fills the `offer` on an NFT
 
 #### offers
 Returns the metadata for an `offer`. <br/>
-`ERC-721 token address => ERC-721 token ID => Offer ID => Offer`
+`ERC-721 Token Address => ERC-721 tokenID => offerID => Offer`
 ```
-mapping(address => mapping(uint256 => mapping(uint256 => Offer))) public offers;
+mapping(address => mapping(uint256 => mapping(uint256 => Offer))) public offers
 ```
 
 <br/>
 
 #### offersForNFT
 Returns an array of `offerIds` for a specific ERC-721 token. <br/>
-`ERC-721 token address => ERC-721 token ID => Offer IDs` 
+`ERC-721 tokenAddress => ERC-721 tokenID => Offer IDs` 
 ```
-mapping(address => mapping(uint256 => uint256[])) public offersForNFT;
+mapping(address => mapping(uint256 => uint256[])) public offersForNFT
 ```
 
 ---
