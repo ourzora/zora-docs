@@ -1,0 +1,152 @@
+---
+id: zora-v3-asks-coreETH
+title: CoreETH
+sidebar_position: 1
+---
+
+A simple module that allows for anyone to sell an NFT priced in ETH
+
+---
+
+:::note
+All deployed addresses can be found on the [Asks introduction page](../zora-v3-asks-intro#asks-auction-addresses).
+
+Check out the [Key Considerations 🔑](../zora-v3-asks-intro#key-considerations-) section before getting started.
+:::
+
+## Ask Structure
+
+- `seller`: The address of the seller
+- `price`: The price to fill the ask in wei
+
+```
+struct Ask {
+    address seller;
+    uint96 price;
+}
+```
+
+---
+
+## Storage
+
+#### askForNFT
+Returns an `ask` for a given NFT, if one exists <br/>
+`ERC-721 tokenAddress => ERC-721 tokenId => Ask`
+
+ ```
+ mapping(address => mapping(uint256 => Ask)) public askForNFT
+ ```
+
+---
+
+## Functions
+
+### supportsInterface
+Implements [EIP-165](https://eips.ethereum.org/EIPS/eip-165) for standard interface detection.
+
+```
+function supportsInterface(bytes4 _interfaceId) returns (bool)
+```
+
+<br/> 
+
+### createAsk
+Creates an ask for a specifc ERC-721 NFT. 
+Either the current owner or an approved operator can call this fuction.
+
+Note that creating an `ask` for an ERC-721 token requires that the owner has previously approved the [ERC-721 Transfer Helper](../../../smart-contracts/zora-V3#approving-tokens-to-v3) for it to be valid.
+
+```
+function createAsk(
+    address _tokenContract,
+    uint256 _tokenId,
+    uint256 _price
+)
+```
+
+<br/> 
+
+### fillAsk
+Fills the ask for a specific NFT if enough ETH is provided.
+```
+function fillAsk(address _tokenContract, uint256 _tokenId)
+```
+
+<br/> 
+
+### setAskPrice 
+Updates the ask price for a specfic NFT. Only the current owner is able to call this function.
+
+```
+function setAskPrice(
+    address _tokenContract,
+    uint256 _tokenId,
+    uint256 _price
+)
+```
+
+<br/> 
+
+### cancelAsk
+Cancels the ask for a specific NFT. Either the current owner or an approved operator can call this fuction.
+
+```
+function cancelAsk(address _tokenContract, uint256 _tokenId)
+```
+
+--- 
+
+## Events
+
+### AskCreated
+
+```
+AskCreated(
+    address indexed tokenContract, 
+    uint256 indexed tokenId, 
+    address seller, 
+    uint256 price
+);
+```
+
+<br/> 
+
+### AskPriceUpdated
+Emitted when `setAskPrice` is called.
+```
+AskPriceUpdated(
+    address indexed tokenContract, 
+    uint256 indexed tokenId, 
+    address seller, 
+    uint256 price
+);
+```
+
+<br/>
+
+### AskCanceled
+```
+AskCanceled(
+    address indexed tokenContract, 
+    uint256 indexed tokenId, 
+    address seller, 
+    uint256 price
+);
+```
+
+<br/>
+
+### AskFilled
+
+```
+AskFilled(
+    address indexed tokenContract, 
+    uint256 indexed tokenId, 
+    address buyer, 
+    address seller, 
+    uint256 price
+);
+```
+
+<br/>

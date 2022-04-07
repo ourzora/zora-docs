@@ -1,24 +1,86 @@
 ---
 id: zora-V3
-title: Intro to V3
+title: Introduction
 sidebar_position: 1
 ---
 import Tabs from '@theme/Tabs'
 import TabItem from '@theme/TabItem'
 
-##### An introduction to the ZORA V3
+##### An introduction to the ZORA V3 smart contracts
 
 ---
-ZORA V3 consists of a few core contracts and an ever-expanding set of modules. 
-Modules are non-upgradable contracts that add specific functionality to the protocol.
+## V3 Core Addresses
 
-* **Modules:** Contracts with specific functionality that can be added to ZORA V3
+Source code for all ZORA V3 contracts can be found in this [GitHub repository](https://github.com/ourzora/v3).
 
-* **Module Manager:** Manages which modules a user has approved to use their tokens and which new modules can be added to the protocol
+### Mainnet Deployments
+---
+##### Ethereum - 1
+| **Contract**            | **Address**                                |
+| ------------            | ------------------------------------------ |
+| Module Manager          | 0x850A7c6fE2CF48eea1393554C8A3bA23f20CC401  |
+| ERC-721 TransferHelper  | 0x909e9efE4D87d1a6018C2065aE642b6D0447bc91  |
+| ERC-20 TransferHelper   | 0xCCA379FDF4Beda63c4bB0e2A3179Ae62c8716794  |
+| Protocol Fee Settings   | 0x9641169A1374b77E052E1001c5a096C29Cd67d35  |
 
-* **Transfer Helpers:** Handles transferring ERC-20 and ERC-721 tokens for the modules
+##### Polygon - 137
+| **Contract**            | **Address**                                |
+| ------------            | ------------------------------------------ |
+| Module Manager          | 0xCCA379FDF4Beda63c4bB0e2A3179Ae62c8716794 |
+| ERC-721 TransferHelper  | 0xCe6cEf2A9028e1C3B21647ae3B4251038109f42a |
+| ERC-20 TransferHelper   | 0x909e9efE4D87d1a6018C2065aE642b6D0447bc91 |
+| Protocol Fee Settings   | 0x9641169A1374b77E052E1001c5a096C29Cd67d35 |
 
-![zorav3diagram](../../static/img/zora_v3_diagram.png)
+<br/>
+
+### Testnet Deployments
+---
+##### Ropsten - 3
+| **Contract**            | **Address**                                |
+| ------------            | ------------------------------------------ |
+| Module Manager          | 0x3120f8A161bf8ae8C4287A66920E7Fd875b41805 |
+| ERC-721 TransferHelper  | 0x0afB6A47C303f85c5A6e0DC6c9b4c2001E6987ED |
+| ERC-20 TransferHelper   | 0x88880cF1c91CD117040120813D28FEdC1CeCac41 |
+| Protocol Fee Settings   | 0x5312484b5b23Cb01A52DC22111BbcF7Ebb198328 |
+
+##### Rinkeby - 4
+| **Contract**            | **Address**                                |
+| ------------            | ------------------------------------------ |
+| Module Manager          | 0xa248736d3b73A231D95A5F99965857ebbBD42D85 |
+| ERC-721 TransferHelper  | 0x029AA5a949C9C90916729D50537062cb73b5Ac92 |
+| ERC-20 TransferHelper   | 0x408AbC192a5e9696085EBaFC7C5A88e19e66241b |
+| Protocol Fee Settings   | 0x8Ecd14bd28bf992B6d0595B3E35d5C206e2e2dbb |
+
+
+##### Mumbai - 80001
+| **Contract**            | **Address**                                |
+| ------------            | ------------------------------------------ |
+| Module Manager          | 0x850A7c6fE2CF48eea1393554C8A3bA23f20CC401 |
+| ERC-721 TransferHelper  | 0x909e9efE4D87d1a6018C2065aE642b6D0447bc91 |
+| ERC-20 TransferHelper   | 0xCCA379FDF4Beda63c4bB0e2A3179Ae62c8716794 |
+| Protocol Fee Settings   | 0x9641169A1374b77E052E1001c5a096C29Cd67d35 |
+
+<br/> 
+
+:::note
+The addresses for specific **ZORA modules** can be found in the Modules folder linked in the chart below.
+:::
+
+### Supported V3 Modules
+
+| Module Name                                                                  | Mainnet Deployment | V3 Package | API          |   Zora.co    |
+|------------------------------------------------------------------------------|--------------------|------------|--------------|--------------|
+| [Asks](./modules/Asks/zora-v3-asks-intro)                                    |     ✅             |   ✅        |    ✅        |  ✅
+| [Offers](./modules/Offers/zora-v3-offers-latest)                             |     ✅             |   ✅        |   Soon ™️     |  Soon ™️ 
+| [Reserve Auction](./modules/ReserveAuctions/zora-v3-reserve-auctions-intro)  |     ✅             |   ✅        |   Soon ™️     |  Soon ™️ 
+
+---
+
+## Getting Started
+
+### Installing the V3 Package
+You can begin building with ZORA V3 by installing the v3 package. 
+This package provides ZORA contract address, ABIs, and supports `typechain` to make it easier to get started.
 
 <Tabs
   defaultValue="yarn"
@@ -46,60 +108,18 @@ npm i -S @zoralabs/v3
 Source code for all ZORA V3 contracts can be found in this [GitHub repository](https://github.com/ourzora/v3).
 If you are interested to contributing to ZORA V3 you can learn more [here](https://github.com/ourzora/v3#contributing).
 
-<br/>
 
-### ZORA V3 Core Addresses
+ZORA V3 is comprised of a few core contracts and an ever-expanding set of modules. 
+Modules are non-upgradable contracts that add specific functionality to the protocol.
 
-#### Mainnet Deployments
----
-##### Ethereum - 1
-| **Contract**            | **Address**                                |
-| ------------            | ------------------------------------------ |
-| Module Manager          | 0x850A7c6fE2CF48eea1393554C8A3bA23f20CC401  |
-| ERC-721 TransferHelper  | 0x909e9efE4D87d1a6018C2065aE642b6D0447bc91  |
-| ERC-20 TransferHelper   | 0xCCA379FDF4Beda63c4bB0e2A3179Ae62c8716794  |
-| Protocol Fee Settings   | 0x9641169A1374b77E052E1001c5a096C29Cd67d35  |
+* **Modules:** Contracts with specific functionality that can be added to ZORA V3
 
-##### Polygon - 137
-| **Contract**            | **Address**                                |
-| ------------            | ------------------------------------------ |
-| Module Manager          | 0xCCA379FDF4Beda63c4bB0e2A3179Ae62c8716794 |
-| ERC-721 TransferHelper  | 0xCe6cEf2A9028e1C3B21647ae3B4251038109f42a |
-| ERC-20 TransferHelper   | 0x909e9efE4D87d1a6018C2065aE642b6D0447bc91 |
-| Protocol Fee Settings   | 0x9641169A1374b77E052E1001c5a096C29Cd67d35 |
+* **Module Manager:** Manages which modules a user has approved to use their tokens and which new modules can be added to the protocol
 
-<br/>
+* **Transfer Helpers:** Handles transferring ERC-20 and ERC-721 tokens for the modules
 
-#### Testnet Deployments
----
-##### Ropsten - 3
-| **Contract**            | **Address**                                |
-| ------------            | ------------------------------------------ |
-| Module Manager          | 0x3120f8A161bf8ae8C4287A66920E7Fd875b41805 |
-| ERC-721 TransferHelper  | 0x0afB6A47C303f85c5A6e0DC6c9b4c2001E6987ED |
-| ERC-20 TransferHelper   | 0x88880cF1c91CD117040120813D28FEdC1CeCac41 |
-| Protocol Fee Settings   | 0x5312484b5b23Cb01A52DC22111BbcF7Ebb198328 |
+![zorav3diagram](../../static/img/zora_v3_diagram.png)
 
-##### Rinkeby - 4
-| **Contract**            | **Address**                                |
-| ------------            | ------------------------------------------ |
-| Module Manager          | 0xa248736d3b73A231D95A5F99965857ebbBD42D85 |
-| ERC-721 TransferHelper  | 0x029AA5a949C9C90916729D50537062cb73b5Ac92 |
-| ERC-20 TransferHelper   | 0x408AbC192a5e9696085EBaFC7C5A88e19e66241b |
-| Protocol Fee Settings   | 0x8Ecd14bd28bf992B6d0595B3E35d5C206e2e2dbb |
-
-
-##### Mumbai - 80001
-| **Contract**            | **Address**                                |
-| ------------            | ------------------------------------------ |
-| Module Manager          | 0x850A7c6fE2CF48eea1393554C8A3bA23f20CC401 |
-| ERC-721 TransferHelper  | 0x909e9efE4D87d1a6018C2065aE642b6D0447bc91 |
-| ERC-20 TransferHelper   | 0xCCA379FDF4Beda63c4bB0e2A3179Ae62c8716794 |
-| Protocol Fee Settings   | 0x9641169A1374b77E052E1001c5a096C29Cd67d35 |
-
-
-
-<br/>
 
 ### Approving Tokens to V3
 Tokens must first be approved to their respective Transfer Helper contracts before being able to be used by the ZORA modules. 
@@ -107,7 +127,12 @@ For example, all ERC-721 token approvals must be made to the ERC-721 Transfer He
 Once completed, the user will then need to approve which modules can access their approved tokens by submitting a transaction to the Module Manager.
 This means that a user will only need to approve each token contract to ZORA V3 once and then approve which ZORA modules can access to their tokens.
 
-We have created a guide on approving to ZORA V3 if you would like to [learn more](../../docs/guides/v3-approvals).
+
+:::note
+We have created a guide on ZORA V3 approvals if you would like to [learn more](../../docs/guides/v3-approvals).
+:::
+
+Lastly, if a user is trying to make a purchase with just ETH then they **don't need to approve Transfer Helpers or ZORA modules**.
 
 <br/>
 
