@@ -23,7 +23,7 @@ module.exports = {
           type: 'doc',
           docId: 'intro',
           position: 'left',
-          label: 'Docs',
+          label: 'Intro',
         },
         {
           position: 'left',
@@ -37,8 +37,8 @@ module.exports = {
         },
         {
           position: 'left',
-          label: 'Guides',
-          to: '/docs/guides/v3-approvals',
+          label: 'Tools',
+          to: '/docs/developer-tools/nft-rendering/introduction',
         },
       ],
     },

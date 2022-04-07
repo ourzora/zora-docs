@@ -33,18 +33,15 @@ Fetches the data for ERC-721 NFTs held in an owner's address and the number of N
 
 ```graphql
 query BrecksNFTs {
+  aggregateStat {
+    nftCount(where: {ownerAddresses: ["breck.eth"]}, networks: [{network: ETHEREUM, chain: MAINNET}])
+  }
   tokens(networks: [{network: ETHEREUM, chain: MAINNET}], pagination: {limit: 10, offset: 0}, sort: {sortKey: MINTED, sortDirection: ASC}, where: {ownerAddresses: ["breck.eth"]}) {
     nodes {
-      collectionAddress
-      name
-      tokenId
-    }
-  }
-
-  aggregateStat(where: {ownerAddresses: ["breck.eth"]}, networks: [{network: ETHEREUM, chain: MAINNET}], statType: NFT_COUNT) {
-    stat {
-      ... on IntValue {
-        value
+      token {
+        collectionAddress
+        name
+        tokenId
       }
     }
   }
@@ -138,12 +135,14 @@ Fetches data for NFT collections. A collection is a group of NFTs that all share
 <TabItem value="query">
 
 ```graphql
-query ListCollections {
-  collections(networks: [{network: ETHEREUM, chain: MAINNET}], pagination: {limit: 8, offset: 0}, sort: {sortKey: CREATED, sortDirection: ASC}) {
+query PreviewCryptoCovens {
+  tokens(networks: [{network: ETHEREUM, chain: MAINNET}], pagination: {limit: 10, offset: 0}, sort: {sortKey: MINTED, sortDirection: ASC}, where: {collectionAddresses: ["0x5180db8f5c931aae63c74266b211f580155ecac8"]}) {
     nodes {
-      address
-      name
-      symbol
+      token {
+        collectionAddress
+        tokenId
+        name
+      }
     }
   }
 }
@@ -642,7 +641,7 @@ Fetches a token with its active ZORA V3 Ask (Buy Now) and NFT Transfer events by
 
 ```graphql
 query TokenV3AsksAndTransfers {
-  tokenMarkets(networks: [{network: ETHEREUM, chain: MAINNET}], pagination: {limit: 10, offset: 0}, sort: {sortKey: MINTED, sortDirection: ASC}, filter: {marketFilters: [{marketType: V3_ASK, statuses: [ACTIVE]}]}, where: {tokens: {address: "0x5180db8f5c931aae63c74266b211f580155ecac8", tokenId: "608"}}) {
+  tokens(networks: [{network: ETHEREUM, chain: MAINNET}], pagination: {limit: 10, offset: 0}, sort: {sortKey: MINTED, sortDirection: ASC}, filter: {marketFilters: [{marketType: V3_ASK, statuses: [ACTIVE]}]}, where: {tokens: {address: "0x5180db8f5c931aae63c74266b211f580155ecac8", tokenId: "608"}}) {
     nodes {
       token {
         collectionAddress

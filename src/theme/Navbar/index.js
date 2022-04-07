@@ -173,7 +173,7 @@ function NavbarMobileSidebar({ sidebarShown, toggleSidebar }) {
             <p className={styles.zoraCoText}>Zora.co</p>
           </a>
           <a
-            href="https://github.com/ourzora/zora-docs"
+            href="https://github.com/ourzora"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -248,7 +248,7 @@ function Navbar() {
           <>
             <div className="navbar__items navbar__items--right">
               <a
-                href="https://github.com/ourzora/zora-docs"
+                href="https://github.com/ourzora"
                 target="_blank"
                 rel="noopener noreferrer"
               >
