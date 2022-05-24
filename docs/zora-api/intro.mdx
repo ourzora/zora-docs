@@ -1,92 +1,60 @@
 ---
-id: zora-api-intro
+id: intro
 title: Introduction
-sidebar_position: 1
 ---
 
-# Introduction to the API
+# Introduction
 
-##### ZORA API: The one-stop shop for all your NFT data needs
+##### The Most Powerful NFT API
 
 ---
 
-The ZORA API is a **GraphQL API** that makes it easy to retrieve NFT metadata at scale, create your own marketplace, 
-analyze NFT sales activity, monitor on-chain events, and much more. 
+The ZORA API uses **GraphQL** to make it easy to retrieve NFT metadata, monitor on-chain events, analyze NFT sales activity, and much more. 
 :::note
 
-API Endpoint: https://api.zora.co
+API Endpoint: https://api.zora.co/graphql
 
-[GraphiQL Playground](https://api.zora.co/graphql): An interface to play with the API
-
-[Sample Queries](./zora-api-sample-queries): Examples to help you get started
-
-[SDK](./zdk-api): A development kit that makes it easy to build using the API
+[SDK](./zdk-api): Use the API without needing to know GraphQL
 
 :::
-
----
-
-## Features
-- Standardized NFT Metadata
-- Provides Marketplace Sales Data (ZORA, OpenSea, LooksRare, 0x, etc.)
-- NFT Contract Events (Transfer, Mint, Sales, etc.)
-- Adaptable to Different Chains and Token Standards
+## Key Features
+- Every Ethereum NFT contract and its associated events (Transfer, Mint, Sales, etc.)
+- Sales data from every marketplace (ZORA, OpenSea, LooksRare, 0x, etc.)
+- Media is encoded to provide assets at different sizes
 - Automatically syncs newly deployed NFT contracts
+- Adaptable to any chain and token standard
+- Text based search
+- ENS compatible
 
 ---
 
 ## Getting Started
 If you are unfamilar with GraphQL, we recommend that you [check out this resource](https://www.howtographql.com/basics/0-introduction/). 
-In addition, here are a few considerations to take into account before using the API.
+In addition, here are a few considerations before using the API.
 
-- We've created a list of [sample queries](./zora-api-sample-queries) and an [API guide](../guides/api-punks-market) to help you get started.
-- Currently only supports `ERC-721` NFTs on `Ethereum Mainnet`. 
-- We are working to support other chains and tokens standards in the near future.
-- You can make up to 60 requests per minute without needing a key.
-- Maximum nodes in a response is 500, but can be set to a certain size with `pagination`.
+- The [ZDK](./zdk-api) allows anyone to build top on of the API without needing to know GraphQL.
+- Check out our guides to help you get going.
+- The API currently supports any `ERC-721` NFTs on `Ethereum Mainnet`. 
+- Other chains and tokens standards will be added in the near future.
+- Maximum size in a response is **500** and can be set to a certain size with `pagination`.
 
 ---
 
 ## Authentication
 
----
+| **Needs**                 | **API Key Requiments**|
+| ------------------------- | --------------------- |
+| < 30 requests per minute  | No Key Needed         |
+| > 30 requets per minute   | Key Needed            |
 
-## Queries
-
-### Core Entities
-
-- `token`: Gets data on a single token
-- `tokens`: Gets data for multiple tokens
-- `collections`: NFT collection information
-- `events`: Contract event information, e.g. Sales, Transfers, Mints, etc.
-- `markets`: Data for specific ZORA markets, e.g. Buy Now, Auctions, Offers
-- `mints`: Historical minting data
-- `sales`: Historical sales data from ZORA, OpenSea, LooksRare, 0x, and more
-- `tokenMarkets`: Retrieve token, market data, and event information
-
-
-
-### Aggregated Entities
-
-- `aggregateAttributes`: Gets the total set of NFT attributes
-- `aggregateStat`: Returns counts, sales volume, and other statistics
-
----
-
-## Query Arguments
-
-- `networks`: The network and chain to grab NFT data from
-- `where`: General arguments that grab a specific set of NFT data
-- `filter`:  Filters down the results from the `where` arguments into a smaller data set
-- `pagination`:  A way to set the size and starting point of the response
-- `sort`: Sorts the returned data
+Direct message [@ZORAEngineering](https://twitter.com/ZORAEngineering) on Twitter for an API Key.
 
 ---
 
 ## Example Collections
 
 We’ve indexed collections from all across `Ethereum Mainnet`. 
-Here are a few example collections you can use to test the API with.
+Here are a few NFT contract addresses to test the API with.
 
 - `Zorbs`: 0xCa21d4228cDCc68D4e23807E5e370C07577Dd152
 - `Crypto Dickbutts`: 0x42069ABFE407C60cf4ae4112bEDEaD391dBa1cdB
@@ -96,17 +64,12 @@ Here are a few example collections you can use to test the API with.
 
 ## Navigating GraphiQL
 
-This section provides an overview of how to use GraphiQL to test the API.
+This section provides an overview of how to use [GraphiQL](https://api.zora.co/graphql) to test the API.
 
-:::note
-We have created is a list of [example queries here](./zora-api-sample-queries) that you can test out.
 
-[GraphiQL Playground](https://api.zora.co/graphql)
-:::
+### Explorer
 
-#### Explorer
-
-The explorer allows you to quickly view the different possible queries. 
+The explorer allows anyone to quickly view the different possible queries. 
 To access the explorer, click on the "Explorer" button at the top. 
 
 ![explorer-button](../../static/img/graphiQL/qlNavBar.png)
@@ -115,15 +78,24 @@ You will then see a pop out on the left side of the screen.
 This section will show you all the possible queries along with their paramaters.
 GraphiQL will populate the queries into the sandbox if you click on them.
 
-<img src="../../static/img/graphiQL/qlExplorer.png" alt="explorer-tab" height="300"/>
+<img class="guide-photos" src="../../static/img/graphiQL/qlExplorer.png" alt="explorer-tab" height="225"/>
 
-#### Docs
+<br/>
+
+We recommend that you format the response of your query by clicking into the nodes section and selection what you would like to have returned.
+
+<br/>
+
+<img class="guide-photos" src="../../static/img/graphiQL/qlExplorer2.png" alt="explorer-tab" height="225"/>
+
+### Docs
 
 The Docs section of GraphiQL can be accessed by clicking on "Docs" in the top left of the page. 
 
-<img src="../../static/img/graphiQL/graphiqlDocs.png" alt="doc-tabs" height="250"/>
+<img class="guide-photos" src="../../static/img/graphiQL/graphiqlDocs.png" alt="doc-tabs" height="200"/>
 
+<br/>
 
 If you click into "Root Query" you will be able to view the types for both the arguments and the responses.
 
-<img src="../../static/img/graphiQL/graphQueries.png" alt="doc-queries" height="500"/>
+<img class="guide-photos" src="../../static/img/graphiQL/graphQueries.png" alt="doc-queries" height="400"/>

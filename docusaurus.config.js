@@ -33,7 +33,7 @@ module.exports = {
         {
           position: 'left',
           label: 'API',
-          to: '/docs/zora-api/zora-api-intro',
+          to: '/docs/zora-api/intro',
         },
         {
           position: 'left',
