@@ -9,34 +9,36 @@ title: Introduction
 
 ---
 
-The ZORA API uses **GraphQL** to make it easy to retrieve NFT metadata, monitor on-chain events, analyze NFT sales activity, and much more. 
+The ZORA API makes it easy to retrieve NFT metadata, monitor on-chain events, analyze sales activity, and so much more. 
+
 :::note
 
 API Endpoint: https://api.zora.co/graphql
 
-[SDK](./zdk-api): Use the API without needing to know GraphQL
+<!-- [SDK](./zdk-api): Use the API without needing to know GraphQL -->
 
 :::
 ## Key Features
-- Every Ethereum NFT contract and its associated events (Transfer, Mint, Sales, etc.)
+- Data on every Ethereum NFT contract and its associated events (Transfers, Mints, etc.)
 - Sales data from every marketplace (ZORA, OpenSea, LooksRare, 0x, etc.)
 - Media is encoded to provide assets at different sizes
 - Automatically syncs newly deployed NFT contracts
 - Adaptable to any chain and token standard
-- Text based search
+- Text-based search for discoverability
+- Built with GraphQL
 - ENS compatible
 
 ---
 
 ## Getting Started
-If you are unfamilar with GraphQL, we recommend that you [check out this resource](https://www.howtographql.com/basics/0-introduction/). 
+If you are unfamiliar with GraphQL, we recommend that you [check out this resource](https://www.howtographql.com/basics/0-introduction/). 
 In addition, here are a few considerations before using the API.
 
-- The [ZDK](./zdk-api) allows anyone to build top on of the API without needing to know GraphQL.
-- Check out our guides to help you get going.
-- The API currently supports any `ERC-721` NFTs on `Ethereum Mainnet`. 
-- Other chains and tokens standards will be added in the near future.
-- Maximum size in a response is **500** and can be set to a certain size with `pagination`.
+<!-- - The [ZDK](./zdk-api) allows anyone to build top on of the API without needing to know GraphQL. -->
+- Currently supports any `ERC-721` NFTs on `Ethereum Mainnet`
+- Maximum page size limit is `500` for regular queries and `50` for text-based searches
+- Expanding to other chains and tokens standards soon
+- Check out the guides section to begin building
 
 ---
 
@@ -53,12 +55,11 @@ Direct message [@ZORAEngineering](https://twitter.com/ZORAEngineering) on Twitte
 
 ## Example Collections
 
-We’ve indexed collections from all across `Ethereum Mainnet`. 
-Here are a few NFT contract addresses to test the API with.
+Here are a few NFT contract addresses to test the API with:
 
 - `Zorbs`: 0xCa21d4228cDCc68D4e23807E5e370C07577Dd152
+- `Monarchs`: 0xc729Ce9bF1030fbb639849a96fA8BBD013680B64
 - `Crypto Dickbutts`: 0x42069ABFE407C60cf4ae4112bEDEaD391dBa1cdB
-- `Crypto Coven`: 0x5180db8F5c931aaE63c74266b211F580155ecac8
 
 ---
 
@@ -69,20 +70,20 @@ This section provides an overview of how to use [GraphiQL](https://api.zora.co/g
 
 ### Explorer
 
-The explorer allows anyone to quickly view the different possible queries. 
+The explorer allows anyone to quickly view the different queries. 
 To access the explorer, click on the "Explorer" button at the top. 
 
 ![explorer-button](../../static/img/graphiQL/qlNavBar.png)
 
-You will then see a pop out on the left side of the screen. 
-This section will show you all the possible queries along with their paramaters.
+You will then see a pop-out on the left side of the screen. 
+This section will show all the queries along with their parameters.
 GraphiQL will populate the queries into the sandbox if you click on them.
 
 <img class="guide-photos" src="../../static/img/graphiQL/qlExplorer.png" alt="explorer-tab" height="225"/>
 
 <br/>
 
-We recommend that you format the response of your query by clicking into the nodes section and selection what you would like to have returned.
+It is recommended that the response be formatted by clicking into the nodes section and selecting what should be returned.
 
 <br/>
 
@@ -96,6 +97,6 @@ The Docs section of GraphiQL can be accessed by clicking on "Docs" in the top le
 
 <br/>
 
-If you click into "Root Query" you will be able to view the types for both the arguments and the responses.
+Clicking on "Root Query" will display the types for both the arguments and the responses.
 
 <img class="guide-photos" src="../../static/img/graphiQL/graphQueries.png" alt="doc-queries" height="400"/>

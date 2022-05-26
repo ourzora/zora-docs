@@ -5,14 +5,13 @@ title: Query Formatting
 
 # Query Formatting
 
-##### The differenet entities and arguments in the API
+##### The Differenet Entities and Parameters in the API
 
 ---
 
 
 :::note 
 Check out our [GraphiQL](https://api.zora.co/graphql) to play around with the API
-
 :::
 
 ### Core Entities
@@ -21,9 +20,9 @@ Check out our [GraphiQL](https://api.zora.co/graphql) to play around with the AP
 - `tokens`: Gets data for multiple tokens
 - `collections`: NFT collection information
 - `events`: Contract event information, e.g. Transfers, Mints, Approvals, etc.
-- `markets`: Data for specific ZORA markets, e.g. Buy Now, Auctions, Offers
-- `mints`: Historical minting data
 - `sales`: Historical sales data from ZORA, OpenSea, LooksRare, 0x, and more
+- `mints`: Historical minting data
+- `markets`: Data for specific ZORA markets, e.g. Buy Now, Auctions, Offers
 - `search`: Search for keywords to find collections and tokens
 
 ---
@@ -35,10 +34,10 @@ Check out our [GraphiQL](https://api.zora.co/graphql) to play around with the AP
 
 ---
 
-### Query Arguments
+### Query Parameter
 
-- `where`: Arguments that grab a specific set of NFT data, e.g. collection address
-- `filter`: Filters down the results from the `where` arguments into a smaller data set
+- `where`: Parameters that grab a specific set of NFT data, e.g. `collectionAddress`
+- `filter`: Filters down the results from the `where` parameters into a smaller data set
 - `networks`: The network and chain to grab NFT data from
 - `pagination`: A way to set the limit and starting point of the response
 - `sort`: Sorts the order of the returned data

@@ -11,8 +11,8 @@ import TabItem from '@theme/TabItem'
 ##### Learn how to retrieve NFT data for a specific wallet address
 ---
 
-This guide will cover how to retreive NFT data for an owner address and then dive deeper in how to get data for specific NFTs. 
-The following are starter examples, there are many different possiblities with the API.
+This guide will cover how to retrieve NFT data for an `ownerAddress` and then dive deeper into how to get details for specific NFTs. 
+The following are starter examples, but there are many different possibilities with the API.
 
 :::note
 
@@ -20,12 +20,12 @@ GraphiQL Playground: https://api.zora.co/graphql
 
 Demo Address: `jacob.eth` or `0x17cd072cBd45031EFc21Da538c783E0ed3b25DCc`
 
-*The API is fully **ENS** compatible meaining that `ownerAddress` can be an ENS name.
+*The API is **ENS** compatible, meaning that `ownerAddress` can be an ENS name.
 :::
 
 
 ## NFT Balance
-Let's get started by looking at `jacob.eth` as our example address to get data from. 
+Let's get started by looking at `jacob.eth` as our example address. 
 We can use the `tokens` query and set the `ownerAddress`.
 
 <Tabs
@@ -58,9 +58,6 @@ query JacobsNFTs {
 }
 
 ```
-
-In this example we have set the limit to 3 NFTs, but the size of the response can be up to 500.
-However, recommend using the `pagination` paramters to meter the size of your responses.
 
 </TabItem>
 <TabItem value="response">
@@ -204,10 +201,17 @@ However, recommend using the `pagination` paramters to meter the size of your re
 </TabItem>
 </Tabs>
 
+
+In this example, we have set the `limit` to 3 NFTs, but the max size of the response can be up to `500`.
+However, recommend using the `pagination` parameters to meter the size of your responses.
+
+Note, that it is possible to grab all the `events` with each NFT by specifying it in the query.
+
 ---
 
 ## Total Sales Volume
-Now we can look at the total sales volume for this specific address and see that it has sold 75 NFTs for a total of 146 ETH.
+Now we can look at the total sales volume for this specific address by using `aggregateStat`.
+We can see that it has sold 15 NFTs for a total of 24 ETH.
 <Tabs
   defaultValue="query"
   values={[
@@ -236,8 +240,8 @@ query TotalAddressSales {
   "data": {
     "aggregateStat": {
       "salesVolume": {
-        "ethPrice": 146.2261,
-        "totalCount": 75,
+        "ethPrice": 24.2261,
+        "totalCount": 15,
       }
     }
   }
@@ -248,10 +252,9 @@ query TotalAddressSales {
 
 ---
 
-
 ## Largest Purchase
-Lastly, we can see the largest on-chain ETH purchase for an NFT that this address has made using the `sales` query.
-Running the query, we can see that 5 ETH was paid for a LilNoun on May 16th, 2022.
+Lastly, we can get the largest on-chain ETH purchase this address has made using the `sales` query and sorting by descending `ETH_PRICE`.
+Running the query, we can see that [5 ETH was paid](https://etherscan.io/tx/0x4fa67eb3963d5c652cd57416064059eae315e65b3bfb844da27de23a1a8908c6) for a LilNoun on May 16th, 2022.
 <Tabs
   defaultValue="query"
   values={[
@@ -345,11 +348,12 @@ TokenID: `246`
 :::
 
 ### Token Events
-This query will return all historical events for this NFT including: 
+Every time transaction interacts with an NFT on the blockchain it creates an event. This query will help you view all the historical events for this NFT including: 
 - Mints 
 - Transfers
 - Approvals
-- Zora Market Events
+- Sales
+- Zora Markets
 
 <Tabs
   defaultValue="query"
@@ -413,12 +417,12 @@ query TokenEvents {
 
 
 ### Token Sales
-This query highlights ever completed sale for an NFT from many different on-chain markets including:
+This query will help you get specific data for all sales pertaining to this NFT across all markets:
 
 - Zora 
 - OpenSea
 - LooksRare 
-- Ox v4
+- 0x v4
 - and more
 
 <Tabs
