@@ -92,7 +92,7 @@ module.exports = {
       {
         type: 'category',
         label: 'Guides',
-        collapsed: true,
+        collapsed: false,
         items: ['guides/v3-approvals', 'guides/sell-nft-fixed-price'],
       }],
     },

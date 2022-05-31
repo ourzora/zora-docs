@@ -40,7 +40,7 @@ We can use the `tokens` query and set the `ownerAddress`.
 ```graphql
 query JacobsNFTs {
   tokens(networks: [{network: ETHEREUM, chain: MAINNET}], 
-        pagination: {limit: 3, offset: 0}, 
+        pagination: {limit: 3}, 
         where: {ownerAddresses: "jacob.eth"}) {
     nodes {
       token {
@@ -224,9 +224,9 @@ We can see that it has sold 15 NFTs for a total of 24 ETH.
 ```graphql
 query TotalAddressSales {
   aggregateStat {
-    salesVolume(where: {ownerAddress: "jacob.eth"}) {
-      ethPrice
+    salesVolume(where: {ownerAddresses: "jacob.eth"}) {
       totalCount
+      chainTokenPrice
     }
   }
 }
@@ -240,8 +240,8 @@ query TotalAddressSales {
   "data": {
     "aggregateStat": {
       "salesVolume": {
-        "ethPrice": 24.2261,
-        "totalCount": 15,
+        "totalCount": 28,
+        "chainTokenPrice": 90.2698
       }
     }
   }
@@ -253,7 +253,8 @@ query TotalAddressSales {
 ---
 
 ## Largest Purchase
-Lastly, we can get the largest on-chain ETH purchase this address has made using the `sales` query and sorting by descending `ETH_PRICE`.
+Lastly, we can get the largest on-chain ETH purchase this address has made using the `sales` query and sorting by descending `NATIVE_PRICE`. 
+Native price is sales price in the currency that was used in the sale transaction. 
 Running the query, we can see that [5 ETH was paid](https://etherscan.io/tx/0x4fa67eb3963d5c652cd57416064059eae315e65b3bfb844da27de23a1a8908c6) for a LilNoun on May 16th, 2022.
 <Tabs
   defaultValue="query"
@@ -267,13 +268,12 @@ Running the query, we can see that [5 ETH was paid](https://etherscan.io/tx/0x4f
 ```graphql
 query TopPurchaseForAnAddress {
   sales(where: {buyerAddresses: "jacob.eth"}, 
-        sort: {sortKey: ETH_PRICE, 
-        sortDirection: DESC}, 
+        sort: {sortKey: NATIVE_PRICE, sortDirection: DESC}, 
         pagination: {limit: 1}) {
     nodes {
       sale {
         price {
-          ethPrice {
+          nativePrice {
             decimal
           }
         }
@@ -293,6 +293,7 @@ query TopPurchaseForAnAddress {
     }
   }
 }
+
 ```
 
 </TabItem>
@@ -306,7 +307,7 @@ query TopPurchaseForAnAddress {
         {
           "sale": {
             "price": {
-              "ethPrice": {
+              "nativePrice": {
                 "decimal": 5
               }
             },
@@ -320,7 +321,7 @@ query TopPurchaseForAnAddress {
           "token": {
             "collectionAddress": "0x4b10701bfd7bfedc47d50562b76b436fbb5bdb3b",
             "tokenId": "5",
-            "name": "LilNoun 5",
+            "name": "Lil Noun 5",
             "description": "Noun 5 is a member of the Nouns DAO"
           }
         }
@@ -387,24 +388,17 @@ query TokenEvents {
     "token": {
       "events": [
         {
+          "eventType": "TRANSFER_EVENT",
+          "transactionInfo": {
+            "blockTimestamp": "2021-10-06T16:24:31",
+            "transactionHash": "0x29426d81789f92f148a4361fd346c16ade86724081a22166586372787f9ff444"
+          }
+        },
+        {
           "eventType": "MINT_EVENT",
           "transactionInfo": {
             "blockTimestamp": "2021-10-06T16:24:31",
             "transactionHash": "0x29426d81789f92f148a4361fd346c16ade86724081a22166586372787f9ff444"
-          }
-        },
-        {
-          "eventType": "TRANSFER_EVENT",
-          "transactionInfo": {
-            "blockTimestamp": "2021-10-06T16:24:31",
-            "transactionHash": "0x29426d81789f92f148a4361fd346c16ade86724081a22166586372787f9ff444"
-          }
-        },
-        {
-          "eventType": "TRANSFER_EVENT",
-          "transactionInfo": {
-            "blockTimestamp": "2022-05-16T19:11:30",
-            "transactionHash": "0x0a1bffd24f1aaee5ad7316c984a9e792dea705c957b16d54ed444a7abac1fbf2"
           }
         }
       ]
@@ -422,7 +416,8 @@ This query will help you get specific data for all sales pertaining to this NFT 
 - Zora 
 - OpenSea
 - LooksRare 
-- 0x v4
+- Nouns Auctions
+- Foundation
 - and more
 
 <Tabs
@@ -446,6 +441,14 @@ query TokenSale {
         blockTimestamp
         transactionHash
       }
+      price {
+        nativePrice {
+          decimal
+          currency {
+            name
+          }
+        }
+      }
     }
   }
 }
@@ -468,6 +471,14 @@ query TokenSale {
           "transactionInfo": {
             "blockTimestamp": "2022-05-16T19:11:30",
             "transactionHash": "0x0a1bffd24f1aaee5ad7316c984a9e792dea705c957b16d54ed444a7abac1fbf2"
+          },
+          "price": {
+            "nativePrice": {
+              "decimal": 0.109,
+              "currency": {
+                "name": "ETH"
+              }
+            }
           }
         }
       ]

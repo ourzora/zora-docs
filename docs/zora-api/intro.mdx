@@ -3,6 +3,12 @@ id: intro
 title: Introduction
 ---
 
+import exploreTab from "../../static/img/graphiQL/qlExplorer.png"
+import exploreTab2 from "../../static/img/graphiQL/qlExplorer2.png"
+import graphiqlDocs from "../../static/img/graphiQL/graphiqlDocs.png"
+import graphQueries from "../../static/img/graphiQL/graphQueries.png"
+
+
 # Introduction
 
 ##### The Most Powerful NFT API
@@ -20,7 +26,7 @@ API Endpoint: https://api.zora.co/graphql
 :::
 ## Key Features
 - Data on every Ethereum NFT contract and its associated events (Transfers, Mints, etc.)
-- Sales data from every marketplace (ZORA, OpenSea, LooksRare, 0x, etc.)
+- Sales data from every marketplace (ZORA, OpenSea, LooksRare, Foundation, etc.)
 - Media is encoded to provide assets at different sizes
 - Automatically syncs newly deployed NFT contracts
 - Adaptable to any chain and token standard
@@ -79,7 +85,7 @@ You will then see a pop-out on the left side of the screen.
 This section will show all the queries along with their parameters.
 GraphiQL will populate the queries into the sandbox if you click on them.
 
-<img class="guide-photos" src="../../static/img/graphiQL/qlExplorer.png" alt="explorer-tab" height="225"/>
+<img class="guide-photos" src={exploreTab} alt="explorer-tab" height="225"/>
 
 <br/>
 
@@ -87,16 +93,16 @@ It is recommended that the response be formatted by clicking into the nodes sect
 
 <br/>
 
-<img class="guide-photos" src="../../static/img/graphiQL/qlExplorer2.png" alt="explorer-tab" height="225"/>
+<img class="guide-photos" src={exploreTab2} alt="explorer-tab2" height="225"/>
 
 ### Docs
 
 The Docs section of GraphiQL can be accessed by clicking on "Docs" in the top left of the page. 
 
-<img class="guide-photos" src="../../static/img/graphiQL/graphiqlDocs.png" alt="doc-tabs" height="200"/>
+<img class="guide-photos" src={graphiqlDocs} alt="doc-tabs" height="200"/>
 
 <br/>
 
 Clicking on "Root Query" will display the types for both the arguments and the responses.
 
-<img class="guide-photos" src="../../static/img/graphiQL/graphQueries.png" alt="doc-queries" height="400"/>
+<img class="guide-photos" src={graphQueries} alt="doc-queries" height="400"/>

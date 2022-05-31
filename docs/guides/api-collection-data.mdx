@@ -39,7 +39,7 @@ This query can fetch data for either multiple NFT collections or a specific coll
 ```graphql
 query CollectionInfo {
   collections(networks: [{network: ETHEREUM, chain: MAINNET}], 
-              pagination: {limit: 8, offset: 0}, 
+              pagination: {limit: 8}, 
               sort: {sortKey: CREATED, sortDirection: ASC},
               where: {collectionAddresses: "0xc729Ce9bF1030fbb639849a96fA8BBD013680B64"}) 
   {
@@ -87,7 +87,7 @@ Below we are using the `aggregateStat` query to get the information we need.
 <br/> 
 
 We can see that 888 total Monarchs that are held by 600 different addresses 
-and the collection has done over 2251 ETH in sales volume across all markets.
+and the collection has done over 2251 ETH (`chainTokenPrice`) in sales volume across all markets.
 
 <Tabs
   defaultValue="query"
@@ -103,15 +103,14 @@ query MonarchCollectionStats {
   aggregateStat {
     nftCount(where: {collectionAddresses: "0xc729Ce9bF1030fbb639849a96fA8BBD013680B64"})
     ownerCount(where: {collectionAddresses: "0xc729Ce9bF1030fbb639849a96fA8BBD013680B64"})
-    salesVolume(
-              where: {collectionAddresses: ["0x335eeef8e93a7a757d9e7912044d9cd264e2b2d8"]}, 
-              networks: [{network: ETHEREUM, chain: MAINNET}]) {
-        ethPrice,
-        usdcPrice,
-        totalCount
+    salesVolume(where: {collectionAddresses: ["0x335eeef8e93a7a757d9e7912044d9cd264e2b2d8"]}, networks: [{network: ETHEREUM, chain: MAINNET}]) {
+      usdcPrice
+      totalCount
+      chainTokenPrice
     }
   }
 }
+
 ```
 
 </TabItem>
@@ -122,11 +121,11 @@ query MonarchCollectionStats {
   "data": {
     "aggregateStat": {
       "nftCount": 888,
-      "ownerCount": 599,
+      "ownerCount": 600,
       "salesVolume": {
-        "ethPrice": 2251.8138718689625,
-        "usdcPrice": 6937731.650811332,
-        "totalCount": 12601
+        "usdcPrice": 6944078.373988687,
+        "totalCount": 12636,
+        "chainTokenPrice": 2255.048171858962
       }
     }
   }
@@ -154,9 +153,9 @@ A deeper dive will tell you that this is the creator's wallet and they were able
 ```graphql
 query FirstMonarchMinted {
   mints(where: {collectionAddresses: "0xc729Ce9bF1030fbb639849a96fA8BBD013680B64"}, 
-        pagination: {limit: 1, offset: 0}, 
-        sort: {sortKey: TIME, sortDirection: ASC}) 
-  {
+        pagination: {limit: 1}, 
+        sort: {sortKey: TIME, 
+        sortDirection: ASC}) {
     nodes {
       token {
         tokenId
@@ -164,7 +163,7 @@ query FirstMonarchMinted {
         mintInfo {
           originatorAddress
           price {
-            ethPrice {
+            chainTokenPrice {
               decimal
             }
           }
@@ -194,7 +193,7 @@ query FirstMonarchMinted {
             "mintInfo": {
               "originatorAddress": "0x4628d77ba8fcc7a7f2b6bd4a0363061a06e7a20f",
               "price": {
-                "ethPrice": {
+                "chainTokenPrice": {
                   "decimal": 0
                 }
               },
@@ -222,7 +221,7 @@ A way to prevent this is to compare the `originatorAddress` with the `toAddress`
 The `originatorAddress` is the address that submitted the transaction and the `toAddress` is the address where the minted NFT was sent to in the transaction.
 :::
 
-However, if we set the `offset` in `pagination` to 20 we can view the 21st Monarch minted and see that it was [minted for 0.8 ETH](https://etherscan.io/tx/0x07d236e70c1647f1d8504df7ea74435c01b276e2effe54b1df463a2ea7c76235).
+However, if we set the `tokenId` in `where` to 20 we can view the 21st Monarch minted and see that it was [minted for 0.8 ETH](https://etherscan.io/tx/0x07d236e70c1647f1d8504df7ea74435c01b276e2effe54b1df463a2ea7c76235).
 
 <Tabs
   defaultValue="query"
@@ -235,10 +234,10 @@ However, if we set the `offset` in `pagination` to 20 we can view the 21st Monar
 
 ```graphql
 query TwentyFirstMonarchMinted {
-  mints(where: {collectionAddresses: "0xc729Ce9bF1030fbb639849a96fA8BBD013680B64"}, 
-        pagination: {limit: 1, offset: 20}, 
-        sort: {sortKey: TIME, sortDirection: ASC}) 
-  {
+  mints(where: 
+        {tokens: {address: "0xc729Ce9bF1030fbb639849a96fA8BBD013680B64", tokenId: "20"}}, 
+        pagination: {limit: 1}, 
+        sort: {sortKey: TIME, sortDirection: ASC}) {
     nodes {
       token {
         tokenId
@@ -246,7 +245,7 @@ query TwentyFirstMonarchMinted {
         mintInfo {
           originatorAddress
           price {
-            ethPrice {
+            nativePrice {
               decimal
             }
           }
@@ -259,6 +258,7 @@ query TwentyFirstMonarchMinted {
     }
   }
 }
+
 ```
 
 </TabItem>
@@ -271,21 +271,18 @@ query TwentyFirstMonarchMinted {
       "nodes": [
         {
           "token": {
-            "name": "Monarch #21",
-            "owner": "0x79bc543be01d2b346d659fa69bb25c73436ffa05",
             "tokenId": "20",
+            "owner": "0x79bc543be01d2b346d659fa69bb25c73436ffa05",
             "mintInfo": {
               "originatorAddress": "0x79bc543be01d2b346d659fa69bb25c73436ffa05",
               "price": {
-                "blockNumber": 13366366,
-                "ethPrice": {
+                "nativePrice": {
                   "decimal": 0.8
                 }
               },
               "mintContext": {
-                "blockNumber": 13366366,
-                "blockTimestamp": "2021-10-06T16:00:17",
-                "transactionHash": "0x07d236e70c1647f1d8504df7ea74435c01b276e2effe54b1df463a2ea7c76235"
+                "transactionHash": "0x07d236e70c1647f1d8504df7ea74435c01b276e2effe54b1df463a2ea7c76235",
+                "blockTimestamp": "2021-10-06T16:00:17"
               }
             }
           }
@@ -316,10 +313,7 @@ We can see that the largest sale was [tokenId 624 for 8.88 ETH on October 6th, 2
 
 ```graphql
 query TopMonarchSales {
-  sales(where: {collectionAddresses: "0xc729Ce9bF1030fbb639849a96fA8BBD013680B64"}, 
-        pagination: {limit: 3}, 
-        sort: {sortKey: ETH_PRICE, sortDirection: DESC})
-  {
+  sales(where: {collectionAddresses: "0xc729Ce9bF1030fbb639849a96fA8BBD013680B64"}, pagination: {limit: 3}, sort: {sortKey: NATIVE_PRICE, sortDirection: DESC}) {
     nodes {
       sale {
         saleType
@@ -332,10 +326,10 @@ query TopMonarchSales {
           transactionHash
         }
         price {
-          ethPrice {
+          usdcPrice {
             decimal
           }
-          usdcPrice {
+          nativePrice {
             decimal
           }
         }
@@ -343,6 +337,7 @@ query TopMonarchSales {
     }
   }
 }
+
 ```
 
 </TabItem>
@@ -365,11 +360,11 @@ query TopMonarchSales {
               "transactionHash": "0xf0179b678809acff8535ad89338bc7fa8a87d28cc10f07c7e595ef823b0e4690"
             },
             "price": {
-              "ethPrice": {
-                "decimal": 8.88
-              },
               "usdcPrice": {
                 "decimal": 31729.60193029824
+              },
+              "nativePrice": {
+                "decimal": 8.88
               }
             }
           }
@@ -386,11 +381,11 @@ query TopMonarchSales {
               "transactionHash": "0xa24328cc093d38e61d6bc0b53f5543d081c6fa4e3e9387ecc2dca427d831c23f"
             },
             "price": {
-              "ethPrice": {
-                "decimal": 7.77
-              },
               "usdcPrice": {
                 "decimal": 27832.857309572228
+              },
+              "nativePrice": {
+                "decimal": 7.77
               }
             }
           }
@@ -407,11 +402,11 @@ query TopMonarchSales {
               "transactionHash": "0x89786c7c2e1e113f43a919dcecb3b9270d1526b3fc629ead4a1ccccc9e0b6537"
             },
             "price": {
-              "ethPrice": {
-                "decimal": 6.9
-              },
               "usdcPrice": {
                 "decimal": 24736.902321472273
+              },
+              "nativePrice": {
+                "decimal": 6.9
               }
             }
           }
@@ -510,7 +505,7 @@ In this example we are getting 3 tokens from the collection using the `tokens` q
 ```graphql
 query PreviewTokens {
   tokens(networks: [{network: ETHEREUM, chain: MAINNET}], 
-         pagination: {limit: 3, offset: 0}, 
+         pagination: {limit: 3}, 
          sort: {sortKey: MINTED, sortDirection: ASC}, 
          where: {collectionAddresses: ["0xc729Ce9bF1030fbb639849a96fA8BBD013680B64"]}) 
   {
@@ -697,479 +692,473 @@ query AggregateAttributesByCollectionAddress {
 ```json
 {
   "data": {
-    "collections": {
-      "nodes": [
-        {
-          "attributes": [
-            {
-              "traitType": "Environment",
-              "valueMetrics": [
-                {
-                  "count": 26,
-                  "percent": 10.12,
-                  "value": "Pony"
-                },
-                {
-                  "count": 6,
-                  "percent": 2.33,
-                  "value": "Ridley"
-                },
-                {
-                  "count": 11,
-                  "percent": 4.28,
-                  "value": "Zeitung"
-                },
-                {
-                  "count": 5,
-                  "percent": 1.95,
-                  "value": "Eden"
-                },
-                {
-                  "count": 13,
-                  "percent": 5.06,
-                  "value": "Donatello"
-                },
-                {
-                  "count": 20,
-                  "percent": 7.78,
-                  "value": "Sort"
-                },
-                {
-                  "count": 27,
-                  "percent": 10.51,
-                  "value": "Compile"
-                },
-                {
-                  "count": 2,
-                  "percent": 0.78,
-                  "value": "Moonlight"
-                },
-                {
-                  "count": 7,
-                  "percent": 2.72,
-                  "value": "New World"
-                },
-                {
-                  "count": 3,
-                  "percent": 1.17,
-                  "value": "Moonlight Forest"
-                },
-                {
-                  "count": 11,
-                  "percent": 4.28,
-                  "value": "Nuclei Fire"
-                },
-                {
-                  "count": 8,
-                  "percent": 3.11,
-                  "value": "Mule"
-                },
-                {
-                  "count": 13,
-                  "percent": 5.06,
-                  "value": "Nuclei Purple"
-                },
-                {
-                  "count": 4,
-                  "percent": 1.56,
-                  "value": "Circle"
-                },
-                {
-                  "count": 3,
-                  "percent": 1.17,
-                  "value": "Acid Rothko"
-                },
-                {
-                  "count": 1,
-                  "percent": 0.39,
-                  "value": "Hybrid"
-                },
-                {
-                  "count": 2,
-                  "percent": 0.78,
-                  "value": "Tada"
-                },
-                {
-                  "count": 1,
-                  "percent": 0.39,
-                  "value": "Dark Forest"
-                },
-                {
-                  "count": 4,
-                  "percent": 1.56,
-                  "value": "Hunter"
-                },
-                {
-                  "count": 14,
-                  "percent": 5.45,
-                  "value": "Nuclei Green"
-                },
-                {
-                  "count": 6,
-                  "percent": 2.33,
-                  "value": "Arrange"
-                },
-                {
-                  "count": 5,
-                  "percent": 1.95,
-                  "value": "Nuclei Ultra"
-                },
-                {
-                  "count": 17,
-                  "percent": 6.61,
-                  "value": "Jupiter"
-                },
-                {
-                  "count": 16,
-                  "percent": 6.23,
-                  "value": "Orbit"
-                },
-                {
-                  "count": 7,
-                  "percent": 2.72,
-                  "value": "Mauve"
-                },
-                {
-                  "count": 3,
-                  "percent": 1.17,
-                  "value": "Zero"
-                },
-                {
-                  "count": 3,
-                  "percent": 1.17,
-                  "value": "Curtain"
-                },
-                {
-                  "count": 4,
-                  "percent": 1.56,
-                  "value": "Dijck"
-                },
-                {
-                  "count": 5,
-                  "percent": 1.95,
-                  "value": "Zeitgeist"
-                },
-                {
-                  "count": 6,
-                  "percent": 2.33,
-                  "value": "Der Zeit"
-                },
-                {
-                  "count": 2,
-                  "percent": 0.78,
-                  "value": "Shen"
-                },
-                {
-                  "count": 2,
-                  "percent": 0.78,
-                  "value": "Nebula"
-                }
-              ]
-            },
-            {
-              "traitType": "Base Pattern",
-              "valueMetrics": [
-                {
-                  "count": 38,
-                  "percent": 14.79,
-                  "value": "Kingdom"
-                },
-                {
-                  "count": 29,
-                  "percent": 11.28,
-                  "value": "Ikarus"
-                },
-                {
-                  "count": 12,
-                  "percent": 4.67,
-                  "value": "Ivalice"
-                },
-                {
-                  "count": 22,
-                  "percent": 8.56,
-                  "value": "Kaneda"
-                },
-                {
-                  "count": 16,
-                  "percent": 6.23,
-                  "value": "Venom"
-                },
-                {
-                  "count": 2,
-                  "percent": 0.78,
-                  "value": "Field"
-                },
-                {
-                  "count": 27,
-                  "percent": 10.51,
-                  "value": "Dailo"
-                },
-                {
-                  "count": 19,
-                  "percent": 7.39,
-                  "value": "Cosmic Horror"
-                },
-                {
-                  "count": 16,
-                  "percent": 6.23,
-                  "value": "Srivatsa"
-                },
-                {
-                  "count": 14,
-                  "percent": 5.45,
-                  "value": "Koichi"
-                },
-                {
-                  "count": 4,
-                  "percent": 1.56,
-                  "value": "Be Not Afraid"
-                },
-                {
-                  "count": 14,
-                  "percent": 5.45,
-                  "value": "Shinzaemon"
-                },
-                {
-                  "count": 9,
-                  "percent": 3.5,
-                  "value": "Kubrick"
-                },
-                {
-                  "count": 8,
-                  "percent": 3.11,
-                  "value": "Jungle"
-                },
-                {
-                  "count": 7,
-                  "percent": 2.72,
-                  "value": "Carnage"
-                },
-                {
-                  "count": 9,
-                  "percent": 3.5,
-                  "value": "Kazumasa"
-                },
-                {
-                  "count": 11,
-                  "percent": 4.28,
-                  "value": "Katana"
-                }
-              ]
-            },
-            {
-              "traitType": "Secondary Pattern",
-              "valueMetrics": [
-                {
-                  "count": 29,
-                  "percent": 11.28,
-                  "value": "Maui"
-                },
-                {
-                  "count": 14,
-                  "percent": 5.45,
-                  "value": "Julien"
-                },
-                {
-                  "count": 19,
-                  "percent": 7.39,
-                  "value": "Zara"
-                },
-                {
-                  "count": 20,
-                  "percent": 7.78,
-                  "value": "Nehemiah"
-                },
-                {
-                  "count": 8,
-                  "percent": 3.11,
-                  "value": "Krakow"
-                },
-                {
-                  "count": 24,
-                  "percent": 9.34,
-                  "value": "Sebastien"
-                },
-                {
-                  "count": 12,
-                  "percent": 4.67,
-                  "value": "Malawi"
-                },
-                {
-                  "count": 11,
-                  "percent": 4.28,
-                  "value": "Cyrus"
-                },
-                {
-                  "count": 13,
-                  "percent": 5.06,
-                  "value": "Droplet"
-                },
-                {
-                  "count": 24,
-                  "percent": 9.34,
-                  "value": "Zeitan"
-                },
-                {
-                  "count": 10,
-                  "percent": 3.89,
-                  "value": "Makeda"
-                },
-                {
-                  "count": 14,
-                  "percent": 5.45,
-                  "value": "Owl"
-                },
-                {
-                  "count": 11,
-                  "percent": 4.28,
-                  "value": "Kuzmickas"
-                },
-                {
-                  "count": 3,
-                  "percent": 1.17,
-                  "value": "Oahu"
-                },
-                {
-                  "count": 9,
-                  "percent": 3.5,
-                  "value": "Nikto"
-                },
-                {
-                  "count": 8,
-                  "percent": 3.11,
-                  "value": "Valhalla"
-                },
-                {
-                  "count": 7,
-                  "percent": 2.72,
-                  "value": "Mehmed"
-                },
-                {
-                  "count": 13,
-                  "percent": 5.06,
-                  "value": "Nero"
-                },
-                {
-                  "count": 4,
-                  "percent": 1.56,
-                  "value": "Kora"
-                },
-                {
-                  "count": 2,
-                  "percent": 0.78,
-                  "value": "Augustus"
-                },
-                {
-                  "count": 1,
-                  "percent": 0.39,
-                  "value": "Anastasia"
-                },
-                {
-                  "count": 1,
-                  "percent": 0.39,
-                  "value": "Lelouch"
-                }
-              ]
-            },
-            {
-              "traitType": "Wing Shape",
-              "valueMetrics": [
-                {
-                  "count": 66,
-                  "percent": 25.68,
-                  "value": "Theodora"
-                },
-                {
-                  "count": 24,
-                  "percent": 9.34,
-                  "value": "Nubis"
-                },
-                {
-                  "count": 24,
-                  "percent": 9.34,
-                  "value": "Victoria"
-                },
-                {
-                  "count": 16,
-                  "percent": 6.23,
-                  "value": "Suiko"
-                },
-                {
-                  "count": 18,
-                  "percent": 7,
-                  "value": "Petrovna"
-                },
-                {
-                  "count": 12,
-                  "percent": 4.67,
-                  "value": "Antoinette"
-                },
-                {
-                  "count": 14,
-                  "percent": 5.45,
-                  "value": "Vallal"
-                },
-                {
-                  "count": 24,
-                  "percent": 9.34,
-                  "value": "Suleiman"
-                },
-                {
-                  "count": 6,
-                  "percent": 2.33,
-                  "value": "Bellucci"
-                },
-                {
-                  "count": 7,
-                  "percent": 2.72,
-                  "value": "Mary"
-                },
-                {
-                  "count": 10,
-                  "percent": 3.89,
-                  "value": "Krimhelde"
-                },
-                {
-                  "count": 26,
-                  "percent": 10.12,
-                  "value": "Osman"
-                },
-                {
-                  "count": 8,
-                  "percent": 3.11,
-                  "value": "Gemma"
-                },
-                {
-                  "count": 2,
-                  "percent": 0.78,
-                  "value": "Lilou"
-                }
-              ]
-            },
-            {
-              "traitType": "Body Type",
-              "valueMetrics": [
-                {
-                  "count": 136,
-                  "percent": 52.92,
-                  "value": "Mothma"
-                },
-                {
-                  "count": 51,
-                  "percent": 19.84,
-                  "value": "Qing"
-                },
-                {
-                  "count": 70,
-                  "percent": 27.24,
-                  "value": "Schmett"
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    }
+    "aggregateAttributes": [
+      {
+        "traitType": "Environment",
+        "valueMetrics": [
+          {
+            "count": 26,
+            "percent": 10.12,
+            "value": "Pony"
+          },
+          {
+            "count": 6,
+            "percent": 2.33,
+            "value": "Ridley"
+          },
+          {
+            "count": 11,
+            "percent": 4.28,
+            "value": "Zeitung"
+          },
+          {
+            "count": 5,
+            "percent": 1.95,
+            "value": "Eden"
+          },
+          {
+            "count": 13,
+            "percent": 5.06,
+            "value": "Donatello"
+          },
+          {
+            "count": 20,
+            "percent": 7.78,
+            "value": "Sort"
+          },
+          {
+            "count": 27,
+            "percent": 10.51,
+            "value": "Compile"
+          },
+          {
+            "count": 2,
+            "percent": 0.78,
+            "value": "Moonlight"
+          },
+          {
+            "count": 7,
+            "percent": 2.72,
+            "value": "New World"
+          },
+          {
+            "count": 3,
+            "percent": 1.17,
+            "value": "Moonlight Forest"
+          },
+          {
+            "count": 11,
+            "percent": 4.28,
+            "value": "Nuclei Fire"
+          },
+          {
+            "count": 8,
+            "percent": 3.11,
+            "value": "Mule"
+          },
+          {
+            "count": 13,
+            "percent": 5.06,
+            "value": "Nuclei Purple"
+          },
+          {
+            "count": 4,
+            "percent": 1.56,
+            "value": "Circle"
+          },
+          {
+            "count": 3,
+            "percent": 1.17,
+            "value": "Acid Rothko"
+          },
+          {
+            "count": 1,
+            "percent": 0.39,
+            "value": "Hybrid"
+          },
+          {
+            "count": 2,
+            "percent": 0.78,
+            "value": "Tada"
+          },
+          {
+            "count": 1,
+            "percent": 0.39,
+            "value": "Dark Forest"
+          },
+          {
+            "count": 4,
+            "percent": 1.56,
+            "value": "Hunter"
+          },
+          {
+            "count": 14,
+            "percent": 5.45,
+            "value": "Nuclei Green"
+          },
+          {
+            "count": 6,
+            "percent": 2.33,
+            "value": "Arrange"
+          },
+          {
+            "count": 5,
+            "percent": 1.95,
+            "value": "Nuclei Ultra"
+          },
+          {
+            "count": 17,
+            "percent": 6.61,
+            "value": "Jupiter"
+          },
+          {
+            "count": 16,
+            "percent": 6.23,
+            "value": "Orbit"
+          },
+          {
+            "count": 7,
+            "percent": 2.72,
+            "value": "Mauve"
+          },
+          {
+            "count": 3,
+            "percent": 1.17,
+            "value": "Zero"
+          },
+          {
+            "count": 3,
+            "percent": 1.17,
+            "value": "Curtain"
+          },
+          {
+            "count": 4,
+            "percent": 1.56,
+            "value": "Dijck"
+          },
+          {
+            "count": 5,
+            "percent": 1.95,
+            "value": "Zeitgeist"
+          },
+          {
+            "count": 6,
+            "percent": 2.33,
+            "value": "Der Zeit"
+          },
+          {
+            "count": 2,
+            "percent": 0.78,
+            "value": "Shen"
+          },
+          {
+            "count": 2,
+            "percent": 0.78,
+            "value": "Nebula"
+          }
+        ]
+      },
+      {
+        "traitType": "Base Pattern",
+        "valueMetrics": [
+          {
+            "count": 38,
+            "percent": 14.79,
+            "value": "Kingdom"
+          },
+          {
+            "count": 29,
+            "percent": 11.28,
+            "value": "Ikarus"
+          },
+          {
+            "count": 12,
+            "percent": 4.67,
+            "value": "Ivalice"
+          },
+          {
+            "count": 22,
+            "percent": 8.56,
+            "value": "Kaneda"
+          },
+          {
+            "count": 16,
+            "percent": 6.23,
+            "value": "Venom"
+          },
+          {
+            "count": 2,
+            "percent": 0.78,
+            "value": "Field"
+          },
+          {
+            "count": 27,
+            "percent": 10.51,
+            "value": "Dailo"
+          },
+          {
+            "count": 19,
+            "percent": 7.39,
+            "value": "Cosmic Horror"
+          },
+          {
+            "count": 16,
+            "percent": 6.23,
+            "value": "Srivatsa"
+          },
+          {
+            "count": 14,
+            "percent": 5.45,
+            "value": "Koichi"
+          },
+          {
+            "count": 4,
+            "percent": 1.56,
+            "value": "Be Not Afraid"
+          },
+          {
+            "count": 14,
+            "percent": 5.45,
+            "value": "Shinzaemon"
+          },
+          {
+            "count": 9,
+            "percent": 3.5,
+            "value": "Kubrick"
+          },
+          {
+            "count": 8,
+            "percent": 3.11,
+            "value": "Jungle"
+          },
+          {
+            "count": 7,
+            "percent": 2.72,
+            "value": "Carnage"
+          },
+          {
+            "count": 9,
+            "percent": 3.5,
+            "value": "Kazumasa"
+          },
+          {
+            "count": 11,
+            "percent": 4.28,
+            "value": "Katana"
+          }
+        ]
+      },
+      {
+        "traitType": "Secondary Pattern",
+        "valueMetrics": [
+          {
+            "count": 29,
+            "percent": 11.28,
+            "value": "Maui"
+          },
+          {
+            "count": 14,
+            "percent": 5.45,
+            "value": "Julien"
+          },
+          {
+            "count": 19,
+            "percent": 7.39,
+            "value": "Zara"
+          },
+          {
+            "count": 20,
+            "percent": 7.78,
+            "value": "Nehemiah"
+          },
+          {
+            "count": 8,
+            "percent": 3.11,
+            "value": "Krakow"
+          },
+          {
+            "count": 24,
+            "percent": 9.34,
+            "value": "Sebastien"
+          },
+          {
+            "count": 12,
+            "percent": 4.67,
+            "value": "Malawi"
+          },
+          {
+            "count": 11,
+            "percent": 4.28,
+            "value": "Cyrus"
+          },
+          {
+            "count": 13,
+            "percent": 5.06,
+            "value": "Droplet"
+          },
+          {
+            "count": 24,
+            "percent": 9.34,
+            "value": "Zeitan"
+          },
+          {
+            "count": 10,
+            "percent": 3.89,
+            "value": "Makeda"
+          },
+          {
+            "count": 14,
+            "percent": 5.45,
+            "value": "Owl"
+          },
+          {
+            "count": 11,
+            "percent": 4.28,
+            "value": "Kuzmickas"
+          },
+          {
+            "count": 3,
+            "percent": 1.17,
+            "value": "Oahu"
+          },
+          {
+            "count": 9,
+            "percent": 3.5,
+            "value": "Nikto"
+          },
+          {
+            "count": 8,
+            "percent": 3.11,
+            "value": "Valhalla"
+          },
+          {
+            "count": 7,
+            "percent": 2.72,
+            "value": "Mehmed"
+          },
+          {
+            "count": 13,
+            "percent": 5.06,
+            "value": "Nero"
+          },
+          {
+            "count": 4,
+            "percent": 1.56,
+            "value": "Kora"
+          },
+          {
+            "count": 2,
+            "percent": 0.78,
+            "value": "Augustus"
+          },
+          {
+            "count": 1,
+            "percent": 0.39,
+            "value": "Anastasia"
+          },
+          {
+            "count": 1,
+            "percent": 0.39,
+            "value": "Lelouch"
+          }
+        ]
+      },
+      {
+        "traitType": "Wing Shape",
+        "valueMetrics": [
+          {
+            "count": 66,
+            "percent": 25.68,
+            "value": "Theodora"
+          },
+          {
+            "count": 24,
+            "percent": 9.34,
+            "value": "Nubis"
+          },
+          {
+            "count": 24,
+            "percent": 9.34,
+            "value": "Victoria"
+          },
+          {
+            "count": 16,
+            "percent": 6.23,
+            "value": "Suiko"
+          },
+          {
+            "count": 18,
+            "percent": 7,
+            "value": "Petrovna"
+          },
+          {
+            "count": 12,
+            "percent": 4.67,
+            "value": "Antoinette"
+          },
+          {
+            "count": 14,
+            "percent": 5.45,
+            "value": "Vallal"
+          },
+          {
+            "count": 24,
+            "percent": 9.34,
+            "value": "Suleiman"
+          },
+          {
+            "count": 6,
+            "percent": 2.33,
+            "value": "Bellucci"
+          },
+          {
+            "count": 7,
+            "percent": 2.72,
+            "value": "Mary"
+          },
+          {
+            "count": 10,
+            "percent": 3.89,
+            "value": "Krimhelde"
+          },
+          {
+            "count": 26,
+            "percent": 10.12,
+            "value": "Osman"
+          },
+          {
+            "count": 8,
+            "percent": 3.11,
+            "value": "Gemma"
+          },
+          {
+            "count": 2,
+            "percent": 0.78,
+            "value": "Lilou"
+          }
+        ]
+      },
+      {
+        "traitType": "Body Type",
+        "valueMetrics": [
+          {
+            "count": 136,
+            "percent": 52.92,
+            "value": "Mothma"
+          },
+          {
+            "count": 51,
+            "percent": 19.84,
+            "value": "Qing"
+          },
+          {
+            "count": 70,
+            "percent": 27.24,
+            "value": "Schmett"
+          }
+        ]
+      }
+    ]
   }
 }
 ```
