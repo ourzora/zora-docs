@@ -67,7 +67,7 @@ Note that the Finders Fee is only charged if a buyer fills the `ask` on an NFT.
 <br/> 
 
 ### Honoring Royalties
-Whenever an `ask` is filled, the `Ask V1 Module` respects any royalties in this [Royalty Registery](https://royaltyregistry.xyz/lookup) created by Manifold.
+Whenever an `ask` is filled, the `Ask V1 Module` respects any royalties in this [Royalty Registry](https://royaltyregistry.xyz/lookup) created by Manifold.
 If your NFT contract doesn't currently support royalties, the owner address of an NFT contract is able to manually set the royalty in the registry.
 
 To calculate the percentage of a Royalty you can call `getRoyaltyView` on the Royalty engine with the token contract address, token id, and a value of 1e18 (1 ETH in wei) to get the splits and calculate the percentages based on the response.

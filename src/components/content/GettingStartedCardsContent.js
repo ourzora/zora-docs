@@ -7,14 +7,14 @@ export const gettingStartedContent = [
   },
   {
     docNumber: '02',
-    docTitle: 'Sell an NFT at a Fixed Price →',
-    docSubtopic: 'ZORA V3',
-    docLink: '/docs/guides/sell-nft-fixed-price',
+    docTitle: 'Get NFT Data for a Wallet Address →',
+    docSubtopic: 'ZORA API',
+    docLink: '/docs/guides/api-address-balance',
   },
   {
     docNumber: '03',
-    docTitle: 'Build a custom NFT Auction House →',
-    docSubtopic: 'AUCTION HOUSE',
-    docLink: '/docs/guides/create-auction-house',
-  },
+    docTitle: 'Sell an NFT at a Fixed Price →',
+    docSubtopic: 'ZORA V3',
+    docLink: '/docs/guides/sell-nft-fixed-price',
+  }
 ]

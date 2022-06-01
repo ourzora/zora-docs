@@ -5,6 +5,7 @@ title: Getting Collection Data
 
 import Tabs from '@theme/Tabs'
 import TabItem from '@theme/TabItem'
+import OwnerCount from '../../static/img/guides/monarchs/supply-owner-count.png';
 
 ##### Use the Zora API to get NFT collection data
 
@@ -16,7 +17,7 @@ Data can be retrieved for any collection by using these queries and updating the
 
 GraphiQL Playground: https://api.zora.co/graphql
 
-Moncharhs Contract: `0xc729Ce9bF1030fbb639849a96fA8BBD013680B64`
+Monarchs Contract: `0xc729Ce9bF1030fbb639849a96fA8BBD013680B64`
 
 A collection is a group of NFTs that all share a single contract.
 
@@ -82,7 +83,7 @@ query CollectionInfo {
 ## Collection Stats
 Now let's look at a few general collection stats for Monarchs.
 Below we are using the `aggregateStat` query to get the information we need.
-<img class="guide-photos" src="../../static/img/guides/monarchs/supply-owner-count.png" alt="ownerCount" width="400px"/>
+<img class="guide-photos" src={OwnerCount} alt="ownerCount" width="400px"/>
 
 <br/> 
 
@@ -489,7 +490,7 @@ query TopHolders {
 ---
 
 ## Preview Tokens in a Collection
-Here we are able to get a list of NFTs within the Moncharhs collection. 
+Here we are able to get a list of NFTs within the Monarchs collection. 
 You are able to make the preview as simple or complex as you would like.
 In this example we are getting 3 tokens from the collection using the `tokens` query and returning all the metadata for each token.
 
