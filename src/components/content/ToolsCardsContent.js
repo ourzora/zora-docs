@@ -28,10 +28,10 @@ export const toolsCardsContent = [
     toolsParagraph: 'A creator toolkit makes it easy to create an NFT collection.',
     toolsLink: 'https://create.zora.co/',
   },
-  // {
-  //   toolsTitle: 'ZDK',
-  //   toolsParagraph:
-  //     'A tool for developers to simply and reliably interact with the Zora Protocol.',
-  //   toolsLink: '/docs/developer-tools/zdk/introduction',
-  // },
+  {
+    toolsTitle: 'ZDK',
+    toolsParagraph:
+      'Docs Coming Soon: A developer kit that makes it easy to use the Zora API without needing to know GraphQL.',
+    toolsLink: 'https://github.com/ourzora/zdk',
+  },
 ]

@@ -51,3 +51,10 @@ Check out our [GraphiQL](https://api.zora.co/graphql) to play around with the AP
 - `chainTokenPrice`: The sales price in the chain's gas token at the time of the sale
     - Ethereum = ETH
     - Polygon = Matic
+
+---
+
+### Pagination Parameters
+- `limit`: Limits the size of the response
+- `after`: A cursor string from the previous page 
+    - `after` can be obtained from the `endCursor` in the `pageInfo` response
