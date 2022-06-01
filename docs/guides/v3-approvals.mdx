@@ -1,6 +1,6 @@
 ---
 id: v3-approvals
-title: Approve Tokens to V3
+title: Approve Tokens to Zora
 sidebar_position: 1
 ---
 
@@ -12,7 +12,7 @@ However, before being able to interact with specific functionality certain appro
 
 ![zorav3diagram](../../static/img/zora_v3_diagram.png)
 
-V3 is comprised of a few core contracts and an ever-expanding set of modules. 
+V3 consists of a few core contracts and an ever-expanding set of modules. 
 Modules are non-upgradable contracts that provide specific functionality.
 The ZORA core contracts include **Token Transfer Helpers** and the **Module Manager**.
 
@@ -138,7 +138,7 @@ if (approvedAmount === "0") {
 ---
 
 ### Approving Modules in the Module Manager
-Once all the nessary tokens have been approved to the correct Transfer Helpers, 
+Once all the necessary tokens have been approved to the correct Transfer Helpers, 
 the user will then need to submit a transaction to allow specific ZORA modules to have access to their assets.
 For example, if a user would like to sell an NFT via the `Asks v1.1 Module` they will need to approve that module in the Module Manager for the `Asks 1.1 Module` to be able to transfer the NFT in the event of a sale.
 
@@ -163,7 +163,7 @@ if (approved === false) {
 ```
 
 ##### Multiple Modules
-In addition, a user can batch approve modules in single transaction by calling `setBatchApprovalForModules` and passing in an array of module addresses with a boolean.
+In addition, a user can batch approve modules in a single transaction by calling `setBatchApprovalForModules` and passing in an array of module addresses with a boolean.
 
 ```
 // Write Function

@@ -1,0 +1,60 @@
+---
+id: query-formatting
+title: Query Formatting
+---
+
+# Query Formatting
+
+##### The Different Entities and Parameters in the API
+
+---
+
+
+:::note 
+Check out our [GraphiQL](https://api.zora.co/graphql) to play around with the API
+:::
+
+### Core Entities
+
+- `token`: Gets data on a single token
+- `tokens`: Gets data for multiple tokens
+- `collections`: NFT collection information
+- `events`: Contract event information, e.g. Transfers, Mints, Approvals, etc.
+- `sales`: Historical sales data from ZORA, OpenSea, LooksRare, Foundation, and more
+- `mints`: Historical minting data
+- `markets`: Data for specific ZORA markets, e.g. Buy Now, Auctions, Offers
+- `search`: Search for keywords to find collections and tokens
+
+---
+
+### Aggregated Entities
+
+- `aggregateStat`: Returns owner count, total supply, sales volume, and other statistics
+- `aggregateAttributes`: Gets the total set of NFT attributes
+
+---
+
+### Query Parameters
+
+- `where`: Parameters that grab a specific set of NFT data, e.g. `collectionAddress`
+- `filter`: Filters down the results from the `where` parameters into a smaller data set
+- `networks`: The network and chain to grab NFT data from
+- `pagination`: A way to set the limit and starting point of the response
+- `sort`: Sorts the order of the returned data
+
+---
+
+### Sales Price Responses
+
+- `nativePrice`: The sales price in the currency that was used in the sale transaction
+- `usdcPrice`: The sales price in USD at the time of the sale
+- `chainTokenPrice`: The sales price in the chain's gas token at the time of the sale
+    - Ethereum = ETH
+    - Polygon = Matic
+
+---
+
+### Pagination Parameters
+- `limit`: Limits the size of the response
+- `after`: A cursor string from the previous page 
+    - `after` can be obtained from the `endCursor` in the `pageInfo` response

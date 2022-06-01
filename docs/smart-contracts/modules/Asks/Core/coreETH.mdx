@@ -52,8 +52,8 @@ function supportsInterface(bytes4 _interfaceId) returns (bool)
 <br/> 
 
 ### createAsk
-Creates an ask for a specifc ERC-721 NFT. 
-Either the current owner or an approved operator can call this fuction.
+Creates an ask for a specific ERC-721 NFT. 
+Either the current owner or an approved operator can call this function.
 
 Note that creating an `ask` for an ERC-721 token requires that the owner has previously approved the [ERC-721 Transfer Helper](../../../smart-contracts/zora-v3#approving-tokens-to-v3) for it to be valid.
 
@@ -89,7 +89,7 @@ function setAskPrice(
 <br/> 
 
 ### cancelAsk
-Cancels the ask for a specific NFT. Either the current owner or an approved operator can call this fuction.
+Cancels the ask for a specific NFT. Either the current owner or an approved operator can call this function.
 
 ```
 function cancelAsk(address _tokenContract, uint256 _tokenId)

@@ -1,0 +1,61 @@
+---
+id: media-encoding
+title: Media Encoding
+---
+
+# Media Encoding
+
+##### Understand the different media formats that can be retrieved
+
+---
+All images and videos have been encoded to enable a range of sizes to choose from.
+This makes it easy to show a preview or thumbnail without having to show the original size.
+
+## Images & GIFs
+
+The following encoding types are supported for images/GIFs:
+- `THUMBNAIL`
+    - Converts file to `.webp`
+    - Max size of 240px
+- `POSTER`
+    - Converts file to `.jpeg`
+    - Max size of 602px
+- `LARGE`
+    - Converts file to `.webp`
+    - Max size of 8192px
+- `ORIGINAL`
+    - Does not apply any encoding (except if the image exceeds `LARGE` width and height, then the `LARGE` max size is applied)
+    - File format stays the same as what was uploaded
+--- 
+
+## **Videos**
+
+The following encoding types is supported for videos:
+
+- `THUMBNAIL`
+    - Max size of 240px
+- `POSTER`
+    - Max size of 602px
+- `PREVIEW`
+    - Max size of 480px
+- `LARGE`
+    - Max height size of 2160px
+    - Max width size of 3840px
+- `ORIGINAL`
+    - Does not apply any encoding (except if the video exceeds `LARGE` width and height, then the `LARGE` max size is applied)
+    - File format stays the same as what was uploaded
+
+--- 
+## Audio
+
+The following encoding types are supported for audio:
+
+- `LARGE`
+    - Converts the audio file to an `.mp3`
+- `ORIGINAL`
+    - File format stays the same as what was uploaded
+--- 
+
+## SVGs
+
+Currently, there is only SVG support for `ORIGINAL` encoding type but will be expanding the options in the near future.

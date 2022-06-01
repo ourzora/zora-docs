@@ -1,0 +1,490 @@
+---
+id: api-address-balance
+title: Getting NFTs for an Address
+---
+
+import Tabs from '@theme/Tabs'
+import TabItem from '@theme/TabItem'
+
+# Getting NFTs for an Address
+
+##### Learn how to retrieve NFT data for a specific wallet address
+---
+
+This guide will cover how to retrieve NFT data for an `ownerAddress` and then dive deeper into how to get details for specific NFTs. 
+The following are starter examples, but there are many different possibilities with the API.
+
+:::note
+
+GraphiQL Playground: https://api.zora.co/graphql
+
+Demo Address: `jacob.eth` or `0x17cd072cBd45031EFc21Da538c783E0ed3b25DCc`
+
+*The API is **ENS** compatible, meaning that `ownerAddress` can be an ENS name.
+:::
+
+
+## NFT Balance
+Let's get started by looking at `jacob.eth` as our example address. 
+We can use the `tokens` query and set the `ownerAddress`.
+
+<Tabs
+  defaultValue="query"
+  values={[
+    { label: 'Query', value: 'query', },
+    { label: 'Response', value: 'response', }
+  ]
+}>
+<TabItem value="query">
+
+```graphql
+query JacobsNFTs {
+  tokens(networks: [{network: ETHEREUM, chain: MAINNET}], 
+        pagination: {limit: 3}, 
+        where: {ownerAddresses: "jacob.eth"}) {
+    nodes {
+      token {
+        collectionAddress
+        tokenId
+        name
+        owner
+        image {
+          url
+        }
+        metadata
+      }
+    }
+  }
+}
+
+```
+
+</TabItem>
+<TabItem value="response">
+
+```json
+{
+  "data": {
+    "tokens": {
+      "nodes": [
+        {
+          "token": {
+            "collectionAddress": "0x8d04a8c79ceb0889bdd12acdf3fa9d207ed3ff63",
+            "tokenId": "393",
+            "name": "#393 - Wave Logo",
+            "owner": "0x17cd072cbd45031efc21da538c783e0ed3b25dcc",
+            "image": {
+              "url": "https://api.blitmap.com/v1/png/393"
+            },
+            "metadata": {
+              "image": "https://api.blitmap.com/v1/png/393",
+              "name": "#393 - Wave Logo",
+              "description": "Blitmap is a community crafted art collection and universe. All data is completely on chain.\n\n[blitmap.com](https://www.blitmap.com)",
+              "attributes": [
+                {
+                  "trait_type": "Type",
+                  "value": "Sibling"
+                },
+                {
+                  "trait_type": "Composition",
+                  "value": "Wave (#83)"
+                },
+                {
+                  "trait_type": "Palette",
+                  "value": "Logo (#84)"
+                },
+                {
+                  "trait_type": "Affinity",
+                  "value": "Fire III"
+                },
+                {
+                  "trait_type": "Slabs",
+                  "value": "◢ ◥ ◥ ◥"
+                },
+                {
+                  "trait_type": "Attunement",
+                  "value": "Attuned"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "token": {
+            "collectionAddress": "0x8d04a8c79ceb0889bdd12acdf3fa9d207ed3ff63",
+            "tokenId": "400",
+            "name": "#400 - Optimist Logo",
+            "owner": "0x17cd072cbd45031efc21da538c783e0ed3b25dcc",
+            "image": {
+              "url": "https://api.blitmap.com/v1/png/400"
+            },
+            "metadata": {
+              "image": "https://api.blitmap.com/v1/png/400",
+              "name": "#400 - Optimist Logo",
+              "description": "Blitmap is a community crafted art collection and universe. All data is completely on chain.\n\n[blitmap.com](https://www.blitmap.com)",
+              "attributes": [
+                {
+                  "trait_type": "Type",
+                  "value": "Sibling"
+                },
+                {
+                  "trait_type": "Composition",
+                  "value": "Optimist (#95)"
+                },
+                {
+                  "trait_type": "Palette",
+                  "value": "Logo (#84)"
+                },
+                {
+                  "trait_type": "Affinity",
+                  "value": "Fire III"
+                },
+                {
+                  "trait_type": "Slabs",
+                  "value": "◢ ◥ ◥ ◥"
+                },
+                {
+                  "trait_type": "Attunement",
+                  "value": "Attuned"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "token": {
+            "collectionAddress": "0x8d04a8c79ceb0889bdd12acdf3fa9d207ed3ff63",
+            "tokenId": "1255",
+            "name": "#1255 - The Guy Say What",
+            "owner": "0x17cd072cbd45031efc21da538c783e0ed3b25dcc",
+            "image": {
+              "url": "https://api.blitmap.com/v1/png/1255"
+            },
+            "metadata": {
+              "image": "https://api.blitmap.com/v1/png/1255",
+              "name": "#1255 - The Guy Say What",
+              "description": "Blitmap is a community crafted art collection and universe. All data is completely on chain.\n\n[blitmap.com](https://www.blitmap.com)",
+              "attributes": [
+                {
+                  "trait_type": "Type",
+                  "value": "Sibling"
+                },
+                {
+                  "trait_type": "Composition",
+                  "value": "The Guy (#78)"
+                },
+                {
+                  "trait_type": "Palette",
+                  "value": "Say What (#63)"
+                },
+                {
+                  "trait_type": "Affinity",
+                  "value": "Fire III"
+                },
+                {
+                  "trait_type": "Slabs",
+                  "value": "◢ ◢ ◤ ◥"
+                },
+                {
+                  "trait_type": "Attunement",
+                  "value": "Attuned"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    }
+  }
+}
+```
+</TabItem>
+</Tabs>
+
+
+In this example, we have set the `limit` to 3 NFTs, but the max size of the response can be up to `500`.
+However, recommend using the `pagination` parameters to meter the size of your responses.
+
+Note, that it is possible to grab all the `events` with each NFT by specifying it in the query.
+
+---
+
+## Total Sales Volume
+Now we can look at the total sales volume for this specific address by using `aggregateStat`.
+We can see that it has sold 15 NFTs for a total of 24 ETH.
+<Tabs
+  defaultValue="query"
+  values={[
+    { label: 'Query', value: 'query', },
+    { label: 'Response', value: 'response', }
+  ]
+}>
+<TabItem value="query">
+
+```graphql
+query TotalAddressSales {
+  aggregateStat {
+    salesVolume(where: {ownerAddresses: "jacob.eth"}) {
+      totalCount
+      chainTokenPrice
+    }
+  }
+}
+```
+
+</TabItem>
+<TabItem value="response">
+
+```json
+{
+  "data": {
+    "aggregateStat": {
+      "salesVolume": {
+        "totalCount": 28,
+        "chainTokenPrice": 90.2698
+      }
+    }
+  }
+}
+```
+</TabItem>
+</Tabs>
+
+---
+
+## Largest Purchase
+Lastly, we can get the largest on-chain ETH purchase this address has made using the `sales` query and sorting by descending `NATIVE_PRICE`. 
+Native price is sales price in the currency that was used in the sale transaction. 
+Running the query, we can see that [5 ETH was paid](https://etherscan.io/tx/0x4fa67eb3963d5c652cd57416064059eae315e65b3bfb844da27de23a1a8908c6) for a LilNoun on May 16th, 2022.
+<Tabs
+  defaultValue="query"
+  values={[
+    { label: 'Query', value: 'query', },
+    { label: 'Response', value: 'response', }
+  ]
+}>
+<TabItem value="query">
+
+```graphql
+query TopPurchaseForAnAddress {
+  sales(where: {buyerAddresses: "jacob.eth"}, 
+        sort: {sortKey: NATIVE_PRICE, sortDirection: DESC}, 
+        pagination: {limit: 1}) {
+    nodes {
+      sale {
+        price {
+          nativePrice {
+            decimal
+          }
+        }
+        saleType
+        sellerAddress
+        transactionInfo {
+          transactionHash
+          blockTimestamp
+        }
+      }
+      token {
+        collectionAddress
+        tokenId
+        name
+        description
+      }
+    }
+  }
+}
+
+```
+
+</TabItem>
+<TabItem value="response">
+
+```json
+{
+  "data": {
+    "sales": {
+      "nodes": [
+        {
+          "sale": {
+            "price": {
+              "nativePrice": {
+                "decimal": 5
+              }
+            },
+            "saleType": "OPENSEA_SINGLE_SALE",
+            "sellerAddress": "0x1aba5d1c1326fd704090bb01b1c12f70ab3a0252",
+            "transactionInfo": {
+              "transactionHash": "0x4fa67eb3963d5c652cd57416064059eae315e65b3bfb844da27de23a1a8908c6",
+              "blockTimestamp": "2022-05-16T22:21:19"
+            }
+          },
+          "token": {
+            "collectionAddress": "0x4b10701bfd7bfedc47d50562b76b436fbb5bdb3b",
+            "tokenId": "5",
+            "name": "Lil Noun 5",
+            "description": "Noun 5 is a member of the Nouns DAO"
+          }
+        }
+      ]
+    }
+  }
+}
+```
+</TabItem>
+</Tabs>
+
+---
+
+
+## Getting Data for a Specific NFT
+Now that you have a sense of how to get data for an address, this section will cover how to get detailed data on a specific NFT. 
+However, this same data can be retrieved in the first `tokens` query used in the first example above.
+:::note 
+
+Collection Name: Monarchs
+
+Contract Address: `0xc729Ce9bF1030fbb639849a96fA8BBD013680B64`
+
+TokenID: `246`
+:::
+
+### Token Events
+Every time transaction interacts with an NFT on the blockchain it creates an event. This query will help you view all the historical events for this NFT including: 
+- Mints 
+- Transfers
+- Approvals
+- Sales
+- Zora Markets
+
+<Tabs
+  defaultValue="query"
+  values={[
+    { label: 'Query', value: 'query', },
+    { label: 'Response', value: 'response', }
+  ]
+}>
+<TabItem value="query">
+
+```graphql
+query TokenEvents {
+  token(token: {address: "0xc729Ce9bF1030fbb639849a96fA8BBD013680B64", tokenId: "246"}) {
+    events(sort: {sortKey: CREATED, sortDirection: ASC}) {
+      eventType
+      transactionInfo {
+        blockTimestamp
+        transactionHash
+      }
+    }
+  }
+}
+```
+
+</TabItem>
+<TabItem value="response">
+
+```json
+{
+  "data": {
+    "token": {
+      "events": [
+        {
+          "eventType": "TRANSFER_EVENT",
+          "transactionInfo": {
+            "blockTimestamp": "2021-10-06T16:24:31",
+            "transactionHash": "0x29426d81789f92f148a4361fd346c16ade86724081a22166586372787f9ff444"
+          }
+        },
+        {
+          "eventType": "MINT_EVENT",
+          "transactionInfo": {
+            "blockTimestamp": "2021-10-06T16:24:31",
+            "transactionHash": "0x29426d81789f92f148a4361fd346c16ade86724081a22166586372787f9ff444"
+          }
+        }
+      ]
+    }
+  }
+}
+```
+</TabItem>
+</Tabs>
+
+
+### Token Sales
+This query will help you get specific data for all sales pertaining to this NFT across all markets:
+
+- Zora 
+- OpenSea
+- LooksRare 
+- Nouns Auctions
+- Foundation
+- and more
+
+<Tabs
+  defaultValue="query"
+  values={[
+    { label: 'Query', value: 'query', },
+    { label: 'Response', value: 'response', }
+  ]
+}>
+<TabItem value="query">
+
+```graphql
+query TokenSale {
+  token(token: {address: "0xc729Ce9bF1030fbb639849a96fA8BBD013680B64", tokenId: "246"}) {
+    sales {
+      saleType
+      saleContractAddress
+      sellerAddress
+      buyerAddress
+      transactionInfo {
+        blockTimestamp
+        transactionHash
+      }
+      price {
+        nativePrice {
+          decimal
+          currency {
+            name
+          }
+        }
+      }
+    }
+  }
+}
+
+```
+
+</TabItem>
+<TabItem value="response">
+
+```json
+{
+  "data": {
+    "token": {
+      "sales": [
+        {
+          "saleType": "OPENSEA_SINGLE_SALE",
+          "saleContractAddress": "0x7f268357a8c2552623316e2562d90e642bb538e5",
+          "sellerAddress": "0x757b4d4bcd7d02d0f2ce81c5acba6c6f7ff05df6",
+          "buyerAddress": "0x912b37e4ad159882f60de59b27882c5daf3d7e5b",
+          "transactionInfo": {
+            "blockTimestamp": "2022-05-16T19:11:30",
+            "transactionHash": "0x0a1bffd24f1aaee5ad7316c984a9e792dea705c957b16d54ed444a7abac1fbf2"
+          },
+          "price": {
+            "nativePrice": {
+              "decimal": 0.109,
+              "currency": {
+                "name": "ETH"
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}
+```
+</TabItem>
+</Tabs>
