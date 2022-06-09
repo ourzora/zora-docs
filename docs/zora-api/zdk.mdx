@@ -82,7 +82,7 @@ but once other chains are available it will be possible to query specific networ
 
 ---
 
-## Parameters Definitions
+## Argument Definitions
 
 - `where`: Parameters that grab a specific set of NFT data, e.g. `collectionAddress`
 - `filter`: Filters down the results from the `where` parameters into a smaller data set
@@ -99,18 +99,13 @@ but once other chains are available it will be possible to query specific networ
 
 Note 🚨: all the inputs for the ZDK are `objects`. 
 
-Also all `network` parameters are optional and will default to `Ethereum Mainnet`.
-
 ### aggregateAttributes
 
 Gets statistics on all the attributes for a collection.
 
 ```
 zdK.aggregateAttributes(
-  {
-    where, 
-    networks
-  }
+  { where }
 )
 ```
 
@@ -124,9 +119,6 @@ zdK.aggregateAttributes(
 | where.tokens: | Tuple of token and id to filter by an exact match as a list |
 | tokens.address | A string for the contract address to return a token for |
 | tokens.tokenId | A string for the tokenId to return a token for |
-| networks | Argument for chain to query as an array of enums |
-| network.chain | Chain to query on (currently only MAINNET) |
-| network.network | Network to query on (currently only ETHEREUM) |
 
 ---
 
@@ -136,10 +128,7 @@ Gets data for a specific NFT collection based on an address.
 
 ```
 zdK.collection(
-  {
-    address, 
-    network
-  }
+  { address }
 )
 
 ```
@@ -149,9 +138,6 @@ zdK.collection(
 | Param | Description | Type |
 | --- | --- | --- |
 | address | String of collection address to filter by |
-| network | Argument for chain to query as an array of enums |
-| network.chain | Chain to query on (currently only MAINNET) |
-| network.network | Network to query on (currently only ETHEREUM) |
 
 ---
 
@@ -164,7 +150,6 @@ zdK.collections(
   {
     where, 
     pagination, 
-    networks, 
     sort, 
     includeFullDetails
   }
@@ -180,9 +165,6 @@ zdK.collections(
 | pagination | Settings for pagination |
 | pagination.after | A string specifying which record to begin pagination |
 | pagination.limit | An int setting the number of event records per page |
-| networks | Argument for chain to query as an array of enums |
-| networks.chain | Chain to query on (currently only MAINNET) |
-| networks.network | Network to query on (currently only ETHEREUM) |
 | sort | Sorting information for tokens |
 | sort.sortDirection | An enum value specifying the direction of results | ASC, DESC
 | sort.sortKey | An enum value specifying the value to sort results by | ChainTokenPrice, Created, NativePrice, None, TimeSaleEnding
@@ -192,14 +174,11 @@ zdK.collections(
 
 ### collectionStatsAggregate
 
-Gets statistics for a specific collection such as the total supply, number of owners and sales volume
+Gets statistics for a specific collection such as the total supply, number of owners, and sales volume
 
 ```
 zdK.collectionStatsAggregate(
-  {
-    collectionAddress, 
-    network
-  }
+  { collectionAddress }
 )
 ```
 
@@ -208,9 +187,6 @@ zdK.collectionStatsAggregate(
 | Param | Description | Type |
 | --- | --- | --- |
 | collectionAddresses | List of collection addresses to filter by |
-| network | Argument for chain to query as an array of enums |
-| network.chain | Chain to query on (currently only MAINNET) |
-| network.network | Network to query on (currently only ETHEREUM) |
 
 ---
 
@@ -224,7 +200,6 @@ zdK.events(
     where, 
     filter, 
     pagination, 
-    networks, 
     sort
   }
 )
@@ -247,9 +222,6 @@ zdK.events(
 | pagination | Settings for pagination |
 | pagination.after | A string specifying which record to begin pagination |
 | pagination.limit | An int setting the number of event records per page |
-| networks | Network info to query on as an array of enums |
-| networks.chain | Chain to query on (currently only MAINNET) |
-| networks.network | Network to query on (currently only ETHEREUM) |
 | sort | Sorting information for tokens |
 | sort.direction | An enum value specifying the direction of results | ASC, DESC
 | sort.sortKey | An enum value specifying the value to sort results by | ChainTokenPrice, Created, NativePrice, None, TimeSaleEnding
@@ -264,10 +236,7 @@ Gets data on the cheapest available NFT across all Zora marketplaces.
 
 ```
 zdK.floorPrice(
-  {
-    where, 
-    networks
-  }
+  { where }
 )
 ```
 
@@ -280,9 +249,6 @@ zdK.floorPrice(
 | attributes.traitType | A string to set the trait type to return by |
 | attributes.value | A string of a trait's possible value(s) to return by |
 | where.collectionAddresses | List of collection addresses to filter by |
-| networks | Argument for chain to query as an array of enums |
-| network.chains | Chain to query on (currently only MAINNET) |
-| network.networks | Network to query on (currently only ETHEREUM) |
 
 ---
 
@@ -296,7 +262,6 @@ zdK.markets(
     where, 
     filter, 
     pagination, 
-    networks, 
     sort, 
     includeFullDetails
   }
@@ -324,9 +289,6 @@ zdK.markets(
 | sort | Sorting information for tokens |
 | sort.sortDirection | An enum value specifying the direction of results | ASC, DESC
 | sort.sortKey | An enum value specifying the value to sort results by | ChainTokenPrice, Created, NativePrice, None, TimeSaleEnding
-| networks | Argument for chain to query as an array of enums |
-| networks.chain | Chain to query on (currently only MAINNET) |
-| networks.network | Network to query on (currently only ETHEREUM) |
 | includeFullDetails | include entire token details (full uris, history etc.) |
 
 
@@ -344,7 +306,6 @@ zdK.mints(
     where, 
     filter, 
     pagination, 
-    networks, 
     sort, 
     includeFullDetails, 
     includeMarkets
@@ -378,9 +339,6 @@ zdK.mints(
 | sort | Sorting information for tokens |
 | sort.sortDirection | An enum value specifying the direction of results | ASC, DESC
 | sort.sortKey | An enum value specifying the value to sort results by | ChainTokenPrice, Created, NativePrice, None, TimeSaleEnding
-| networks | Argument for chain to query as an array of enums |
-| networks.chain | Chain to query on (currently only MAINNET) |
-| networks.network | Network to query on (currently only ETHEREUM) |
 | includeFullDetails | include entire token details (full uris, history etc.) |
 | includeMarkets | include entire market details for these contracts |
 
@@ -394,10 +352,7 @@ Gets data on the total supply of NFTs in a collection.
 
 ```
 zdK.nftCount(
-  {
-    where, 
-    networks
-  }
+  { where }
 )
 ```
 
@@ -411,9 +366,6 @@ zdK.nftCount(
 | attributes.value | A string of a trait's possible value(s) to return by |
 | where.collectionAddresses | List of collection addresses to filter by |
 | where.ownerAddresses | List of owner addresses to filter by |
-| networks | Argument for chain to query as an array of enums |
-| network.chains | Chain to query on (currently only MAINNET) |
-| network.networks | Network to query on (currently only ETHEREUM) |
 
 ---
 
@@ -423,10 +375,7 @@ Gets the number of unique addresses that own an NFT from a collection.
 
 ```
 zdK.ownerCount(
-  {
-    where, 
-    networks
-  }
+  { where }
 )
 ```
 
@@ -439,22 +388,18 @@ zdK.ownerCount(
 | attributes.traitType | A string to set the trait type to return by |
 | attributes.value | A string of a trait's possible value(s) to return by |
 | where.collectionAddresses | List of collection addresses to filter by |
-| networks | Argument for chain to query as an array of enums |
-| network.chains | Chain to query on (currently only MAINNET) |
-| network.networks | Network to query on (currently only ETHEREUM) |
 
 ---
 
 ### ownersByCount
 
-Gets the number of NFTs held be certain owner addresses e.g. Top holders of a collection
+Gets the number of NFTs held by a certain owner addresses e.g. Top holders of a collection
 
 ```
 zdK.ownersByCount(
   {
     where, 
-    pagination, 
-    networks
+    pagination
   }
 )
 ```
@@ -471,9 +416,6 @@ zdK.ownersByCount(
 | pagination | Settings for pagination |
 | pagination.after | A string specifying which record to begin pagination |
 | pagination.limit | An int setting the number of event records per page |
-| networks | Argument for chain to query as an array of enums |
-| network.chains | Chain to query on (currently only MAINNET) |
-| network.networks | Network to query on (currently only ETHEREUM) |
 
 ---
 
@@ -487,7 +429,6 @@ zdK.sales(
     where, 
     filter, 
     pagination, 
-    networks, 
     sort, 
     includeFullDetails
   }
@@ -517,9 +458,6 @@ zdK.sales(
 | sort | Sorting information for tokens |
 | sort.sortDirection | An enum value specifying the direction of results | ASC, DESC
 | sort.sortKey | An enum value specifying the value to sort results by | ChainTokenPrice, Created, NativePrice, None, TimeSaleEnding
-| networks | Argument for chain to query as an array of enums |
-| networks.chain | Chain to query on (currently only MAINNET) |
-| networks.network | Network to query on (currently only ETHEREUM) |
 | includeFullDetails | include entire token details (full uris, history etc.) |
 | includeMarkets | include entire market details for these contracts |
 
@@ -533,7 +471,6 @@ Gets the total sales volume for a collection across all marketplaces.
 zdK.salesVolume(
   {
     where, 
-    networks, 
     timeFilter
   }
 )
@@ -548,10 +485,7 @@ zdK.salesVolume(
 | attributes.traitType | A string to set the trait type to return by |
 | attributes.value | A string of a trait's possible value(s) to return by |
 | where.collectionAddresses | List of collection addresses to filter by |
-| networks | Argument for chain to query as an array of enums |
-| network.chains | Chain to query on (currently only MAINNET) |
-| network.networks | Network to query on (currently only ETHEREUM) |
-| timeFilter | Network to query on (currently only ETHEREUM) |
+| timeFilter | A filter for getting sales during a range of time |
 | timeFilter.endDate | A string array of addresses that have bid for this NFT |
 | timeFilter.lookbackHours | An enum specifying the version of Zora the order is made on | V1Ask, V1BidShare, V1Offer, V2Auction, V3Ask
 | timeFilter.startDate | An enum specifying status of orders being returned | Active, Canceled, Completed
@@ -588,13 +522,12 @@ zdK.search(
 
 ### token
 
-Gets data on a single NFT give a contract address and tokenId.
+Gets data on a single NFT given a contract address and tokenId.
 
 ```
 zdK.token(
   {
     token,
-    network,
     includeFullDetails
   }
 )
@@ -607,9 +540,6 @@ zdK.token(
 | token |  | Token parameters |
 | token.address | <code>string</code> | address of the token (req'd) |
 | token.tokenId | <code>string</code> | string ID of the token (req'd) |
-| network |  | the network to use to retrieve the token |
-| network.chain | <code>Chain</code> | Chain to use (default ETHEREUM) |
-| network.network | <code>Network</code> | Network on the given chain to use (default MAINNET) |
 | includeFullDetails | <code>bool</code> | should full details be added to the response |
 
 <a name="ZDK+events"></a>
@@ -626,7 +556,6 @@ zdK.tokens(
     where, 
     filter, 
     pagination, 
-    networks, 
     sort, 
     includeFullDetails, 
     includeSalesHistory
@@ -644,7 +573,6 @@ zdK.tokens(
 | where.tokens: | Tuple of token and id to filter by an exact match as a list |
 | filter | Filter query parameters after the where query |
 | pagination | Settings for pagination |
-| networks | Networks to query on |
 | sort | Sorting information for tokens |
 | includeFullDetails | include entire token details (full uris, history etc.) |
 | includeSalesHistory | include full token sale details for the last 10 sales |
