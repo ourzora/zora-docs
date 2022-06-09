@@ -25,7 +25,7 @@ export const toolsCardsContent = [
   },
   {
     toolsTitle: 'Editions',
-    toolsParagraph: 'An interface that makes it easy to create an NFT collection with no coding requried.',
+    toolsParagraph: 'An interface that makes it easy to create an NFT collection with no coding required.',
     toolsLink: 'https://create.zora.co/',
   },
   {
