@@ -9,8 +9,7 @@ import TabItem from '@theme/TabItem'
 Learn how to use the Zora Development Kit to retrieve NFT data.
 
 ---
-The Zora Development Kit (ZDK) makes it easy to access the Zora API without needing to know GraphQL.
-This guide will walk you through how to set up the ZDK and retrieve different data for [Blitmaps](https://zora.co/collections/0x8d04a8c79cEB0889Bdd12acdF3Fa9D207eD3Ff63).
+This guide will walk you through how to retrieve different data for [Blitmaps](https://zora.co/collections/0x8d04a8c79cEB0889Bdd12acdF3Fa9D207eD3Ff63).
 
 ## Initial Setup
 We can begin by installing and importing the `@zoralabs/zdk` package. 
@@ -31,7 +30,7 @@ const zdk = new ZDK(API_ENDPOINT); // Defaults to Ethereum Mainnet
 
 ## Getting Data for a Specific NFT
 Now that we have an instance of the ZDK set up we can start calling functions on it.
-First, let's get data for a specific NFT by looking at Blitmap `tokenId: 314` by calling `zdk.token` and passing in the contract address and tokenId.
+First, let's get data for a specific NFT by looking at Blitmap `tokenId: 314` then call `zdk.token` by passing in the `contractAddress` and `tokenId`.
 <Tabs
   defaultValue="query"
   values={[
@@ -139,7 +138,7 @@ const response = await zdk.token(args)
 
 <br/>
 
-We can see in the response tab that we are getting back data specific to that tokenId including, mint information, the current owner, as well as the media URIs.
+We can see in the response tab that we are getting back data specific to that `tokenId` including mint information, the current owner, as well as the media URIs.
 Note, that if we wanted to see all the historical events (Transfers, Sales, Approvals, etc) for this NFT we would need to set `includeFullDetails` to `true`.
 
 ---
@@ -459,7 +458,7 @@ const response = await zdk.tokens(args);
 
 <br/>
 
-We can see in the response that only 3 Blitmap NFTs were returned because the limit was set 3 and they are ordered in descending order of `tokenId` because of the `sort` argument.
+Looking at the response, we can see that only 3 Blitmap NFTs were returned because the limit was set 3 and they are ordered in descending order of `tokenId` based on the `sort` argument.
 
 ---
 
@@ -598,7 +597,7 @@ We can see this returns the `ownerCount` (how many addresses own an NFT from tha
 
 ## Collection Attribute Stats
 Diving deeper into Collection data, we can now look at the attribute stats. 
-These stats tell the number of NFT that have a certain attribute and the percent of how many NFTs in the collection share that attribute. 
+These stats tell the amount of NFTs that have a certain attribute and the percent of how many NFTs in the collection have that attribute. 
 Attribute stats can be retrieved by calling `zdk.aggregateAttributes` with the `collectionAddress`.
 <Tabs
   defaultValue="query"
@@ -2440,7 +2439,7 @@ const response = await zdk.search(args);
 
 <br/> 
 
-We can see in the response that the three different Blitmaps all have the word "flow" associated with their metadata.
+Looking at the response tab, we can see that the three different Blitmaps all have the word "flow" associated with their metadata.
 
 - `#98 - Chaos Flow`
 - `#805 - Chaos Flow Dunce`
@@ -2498,7 +2497,7 @@ const response = await zdk.salesVolume(args);
 
 <br/> 
 
-We can see that in the response we get back `usdcPrice`, `chainTokenPrice`, and `totalCount`.
+Looking at the response, we get back `usdcPrice`, `chainTokenPrice`, and `totalCount`.
 `usdcPrice` is the volume in USDC at the time of the sales,
 while `chainTokenPrice` is the volume measured in the chain's gas token e.g. Ethereum = ETH.
 `totalCount` is the number of sales that have happened across all marketplaces.

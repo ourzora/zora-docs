@@ -6,20 +6,20 @@ title: Zora Dev Kit (ZDK)
 import Tabs from '@theme/Tabs'
 import TabItem from '@theme/TabItem'
 
-Get started building with the Zora API
+Get started building with the Zora Development Kit (ZDK)
 
 ---
-The Zora Development Kit (ZDK) makes it easy to access the Zora API without having to know GraphQL.
+The ZDK makes it easy to access the Zora API without having to know GraphQL.
 
 Check out the [ZDK intro guide](../guides/zdk-intro-guide) to see it in action.
 
 :::note
 It is possible to make up to `30` requests per second without needing an API Key.
-Please reach out to [@ZORAEngineering](https://twitter.com/ZORAEngineering) on Twitter if would like a key.
+Please reach out to [@ZORAEngineering](https://twitter.com/ZORAEngineering) on Twitter if would like to request a key.
 
-The max response size limit for normal a request is **50**.
+The max response size for a request is **50**.
 
-[NFT Hooks](../developer-tools/nft-hooks/intro) is also available and makes it even easier to fetch NFT data than the ZDK.
+[NFT Hooks](../developer-tools/nft-hooks/intro) is a tool that makes it even easier to fetch NFT data than the ZDK.
 :::
 
 ---
@@ -97,7 +97,7 @@ but once other chains are available it will be possible to query specific networ
 
 ## Methods 
 
-Note 🚨: all the inputs for the ZDK are `objects`. 
+Note 🚨: All the inputs for the ZDK are `objects`. 
 
 ### aggregateAttributes
 
@@ -174,7 +174,7 @@ zdK.collections(
 
 ### collectionStatsAggregate
 
-Gets statistics for a specific collection such as the total supply, number of owners, and sales volume
+Gets statistics for a specific collection such as total supply, number of owners, and sales volume.
 
 ```
 zdK.collectionStatsAggregate(
@@ -192,7 +192,7 @@ zdK.collectionStatsAggregate(
 
 ### events
 
-Gets all the events associated with a collection, token, or owner address e.g. Transfers, Mints, Sales, Approvals
+Gets all the events associated with a collection, token, or owner address e.g. Transfers, Mints, Sales, Approvals.
 
 ```
 zdK.events(
@@ -254,7 +254,7 @@ zdK.floorPrice(
 
 ### markets
 
-Gets NFTs that are active on the Zora markets e.g. Buy Now, Offers, Auctions
+Gets NFTs that are active on the Zora markets e.g. Buy Now, Offers, Auctions.
 
 ```
 zdK.markets(
@@ -393,7 +393,7 @@ zdK.ownerCount(
 
 ### ownersByCount
 
-Gets the number of NFTs held by a certain owner addresses e.g. Top holders of a collection
+Gets the number of NFTs held by certain owner addresses e.g. Top holders of a collection.
 
 ```
 zdK.ownersByCount(
