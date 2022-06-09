@@ -16,9 +16,8 @@ ZORA provides multiple tools for making it easy to display NFTs.
 ##### Displaying Options
 - [NFT Iframe:](./introduction#nft-iframe) Embed NFTs into your own website
 - [NFT Components:](./introduction#nft-components) React components that can be used to render NFT content
-- [NFT Hooks:](./introduction#nft-hooks) Hooks for fetching NFT data
 
-NFT Components assumes a `React` frontend and NFT Hooks is written in `TypeScript`.
+NFT Components assumes a `React` frontend.
 
 ---
 
@@ -99,84 +98,3 @@ npm install @zoralabs/nft-components --save
 ![nftFullPage](../../../static/img/nftFullPage.png)
 
 
----
-
-## NFT Hooks
-
-This library consists of a data fetch class and associated hooks to load NFT data.
-The API both batches and caches requests, meaning you can use the hooks across a page without needing to worry about
-significant performance penalties.
-
-| **Hook**                                                                       | **Usage**                                                      |
-| ------------------------------------------------------------------------------ | -------------------------------------------------------------- |
-| [useNFT](/docs/developer-tools/nft-rendering/nft-hooks/useNft)                 | Fetches all data for a ERC-721 NFT                             |
-| [useNFTMetadata](/docs/developer-tools/nft-rendering/nft-hooks/usenftmetadata) | Fetches NFT metadata from a URL                                |
-| [useNFTContent](/docs/developer-tools/nft-rendering/nft-hooks/usenftcontent)   | Fetches content for rendering from content URL in the metadata |
-
-<br />
-
-<Tabs
-  defaultValue="yarn"
-  values={[
-    { label: 'Yarn', value: 'yarn', },
-    { label: 'NPM', value: 'npm', }
-  ]
-}>
-<TabItem value="yarn">
-
-```bash
-yarn add @zoralabs/nft-hooks
-```
-
-</TabItem>
-<TabItem value="npm">
-
-```bash
-npm install @zoralabs/nft-hooks --save
-```
-
-</TabItem>
-</Tabs>
-
-```typescript
-import { useNFT, useNFTMetadata } from '@zoralabs/nft-hooks'
-
-function MyNFT() {
-  const { data } = useNFT('0xabEFBc9fD2F806065b4f3C237d4b59D9A97Bcac7', '20')
-  const { metadata } = useNFTMetadata(data && data.metadataURI)
-
-  return (
-    <div>
-      <h3>{metadata.title}</h3>
-      <p>{metadata.description}</p>
-      <p>Owned by: {data.owner.id}</p>
-    </div>
-  )
-}
-```
-
-## Network Configuration
-
-To set the network configuration, wrap the hooks used with the `NFTFetchConfiguration` component.
-
-```typescript
-import { Networks, NFTFetchConfiguration } from '@zoralabs/nft-hooks';
-
-function NFTGallery() {
-  return (
-    <NFTFetchConfiguration networkId={Networks.MAINNET}>
-      <NFTList>
-    </NFTFetchConfiguration>
-  );
-}
-```
-
-## Development
-
-1. `git clone https://github.com/ourzora/nft-hooks`
-2. `cd nft-hooks`
-3. `npm i -g yarn` if you don't have yarn installed
-4. `yarn`
-5. `yarn run test` test your code
-
-Pull requests and tickets are accepted for issues and improvements to this [repository](https://github.com/ourzora/nft-hooks).

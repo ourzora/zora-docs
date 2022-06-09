@@ -1,0 +1,92 @@
+---
+id: intro
+title: Introduction
+---
+import Tabs from '@theme/Tabs'
+import TabItem from '@theme/TabItem'
+
+##### Quickly fetch data for any NFT
+---
+
+NFT Hooks consists of a data fetch class and associated hooks to load NFT data.
+The API both batches and caches requests, meaning you can use the hooks across a page without needing to worry about
+significant performance penalties. 
+
+#### Primary Hooks
+
+| **Hook**                                                                       | **Usage**                                                      |
+| ------------------------------------------------------------------------------ | -------------------------------------------------------------- |
+| [useNFT](/docs/developer-tools/nft-hooks/useNft)                 | Fetches all data for a ERC-721 NFT in a React App                             |
+| [ZDKFetchStrategy](/docs/developer-tools/nft-hooks/useNft#zdkfetchstrategy)   | Fetches all data for an NFT for server-side or non-React uses |
+
+<br/> 
+
+Most NFT data can be grabbed from the `useNFT` hook.
+However, [useNFTMetadata](/docs/developer-tools/nft-hooks/usenftmetadata) and [useNFTContent](/docs/developer-tools/nft-hooks/usenftcontent) can also be used for grabbing specific data.
+
+---
+
+### Installing 
+
+View the source code for NFT Hooks: [GH Repository](https://github.com/ourzora/nft-hooks)
+
+<Tabs
+  defaultValue="yarn"
+  values={[
+    { label: 'Yarn', value: 'yarn', },
+    { label: 'NPM', value: 'npm', }
+  ]
+}>
+<TabItem value="yarn">
+
+```bash
+yarn add @zoralabs/nft-hooks
+```
+
+</TabItem>
+<TabItem value="npm">
+
+```bash
+npm install @zoralabs/nft-hooks --save
+```
+
+</TabItem>
+</Tabs>
+
+### Importing
+
+```typescript
+import { useNFT, useNFTMetadata } from '@zoralabs/nft-hooks'
+
+function MyNFT() {
+  const { data } = useNFT('0xabEFBc9fD2F806065b4f3C237d4b59D9A97Bcac7', '20')
+
+  return (
+    <div>
+      <h3>{data.metadata.name}</h3>
+      <p>{data.metadata.description}</p>
+      <p>Owned by: {data.nft.owner.address}</p>
+    </div>
+  )
+}
+```
+
+---
+
+## Networks (Optional)
+
+NFT Hooks defaults to Ethereum Mainnet. 
+However, to set the configuration to a specific network, wrap the hooks used with the `NFTFetchConfiguration` component.
+
+[Supported Networks](https://github.com/ourzora/nft-hooks/blob/main/src/constants/networks.ts#L6)
+```typescript
+import { Networks, NFTFetchConfiguration } from '@zoralabs/nft-hooks';
+
+function NFTGallery() {
+  return (
+    <NFTFetchConfiguration networkId={Networks.MAINNET}>
+      <NFTList>
+    </NFTFetchConfiguration>
+  );
+}
+```

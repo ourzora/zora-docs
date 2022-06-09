@@ -1,0 +1,2505 @@
+---
+id: zdk-intro-guide
+title: Using the ZDK
+---
+
+import Tabs from '@theme/Tabs'
+import TabItem from '@theme/TabItem'
+
+Learn how to use the Zora Development Kit to retrieve NFT data.
+
+---
+This guide will walk you through how to retrieve different data for [Blitmaps](https://zora.co/collections/0x8d04a8c79cEB0889Bdd12acdF3Fa9D207eD3Ff63).
+
+## Initial Setup
+We can begin by installing and importing the `@zoralabs/zdk` package. 
+Note, an API key is not required if you are making less than 30 requests per minute.
+
+`yarn add @zoralabs/zdk`  or `npm install @zoralabs/zdk` 
+
+Blitmap Contract Address: `0x8d04a8c79cEB0889Bdd12acdF3Fa9D207eD3Ff63`
+
+```js
+import { ZDK } from "@zoralabs/zdk";
+
+const API_ENDPOINT = "https://api.zora.co/graphql";
+const zdk = new ZDK(API_ENDPOINT); // Defaults to Ethereum Mainnet
+```
+
+---
+
+## Getting Data for a Specific NFT
+Now that we have an instance of the ZDK set up we can start calling functions on it.
+First, let's get data for a specific NFT by looking at Blitmap `tokenId: 314` then call `zdk.token` by passing in the `contractAddress` and `tokenId`.
+<Tabs
+  defaultValue="query"
+  values={[
+    { label: 'Query', value: 'query', },
+    { label: 'Response', value: 'response', }
+  ]
+}>
+<TabItem value="query">
+
+```js
+const args = {
+  token: {
+    address: "0x8d04a8c79cEB0889Bdd12acdF3Fa9D207eD3Ff63",
+    tokenId: "314"
+  },
+  includeFullDetails: false // Optional, provides more data on the NFT such as all historical events
+}
+
+const response = await zdk.token(args)
+```
+
+</TabItem>
+<TabItem value="response">
+
+```json
+{
+  "token": {
+    "__typename": "TokenWithFullMarketHistory",
+    "token": {
+      "__typename": "Token",
+      "tokenId": "314",
+      "tokenContract": {
+        "name": "Blitmap",
+        "network": "ETHEREUM",
+        "description": null,
+        "collectionAddress": "0x8d04a8c79ceb0889bdd12acdf3fa9d207ed3ff63",
+        "symbol": "BLIT",
+        "chain": 1
+      },
+      "mintInfo": {
+        "price": {
+          "__typename": "PriceAtTime",
+          "blockNumber": 12545815,
+          "chainTokenPrice": {
+            "decimal": 0.1,
+            "raw": "100000000000000000"
+          },
+          "nativePrice": {
+            "decimal": 0.1,
+            "raw": "100000000000000000",
+            "currency": {
+              "address": "0x0000000000000000000000000000000000000000",
+              "decimals": 18,
+              "name": "ETH"
+            }
+          },
+          "usdcPrice": {
+            "decimal": 267.3183188032605,
+            "raw": "267318318803260506112"
+          }
+        },
+        "originatorAddress": "0x046b150d2195b30296ce3bb3dfcb6e7372bb0ed2",
+        "toAddress": "0x046b150d2195b30296ce3bb3dfcb6e7372bb0ed2",
+        "mintContext": {
+          "__typename": "TransactionInfo",
+          "blockNumber": 12545815,
+          "blockTimestamp": "2021-06-01T02:01:07",
+          "transactionHash": "0x1ef65f1dff428ac6ea1d3145fa04d054e948e034c9d414e03ad91cebd3a5d89d",
+          "logIndex": 217
+        }
+      },
+      "collectionAddress": "0x8d04a8c79ceb0889bdd12acdf3fa9d207ed3ff63",
+      "lastRefreshTime": "2022-05-03T12:00:16.095000",
+      "owner": "0xba60f48a732b8d2aaa3affcd5b7336b50897a742",
+      "name": "#314 - Boombox Lost Realm",
+      "description": "Blitmap is a community crafted art collection and universe. All data is completely on chain.\n\n[blitmap.com](https://www.blitmap.com)",
+      "image": {
+        "size": "1727",
+        "url": "https://api.blitmap.com/v1/png/314",
+        "mimeType": "image/png",
+        "mediaEncoding": {
+          "__typename": "ImageEncodingTypes",
+          "original": "https://api.zora.co/media/ETHEREUM-MAINNET/0x8d04a8c79ceb0889bdd12acdf3fa9d207ed3ff63/314/image/original",
+          "large": "https://api.zora.co/media/ETHEREUM-MAINNET/0x8d04a8c79ceb0889bdd12acdf3fa9d207ed3ff63/314/image/large",
+          "poster": "https://api.zora.co/media/ETHEREUM-MAINNET/0x8d04a8c79ceb0889bdd12acdf3fa9d207ed3ff63/314/image/poster",
+          "thumbnail": "https://api.zora.co/media/ETHEREUM-MAINNET/0x8d04a8c79ceb0889bdd12acdf3fa9d207ed3ff63/314/image/thumbnail"
+        }
+      },
+      "content": {
+        "size": null,
+        "url": null,
+        "mimeType": null,
+        "mediaEncoding": {
+          "__typename": "UnsupportedEncodingTypes",
+          "original": "https://api.zora.co/media/ETHEREUM-MAINNET/0x8d04a8c79ceb0889bdd12acdf3fa9d207ed3ff63/314/content/original"
+        }
+      }
+    },
+    "markets": []
+  }
+}
+```
+</TabItem>
+</Tabs>
+
+<br/>
+
+We can see in the response tab that we are getting back data specific to that `tokenId` including mint information, the current owner, as well as the media URIs.
+Note, that if we wanted to see all the historical events (Transfers, Sales, Approvals, etc) for this NFT we would need to set `includeFullDetails` to `true`.
+
+---
+
+## NFT Balance for an Address
+
+It is also possible to get data for specific owner addresses. 
+Let's get started by looking at `dom.eth`. 
+We can use `zdk.tokens` to get all the NFTs in their address, however, we can be even more specific by setting `collectionAddresses` to the Blitmap address to filter for Blitmaps held by the owner.
+
+<Tabs
+  defaultValue="query"
+  values={[
+    { label: 'Query', value: 'query', },
+    { label: 'Response', value: 'response', }
+  ]
+}>
+<TabItem value="query">
+
+```js
+const args = { 
+  where: { 
+    collectionAddresses: ["0x8d04a8c79cEB0889Bdd12acdF3Fa9D207eD3Ff63"], 
+    ownerAddresses: ["dom.eth"] 
+  }, 
+  sort: { // Optional, sorts the response by ascending tokenIds
+    direct: "ASC", 
+    sortKey: "TokenId"
+  }, 
+  pagination: {limit: 3}, // Optional, limits the response size to 3 NFTs
+  includeFullDetails: false, // Optional, provides more data on the NFTs such as events
+  includeSalesHistory: false // Optional, provides sales data on the NFTs
+};
+
+const response = await zdk.tokens(args);
+```
+
+</TabItem>
+<TabItem value="response">
+
+```json
+{
+  "tokens": {
+    "__typename": "TokenWithMarketsSummaryConnection",
+    "pageInfo": {
+      "endCursor": "eyJza2lwIjogM30=",
+      "hasNextPage": true,
+      "limit": 3
+    },
+    "nodes": [
+      {
+        "__typename": "TokenWithMarketsSummary",
+        "marketsSummary": [],
+        "token": {
+          "__typename": "Token",
+          "tokenId": "0",
+          "tokenContract": {
+            "name": "Blitmap",
+            "network": "ETHEREUM",
+            "description": null,
+            "collectionAddress": "0x8d04a8c79ceb0889bdd12acdf3fa9d207ed3ff63",
+            "symbol": "BLIT",
+            "chain": 1
+          },
+          "mintInfo": {
+            "price": {
+              "__typename": "PriceAtTime",
+              "blockNumber": 12439123,
+              "chainTokenPrice": {
+                "decimal": 0,
+                "raw": "0"
+              },
+              "nativePrice": {
+                "decimal": 0,
+                "raw": "0",
+                "currency": {
+                  "address": "0x0000000000000000000000000000000000000000",
+                  "decimals": 18,
+                  "name": "ETH"
+                }
+              },
+              "usdcPrice": {
+                "decimal": 0,
+                "raw": "0"
+              }
+            },
+            "originatorAddress": "0xf296178d553c8ec21a2fbd2c5dda8ca9ac905a00",
+            "toAddress": "0xf296178d553c8ec21a2fbd2c5dda8ca9ac905a00",
+            "mintContext": {
+              "__typename": "TransactionInfo",
+              "blockNumber": 12439123,
+              "blockTimestamp": "2021-05-15T13:02:41",
+              "transactionHash": "0x16a57f60512d7b03b1e2b4f48311613325e542c6d92fd7377b733731b4c3351a",
+              "logIndex": 78
+            }
+          },
+          "collectionAddress": "0x8d04a8c79ceb0889bdd12acdf3fa9d207ed3ff63",
+          "lastRefreshTime": "2022-04-26T05:47:14.018000",
+          "owner": "0xf296178d553c8ec21a2fbd2c5dda8ca9ac905a00",
+          "name": "#0 - Genesis",
+          "description": "Blitmap is a community crafted art collection and universe. All data is completely on chain.\n\n[blitmap.com](https://www.blitmap.com)",
+          "image": {
+            "size": "1365",
+            "url": "https://api.blitmap.com/v1/png/0",
+            "mimeType": "image/png",
+            "mediaEncoding": {
+              "__typename": "ImageEncodingTypes",
+              "original": "https://api.zora.co/media/ETHEREUM-MAINNET/0x8d04a8c79ceb0889bdd12acdf3fa9d207ed3ff63/0/image/original",
+              "large": "https://api.zora.co/media/ETHEREUM-MAINNET/0x8d04a8c79ceb0889bdd12acdf3fa9d207ed3ff63/0/image/large",
+              "poster": "https://api.zora.co/media/ETHEREUM-MAINNET/0x8d04a8c79ceb0889bdd12acdf3fa9d207ed3ff63/0/image/poster",
+              "thumbnail": "https://api.zora.co/media/ETHEREUM-MAINNET/0x8d04a8c79ceb0889bdd12acdf3fa9d207ed3ff63/0/image/thumbnail"
+            }
+          },
+          "content": {
+            "size": null,
+            "url": null,
+            "mimeType": null,
+            "mediaEncoding": {
+              "__typename": "UnsupportedEncodingTypes",
+              "original": "https://api.zora.co/media/ETHEREUM-MAINNET/0x8d04a8c79ceb0889bdd12acdf3fa9d207ed3ff63/0/content/original"
+            }
+          }
+        }
+      },
+      {
+        "__typename": "TokenWithMarketsSummary",
+        "marketsSummary": [
+          {
+            "collectionAddress": "0x8d04a8c79ceb0889bdd12acdf3fa9d207ed3ff63",
+            "marketAddress": "0xe468ce99444174bd3bbbed09209577d25d1ad673",
+            "marketType": "V2_AUCTION",
+            "transactionInfo": {
+              "blockNumber": 13199219,
+              "blockTimestamp": "2021-09-10T16:52:45",
+              "transactionHash": "0x1ef20b2773150699a28eb40805309608f99ed91802018d898962daafcd263ad0",
+              "logIndex": 95
+            },
+            "price": {
+              "blockNumber": 12992856,
+              "chainTokenPrice": {
+                "decimal": 999,
+                "raw": "999000000000000000000"
+              },
+              "nativePrice": {
+                "decimal": 999,
+                "raw": "999000000000000000000",
+                "currency": {
+                  "address": "0x0000000000000000000000000000000000000000",
+                  "decimals": 18,
+                  "name": "ETH"
+                }
+              },
+              "usdcPrice": {
+                "decimal": 3170539.8873217083,
+                "raw": "3170539887321708274647040"
+              }
+            },
+            "status": "CANCELED",
+            "networkInfo": {
+              "chain": "MAINNET",
+              "network": "ETHEREUM"
+            }
+          }
+        ],
+        "token": {
+          "__typename": "Token",
+          "tokenId": "1",
+          "tokenContract": {
+            "name": "Blitmap",
+            "network": "ETHEREUM",
+            "description": null,
+            "collectionAddress": "0x8d04a8c79ceb0889bdd12acdf3fa9d207ed3ff63",
+            "symbol": "BLIT",
+            "chain": 1
+          },
+          "mintInfo": {
+            "price": {
+              "__typename": "PriceAtTime",
+              "blockNumber": 12439526,
+              "chainTokenPrice": {
+                "decimal": 0,
+                "raw": "0"
+              },
+              "nativePrice": {
+                "decimal": 0,
+                "raw": "0",
+                "currency": {
+                  "address": "0x0000000000000000000000000000000000000000",
+                  "decimals": 18,
+                  "name": "ETH"
+                }
+              },
+              "usdcPrice": {
+                "decimal": 0,
+                "raw": "0"
+              }
+            },
+            "originatorAddress": "0xf296178d553c8ec21a2fbd2c5dda8ca9ac905a00",
+            "toAddress": "0xf296178d553c8ec21a2fbd2c5dda8ca9ac905a00",
+            "mintContext": {
+              "__typename": "TransactionInfo",
+              "blockNumber": 12439526,
+              "blockTimestamp": "2021-05-15T14:36:30",
+              "transactionHash": "0x0892d8ed7b3e7a3542ac876df9d4adc6c8af19d94be0e7705f95ee159c66cdc0",
+              "logIndex": 45
+            }
+          },
+          "collectionAddress": "0x8d04a8c79ceb0889bdd12acdf3fa9d207ed3ff63",
+          "lastRefreshTime": "2022-04-26T04:59:03.241000",
+          "owner": "0xf296178d553c8ec21a2fbd2c5dda8ca9ac905a00",
+          "name": "#1 - Rose",
+          "description": "Blitmap is a community crafted art collection and universe. All data is completely on chain.\n\n[blitmap.com](https://www.blitmap.com)",
+          "image": {
+            "size": "1436",
+            "url": "https://api.blitmap.com/v1/png/1",
+            "mimeType": "image/png",
+            "mediaEncoding": {
+              "__typename": "ImageEncodingTypes",
+              "original": "https://api.zora.co/media/ETHEREUM-MAINNET/0x8d04a8c79ceb0889bdd12acdf3fa9d207ed3ff63/1/image/original",
+              "large": "https://api.zora.co/media/ETHEREUM-MAINNET/0x8d04a8c79ceb0889bdd12acdf3fa9d207ed3ff63/1/image/large",
+              "poster": "https://api.zora.co/media/ETHEREUM-MAINNET/0x8d04a8c79ceb0889bdd12acdf3fa9d207ed3ff63/1/image/poster",
+              "thumbnail": "https://api.zora.co/media/ETHEREUM-MAINNET/0x8d04a8c79ceb0889bdd12acdf3fa9d207ed3ff63/1/image/thumbnail"
+            }
+          },
+          "content": {
+            "size": null,
+            "url": null,
+            "mimeType": null,
+            "mediaEncoding": {
+              "__typename": "UnsupportedEncodingTypes",
+              "original": "https://api.zora.co/media/ETHEREUM-MAINNET/0x8d04a8c79ceb0889bdd12acdf3fa9d207ed3ff63/1/content/original"
+            }
+          }
+        }
+      },
+      {
+        "__typename": "TokenWithMarketsSummary",
+        "marketsSummary": [],
+        "token": {
+          "__typename": "Token",
+          "tokenId": "1029",
+          "tokenContract": {
+            "name": "Blitmap",
+            "network": "ETHEREUM",
+            "description": null,
+            "collectionAddress": "0x8d04a8c79ceb0889bdd12acdf3fa9d207ed3ff63",
+            "symbol": "BLIT",
+            "chain": 1
+          },
+          "mintInfo": {
+            "price": {
+              "__typename": "PriceAtTime",
+              "blockNumber": 12699842,
+              "chainTokenPrice": {
+                "decimal": 0.1,
+                "raw": "100000000000000000"
+              },
+              "nativePrice": {
+                "decimal": 0.1,
+                "raw": "100000000000000000",
+                "currency": {
+                  "address": "0x0000000000000000000000000000000000000000",
+                  "decimals": 18,
+                  "name": "ETH"
+                }
+              },
+              "usdcPrice": {
+                "decimal": 199.04843649157107,
+                "raw": "199048436491571068928"
+              }
+            },
+            "originatorAddress": "0xf296178d553c8ec21a2fbd2c5dda8ca9ac905a00",
+            "toAddress": "0xf296178d553c8ec21a2fbd2c5dda8ca9ac905a00",
+            "mintContext": {
+              "__typename": "TransactionInfo",
+              "blockNumber": 12699842,
+              "blockTimestamp": "2021-06-24T23:33:45",
+              "transactionHash": "0x4f500ce0d7cd9c158e42b80c5e03c24240f739ff360b0aebd267f180cb91e561",
+              "logIndex": 72
+            }
+          },
+          "collectionAddress": "0x8d04a8c79ceb0889bdd12acdf3fa9d207ed3ff63",
+          "lastRefreshTime": "2022-04-27T17:59:40.046000",
+          "owner": "0xf296178d553c8ec21a2fbd2c5dda8ca9ac905a00",
+          "name": "#1029 - Ear Psychic",
+          "description": "Blitmap is a community crafted art collection and universe. All data is completely on chain.\n\n[blitmap.com](https://www.blitmap.com)",
+          "image": {
+            "size": "1970",
+            "url": "https://api.blitmap.com/v1/png/1029",
+            "mimeType": "image/png",
+            "mediaEncoding": {
+              "__typename": "ImageEncodingTypes",
+              "original": "https://api.zora.co/media/ETHEREUM-MAINNET/0x8d04a8c79ceb0889bdd12acdf3fa9d207ed3ff63/1029/image/original",
+              "large": "https://api.zora.co/media/ETHEREUM-MAINNET/0x8d04a8c79ceb0889bdd12acdf3fa9d207ed3ff63/1029/image/large",
+              "poster": "https://api.zora.co/media/ETHEREUM-MAINNET/0x8d04a8c79ceb0889bdd12acdf3fa9d207ed3ff63/1029/image/poster",
+              "thumbnail": "https://api.zora.co/media/ETHEREUM-MAINNET/0x8d04a8c79ceb0889bdd12acdf3fa9d207ed3ff63/1029/image/thumbnail"
+            }
+          },
+          "content": {
+            "size": null,
+            "url": null,
+            "mimeType": null,
+            "mediaEncoding": {
+              "__typename": "UnsupportedEncodingTypes",
+              "original": "https://api.zora.co/media/ETHEREUM-MAINNET/0x8d04a8c79ceb0889bdd12acdf3fa9d207ed3ff63/1029/content/original"
+            }
+          }
+        }
+      }
+    ]
+  }
+}
+
+```
+</TabItem>
+</Tabs>
+
+<br/>
+
+Looking at the response, we can see that only 3 Blitmap NFTs were returned because the limit was set 3 and they are ordered in descending order of `tokenId` based on the `sort` argument.
+
+---
+
+## Preview Collections
+
+Next, we can get a preview of a few collections by calling `zdk.collections` with an array of `collectionAddresses`.
+
+<Tabs
+  defaultValue="query"
+  values={[
+    { label: 'Query', value: 'query', },
+    { label: 'Response', value: 'response', }
+  ]
+}>
+<TabItem value="query">
+
+```js
+const args = {
+  where: {collectionAddresses: [
+      "0xE169c2ED585e62B1d32615BF2591093A629549b6",
+      "0x8d04a8c79cEB0889Bdd12acdF3Fa9D207eD3Ff63",
+      "0x82262bFba3E25816b4C720F1070A71C7c16A8fc4"
+    ]
+  },
+  includeFullDetails: false
+}
+
+const response = await zdk.collections(args)
+```
+
+</TabItem>
+<TabItem value="response">
+
+```json
+{
+  "collections": {
+    "__typename": "CollectionConnection",
+    "pageInfo": {
+      "endCursor": "eyJza2lwIjogNTAwfQ==",
+      "hasNextPage": false,
+      "limit": 500
+    },
+    "nodes": [
+      {
+        "address": "0xe169c2ed585e62b1d32615bf2591093a629549b6",
+        "description": "",
+        "name": "NounPunks",
+        "symbol": "NP",
+        "totalSupply": 9969,
+        "networkInfo": {
+          "chain": "MAINNET",
+          "network": "ETHEREUM"
+        }
+      },
+      {
+        "address": "0x8d04a8c79ceb0889bdd12acdf3fa9d207ed3ff63",
+        "description": "",
+        "name": "Blitmap",
+        "symbol": "BLIT",
+        "totalSupply": 1700,
+        "networkInfo": {
+          "chain": "MAINNET",
+          "network": "ETHEREUM"
+        }
+      },
+      {
+        "address": "0x82262bfba3e25816b4c720f1070a71c7c16a8fc4",
+        "description": "",
+        "name": "Solvency by Ezra Miller",
+        "symbol": "SOLVENCY",
+        "totalSupply": 500,
+        "networkInfo": {
+          "chain": "MAINNET",
+          "network": "ETHEREUM"
+        }
+      }
+    ]
+  }
+}
+```
+</TabItem>
+</Tabs>
+
+<br/>
+
+In the response we can see that we are getting back the collection name, total supply, and a few other details. 
+If we set `includeFullDetails` to `true` then we would also get back all the attributes and their statistics.
+
+---
+
+## Collection Stats
+We can also get detailed statistics for a collection by calling `zdk.collectionStatsAggregate` with the Blitmap `collectionAddress`. 
+
+<Tabs
+  defaultValue="query"
+  values={[
+    { label: 'Query', value: 'query', },
+    { label: 'Response', value: 'response', }
+  ]
+}>
+<TabItem value="query">
+
+```js
+const args = {
+  collectionAddress: "0x8d04a8c79cEB0889Bdd12acdF3Fa9D207eD3Ff63",
+};
+
+const response = await zdk.collectionStatsAggregate(args);
+```
+
+</TabItem>
+<TabItem value="response">
+
+```json
+{
+  "aggregateStat": {
+    "floorPrice": 10,
+    "ownerCount": 630,
+    "nftCount": 1700,
+    "salesVolume": {
+      "chainTokenPrice": 11241.592164999855,
+      "usdcPrice": 37887718.17458785,
+      "totalCount": 1210
+    }
+  }
+}
+```
+</TabItem>
+</Tabs>
+
+<br/> 
+
+We can see this returns the `ownerCount` (how many addresses own an NFT from that collection), the `nftCount` (total supply), and detailed sales data.
+
+---
+
+## Collection Attribute Stats
+Diving deeper into Collection data, we can now look at the attribute stats. 
+These stats tell the amount of NFTs that have a certain attribute and the percent of how many NFTs in the collection have that attribute. 
+Attribute stats can be retrieved by calling `zdk.aggregateAttributes` with the `collectionAddress`.
+<Tabs
+  defaultValue="query"
+  values={[
+    { label: 'Query', value: 'query', },
+    { label: 'Response', value: 'response', }
+  ]
+}>
+<TabItem value="query">
+
+```js
+const args = { 
+  where: { 
+    collectionAddresses: ["0x8d04a8c79cEB0889Bdd12acdF3Fa9D207eD3Ff63"] 
+  }, 
+};
+
+const response = await zdk.aggregateAttributes(args);
+```
+
+</TabItem>
+<TabItem value="response">
+
+```json
+{
+  "aggregateAttributes": [
+    {
+      "traitType": "Type",
+      "valueMetrics": [
+        {
+          "value": "Original",
+          "count": 100,
+          "percent": 5.88
+        },
+        {
+          "value": "Sibling",
+          "count": 1600,
+          "percent": 94.12
+        }
+      ]
+    },
+    {
+      "traitType": "Composition",
+      "valueMetrics": [
+        {
+          "value": "Genesis (#0)",
+          "count": 17,
+          "percent": 1
+        },
+        {
+          "value": "Rose (#1)",
+          "count": 17,
+          "percent": 1
+        },
+        {
+          "value": "Looney (#10)",
+          "count": 17,
+          "percent": 1
+        },
+        {
+          "value": "Psychic (#4)",
+          "count": 17,
+          "percent": 1
+        },
+        {
+          "value": "Otoro (#12)",
+          "count": 17,
+          "percent": 1
+        },
+        {
+          "value": "Chessbirdy (#36)",
+          "count": 17,
+          "percent": 1
+        },
+        {
+          "value": "Selected (#7)",
+          "count": 17,
+          "percent": 1
+        },
+        {
+          "value": "Kabuto (#55)",
+          "count": 17,
+          "percent": 1
+        },
+        {
+          "value": "Pale Tower (#96)",
+          "count": 17,
+          "percent": 1
+        },
+        {
+          "value": "Watcher (#89)",
+          "count": 17,
+          "percent": 1
+        },
+        {
+          "value": "Kraken (#8)",
+          "count": 17,
+          "percent": 1
+        },
+        {
+          "value": "Overloaded (#14)",
+          "count": 17,
+          "percent": 1
+        },
+        {
+          "value": "Jupiter (#13)",
+          "count": 17,
+          "percent": 1
+        },
+        {
+          "value": "Sock Cloud (#93)",
+          "count": 17,
+          "percent": 1
+        },
+        {
+          "value": "Boysdocry (#82)",
+          "count": 17,
+          "percent": 1
+        },
+        {
+          "value": "Glitcho (#90)",
+          "count": 17,
+          "percent": 1
+        },
+        {
+          "value": "Melt Man (#85)",
+          "count": 17,
+          "percent": 1
+        },
+        {
+          "value": "Ear (#59)",
+          "count": 17,
+          "percent": 1
+        },
+        {
+          "value": "Mori (#56)",
+          "count": 17,
+          "percent": 1
+        },
+        {
+          "value": "Soft (#69)",
+          "count": 17,
+          "percent": 1
+        },
+        {
+          "value": "Periwinkle (#39)",
+          "count": 17,
+          "percent": 1
+        },
+        {
+          "value": "Gate (#94)",
+          "count": 17,
+          "percent": 1
+        },
+        {
+          "value": "The Guy (#78)",
+          "count": 17,
+          "percent": 1
+        },
+        {
+          "value": "Totally (#9)",
+          "count": 17,
+          "percent": 1
+        },
+        {
+          "value": "Hand (#57)",
+          "count": 17,
+          "percent": 1
+        },
+        {
+          "value": "News (#73)",
+          "count": 17,
+          "percent": 1
+        },
+        {
+          "value": "Dunce (#68)",
+          "count": 17,
+          "percent": 1
+        },
+        {
+          "value": "Vanilla (#16)",
+          "count": 17,
+          "percent": 1
+        },
+        {
+          "value": "Mushroom (#67)",
+          "count": 17,
+          "percent": 1
+        },
+        {
+          "value": "Hillside (#24)",
+          "count": 17,
+          "percent": 1
+        },
+        {
+          "value": "Blit (#42)",
+          "count": 17,
+          "percent": 1
+        },
+        {
+          "value": "Lost Realm (#99)",
+          "count": 17,
+          "percent": 1
+        },
+        {
+          "value": "Chaos Flow (#98)",
+          "count": 17,
+          "percent": 1
+        },
+        {
+          "value": "Rune (#43)",
+          "count": 17,
+          "percent": 1
+        },
+        {
+          "value": "Jess (#61)",
+          "count": 17,
+          "percent": 1
+        },
+        {
+          "value": "Tamago (#17)",
+          "count": 17,
+          "percent": 1
+        },
+        {
+          "value": "Processing (#22)",
+          "count": 17,
+          "percent": 1
+        },
+        {
+          "value": "Edition (#6)",
+          "count": 17,
+          "percent": 1
+        },
+        {
+          "value": "Candy (#35)",
+          "count": 17,
+          "percent": 1
+        },
+        {
+          "value": "Ride (#45)",
+          "count": 17,
+          "percent": 1
+        },
+        {
+          "value": "Glimpse (#81)",
+          "count": 17,
+          "percent": 1
+        },
+        {
+          "value": "Cherrybomb (#86)",
+          "count": 17,
+          "percent": 1
+        },
+        {
+          "value": "Amai (#41)",
+          "count": 17,
+          "percent": 1
+        },
+        {
+          "value": "Mana (#53)",
+          "count": 17,
+          "percent": 1
+        },
+        {
+          "value": "Hot Damn (#49)",
+          "count": 17,
+          "percent": 1
+        },
+        {
+          "value": "Key (#80)",
+          "count": 17,
+          "percent": 1
+        },
+        {
+          "value": "Watching (#72)",
+          "count": 17,
+          "percent": 1
+        },
+        {
+          "value": "Cloudy (#34)",
+          "count": 17,
+          "percent": 1
+        },
+        {
+          "value": "Ikura (#5)",
+          "count": 17,
+          "percent": 1
+        },
+        {
+          "value": "Scramble (#27)",
+          "count": 17,
+          "percent": 1
+        },
+        {
+          "value": "Atlantis (#11)",
+          "count": 17,
+          "percent": 1
+        },
+        {
+          "value": "Wave (#83)",
+          "count": 17,
+          "percent": 1
+        },
+        {
+          "value": "Vibe (#44)",
+          "count": 17,
+          "percent": 1
+        },
+        {
+          "value": "Healtreey (#30)",
+          "count": 17,
+          "percent": 1
+        },
+        {
+          "value": "Feathery (#32)",
+          "count": 17,
+          "percent": 1
+        },
+        {
+          "value": "Say What (#63)",
+          "count": 17,
+          "percent": 1
+        },
+        {
+          "value": "Soft Boy (#47)",
+          "count": 17,
+          "percent": 1
+        },
+        {
+          "value": "Everything (#50)",
+          "count": 17,
+          "percent": 1
+        },
+        {
+          "value": "Fishy (#88)",
+          "count": 17,
+          "percent": 1
+        },
+        {
+          "value": "Drink Me (#97)",
+          "count": 17,
+          "percent": 1
+        },
+        {
+          "value": "Eruption (#20)",
+          "count": 17,
+          "percent": 1
+        },
+        {
+          "value": "Swordy (#29)",
+          "count": 17,
+          "percent": 1
+        },
+        {
+          "value": "Angrybirby (#37)",
+          "count": 17,
+          "percent": 1
+        },
+        {
+          "value": "Exe (#92)",
+          "count": 17,
+          "percent": 1
+        },
+        {
+          "value": "Teddy (#33)",
+          "count": 17,
+          "percent": 1
+        },
+        {
+          "value": "Eggplant (#65)",
+          "count": 17,
+          "percent": 1
+        },
+        {
+          "value": "Communion (#75)",
+          "count": 17,
+          "percent": 1
+        },
+        {
+          "value": "Eye (#60)",
+          "count": 17,
+          "percent": 1
+        },
+        {
+          "value": "The Sun (#23)",
+          "count": 17,
+          "percent": 1
+        },
+        {
+          "value": "Optimist (#95)",
+          "count": 17,
+          "percent": 1
+        },
+        {
+          "value": "Moderator (#28)",
+          "count": 17,
+          "percent": 1
+        },
+        {
+          "value": "Mask (#15)",
+          "count": 17,
+          "percent": 1
+        },
+        {
+          "value": "Mageglovey (#31)",
+          "count": 17,
+          "percent": 1
+        },
+        {
+          "value": "The Cat (#18)",
+          "count": 17,
+          "percent": 1
+        },
+        {
+          "value": "Reset (#79)",
+          "count": 17,
+          "percent": 1
+        },
+        {
+          "value": "Boombox (#2)",
+          "count": 17,
+          "percent": 1
+        },
+        {
+          "value": "Burgery (#38)",
+          "count": 17,
+          "percent": 1
+        },
+        {
+          "value": "End (#70)",
+          "count": 17,
+          "percent": 1
+        },
+        {
+          "value": "Melony (#87)",
+          "count": 17,
+          "percent": 1
+        },
+        {
+          "value": "Six Months (#52)",
+          "count": 17,
+          "percent": 1
+        },
+        {
+          "value": "Sasquatch (#66)",
+          "count": 17,
+          "percent": 1
+        },
+        {
+          "value": "Cheese (#26)",
+          "count": 17,
+          "percent": 1
+        },
+        {
+          "value": "Ever Lovin (#25)",
+          "count": 17,
+          "percent": 1
+        },
+        {
+          "value": "Logo (#84)",
+          "count": 17,
+          "percent": 1
+        },
+        {
+          "value": "Warm Vibe (#77)",
+          "count": 17,
+          "percent": 1
+        },
+        {
+          "value": "Din-Din (#76)",
+          "count": 17,
+          "percent": 1
+        },
+        {
+          "value": "Pizza Time (#48)",
+          "count": 17,
+          "percent": 1
+        },
+        {
+          "value": "Node (#3)",
+          "count": 17,
+          "percent": 1
+        },
+        {
+          "value": "Embryo (#71)",
+          "count": 17,
+          "percent": 1
+        },
+        {
+          "value": "Ebi (#19)",
+          "count": 17,
+          "percent": 1
+        },
+        {
+          "value": "Caffeinate (#74)",
+          "count": 17,
+          "percent": 1
+        },
+        {
+          "value": "Nude (#54)",
+          "count": 17,
+          "percent": 1
+        },
+        {
+          "value": "City (#91)",
+          "count": 17,
+          "percent": 1
+        },
+        {
+          "value": "Gato (#58)",
+          "count": 17,
+          "percent": 1
+        },
+        {
+          "value": "Illuminate (#51)",
+          "count": 17,
+          "percent": 1
+        },
+        {
+          "value": "Night Moon (#21)",
+          "count": 17,
+          "percent": 1
+        },
+        {
+          "value": "Cool Cat (#64)",
+          "count": 17,
+          "percent": 1
+        },
+        {
+          "value": "Sprout (#40)",
+          "count": 17,
+          "percent": 1
+        },
+        {
+          "value": "Andrei (#46)",
+          "count": 17,
+          "percent": 1
+        },
+        {
+          "value": "Lay Off Me (#62)",
+          "count": 17,
+          "percent": 1
+        }
+      ]
+    },
+    {
+      "traitType": "Palette",
+      "valueMetrics": [
+        {
+          "value": "Genesis (#0)",
+          "count": 97,
+          "percent": 5.71
+        },
+        {
+          "value": "Rose (#1)",
+          "count": 23,
+          "percent": 1.35
+        },
+        {
+          "value": "Looney (#10)",
+          "count": 9,
+          "percent": 0.53
+        },
+        {
+          "value": "Edition (#6)",
+          "count": 18,
+          "percent": 1.06
+        },
+        {
+          "value": "Communion (#75)",
+          "count": 13,
+          "percent": 0.76
+        },
+        {
+          "value": "Blit (#42)",
+          "count": 34,
+          "percent": 2
+        },
+        {
+          "value": "Processing (#22)",
+          "count": 29,
+          "percent": 1.71
+        },
+        {
+          "value": "Logo (#84)",
+          "count": 48,
+          "percent": 2.82
+        },
+        {
+          "value": "Jess (#61)",
+          "count": 11,
+          "percent": 0.65
+        },
+        {
+          "value": "Ride (#45)",
+          "count": 32,
+          "percent": 1.88
+        },
+        {
+          "value": "Mageglovey (#31)",
+          "count": 6,
+          "percent": 0.35
+        },
+        {
+          "value": "Overloaded (#14)",
+          "count": 15,
+          "percent": 0.88
+        },
+        {
+          "value": "Glitcho (#90)",
+          "count": 11,
+          "percent": 0.65
+        },
+        {
+          "value": "Melt Man (#85)",
+          "count": 11,
+          "percent": 0.65
+        },
+        {
+          "value": "Swordy (#29)",
+          "count": 11,
+          "percent": 0.65
+        },
+        {
+          "value": "The Guy (#78)",
+          "count": 11,
+          "percent": 0.65
+        },
+        {
+          "value": "Gato (#58)",
+          "count": 53,
+          "percent": 3.12
+        },
+        {
+          "value": "Say What (#63)",
+          "count": 29,
+          "percent": 1.71
+        },
+        {
+          "value": "Mushroom (#67)",
+          "count": 16,
+          "percent": 0.94
+        },
+        {
+          "value": "Dunce (#68)",
+          "count": 6,
+          "percent": 0.35
+        },
+        {
+          "value": "Caffeinate (#74)",
+          "count": 18,
+          "percent": 1.06
+        },
+        {
+          "value": "Ever Lovin (#25)",
+          "count": 29,
+          "percent": 1.71
+        },
+        {
+          "value": "Cloudy (#34)",
+          "count": 9,
+          "percent": 0.53
+        },
+        {
+          "value": "Psychic (#4)",
+          "count": 20,
+          "percent": 1.18
+        },
+        {
+          "value": "Drink Me (#97)",
+          "count": 14,
+          "percent": 0.82
+        },
+        {
+          "value": "Node (#3)",
+          "count": 18,
+          "percent": 1.06
+        },
+        {
+          "value": "Periwinkle (#39)",
+          "count": 12,
+          "percent": 0.71
+        },
+        {
+          "value": "Sasquatch (#66)",
+          "count": 11,
+          "percent": 0.65
+        },
+        {
+          "value": "Soft (#69)",
+          "count": 20,
+          "percent": 1.18
+        },
+        {
+          "value": "City (#91)",
+          "count": 15,
+          "percent": 0.88
+        },
+        {
+          "value": "Boysdocry (#82)",
+          "count": 23,
+          "percent": 1.35
+        },
+        {
+          "value": "Cherrybomb (#86)",
+          "count": 21,
+          "percent": 1.24
+        },
+        {
+          "value": "Hand (#57)",
+          "count": 6,
+          "percent": 0.35
+        },
+        {
+          "value": "Tamago (#17)",
+          "count": 16,
+          "percent": 0.94
+        },
+        {
+          "value": "Totally (#9)",
+          "count": 7,
+          "percent": 0.41
+        },
+        {
+          "value": "Chessbirdy (#36)",
+          "count": 16,
+          "percent": 0.94
+        },
+        {
+          "value": "Scramble (#27)",
+          "count": 32,
+          "percent": 1.88
+        },
+        {
+          "value": "Feathery (#32)",
+          "count": 4,
+          "percent": 0.24
+        },
+        {
+          "value": "Soft Boy (#47)",
+          "count": 22,
+          "percent": 1.29
+        },
+        {
+          "value": "Healtreey (#30)",
+          "count": 8,
+          "percent": 0.47
+        },
+        {
+          "value": "Moderator (#28)",
+          "count": 31,
+          "percent": 1.82
+        },
+        {
+          "value": "Mask (#15)",
+          "count": 18,
+          "percent": 1.06
+        },
+        {
+          "value": "Exe (#92)",
+          "count": 29,
+          "percent": 1.71
+        },
+        {
+          "value": "Warm Vibe (#77)",
+          "count": 27,
+          "percent": 1.59
+        },
+        {
+          "value": "Everything (#50)",
+          "count": 12,
+          "percent": 0.71
+        },
+        {
+          "value": "Cheese (#26)",
+          "count": 20,
+          "percent": 1.18
+        },
+        {
+          "value": "Selected (#7)",
+          "count": 40,
+          "percent": 2.35
+        },
+        {
+          "value": "Amai (#41)",
+          "count": 12,
+          "percent": 0.71
+        },
+        {
+          "value": "Wave (#83)",
+          "count": 20,
+          "percent": 1.18
+        },
+        {
+          "value": "Kraken (#8)",
+          "count": 17,
+          "percent": 1
+        },
+        {
+          "value": "Sock Cloud (#93)",
+          "count": 5,
+          "percent": 0.29
+        },
+        {
+          "value": "Fishy (#88)",
+          "count": 9,
+          "percent": 0.53
+        },
+        {
+          "value": "End (#70)",
+          "count": 6,
+          "percent": 0.35
+        },
+        {
+          "value": "Andrei (#46)",
+          "count": 9,
+          "percent": 0.53
+        },
+        {
+          "value": "Mori (#56)",
+          "count": 23,
+          "percent": 1.35
+        },
+        {
+          "value": "Glimpse (#81)",
+          "count": 24,
+          "percent": 1.41
+        },
+        {
+          "value": "Atlantis (#11)",
+          "count": 9,
+          "percent": 0.53
+        },
+        {
+          "value": "Ebi (#19)",
+          "count": 15,
+          "percent": 0.88
+        },
+        {
+          "value": "Illuminate (#51)",
+          "count": 28,
+          "percent": 1.65
+        },
+        {
+          "value": "Angrybirby (#37)",
+          "count": 12,
+          "percent": 0.71
+        },
+        {
+          "value": "Pizza Time (#48)",
+          "count": 15,
+          "percent": 0.88
+        },
+        {
+          "value": "Watching (#72)",
+          "count": 8,
+          "percent": 0.47
+        },
+        {
+          "value": "Lay Off Me (#62)",
+          "count": 15,
+          "percent": 0.88
+        },
+        {
+          "value": "Six Months (#52)",
+          "count": 14,
+          "percent": 0.82
+        },
+        {
+          "value": "Eruption (#20)",
+          "count": 29,
+          "percent": 1.71
+        },
+        {
+          "value": "Rune (#43)",
+          "count": 15,
+          "percent": 0.88
+        },
+        {
+          "value": "Vibe (#44)",
+          "count": 48,
+          "percent": 2.82
+        },
+        {
+          "value": "Vanilla (#16)",
+          "count": 18,
+          "percent": 1.06
+        },
+        {
+          "value": "Ikura (#5)",
+          "count": 18,
+          "percent": 1.06
+        },
+        {
+          "value": "Optimist (#95)",
+          "count": 11,
+          "percent": 0.65
+        },
+        {
+          "value": "Reset (#79)",
+          "count": 13,
+          "percent": 0.76
+        },
+        {
+          "value": "Mana (#53)",
+          "count": 19,
+          "percent": 1.12
+        },
+        {
+          "value": "Teddy (#33)",
+          "count": 9,
+          "percent": 0.53
+        },
+        {
+          "value": "Eggplant (#65)",
+          "count": 9,
+          "percent": 0.53
+        },
+        {
+          "value": "Key (#80)",
+          "count": 9,
+          "percent": 0.53
+        },
+        {
+          "value": "Sprout (#40)",
+          "count": 5,
+          "percent": 0.29
+        },
+        {
+          "value": "Hot Damn (#49)",
+          "count": 13,
+          "percent": 0.76
+        },
+        {
+          "value": "Chaos Flow (#98)",
+          "count": 15,
+          "percent": 0.88
+        },
+        {
+          "value": "Cool Cat (#64)",
+          "count": 23,
+          "percent": 1.35
+        },
+        {
+          "value": "Kabuto (#55)",
+          "count": 4,
+          "percent": 0.24
+        },
+        {
+          "value": "Hillside (#24)",
+          "count": 9,
+          "percent": 0.53
+        },
+        {
+          "value": "Watcher (#89)",
+          "count": 40,
+          "percent": 2.35
+        },
+        {
+          "value": "Nude (#54)",
+          "count": 11,
+          "percent": 0.65
+        },
+        {
+          "value": "Otoro (#12)",
+          "count": 18,
+          "percent": 1.06
+        },
+        {
+          "value": "The Sun (#23)",
+          "count": 8,
+          "percent": 0.47
+        },
+        {
+          "value": "Boombox (#2)",
+          "count": 13,
+          "percent": 0.76
+        },
+        {
+          "value": "Embryo (#71)",
+          "count": 8,
+          "percent": 0.47
+        },
+        {
+          "value": "Candy (#35)",
+          "count": 24,
+          "percent": 1.41
+        },
+        {
+          "value": "Melony (#87)",
+          "count": 7,
+          "percent": 0.41
+        },
+        {
+          "value": "Lost Realm (#99)",
+          "count": 13,
+          "percent": 0.76
+        },
+        {
+          "value": "Ear (#59)",
+          "count": 7,
+          "percent": 0.41
+        },
+        {
+          "value": "Jupiter (#13)",
+          "count": 13,
+          "percent": 0.76
+        },
+        {
+          "value": "Night Moon (#21)",
+          "count": 15,
+          "percent": 0.88
+        },
+        {
+          "value": "Gate (#94)",
+          "count": 8,
+          "percent": 0.47
+        },
+        {
+          "value": "News (#73)",
+          "count": 4,
+          "percent": 0.24
+        },
+        {
+          "value": "The Cat (#18)",
+          "count": 5,
+          "percent": 0.29
+        },
+        {
+          "value": "Din-Din (#76)",
+          "count": 5,
+          "percent": 0.29
+        },
+        {
+          "value": "Pale Tower (#96)",
+          "count": 5,
+          "percent": 0.29
+        },
+        {
+          "value": "Eye (#60)",
+          "count": 4,
+          "percent": 0.24
+        },
+        {
+          "value": "Burgery (#38)",
+          "count": 3,
+          "percent": 0.18
+        }
+      ]
+    },
+    {
+      "traitType": "Affinity",
+      "valueMetrics": [
+        {
+          "value": "Water III",
+          "count": 125,
+          "percent": 7.35
+        },
+        {
+          "value": "Fire III",
+          "count": 298,
+          "percent": 17.53
+        },
+        {
+          "value": "Fire I, Earth I, Water I",
+          "count": 340,
+          "percent": 20
+        },
+        {
+          "value": "Earth II, Fire I",
+          "count": 34,
+          "percent": 2
+        },
+        {
+          "value": "Earth I, Fire I, Water I",
+          "count": 177,
+          "percent": 10.41
+        },
+        {
+          "value": "Earth II, Water I",
+          "count": 53,
+          "percent": 3.12
+        },
+        {
+          "value": "Fire II, Water I",
+          "count": 100,
+          "percent": 5.88
+        },
+        {
+          "value": "Water I, Fire I, Earth I",
+          "count": 242,
+          "percent": 14.24
+        },
+        {
+          "value": "Water II, Fire I",
+          "count": 62,
+          "percent": 3.65
+        },
+        {
+          "value": "Earth III",
+          "count": 67,
+          "percent": 3.94
+        },
+        {
+          "value": "Water II, Earth I",
+          "count": 56,
+          "percent": 3.29
+        },
+        {
+          "value": "Fire II, Earth I",
+          "count": 146,
+          "percent": 8.59
+        }
+      ]
+    },
+    {
+      "traitType": "Slabs",
+      "valueMetrics": [
+        {
+          "value": "◢ ◣ ◢ ◢",
+          "count": 126,
+          "percent": 7.41
+        },
+        {
+          "value": "◢ ◢ ◢ ◥",
+          "count": 23,
+          "percent": 1.35
+        },
+        {
+          "value": "◢ ◤ ◢ ◢",
+          "count": 25,
+          "percent": 1.47
+        },
+        {
+          "value": "◢ ◢ ◢ ◢",
+          "count": 18,
+          "percent": 1.06
+        },
+        {
+          "value": "◤ ◣ ◥ ◥",
+          "count": 13,
+          "percent": 0.76
+        },
+        {
+          "value": "◥ ◢ ◣ ◥",
+          "count": 34,
+          "percent": 2
+        },
+        {
+          "value": "◢ ◤ ◤ ◤",
+          "count": 29,
+          "percent": 1.71
+        },
+        {
+          "value": "◢ ◥ ◥ ◥",
+          "count": 48,
+          "percent": 2.82
+        },
+        {
+          "value": "◥ ◤ ◤ ◣",
+          "count": 11,
+          "percent": 0.65
+        },
+        {
+          "value": "◥ ◢ ◣ ◢",
+          "count": 32,
+          "percent": 1.88
+        },
+        {
+          "value": "◤ ◢ ◥ ◥",
+          "count": 6,
+          "percent": 0.35
+        },
+        {
+          "value": "◣ ◢ ◢ ◥",
+          "count": 24,
+          "percent": 1.41
+        },
+        {
+          "value": "◥ ◥ ◥ ◢",
+          "count": 11,
+          "percent": 0.65
+        },
+        {
+          "value": "◣ ◢ ◢ ◤",
+          "count": 11,
+          "percent": 0.65
+        },
+        {
+          "value": "◥ ◤ ◣ ◤",
+          "count": 11,
+          "percent": 0.65
+        },
+        {
+          "value": "◣ ◢ ◣ ◣",
+          "count": 11,
+          "percent": 0.65
+        },
+        {
+          "value": "◥ ◤ ◢ ◤",
+          "count": 53,
+          "percent": 3.12
+        },
+        {
+          "value": "◢ ◢ ◤ ◥",
+          "count": 86,
+          "percent": 5.06
+        },
+        {
+          "value": "◣ ◤ ◣ ◢",
+          "count": 16,
+          "percent": 0.94
+        },
+        {
+          "value": "◣ ◢ ◢ ◢",
+          "count": 15,
+          "percent": 0.88
+        },
+        {
+          "value": "◥ ◤ ◣ ◣",
+          "count": 27,
+          "percent": 1.59
+        },
+        {
+          "value": "◣ ◣ ◣ ◢",
+          "count": 29,
+          "percent": 1.71
+        },
+        {
+          "value": "◥ ◢ ◢ ◢",
+          "count": 17,
+          "percent": 1
+        },
+        {
+          "value": "◥ ◢ ◣ ◣",
+          "count": 20,
+          "percent": 1.18
+        },
+        {
+          "value": "◤ ◥ ◥ ◢",
+          "count": 28,
+          "percent": 1.65
+        },
+        {
+          "value": "◣ ◢ ◥ ◣",
+          "count": 18,
+          "percent": 1.06
+        },
+        {
+          "value": "◢ ◣ ◢ ◣",
+          "count": 12,
+          "percent": 0.71
+        },
+        {
+          "value": "◥ ◣ ◣ ◣",
+          "count": 11,
+          "percent": 0.65
+        },
+        {
+          "value": "◥ ◣ ◢ ◢",
+          "count": 20,
+          "percent": 1.18
+        },
+        {
+          "value": "◢ ◢ ◥ ◣",
+          "count": 24,
+          "percent": 1.41
+        },
+        {
+          "value": "◣ ◢ ◤ ◣",
+          "count": 23,
+          "percent": 1.35
+        },
+        {
+          "value": "◥ ◥ ◣ ◣",
+          "count": 21,
+          "percent": 1.24
+        },
+        {
+          "value": "◣ ◤ ◣ ◣",
+          "count": 6,
+          "percent": 0.35
+        },
+        {
+          "value": "◣ ◣ ◤ ◣",
+          "count": 52,
+          "percent": 3.06
+        },
+        {
+          "value": "◢ ◥ ◤ ◢",
+          "count": 16,
+          "percent": 0.94
+        },
+        {
+          "value": "◤ ◥ ◥ ◣",
+          "count": 50,
+          "percent": 2.94
+        },
+        {
+          "value": "◤ ◣ ◢ ◥",
+          "count": 4,
+          "percent": 0.24
+        },
+        {
+          "value": "◣ ◣ ◢ ◣",
+          "count": 22,
+          "percent": 1.29
+        },
+        {
+          "value": "◥ ◣ ◢ ◣",
+          "count": 31,
+          "percent": 1.82
+        },
+        {
+          "value": "◥ ◣ ◥ ◢",
+          "count": 18,
+          "percent": 1.06
+        },
+        {
+          "value": "◥ ◥ ◤ ◤",
+          "count": 27,
+          "percent": 1.59
+        },
+        {
+          "value": "◣ ◥ ◢ ◥",
+          "count": 20,
+          "percent": 1.18
+        },
+        {
+          "value": "◢ ◥ ◣ ◥",
+          "count": 64,
+          "percent": 3.76
+        },
+        {
+          "value": "◢ ◤ ◥ ◣",
+          "count": 35,
+          "percent": 2.06
+        },
+        {
+          "value": "◥ ◤ ◣ ◥",
+          "count": 17,
+          "percent": 1
+        },
+        {
+          "value": "◢ ◢ ◣ ◤",
+          "count": 14,
+          "percent": 0.82
+        },
+        {
+          "value": "◣ ◤ ◤ ◥",
+          "count": 6,
+          "percent": 0.35
+        },
+        {
+          "value": "◣ ◥ ◥ ◢",
+          "count": 9,
+          "percent": 0.53
+        },
+        {
+          "value": "◣ ◥ ◣ ◣",
+          "count": 15,
+          "percent": 0.88
+        },
+        {
+          "value": "◥ ◤ ◥ ◤",
+          "count": 28,
+          "percent": 1.65
+        },
+        {
+          "value": "◤ ◣ ◤ ◥",
+          "count": 12,
+          "percent": 0.71
+        },
+        {
+          "value": "◥ ◥ ◤ ◣",
+          "count": 15,
+          "percent": 0.88
+        },
+        {
+          "value": "◥ ◣ ◤ ◤",
+          "count": 8,
+          "percent": 0.47
+        },
+        {
+          "value": "◤ ◤ ◥ ◤",
+          "count": 15,
+          "percent": 0.88
+        },
+        {
+          "value": "◣ ◥ ◤ ◤",
+          "count": 29,
+          "percent": 1.71
+        },
+        {
+          "value": "◢ ◤ ◣ ◢",
+          "count": 15,
+          "percent": 0.88
+        },
+        {
+          "value": "◢ ◣ ◤ ◤",
+          "count": 48,
+          "percent": 2.82
+        },
+        {
+          "value": "◢ ◥ ◣ ◤",
+          "count": 18,
+          "percent": 1.06
+        },
+        {
+          "value": "◣ ◤ ◢ ◢",
+          "count": 13,
+          "percent": 0.76
+        },
+        {
+          "value": "◥ ◣ ◢ ◤",
+          "count": 19,
+          "percent": 1.12
+        },
+        {
+          "value": "◤ ◢ ◥ ◣",
+          "count": 5,
+          "percent": 0.29
+        },
+        {
+          "value": "◣ ◤ ◥ ◥",
+          "count": 13,
+          "percent": 0.76
+        },
+        {
+          "value": "◤ ◤ ◤ ◥",
+          "count": 15,
+          "percent": 0.88
+        },
+        {
+          "value": "◤ ◣ ◢ ◣",
+          "count": 23,
+          "percent": 1.35
+        },
+        {
+          "value": "◢ ◢ ◥ ◢",
+          "count": 8,
+          "percent": 0.47
+        },
+        {
+          "value": "◢ ◥ ◤ ◣",
+          "count": 11,
+          "percent": 0.65
+        },
+        {
+          "value": "◥ ◣ ◥ ◣",
+          "count": 18,
+          "percent": 1.06
+        },
+        {
+          "value": "◥ ◥ ◢ ◣",
+          "count": 8,
+          "percent": 0.47
+        },
+        {
+          "value": "◢ ◥ ◢ ◤",
+          "count": 13,
+          "percent": 0.76
+        },
+        {
+          "value": "◥ ◣ ◤ ◥",
+          "count": 8,
+          "percent": 0.47
+        },
+        {
+          "value": "◤ ◣ ◥ ◣",
+          "count": 24,
+          "percent": 1.41
+        },
+        {
+          "value": "◤ ◥ ◣ ◤",
+          "count": 7,
+          "percent": 0.41
+        },
+        {
+          "value": "◢ ◣ ◢ ◥",
+          "count": 13,
+          "percent": 0.76
+        },
+        {
+          "value": "◣ ◣ ◤ ◢",
+          "count": 7,
+          "percent": 0.41
+        },
+        {
+          "value": "◥ ◢ ◤ ◥",
+          "count": 13,
+          "percent": 0.76
+        },
+        {
+          "value": "◣ ◥ ◤ ◣",
+          "count": 15,
+          "percent": 0.88
+        },
+        {
+          "value": "◢ ◢ ◣ ◥",
+          "count": 8,
+          "percent": 0.47
+        },
+        {
+          "value": "◣ ◢ ◤ ◥",
+          "count": 4,
+          "percent": 0.24
+        },
+        {
+          "value": "◤ ◢ ◢ ◢",
+          "count": 5,
+          "percent": 0.29
+        },
+        {
+          "value": "◥ ◢ ◣ ◤",
+          "count": 3,
+          "percent": 0.18
+        }
+      ]
+    },
+    {
+      "traitType": "Attunement",
+      "valueMetrics": [
+        {
+          "value": "Unattuned",
+          "count": 198,
+          "percent": 11.65
+        },
+        {
+          "value": "Attuned",
+          "count": 1502,
+          "percent": 88.35
+        }
+      ]
+    }
+  ]
+}
+```
+</TabItem>
+</Tabs>
+
+<br/> 
+
+We can see that we're getting back all the attributes for Blitmaps as well as their rarities and counts. 
+For example, there are 100 Blitmaps that have the `Type` of `Original` which is only possessed by 5.88% of all Blitmaps
+
+---
+
+## Searching By Keyword
+
+Searching for an NFT or collection with a specific keyword has never been easier. 
+Here we are calling `zdk.search` and passing in the `query` "flow".
+We're also filtering by the Blitmap `collectionAddress` and the `entityType` TOKEN with a `limit` of 3 NFTs.
+<Tabs
+  defaultValue="query"
+  values={[
+    { label: 'Query', value: 'query', },
+    { label: 'Response', value: 'response', }
+  ]
+}>
+<TabItem value="query">
+
+```js
+const args = {
+  query: "flow",
+  filter: { 
+    collectionAddresses: ["0x8d04a8c79cEB0889Bdd12acdF3Fa9D207eD3Ff63"], 
+    entityType: 'TOKEN' 
+  },
+  pagination: { limit: 3 } // Optional, caps the limit of the response to 3 NFTs
+};
+
+const response = await zdk.search(args);
+```
+
+</TabItem>
+<TabItem value="response">
+
+```json
+{
+  "search": {
+    "__typename": "SearchResultConnection",
+    "pageInfo": {
+      "endCursor": "eyJza2lwIjogM30=",
+      "hasNextPage": true,
+      "limit": 3
+    },
+    "nodes": [
+      {
+        "name": "#98 - Chaos Flow",
+        "description": "Blitmap is a community crafted art collection and universe. All data is completely on chain.\n\n[blitmap.com](https://www.blitmap.com)",
+        "entityType": "Token",
+        "collectionAddress": "0x8d04a8c79ceb0889bdd12acdf3fa9d207ed3ff63",
+        "networkInfo": {
+          "chain": "MAINNET",
+          "network": "ETHEREUM"
+        },
+        "tokenId": "98",
+        "entity": {
+          "__typename": "Token",
+          "tokenId": "98",
+          "tokenContract": {
+            "name": "Blitmap",
+            "network": "ETHEREUM",
+            "description": null,
+            "collectionAddress": "0x8d04a8c79ceb0889bdd12acdf3fa9d207ed3ff63",
+            "symbol": "BLIT",
+            "chain": 1
+          },
+          "mintInfo": {
+            "price": {
+              "__typename": "PriceAtTime",
+              "blockNumber": 12543029,
+              "chainTokenPrice": {
+                "decimal": 0,
+                "raw": "0"
+              },
+              "nativePrice": {
+                "decimal": 0,
+                "raw": "0",
+                "currency": {
+                  "address": "0x0000000000000000000000000000000000000000",
+                  "decimals": 18,
+                  "name": "ETH"
+                }
+              },
+              "usdcPrice": {
+                "decimal": 0,
+                "raw": "0"
+              }
+            },
+            "originatorAddress": "0xee463034f385dd9b26efd7767406079f86edb992",
+            "toAddress": "0xee463034f385dd9b26efd7767406079f86edb992",
+            "mintContext": {
+              "__typename": "TransactionInfo",
+              "blockNumber": 12543029,
+              "blockTimestamp": "2021-05-31T15:50:52",
+              "transactionHash": "0x046f2fa216300244c07f95f9ff983d18314302b53e5024270b5e96bccfc6811a",
+              "logIndex": 258
+            }
+          },
+          "collectionAddress": "0x8d04a8c79ceb0889bdd12acdf3fa9d207ed3ff63",
+          "lastRefreshTime": "2022-04-26T05:54:17.294000",
+          "owner": "0xee463034f385dd9b26efd7767406079f86edb992",
+          "name": "#98 - Chaos Flow",
+          "description": "Blitmap is a community crafted art collection and universe. All data is completely on chain.\n\n[blitmap.com](https://www.blitmap.com)",
+          "image": {
+            "size": "2410",
+            "url": "https://api.blitmap.com/v1/png/98",
+            "mimeType": "image/png",
+            "mediaEncoding": {
+              "__typename": "ImageEncodingTypes",
+              "original": "https://api.zora.co/media/ETHEREUM-MAINNET/0x8d04a8c79ceb0889bdd12acdf3fa9d207ed3ff63/98/image/original",
+              "large": "https://api.zora.co/media/ETHEREUM-MAINNET/0x8d04a8c79ceb0889bdd12acdf3fa9d207ed3ff63/98/image/large",
+              "poster": "https://api.zora.co/media/ETHEREUM-MAINNET/0x8d04a8c79ceb0889bdd12acdf3fa9d207ed3ff63/98/image/poster",
+              "thumbnail": "https://api.zora.co/media/ETHEREUM-MAINNET/0x8d04a8c79ceb0889bdd12acdf3fa9d207ed3ff63/98/image/thumbnail"
+            }
+          },
+          "content": {
+            "size": null,
+            "url": null,
+            "mimeType": null,
+            "mediaEncoding": {
+              "__typename": "UnsupportedEncodingTypes",
+              "original": "https://api.zora.co/media/ETHEREUM-MAINNET/0x8d04a8c79ceb0889bdd12acdf3fa9d207ed3ff63/98/content/original"
+            }
+          }
+        }
+      },
+      {
+        "name": "#819 - Chaos Flow Chessbirdy",
+        "description": "Blitmap is a community crafted art collection and universe. All data is completely on chain.\n\n[blitmap.com](https://www.blitmap.com)",
+        "entityType": "Token",
+        "collectionAddress": "0x8d04a8c79ceb0889bdd12acdf3fa9d207ed3ff63",
+        "networkInfo": {
+          "chain": "MAINNET",
+          "network": "ETHEREUM"
+        },
+        "tokenId": "819",
+        "entity": {
+          "__typename": "Token",
+          "tokenId": "819",
+          "tokenContract": {
+            "name": "Blitmap",
+            "network": "ETHEREUM",
+            "description": null,
+            "collectionAddress": "0x8d04a8c79ceb0889bdd12acdf3fa9d207ed3ff63",
+            "symbol": "BLIT",
+            "chain": 1
+          },
+          "mintInfo": {
+            "price": {
+              "__typename": "PriceAtTime",
+              "blockNumber": 12660250,
+              "chainTokenPrice": {
+                "decimal": 0.1,
+                "raw": "100000000000000000"
+              },
+              "nativePrice": {
+                "decimal": 0.1,
+                "raw": "100000000000000000",
+                "currency": {
+                  "address": "0x0000000000000000000000000000000000000000",
+                  "decimals": 18,
+                  "name": "ETH"
+                }
+              },
+              "usdcPrice": {
+                "decimal": 216.15124323338887,
+                "raw": "216151243233388855296"
+              }
+            },
+            "originatorAddress": "0x918ea88373c692b378c685be91e9a55c724abfca",
+            "toAddress": "0x918ea88373c692b378c685be91e9a55c724abfca",
+            "mintContext": {
+              "__typename": "TransactionInfo",
+              "blockNumber": 12660250,
+              "blockTimestamp": "2021-06-18T19:13:35",
+              "transactionHash": "0x68261072ddc62bf3f11e1d14770d1d3509f393d4b7bbcfeca389c65ee8ca6078",
+              "logIndex": 65
+            }
+          },
+          "collectionAddress": "0x8d04a8c79ceb0889bdd12acdf3fa9d207ed3ff63",
+          "lastRefreshTime": "2022-05-06T10:39:35.774000",
+          "owner": "0x918ea88373c692b378c685be91e9a55c724abfca",
+          "name": "#819 - Chaos Flow Chessbirdy",
+          "description": "Blitmap is a community crafted art collection and universe. All data is completely on chain.\n\n[blitmap.com](https://www.blitmap.com)",
+          "image": {
+            "size": "2391",
+            "url": "https://api.blitmap.com/v1/png/819",
+            "mimeType": "image/png",
+            "mediaEncoding": {
+              "__typename": "ImageEncodingTypes",
+              "original": "https://api.zora.co/media/ETHEREUM-MAINNET/0x8d04a8c79ceb0889bdd12acdf3fa9d207ed3ff63/819/image/original",
+              "large": "https://api.zora.co/media/ETHEREUM-MAINNET/0x8d04a8c79ceb0889bdd12acdf3fa9d207ed3ff63/819/image/large",
+              "poster": "https://api.zora.co/media/ETHEREUM-MAINNET/0x8d04a8c79ceb0889bdd12acdf3fa9d207ed3ff63/819/image/poster",
+              "thumbnail": "https://api.zora.co/media/ETHEREUM-MAINNET/0x8d04a8c79ceb0889bdd12acdf3fa9d207ed3ff63/819/image/thumbnail"
+            }
+          },
+          "content": {
+            "size": null,
+            "url": null,
+            "mimeType": null,
+            "mediaEncoding": {
+              "__typename": "UnsupportedEncodingTypes",
+              "original": "https://api.zora.co/media/ETHEREUM-MAINNET/0x8d04a8c79ceb0889bdd12acdf3fa9d207ed3ff63/819/content/original"
+            }
+          }
+        }
+      },
+      {
+        "name": "#805 - Chaos Flow Dunce",
+        "description": "Blitmap is a community crafted art collection and universe. All data is completely on chain.\n\n[blitmap.com](https://www.blitmap.com)",
+        "entityType": "Token",
+        "collectionAddress": "0x8d04a8c79ceb0889bdd12acdf3fa9d207ed3ff63",
+        "networkInfo": {
+          "chain": "MAINNET",
+          "network": "ETHEREUM"
+        },
+        "tokenId": "805",
+        "entity": {
+          "__typename": "Token",
+          "tokenId": "805",
+          "tokenContract": {
+            "name": "Blitmap",
+            "network": "ETHEREUM",
+            "description": null,
+            "collectionAddress": "0x8d04a8c79ceb0889bdd12acdf3fa9d207ed3ff63",
+            "symbol": "BLIT",
+            "chain": 1
+          },
+          "mintInfo": {
+            "price": {
+              "__typename": "PriceAtTime",
+              "blockNumber": 12645732,
+              "chainTokenPrice": {
+                "decimal": 0.1,
+                "raw": "100000000000000000"
+              },
+              "nativePrice": {
+                "decimal": 0.1,
+                "raw": "100000000000000000",
+                "currency": {
+                  "address": "0x0000000000000000000000000000000000000000",
+                  "decimals": 18,
+                  "name": "ETH"
+                }
+              },
+              "usdcPrice": {
+                "decimal": 244.50591090509263,
+                "raw": "244505910905092636672"
+              }
+            },
+            "originatorAddress": "0xdc0f2f43139064cf0083a837debaba004d9bfa3d",
+            "toAddress": "0xdc0f2f43139064cf0083a837debaba004d9bfa3d",
+            "mintContext": {
+              "__typename": "TransactionInfo",
+              "blockNumber": 12645732,
+              "blockTimestamp": "2021-06-16T13:22:24",
+              "transactionHash": "0xe0e685807b6cb6ae2ca8b5769c288ef509785ea41afddb907f6375b39ebbba8a",
+              "logIndex": 261
+            }
+          },
+          "collectionAddress": "0x8d04a8c79ceb0889bdd12acdf3fa9d207ed3ff63",
+          "lastRefreshTime": "2022-04-27T18:30:10.442000",
+          "owner": "0xdc0f2f43139064cf0083a837debaba004d9bfa3d",
+          "name": "#805 - Chaos Flow Dunce",
+          "description": "Blitmap is a community crafted art collection and universe. All data is completely on chain.\n\n[blitmap.com](https://www.blitmap.com)",
+          "image": {
+            "size": "2447",
+            "url": "https://api.blitmap.com/v1/png/805",
+            "mimeType": "image/png",
+            "mediaEncoding": {
+              "__typename": "ImageEncodingTypes",
+              "original": "https://api.zora.co/media/ETHEREUM-MAINNET/0x8d04a8c79ceb0889bdd12acdf3fa9d207ed3ff63/805/image/original",
+              "large": "https://api.zora.co/media/ETHEREUM-MAINNET/0x8d04a8c79ceb0889bdd12acdf3fa9d207ed3ff63/805/image/large",
+              "poster": "https://api.zora.co/media/ETHEREUM-MAINNET/0x8d04a8c79ceb0889bdd12acdf3fa9d207ed3ff63/805/image/poster",
+              "thumbnail": "https://api.zora.co/media/ETHEREUM-MAINNET/0x8d04a8c79ceb0889bdd12acdf3fa9d207ed3ff63/805/image/thumbnail"
+            }
+          },
+          "content": {
+            "size": null,
+            "url": null,
+            "mimeType": null,
+            "mediaEncoding": {
+              "__typename": "UnsupportedEncodingTypes",
+              "original": "https://api.zora.co/media/ETHEREUM-MAINNET/0x8d04a8c79ceb0889bdd12acdf3fa9d207ed3ff63/805/content/original"
+            }
+          }
+        }
+      }
+    ]
+  }
+}
+```
+</TabItem>
+</Tabs>
+
+<br/> 
+
+Looking at the response tab, we can see that the three different Blitmaps all have the word "flow" associated with their metadata.
+
+- `#98 - Chaos Flow`
+- `#805 - Chaos Flow Dunce`
+- `#819 - Chaos Flow Chessbirdy`
+
+
+---
+
+## Sales Volume Across All Markets
+
+Lastly, we can get sales data for all the Blitmaps that have ever been sold on multiple marketplaces including: 
+
+- Zora
+- OpenSea
+- LooksRare
+- and many more
+
+We can retrieve this data by calling `zdk.salesVolume` with the Blitmap address.
+  
+<Tabs
+  defaultValue="query"
+  values={[
+    { label: 'Query', value: 'query', },
+    { label: 'Response', value: 'response', }
+  ]
+}>
+<TabItem value="query">
+
+```js
+const args = {
+  where: { 
+    collectionAddresses: ["0x8d04a8c79cEB0889Bdd12acdF3Fa9D207eD3Ff63"]
+  }
+};
+
+const response = await zdk.salesVolume(args);
+```
+
+</TabItem>
+<TabItem value="response">
+
+```json
+{
+  "aggregateStat": {
+    "salesVolume": {
+      "chainTokenPrice": 11241.592164999855,
+      "usdcPrice": 37887718.17458785,
+      "totalCount": 1210
+    }
+  }
+}
+```
+</TabItem>
+</Tabs>
+
+<br/> 
+
+Looking at the response, we get back `usdcPrice`, `chainTokenPrice`, and `totalCount`.
+`usdcPrice` is the volume in USDC at the time of the sales,
+while `chainTokenPrice` is the volume measured in the chain's gas token e.g. Ethereum = ETH.
+`totalCount` is the number of sales that have happened across all marketplaces.
+
+---

@@ -105,13 +105,15 @@ module.exports = {
         'zora-api/intro',
         'zora-api/query-formatting', 
         'zora-api/media-encoding',
+        'zora-api/zdk',
         {
           type: 'category',
           label: 'Guides',
           collapsed: false,
           items: [
             'guides/api-address-balance',
-            'guides/api-collection-data'
+            'guides/api-collection-data',
+            'guides/zdk-intro-guide'
           ],
         },
       ],
@@ -123,12 +125,25 @@ module.exports = {
       label: 'Dev Tools',
       collapsed: true,
       items: [
+        'zora-api/zdk',
+        {
+          type: 'category',
+          label: 'NFT Rendering',
+          collapsed: true,
+          items: ['developer-tools/nft-rendering/introduction'],
+        },
       {
         type: 'category',
-        label: 'NFT Rendering',
+        label: 'NFT Hooks',
         collapsed: false,
-        items: ['developer-tools/nft-rendering/introduction'],
+        items: [
+          'developer-tools/nft-hooks/intro', 
+          'developer-tools/nft-hooks/useNft', 
+          'developer-tools/nft-hooks/usenftmetadata', 
+          'developer-tools/nft-hooks/usenftcontent'
+        ],
       },
+      
     ],
     },
   ],
