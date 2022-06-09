@@ -70,15 +70,15 @@ module.exports = {
                   'smart-contracts/modules/ReserveAuctions/Finders/zora-v3-auctions-finderERC20'
                 ],
               },
-              {
-                type: 'category',
-                label: 'Listing',
-                collapsed: true,
-                items: [
-                  'smart-contracts/modules/ReserveAuctions/Listing/zora-v3-auctions-ListingETH',
-                  'smart-contracts/modules/ReserveAuctions/Listing/zora-v3-auctions-ListingERC20'
-                ],
-              },
+              // {
+              //   type: 'category',
+              //   label: 'Listing',
+              //   collapsed: true,
+              //   items: [
+              //     'smart-contracts/modules/ReserveAuctions/Listing/zora-v3-auctions-ListingETH',
+              //     'smart-contracts/modules/ReserveAuctions/Listing/zora-v3-auctions-ListingERC20'
+              //   ],
+              // },
             ],
           },
           {
