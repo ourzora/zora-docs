@@ -8,49 +8,61 @@ sidebar_position: 4
 
 ---
 
-This hook makes a request to fetch content based on an NFT's `contentURI`.
+This hook makes a request to fetch content (image, video, etc) based on an NFT's metadata.
 
-Most metadata servers allow remote JSON fetches, including all ZORA NFTs. There is a chance this request could fail. 
+Most metadata servers allow remote JSON fetches. However, there is a chance this request could fail. 
 Requests are set with a 10 second timeout to allow showing the user
 an error message instead of an indefinite loader.
 
-##### Hook Result Type
+:::note 
+The same information can be fetched using the base [`MediaFetchAgent`](./usenftcontent#mediafetchagent) for server-side or non-React use. 
+:::
 
-```typescript
-// This is a union type meaning one or another in typescript.
-// Use the (media.type) to determine which type was returned from the hook.
-type MediaContentType =
-  | {
-      uri: string // URI of content to render, used for media
-      type: 'uri' // Shows that no content was downloaded, should only render
-      mimeType: string // mime type string from metadata for rendering
-    }
-  | {
-      text: string // Text of result
-      type: 'text' // Shows that text content to render was downloaded
-      mimeType: string // mime type string from metadata for rendering
-    }
+---
 
-type useNFTContentType = {
-  loading: boolean // If loading from the server
-  error?: string // Error returned from network request error or timeout
-  content?: MediaContentType // MediaConetentType shown above;
-}
-```
+### Interface
 
-To use the hook, simply pass in the `contentURI` from the NFT on-chain data and `mimeType` (image, video, audio etc).
+To use the hook, simply pass in the `contentURI` from the NFT's metadata and `mimeType` (image, video, audio etc).
 You can learn more about MIME types [here](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types).
 
-If you do not have access to `mimeType` from the metadata or do not wish to retrieve the metadata, the `mimeType`
+If you do not have access to `mimeType` from the metadata or do not wish to retrieve the metadata, it
 can be omitted with a small performance impact.
 
 Content returned from this hook is **NOT CACHED**, meaning that each time the hook is used the content will be fetched.
+
+```ts
+/**
+ * @param uri URI of content to load or return URI for
+ * @param mimeType MIME type expected for content
+ * @returns useNFTContentType
+ */
+
+function useNFTContent(
+  uri?: string,
+  mimeType?: string,
+)
+```
+
+### Response 
+
+```ts
+type useNFTContentType = {
+  error?: string;
+  content?: MediaContentType;
+}
+
+type MediaContentType =
+  | { uri: string; type: 'uri'; mimeType: string }
+  | { text: string; type: 'text'; mimeType: string };
+```
+
+### Code Example 
 
 ```typescript
 import { useNFTContent } from '@zoralabs/nft-hooks'
 
 const MyMediaData = ({ uri: string, mimeType: string }) => {
-  const { error, loading, metadata } = useNFTContent(uri, mimeType)
+  const { error, content } = useNFTContent(uri, mimeType)
 
   if (error) {
     return <div>Error fetching content</div>
@@ -76,15 +88,22 @@ const MyMediaData = ({ uri: string, mimeType: string }) => {
 }
 ```
 
+---
+
+## MediaFetchAgent
+
 Alternatively, the same information can be fetched using the base `MediaFetchAgent` for server-side or non-React use:
 
 ```typescript
-import { MediaFetchAgent } from '@zoralabs/nft-hooks'
+import { MediaFetchAgent, Networks } from '@zoralabs/nft-hooks'
+
+const fetchAgent = new MediaFetchAgent(Networks.MAINNET)
 
 // Get result from the server
-const result = await MediaFetchAgent.fetchContent(
+const result = await fetchAgent.fetchContent(
   'https://ipfs.io/ipfs/METADATA_HASH',
   'application/json'
 )
 // result type is MediaContentType
 ```
+<br/> 

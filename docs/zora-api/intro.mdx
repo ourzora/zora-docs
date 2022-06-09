@@ -21,7 +21,9 @@ The ZORA API makes it easy to retrieve NFT metadata, monitor on-chain events, an
 
 API Endpoint: https://api.zora.co/graphql
 
-<!-- [SDK](./zdk-api): Use the API without needing to know GraphQL -->
+[SDK](./zdk): A development kit to use the API without needing to know GraphQL
+
+[NFT Hooks](../developer-tools/nft-hooks/intro): A tool that makes NFT data retriveal even easier than the ZDK
 
 :::
 ## Key Features
@@ -40,7 +42,7 @@ API Endpoint: https://api.zora.co/graphql
 If you are unfamiliar with GraphQL, we recommend that you [check out this resource](https://www.howtographql.com/basics/0-introduction/). 
 In addition, here are a few considerations before using the API.
 
-<!-- - The [ZDK](./zdk-api) allows anyone to build top on of the API without needing to know GraphQL. -->
+- The [ZDK](./zdk) and [NFT Hooks](../developer-tools/nft-hooks/intro) allows anyone to build top on of the API without needing to know GraphQL.
 - Currently supports any `ERC-721` NFTs on `Ethereum Mainnet`
 - Maximum page size limit is `500` for regular queries and `50` for text-based searches
 - Expanding to other chains and tokens standards soon
@@ -56,6 +58,11 @@ In addition, here are a few considerations before using the API.
 | > 30 requests per minute   | Key Needed              |
 
 Direct message [@ZORAEngineering](https://twitter.com/ZORAEngineering) on Twitter for an API Key.
+Add a header in your requests with the key `X-API-KEY` to access the API with a key.
+
+```
+headers={"X-API-KEY": <your_api_key>}
+```
 
 ---
 

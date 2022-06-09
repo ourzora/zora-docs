@@ -14,21 +14,37 @@ Most metadata servers allow for remote JSON fetches, however, there is a chance 
 Requests are set with a 10 second timeout to allow showing the user an error message
 instead of an indefinite loader.
 
-Metadata information can be found in the [ZORA metadata schema repo](https://github.com/ourzora/media-metadata-schemas). Metadata validation can be
-ignored optionally by passing in a second argument `{allowInvalid: true}` to the hook. By default, an error will be thrown for
-invalid metadata and the metadata result will be `undefined`.
+:::note 
+The same information can be fetched using the base [`MediaFetchAgent`](./usenftmetadata#mediafetchagent) for server-side or non-React use. 
+:::
 
-##### Hook Result Type
+---
+
+### Interface
+
+Pass in the metadata URL to fetch the NFT data:
+
+```ts
+/**
+ * @param uri URI of metadata to fetch
+ * @returns @type useNFTMetadataType
+ */
+export function useNFTMetadata(
+  uri?: string,
+)
+```
+
+### Reponse Shape
 
 ```typescript
 type useNFTMetadataType = {
   error?: string // Error: can be thrown from invalid json, unparsable json, network request failure, network request timeout
   loading?: boolean // Easy indicator to determine if the NFT metadata is loading. Same as (!metadata && !error).
-  metadata?: any // Raw, validated ZORA metadata. A error will be thrown if the metadata does not validate.
+  metadata?: any // Raw metadata based on the URI passed in
 }
 ```
 
-Pass in the metadata URL to fetch the NFT data:
+### Code Example 
 
 ```typescript
 import { useNFTMetadata } from '@zoralabs/nft-hooks'
@@ -52,7 +68,13 @@ const MediaDataDisplay = ({ uri: string }) => {
 }
 ```
 
-Alternatively, the same information can be fetched using the base `MediaFetchAgent` for server-side or non-React use:
+<br/> 
+
+---
+
+## MediaFetchAgent
+
+Alternatively, the same information can be fetched using the base `MediaFetchAgent` for server-side or non-React use.
 
 ```typescript
 import { MediaFetchAgent, Networks } from '@zoralabs/nft-hooks'
@@ -62,6 +84,8 @@ import { MediaFetchAgent, Networks } from '@zoralabs/nft-hooks'
 const fetchAgent = new MediaFetchAgent(Networks.MAINNET)
 
 // Get result from the server
-const result = await fetchAgent.loadMetadata('https://ipfs.io/ipfs/METADATA_HASH')
-// result type is {metadata, valid}
+const result = await fetchAgent.fetchIPFSMetadata('https://ipfs.io/ipfs/METADATA_HASH')
+// result type is {metadata}
 ```
+
+<br/>
