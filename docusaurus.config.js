@@ -71,9 +71,13 @@ module.exports = {
         content: 'Zora Docs',
       },
       {
+        name: 'og:description',
+        content: 'Open tools to build your own NFT marketplaces and applications.'
+      },
+      {
         name: 'description',
         content:
-          'Zora makes it easy for developers to get started building with NFTs by providing tools for displaying, minting, and selling NFTs all in one place. ',
+          'Zora makes it easy for developers to get started building with NFTs by providing tools for displaying, minting, and selling all in one place. ',
       },
     ],
   },
