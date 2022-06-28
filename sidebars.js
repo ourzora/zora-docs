@@ -42,8 +42,9 @@ module.exports = {
                 collapsed: true,
                 items: ['smart-contracts/modules/Asks/Core/zora-v3-asks-coreETH'],
               },
-              'smart-contracts/modules/Asks/zora-v3-asks-v1.0',
+              'smart-contracts/modules/Asks/private_asks',
               'smart-contracts/modules/Asks/zora-v3-asks-v1.1',
+              'smart-contracts/modules/Asks/zora-v3-asks-v1.0',
           ],
           },
           {

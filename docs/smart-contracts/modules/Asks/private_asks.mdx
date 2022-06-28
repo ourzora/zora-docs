@@ -1,0 +1,111 @@
+---
+id: private_asks
+title: Private Asks
+---
+import Tabs from '@theme/Tabs'
+import TabItem from '@theme/TabItem'
+
+##### Sell an NFT in ETH to a specific buyer
+
+---
+
+The `Private Asks Module` allows anyone to sell an ERC-721 NFT to a specific `buyer` address. 
+Meaning only the `buyer` address that is specified when the ask is created is allowed to fill it.
+View all the module's contract code here [GitHub Repo](https://github.com/ourzora/v3/blob/main/contracts/modules/Asks/Private/ETH/AsksPrivateEth.sol).
+
+## Contract Addresses
+
+#### Mainnet Deployments
+---
+
+| **Network**       | **Address**                                |
+| ------------      | ------------------------------------------ |
+| Ethereum - 1      | 0xfbf87e6c2c242d0166E2Ddb60Db5A94cD4dAe00e |
+
+<br/> 
+
+#### Testnet Deployments
+---
+
+| **Network**       | **Address**                                |
+| ------------      | ------------------------------------------ |
+| Ropsten - 3       | 0x251A5B6D0563f602e469176240E4Db8CA765C4d1 |
+
+---
+
+## Ask Structure
+An `ask` can be created by an owner or approved operator for any ERC-721 token.
+There can only be one `ask` open at a time for a given NFT.
+`asks` can only be made in `ETH` for this module.
+
+
+If an NFT is transferred to a new address the `ask` created by the previous address becomes invalid.
+However, if the NFT were to be transferred back to the address that created the ask it would be valid again. 
+
+
+* `seller`: Owner of the NFT
+* `price`: Asking price for the sale in wei
+* `buyer`: Address that is able to fill the ask
+
+```
+struct Ask {
+    address seller;
+    uint96 price;
+    address buyer;
+}
+```
+
+---
+
+## Storage
+
+#### askForNFT
+A public mapping that returns an `ask` given an NFT token contract address and tokenId. 
+Note that there can only ever be one `ask` open for an NFT at a time.
+
+`mapping(address => mapping(uint256 => Ask)) public askForNFT`
+
+--- 
+
+## Functions
+
+### createAsk 
+Puts an NFT up for sale to a specific buyer. 
+- Can be created by either the owner or approved operator of an NFT.
+- `createAsk` will overwrite if there was a previous open `ask`.
+```
+function createAsk(
+    address _tokenContract,
+    uint256 _tokenId,
+    uint256 _price,
+    address _buyer
+)
+```
+
+<br/>
+
+### setAskPrice
+Updates the information for a specific `ask`.
+```
+function setAskPrice(
+    address _tokenContract,
+    uint256 _tokenId,
+    uint256 _price
+) 
+```
+
+<br/>
+
+### cancelAsk
+Cancels an `ask` for an NFT by either the owner or an approved operator.
+```
+function cancelAsk(address _tokenContract, uint256 _tokenId)
+```
+
+<br/>
+
+### fillAsk 
+Transfers the NFT to the buyer and sends the funds to the recipients. 
+```
+function fillAsk(address _tokenContract, uint256 _tokenId)
+```
