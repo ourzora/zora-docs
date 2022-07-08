@@ -1,0 +1,44 @@
+---
+id: intro
+title: Introduction
+---
+
+import Tabs from '@theme/Tabs'
+import TabItem from '@theme/TabItem'
+
+##### Creator contracts make it easy to deploy and sell an NFT collection
+
+---
+
+These contracts allow anyone to deploy an NFT collection in seconds.
+The `ZoraNFTCreator` factory contract uses [ERC721A](https://www.azuki.com/erc721a). 
+ERC721A is a gas-optimized NFT contract that excels when trying to mint many NFTs in a single transaction.
+
+In addition, these contracts **provide built-in sales mechanics**, making it easy to both deploy a collection and sell the initial mints.
+
+## Addresses
+Creator contract addresses are constantly changing due to new deployments. 
+As a result, view [here for the most up-to-date addresses.](https://github.com/ourzora/zora-drops-contracts/tree/main/deployments)
+
+###  Create Proxy Deployments
+The create proxy is the main contract that is used to interact with the latest deployments of the create contracts. 
+
+| **Network**       | **Address**                                |
+|-------------------|--------------------------------------------|
+| Ethereum - 1      | 0xf74b146ce44cc162b601dec3be331784db111dc1 |
+| Rinkeby - 4    | 0x2d2acd205bd6d9d0b3e79990e093768375ad3a30 |
+
+## Main Create Contracts
+The most important contracts are:
+
+- [ZoraNFTCreator](./ZoraNFTCreator) - A factory that deploys new NFT contracts.
+- [ERC721Drop](./ERC721Drop) - A template NFT contract that is used to create a new collection.
+- [EditionMetadataRenderer](./EditionMetadataRenderer) - Renders metadata for an Edition NFT.
+- [DropMetadataRenderer](./DropMetadataRenderer) - Renders metadata for a Drop NFT.
+
+## Edition vs Drop
+
+These contracts can make two different types of NFT collections:
+
+- `Edition`: All the NFTs share the same media asset.
+- `Drop`: All the NFTs have individual pieces of media.

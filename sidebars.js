@@ -27,7 +27,19 @@ module.exports = {
       items: ['smart-contracts/zora-v3',
       {
         type: 'category',
-        label: 'Modules ',
+        label: 'Create NFT Collection',
+        collapsed: true,
+        items: [
+          'smart-contracts/creator-tools/intro',
+          'smart-contracts/creator-tools/ZoraNFTCreator',
+          'smart-contracts/creator-tools/ERC721Drop', 
+          'smart-contracts/creator-tools/EditionMetadataRenderer', 
+          'smart-contracts/creator-tools/DropMetadataRenderer'
+        ],
+      },
+      {
+        type: 'category',
+        label: 'V3 Modules ',
         collapsed: false,
         items: [
           {
