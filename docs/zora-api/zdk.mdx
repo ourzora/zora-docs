@@ -323,10 +323,10 @@ zdK.mints(
 | where.recipientAddresses | List of receiver addresses to filter by |
 | where.tokens: | Tuple of token and id to filter by an exact match as a list |
 | filter | Filter query parameters after the where query |
-| filter.timeFilter | Arguments for filtering market info expectations |
-| timeFilter.endDate | A string array of addresses that have bid for this NFT |
-| timeFilter.lookbackHours | An enum specifying the version of Zora the order is made on | V1Ask, V1BidShare, V1Offer, V2Auction, V3Ask
-| timeFilter.startDate | An enum specifying status of orders being returned | Active, Canceled, Completed
+| filter.timeFilter | An input of type TimeFilter for time partitioned event responses. |
+| timeFilter.endDate | A string in ISO format to state the end range |
+| timeFilter.lookbackHours | An int used to look back a certain number of hours |
+| timeFilter.startDate | A string in ISO format to state the start range |
 | filter.priceFilter | Arguments for filtering price ranges |
 | priceFilter.currencyAddress | A string specifying the currency being used for the market transaction to be returned |
 | priceFilter.maximumChainTokenPrice | A string specifying the maximum price of the native chain token (ETH, MATIC, etc) to return |
@@ -445,10 +445,10 @@ zdK.sales(
 | where.sellerAddresses | List of receiver addresses to filter by |
 | where.tokens: | Tuple of token and id to filter by an exact match as a list |
 | filter | Filter query parameters after the where query |
-| filter.timeFilter | Arguments for filtering market info expectations |
-| timeFilter.endDate | A string array of addresses that have bid for this NFT |
-| timeFilter.lookbackHours | An enum specifying the version of Zora the order is made on | V1Ask, V1BidShare, V1Offer, V2Auction, V3Ask
-| timeFilter.startDate | An enum specifying status of orders being returned | Active, Canceled, Completed
+| filter.timeFilter | An input of type TimeFilter for time partitioned event responses.  |
+| timeFilter.endDate | A string in ISO format to state the end range |
+| timeFilter.lookbackHours | An int used to look back a certain number of hours |
+| timeFilter.startDate | A string in ISO format to state the end range |
 | filter.priceFilter | Arguments for filtering price ranges |
 | priceFilter.currencyAddress | A string specifying the currency being used for the market transaction to be returned |
 | priceFilter.maximumChainTokenPrice | A string specifying the maximum price of the native chain token (ETH, MATIC, etc) to return |
@@ -485,10 +485,10 @@ zdK.salesVolume(
 | attributes.traitType | A string to set the trait type to return by |
 | attributes.value | A string of a trait's possible value(s) to return by |
 | where.collectionAddresses | List of collection addresses to filter by |
-| timeFilter | A filter for getting sales during a range of time |
+| timeFilter | An input of type TimeFilter for time partitioned event responses.  |
 | timeFilter.endDate | A string array of addresses that have bid for this NFT |
-| timeFilter.lookbackHours | An enum specifying the version of Zora the order is made on | V1Ask, V1BidShare, V1Offer, V2Auction, V3Ask
-| timeFilter.startDate | An enum specifying status of orders being returned | Active, Canceled, Completed
+| timeFilter.lookbackHours | An int used to look back a certain number of hours |
+| timeFilter.startDate | A string in ISO format to state the end range |
 
 ---
 
