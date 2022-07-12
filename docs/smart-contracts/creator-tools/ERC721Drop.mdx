@@ -121,13 +121,13 @@ Capabilities include:
 
 `bytes32 role = 0x0000000000000000000000000000000000000000000000000000000000000000`
 
-#### Admin Minter
+#### Minter Role
 A restricted admin that is only able to access special minting functions such as `adminMint` and `adminMintAirdrop`.
 
 `bytes32 role = MINTER_ROLE`
 
 
-#### Admin Sales Manager
+#### Sales Manager Role
 A restricted admin that is only able to update the `salesConfig` and call the `withdraw` function.
 
 `bytes32 role = SALES_MANAGER_ROLE`
@@ -171,7 +171,7 @@ function setOwner(address newOwner)
 
 ## Withdrawing Funds
 Once minting has concluded, the funds can be moved out of the contract by calling the `withdraw` function.
-Withdraw can be called by a default admin, the `fundsRecipient` address, a sales manager admin, and the Zora DAO.
+Withdraw can be called by a default admin, the `fundsRecipient` address, a sales manager role, and the Zora DAO.
 ```
 function withdraw()
 ```
