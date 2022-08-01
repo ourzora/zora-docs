@@ -28,7 +28,7 @@ The config holds the internal settings for all the minting/sales parameters.
 - `maxSalePurchasePerAddress`: Max amount of NFTs an address can mint (only for public minting)
 - `presaleMerkleRoot`: A cryptographic proof that is used for presale minting (allow list)
 
-Note that `presaleMerkleRoot` can be set to `0x0000000000000000000000000000000000000000000000000000000000000000` if there is no plans for allow list minting.
+Note that `presaleMerkleRoot` can be set to `0x0000000000000000000000000000000000000000000000000000000000000000` if there are no plans for allow list minting.
 Current values can be viewed by calling `salesConfig` on the contract and it can be updated by calling `setSalesConfig` with the new parameters.
 
 Learn more about creating an allow list [here.](./ERC721Drop#creating-a-presale-allowlist)
