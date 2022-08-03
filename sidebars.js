@@ -124,6 +124,7 @@ module.exports = {
           label: 'Guides',
           collapsed: false,
           items: [
+            'guides/api-offchain',
             'guides/api-address-balance',
             'guides/api-collection-data',
             'guides/zdk-intro-guide'
