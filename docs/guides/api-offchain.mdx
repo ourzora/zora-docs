@@ -315,9 +315,9 @@ Note that this is example code and will need to be tweeked for your application.
 
 ```js
 // You can get the signer from a wallet using web3modal/rainbowkit etc.
-// See: https://docs.ethers.io/v5/api/signer/
+// See: https://docs.ethers.io/v5/api/signer/ and https://www.apollographql.com/docs/react/get-started/
 
-import {ApolloClient, useQuery, gql} from '@apollo/client';
+import {ApolloClient, InMemoryCache, gql} from '@apollo/client';
 import axios from "axios";
 import { ethers } from "ethers";
 
@@ -328,11 +328,12 @@ const signer = await provider.getSigner();
 // Apollo Client
 const client = new ApolloClient({
   uri: 'https://api.zora.co/graphql',
+  cache: new InMemoryCache()
 })
 
 // 1) Get Order
 // Sorts Noun orders by ascending ETH price and returns the cheapest Noun
-const CheapestNounOrder = gql`
+const cheapestNounOrder = gql`
   query CheapestNoun {
   offchainOrders(
     where: {collectionAddresses: "0x9c8ff314c9bc7f6e59a9d9225fb22946427edc03"}, 
@@ -354,7 +355,7 @@ const CheapestNounOrder = gql`
 }
 `
 
-const {data} = useQuery(CheapestNounOrder);
+const {data} = await client.query({query: cheapestNounOrder})
 const cheapestNoun = data.nodes[0];
 
 
