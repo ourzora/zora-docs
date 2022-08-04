@@ -109,7 +109,7 @@ Below we are searching for orders created for Nouns and sorted by ascending ETH 
 <TabItem value="query">
 
 ```graphql
-query ListCollections {
+query NounsOrder {
   offchainOrders(
   where: {collectionAddresses: "0x9c8ff314c9bc7f6e59a9d9225fb22946427edc03"}, 
   sort: {sortKey: CHAIN_TOKEN_PRICE, sortDirection: ASC}) {
@@ -308,3 +308,79 @@ const result = await signer.sendTransaction(tx)
 ```
 
 Once the transaction has confirmed, congrats you have completed your first OpenSea NFT purchase using the Zora API.
+
+## Filling an Order Start to Finish 
+How to go from start to finish for finding an order to filling it client side. 
+Note that this is example code and will need to be tweeked for your application.
+
+```js
+// You can get the signer from a wallet using web3modal/rainbowkit etc.
+// See: https://docs.ethers.io/v5/api/signer/ and https://www.apollographql.com/docs/react/get-started/
+
+import {ApolloClient, InMemoryCache, gql} from '@apollo/client';
+import axios from "axios";
+import { ethers } from "ethers";
+
+// Ethers Signer
+const provider = new ethers.providers.Web3Provider(web3.currentProvider, 1);
+const signer = await provider.getSigner();
+
+// Apollo Client
+const client = new ApolloClient({
+  uri: 'https://api.zora.co/graphql',
+  cache: new InMemoryCache()
+})
+
+// 1) Get Order
+// Sorts Noun orders by ascending ETH price and returns the cheapest Noun
+const cheapestNounOrder = gql`
+  query CheapestNoun {
+  offchainOrders(
+    where: {collectionAddresses: "0x9c8ff314c9bc7f6e59a9d9225fb22946427edc03"}, 
+    sort: {sortKey: CHAIN_TOKEN_PRICE, sortDirection: ASC}, 
+    pagination: {limit: 1}) {
+    nodes {
+      offchainOrder {
+        contractAddress
+        tokenId
+        calldata
+        price {
+          nativePrice {
+            decimal
+          }
+        }
+      }
+    }
+  }
+}
+`
+
+const {data} = await client.query({query: cheapestNounOrder})
+const cheapestNoun = data.nodes[0];
+
+
+// 2) Verfiy 
+const postObj = {
+  "caller_address": "YOUR_ADDRESS",
+  "contract_address": cheapestNoun.offchainOrder.contractAddress, // The contract that fills the orders e.g. Seaport
+  "calldata": cheapestNoun.offchainOrder.calldata,
+  "value": cheapestNoun.price.nativePrice.decimal // Price in Ether (Decimals Price)
+}
+const response = await axios.post('https://api.zora.co/validate-contract-call', postObj);
+
+// Make a check to confirm that order is still valid
+if (response.data.message !== "successfully simulated contract call") return;
+
+// 3) Submit 
+const decimalPrice = cheapestNoun.price.nativePrice.decimal; // Price in ETH
+const weiPrice = ethers.utils.parseEther(decimalPrice);
+
+const tx = {
+  from: "YOUR_ADDRESS",
+  to: cheapestNoun.offchainOrder.contractAddress, // Contract that fills the order e.g. Seaport
+  value: weiPrice, // Price in Wei
+  data: cheapestNoun.offchainOrder.calldata ,
+}
+
+const result = await signer.sendTransaction(tx)
+```
