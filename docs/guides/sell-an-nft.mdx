@@ -151,12 +151,18 @@ const blitmapAddress = "0x8d04a8c79cEB0889Bdd12acdF3Fa9D207eD3Ff63"; // Blitmap 
 const fillAmount = ethers.utils.parseEther("100"); // 100 ETH Sale Price
 const finder = "0x17cd072cBd45031EFc21Da538c783E0ed3b25DCc"; // Address that helped find the buyer. Can be the 0 address if no address is specified
 
+
+// *Note: Since the ask is priced in ETH the transaction must also send the same amount of ETH in the transaction. This can be done by specifying the value as an override in the transaction.
+const overrides = {
+  value: fillAmount
+}
 await askModuleContract.fillAsk(
   blitmapAddress,
   "1", // Token Id
   "0x0000000000000000000000000000000000000000", // 0 address for ETH sale
   fillAmount,
-  finder
+  finder,
+  overrides // Only for asks priced in ETH
 );
 ```
 
