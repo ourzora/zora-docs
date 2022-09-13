@@ -40,7 +40,7 @@ module.exports = {
       {
         type: 'category',
         label: 'V3 Modules ',
-        collapsed: false,
+        collapsed: true,
         items: [
           {
             type: 'category',
