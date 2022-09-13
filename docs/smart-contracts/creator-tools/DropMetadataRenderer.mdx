@@ -9,12 +9,12 @@ Whenever a `tokenURI` is called on an NFT contract it is forwarded to this contr
 View the source contract code [here](https://github.com/ourzora/zora-drops-contracts/blob/main/src/metadata/DropMetadataRenderer.sol) and the list of deployed contract addresses [here](https://github.com/ourzora/zora-drops-contracts/tree/main/deployments).
 
 - `baseURI`: A common base path that all the assets share and can append the tokenId to the end to get the metadata for an NFT.
-- `contractURI`: A resource for getting metadata for the contract.
+- `contractURI`: A resource for getting metadata for the contract. Follows the contract-level metadata format described [here](https://docs.opensea.io/docs/contract-level-metadata).
 - `provenanceHash`: A hash that is used to prove that the order of the images and metadata was set pre-mint, and was not manipulated.
 - `target`: The address of the NFT contract to get data for.
 
 ## updateMetadataBase
-Updates to update either the baseURI or contractURI. 
+Updates the baseURI and contractURI.
 ```
 function updateMetadataBase(
     address target,
@@ -24,7 +24,7 @@ function updateMetadataBase(
 ```
 
 ## updateMetadataBaseWithDetails
-Updates the metadata base URI, extension, contract URI and freezing detailsUpdate metadata base URI, extension, contract URI and freezing detailsUpdate
+Updates the metadata base URI, extension, contract URI and freezing details.
 
 ```
 function updateMetadataBaseWithDetails(
