@@ -86,7 +86,7 @@ You can use the following 2 packages to import the ABIs and typechain types (if 
 
 ```javascript
 import { ethers } from "ethers";
-import mainnetZoraAddresses from "@zoralabs/v3/dist/addresses/1.json"; // Mainnet addresses, 4.json would be Rinkeby Testnet 
+import mainnetZoraAddresses from "@zoralabs/v3/dist/addresses/1.json"; // Mainnet addresses
 import { AsksV11__factory } from "@zoralabs/v3/dist/typechain/factories/AsksV11__factory";
 
 // This should be an ethers.js signer instance: 
@@ -117,11 +117,11 @@ await askModuleContract.createAsk(
 ```
 
 ##### Different Networks
-Note these examples use `Mainnet`, but if you would like to test on `Rinkeby` then you can update the `networkId` in the import to be `4.json` to get the `Rinkeby` addresses.
+Note these examples use `Mainnet`, but if you would like to test on `Geroli` then you can update the `networkId` in the import to be `5.json` to get the `Geroli` addresses.
 
-`@zoralabs/v3/dist/addresses/1.json` change to `@zoralabs/v3/dist/addresses/4.json` 
+`@zoralabs/v3/dist/addresses/1.json` change to `@zoralabs/v3/dist/addresses/5.json` 
 
-You can also get `Rinkeby` ETH at the faucet [here](https://www.rinkebyfaucet.com/).
+You can also get `Geroli` ETH at the faucet [here](https://faucet.paradigm.xyz/) or [here](https://goerlifaucet.com/).
 
 ##### Setting the Finders Fee
 The Finders Fee is an optional amount that can be included when an `ask` is created.
@@ -187,12 +187,14 @@ In the example below I am updating the price from 100 ETH to 110 ETH.
 ```javascript
 const blitmapAddress = "0x8d04a8c79cEB0889Bdd12acdF3Fa9D207eD3Ff63"; // Blitmap NFT Contract
 const askPrice = ethers.utils.parseEther("110"); // 110 ETH Sale Price
+const overrides = { value: askPrice } // Need to pass in an override in the function call since you are sending Ether in the tx
 
 await askModuleContract.setAskPrice(
   blitmapAddress,
   "1", // Token Id
   askPrice,
   "0x0000000000000000000000000000000000000000", // 0 address for ETH sale
+  overrides
 );
 ```
 

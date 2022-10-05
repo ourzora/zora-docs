@@ -12,6 +12,11 @@ export const toolsCardsContent = [
     toolsLink: '/docs/smart-contracts/zora-v3',
   },
   {
+    toolsTitle: 'Create',
+    toolsParagraph: 'An interface that makes it easy to create an NFT collection with no coding required.',
+    toolsLink: 'https://create.zora.co/',
+  },
+  {
     toolsTitle: 'NFT Rendering',
     toolsParagraph:
       'Easy to use components for displaying any NFT with little to no coding.',
@@ -22,11 +27,6 @@ export const toolsCardsContent = [
     toolsParagraph:
       'A developer kit that makes it easy to use the Zora API without needing to know GraphQL.',
     toolsLink: '/docs/zora-api/zdk',
-  },
-  {
-    toolsTitle: 'Editions',
-    toolsParagraph: 'An interface that makes it easy to create an NFT collection with no coding required.',
-    toolsLink: 'https://create.zora.co/',
   },
   {
     toolsTitle: 'NFT Hooks',

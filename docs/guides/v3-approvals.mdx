@@ -43,7 +43,7 @@ You can use the following 2 packages to import the ABIs and typechain types (if 
 
 ```javascript
 import { ethers } from "ethers";
-import mainnetZoraAddresses from "@zoralabs/v3/dist/addresses/1.json"; // Mainnet addresses, 4.json would be Rinkeby Testnet 
+import mainnetZoraAddresses from "@zoralabs/v3/dist/addresses/1.json"; // Mainnet addresses, 5.json would be Geroli Testnet 
 import { IERC721__factory } from "@zoralabs/v3/dist/typechain/factories/IERC721__factory";
 import { IERC20__factory } from "@zoralabs/v3/dist/typechain/factories/IERC20__factory";
 import { ZoraModuleManager__factory } from "@zoralabs/v3/dist/typechain/factories/ZoraModuleManager__factory";
@@ -68,11 +68,11 @@ const erc20Contract = IERC20__factory.connect(nftContractAddress, signer);
 const moduleManagerContract = ZoraModuleManager__factory.connect(mainnetZoraAddresses.ZoraModuleManager, signer);
 ```
 ##### Different Networks
-Note these examples use `Mainnet`, but if you would like to test on `Rinkeby` then you can update the `networkId` in the import to be `4` to get the `Rinkeby` addresses.
+Note these examples use `Mainnet`, but if you would like to test on `Geroli` then you can update the `networkId` in the import to be `5` to get the `Geroli` addresses.
 
-`@zoralabs/v3/dist/addresses/1.json` change to `@zoralabs/v3/dist/addresses/4.json` 
+`@zoralabs/v3/dist/addresses/1.json` change to `@zoralabs/v3/dist/addresses/5.json` 
 
-You can also get `Rinkeby` ETH at the faucet [here](https://www.rinkebyfaucet.com/).
+You can also get `Geroli` ETH at the faucet [here](https://faucet.paradigm.xyz/) or [here](https://goerlifaucet.com/).
 
 ---
 ### Approving a Transfer Helper

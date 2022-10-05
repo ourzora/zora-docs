@@ -26,7 +26,7 @@ import { useWeb3React } from '@web3-react/core'
 function MyComponent() {
   const { library, chainId } = useWeb3React()
   // library is a ethers provider/signer instance
-  // Ethereum Mainnet (1) Rinkeby (4) for the chainId
+  // Ethereum Mainnet (1) for the chainId
 
   const auctionHouse = useMemo(() => {
     if (library && chainId) {

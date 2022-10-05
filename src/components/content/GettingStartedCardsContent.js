@@ -1,9 +1,9 @@
 export const gettingStartedContent = [
   {
     docNumber: '01',
-    docTitle: 'Get started learning about ZORA V3 →',
-    docSubtopic: 'ZORA V3',
-    docLink: 'docs/v3-overview',
+    docTitle: 'Create an NFT Collection →',
+    docSubtopic: 'Create Tool',
+    docLink: 'docs/smart-contracts/creator-tools/intro',
   },
   {
     docNumber: '02',
