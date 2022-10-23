@@ -9,7 +9,7 @@ export const toolsCardsContent = [
     toolsTitle: 'Smart Contracts',
     toolsParagraph:
       'Permissonless contracts that allows anyone to sell any ERC-721 NFT.',
-    toolsLink: '/docs/smart-contracts/zora-v3',
+    toolsLink: '/docs/smart-contracts/intro',
   },
   {
     toolsTitle: 'Create',

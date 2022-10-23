@@ -1,0 +1,392 @@
+---
+id: intro
+title: Introduction
+---
+
+import nounsBuilderArch from "../../../static/img/nounsBuilderArch.png"
+import managerContract from "../../../static/img/managerContract.png"
+import builderProperties from "../../../static/img/builderProperties.png"
+import deployingDAO from "../../../static/img/deployingDAO.png"
+import initialDAO from "../../../static/img/initialDAO.png"
+
+
+# Introduction
+
+##### Build your own DAO 
+
+---
+
+Nouns builder allows anyone to easily deploy a DAO in minutes. 
+Inspired by [NounsDAO](https://nouns.center/intro), Nouns builder uses a factory contract called the Manager to create custom Nouns-styled DAOs.
+
+- [Builder Contract Code](https://github.com/ourzora/nouns-protocol) 
+- [Mainnet Addresses](https://github.com/ourzora/nouns-protocol/blob/main/deploys/1.txt)
+- [Builder Interface](https://nouns.build/)
+
+<img class="guide-photos" src={managerContract} alt="builder-arch" height="400px"/>
+
+<br/>
+
+#### Why Nouns styled DAOs are interesting
+- `Distribution Mechanism:` Creating an NFT at a consistent interval allows the community to form at a healthy rate rather than distributing governance via an airdrop.
+- `Composable and Upgradable:` All contracts are individually upgradable meaning the DAO is not a static thing, but rather something that is meant to evolve over time.
+- `Perpetual Funding:` The DAO creates sustainable funding by consistently issuing new NFTs over time.
+
+---
+
+## Core Contracts
+Definitions for the key contracts that make up Builder. 
+- `Manager:` In charge of deploying custom DAOs
+
+DAO Components: 
+- `Token:` ERC-721 NFT contract which has its minting controlled by the Auction contract
+- `Metadata Renderer:` On-chain metadata renderer for the NFTs
+- `Auction:` Mints new NFTs and auctions them off
+- `Treasury:` Stores DAO funds and executes transactions based on governance
+- `Governance:` Holds logic for creating and voting on proposals
+
+<img class="guide-photos" src={nounsBuilderArch} alt="builder-arch"/>
+
+---
+
+## Custom Settings
+The important settings that can be configured when first creating a DAO and later updated by Governance. 
+
+- `DAO Metadata`: Name, Description, Image, [Website]
+- `Auction Duration:` How often a new NFT is created and put up for auction
+- `Auction Reserve Price:` Min bid required to start an auction
+- `Proposal Threshold:` Min [BPS](https://www.investopedia.com/terms/b/basispoint.asp) of total votes (NFTs) needed to put a proposal to a vote.
+For example, if the Proposal Threshold is set to 100 BPS and there are 500 total NFTs minted then 5 NFTs need to approve the proposal for it to be put to a vote.
+- `Quorum Threshold:` Min BPS of total votes (NFTs) required for a proposal to pass
+- `Veto Power:` Optional choice for founders to be able to veto proposals
+- `NFT Image Properties:` Image components used for creating the NFTs
+- `Founders and Allocations:` Set multiple founders with different allocations
+
+Note, veto power is encouraged due to the small number of votes (NFTs) at the beginning of a DAO.
+The veto can later before removed by the founders once the NFTs have become sufficiently decentralized.
+
+---
+
+## NFT Image Configuration
+Every time an auction is started a new NFT image is randomly generated.
+These properties are first set when the DAO is created by providing a folder of artwork layers.
+
+Note, that the properties for the DAO NFTs are stored in a single folder on IPFS and then randomly generated using the image properties.
+
+### Image Requirments
+- PNG and SVG are the only supported file types
+- 600px x 600px minimum for PNGs and 32px minimum for SVGs
+- Images must be square
+
+### Properties vs Items
+- `Properties:` Categories of different traits for the DAO NFTs 
+- `Items:` Distinct images that make up a property
+
+<img class="guide-photos" src={builderProperties} alt="builder-proterties"/>
+
+<br/> 
+
+### Seed Generation
+The seed is used to create a random combination of properties for the DAO NFTs.
+It is generated in the [Metadata Render Contract](https://github.com/ourzora/nouns-protocol/blob/main/src/token/metadata/MetadataRenderer.sol#L279) by calling `_generateSeed` with the current tokenId and salting the hash with block data.
+
+```
+function _generateSeed(uint256 _tokenId) private view returns (uint256) {
+    return uint256(keccak256(abi.encode(_tokenId, blockhash(block.number), block.coinbase, block.timestamp)));
+}
+```
+
+### Adding Properties
+Once the properties have been uploaded to IPFS they then need to be added to the metadata render by calling `addProperties`.
+```
+/// @notice Adds properties and/or items to be pseudo-randomly chosen from during token minting
+/// @param _names The names of the properties to add
+/// @param _items The items to add to each property
+/// @param _ipfsGroup The IPFS base URI and extension
+function addProperties(
+    string[] calldata _names,
+    ItemParam[] calldata _items,
+    IPFSGroup calldata _ipfsGroup
+) external onlyOwner
+```
+
+---
+
+## Creating a DAO 
+There are 3 main steps to creating a DAO with Nouns Builder:
+
+### 1. Deployment 
+
+First, the founder calls the Manager contract with all the selected settings to deploy the DAO contracts. 
+This deploys new contracts for each component of the DAO and has the owner set to the founder's address.
+In this stage, the founders can edit the contracts directly and make any necessary changes before handing off control to the DAO.
+
+<img class="guide-photos" src={deployingDAO} alt="deploying-DAO" height="350px"/>
+
+<br/>
+
+```
+/// @notice Deploys a DAO with custom token, auction, and governance settings
+/// @param _founderParams The DAO founders
+/// @param _tokenParams The ERC-721 token settings
+/// @param _auctionParams The auction settings
+/// @param _govParams The governance settings
+function deploy(
+    FounderParams[] calldata _founderParams,
+    TokenParams calldata _tokenParams,
+    AuctionParams calldata _auctionParams,
+    GovParams calldata _govParams
+)
+```
+
+<br/>
+
+### 2. Metadata Configuration 
+Next, a separate transaction is sent to the Metadata Render contract to store all the property values.
+This way the Render contract knows all the possible properties and items when randomly generating the images for the DAO NFTs.
+
+```
+/// @notice Adds properties and/or items to be pseudo-randomly chosen from during token minting
+/// @param _names The names of the properties to add
+/// @param _items The items to add to each property
+/// @param _ipfsGroup The IPFS base URI and extension
+function addProperties(
+    string[] calldata _names,
+    ItemParam[] calldata _items,
+    IPFSGroup calldata _ipfsGroup
+) external onlyOwner
+```
+
+<br/>
+
+### 3. Initialization 
+
+Finally, initializing hands control over to the DAO by setting the Treasury contract as the owner and then starting the first auction.
+
+The Treasury contract is set as the owner since it is the contract that executes transactions based on governance votes.
+Once a DAO has been initialized the founders are no longer able to directly change the contracts and must have a proposal pass governance to do so.
+
+<img class="guide-photos" src={initialDAO} alt="deploying-DAO" height="350px"/>
+
+---
+
+## Auctions
+Auctions play a key role in a DAO as the main form of perpetual funding.
+The frequency of an auction is set by the founder when the DAO is created.
+Once the DAO has been initialized it will hand over control of the auction house to the treasure and start the first auction.
+
+### Keywords
+
+- `Duration:` How long an auction runs/how often a new NFT is created
+- `Reserve Price:` Min bid amount required to start an auction
+- `Min Bid Increment:` The min percent greater a bid must be than the current highest bid to be valid.
+Nouns builder default sets the minBidIncrement to 10%.
+For example, if the current highest bid is 1 ETH and then the next bid must be 1.1 ETH or greater
+- `Buffer:` The time window in the final minutes of an auction when a new bid can reset the timer. 
+The default time buffer is 5 minutes, meaning that a bid in the last 5 minutes of the auction resets the timer to 5 minutes. 
+
+### Creating a Bid
+Anyone can create a bid by calling `createBid` and passing in the tokenId of the NFTs that is currently being sold.
+Note, submitting a bid within the range of the buffer time will reset the auction timer to the buffer time. 
+The DAO defaults to a 5 minute buffer meaning that a bid in the last 5 minutes of the auction resets the timer to 5 minutes. 
+
+Also, a bid must be equal to or greater than the `minBidIncrement` amount which is set to 10% in the DAO by default.
+For example, if the current highest bid is 1 ETH and the `minBidIncrement` is set to 10% then the next bid must be 1.1 ETH or greater.
+
+```
+// @notice Creates a bid on an NFT. Note the ETH is sent in the value field of a transaction.
+function createBid(uint256 _tokenId) external payable nonReentrant
+```
+
+### Starting and Settling an Auction
+Once the first auction has been started by initializing the DAO, perpetual auctions are set into motion. 
+Setting the auction is done by calling `settleCurrentAndCreateNewAuction` which allows the winner to claim the NFT. 
+In addition, the same transaction mints and starts the next auction for a new NFT. 
+
+```
+/// @notice Settles the current auction and creates the next one
+    function settleCurrentAndCreateNewAuction() external nonReentrant whenNotPaused {
+        _settleAuction();
+        _createAuction();
+    }
+```
+
+---
+
+## Governance 
+
+The Governance contract is in charge of maintaining order within the DAO. 
+It keeps a record of proposals and votes.
+While the Treasury contract is in charge of holding DAO funds and executing transactions for passed proposals.
+
+#### Keywords
+- `Proposal Threshold:` Min [BPS](https://www.investopedia.com/terms/b/basispoint.asp) of total votes (NFTs) needed to put a proposal to a vote.
+For example, if the Proposal Threshold is set to 100 BPS and there are 500 total NFTs minted then 5 NFTs need to approve the proposal for it to a vote.
+- `Quorum Threshold:` Min BPS of total votes (NFTs) required for a proposal to pass
+- `Voting Delay:` The amount of time before a proposal can start voting in seconds.
+- `Voting Period:` The duration for voting on a proposal in seconds.
+
+#### Proposal Lifecycle:
+- A proposal is submitted to the DAO on-chain
+- If enough NFTs back the proposal to clear the Proposal Threshold it is then put to a vote
+- However, the proposal can't be voted on until after the voting delay time has passed
+- Once the delay has concluded, the proposal must then receive a majority For (50%) and surpass the Quorum Threshold
+- Finally, if the voting period has finished and it has received enough For votes then the proposed transaction is submitted for execution
+
+#### Min and Max Values
+As a precaution, Nouns Builder has put guards in place to make sure that goverance can't set voting parameters to unreasonable values.
+Listed below are the min and max values possible for each governance parameter.
+
+##### Proposal Threshold 
+- `MIN_PROPOSAL_THRESHOLD_BPS:` 1
+- `MAX_PROPOSAL_THRESHOLD_BPS:` 1000
+
+##### Quorum Threshold 
+- `MIN_QUORUM_THRESHOLD_BPS:` 200
+- `MAX_QUORUM_THRESHOLD_BPS:` 2000  
+
+##### Voting Delay
+- `MIN_VOTING_DELAY:` 1 seconds
+- `MAX_VOTING_DELAY:` 24 weeks
+
+##### Voting Period
+- `MIN_VOTING_PERIOD:` 10 minutes
+- `MAX_VOTING_PERIOD:` 24 weeks
+
+### Proposing
+Anyone can create a proposal, however, the proposal needs to have a certain number of NFTs backing it (Proposal Threshold) before it is put to a vote.
+```
+/// @param _targets The target addresses to call
+/// @param _values The ETH values of each call
+/// @param _calldatas The calldata of each call
+/// @param _description The proposal description
+function propose(
+    address[] memory _targets,
+    uint256[] memory _values,
+    bytes[] memory _calldatas,
+    string memory _description
+) external returns (bytes32)
+```
+
+### Voting
+Once a proposal has received enough backing to surpass the Proposal Threshold and enough time has passed for the Voting Delay, then the voting process can begin.
+There are different ways to cast a vote for a proposal.
+
+Note, the Token contract checkpoints the timestamp every time the NFT is transferred.
+As a result, an NFT is not able to vote on a proposal if it has been transferred after the proposal was created. 
+
+#### castVote
+```
+/// @param _proposalId The proposal id
+/// @param _support The support value (0 = Against, 1 = For, 2 = Abstain)
+function castVote(bytes32 _proposalId, uint256 _support) external returns (uint256) {
+    return _castVote(_proposalId, msg.sender, _support, "");
+}
+```
+
+#### castVoteWithReason
+```
+/// @notice Casts a vote with a reason
+/// @param _proposalId The proposal id
+/// @param _support The support value (0 = Against, 1 = For, 2 = Abstain)
+/// @param _reason The vote reason
+function castVoteWithReason(
+    bytes32 _proposalId,
+    uint256 _support,
+    string memory _reason
+) external returns (uint256)
+```
+
+#### castVoteBySig
+```
+/// @notice Casts a signed vote
+/// @param _voter The voter address
+/// @param _proposalId The proposal id
+/// @param _support The support value (0 = Against, 1 = For, 2 = Abstain)
+/// @param _deadline The signature deadline
+/// @param _v The 129th byte and chain id of the signature
+/// @param _r The first 64 bytes of the signature
+/// @param _s Bytes 64-128 of the signature
+function castVoteBySig(
+    address _voter,
+    bytes32 _proposalId,
+    uint256 _support,
+    uint256 _deadline,
+    uint8 _v,
+    bytes32 _r,
+    bytes32 _s
+) external returns (uint256)
+```
+
+### Executing a Proposal
+If a proposal has received a majority For vote and has passed the Quorum Threshold it can be executed on-chain.
+The execute function is called on the Governance contract, but forwards the calldata to the Treasury contract.
+```
+/// @param _targets The target addresses to call
+/// @param _values The ETH values of each call
+/// @param _calldatas The calldata of each call
+/// @param _descriptionHash The hash of the description
+/// @param _proposer The proposal creator
+function execute(
+    address[] calldata _targets,
+    uint256[] calldata _values,
+    bytes[] calldata _calldatas,
+    bytes32 _descriptionHash,
+    address _proposer
+) external payable returns (bytes32)
+```
+
+### Delegation
+The Token contract allows holders to be able to delegate their voting power to another address.
+Note, on transfer the Token contract resets all delegation records.
+
+#### delegate
+```
+/// @notice Delegates votes to an account
+/// @param _to The address delegating votes to
+function delegate(address _to) external
+```
+
+#### delegateBySig
+```
+/// @notice Delegates votes from a signer to an account
+/// @param _from The address delegating votes from
+/// @param _to The address delegating votes to
+/// @param _deadline The signature deadline
+/// @param _v The 129th byte and chain id of the signature
+/// @param _r The first 64 bytes of the signature
+/// @param _s Bytes 64-128 of the signature
+function delegateBySig(
+    address _from,
+    address _to,
+    uint256 _deadline,
+    uint8 _v,
+    bytes32 _r,
+    bytes32 _s
+) external
+```
+
+
+### Vetoing
+Vetoing is an optional setting that can be configured by the founders when deploying.
+Note, veto power is encouraged due to the small number of votes (NFTs) at the beginning of a DAO.
+The veto can later before removed by the founders once the NFTs have become sufficiently decentralized.
+
+#### Vetoing Proposal
+```
+/// @notice Vetoes a proposal
+/// @param _proposalId The proposal id
+function veto(bytes32 _proposalId) external
+```
+
+#### Updating and Removing Veto
+```
+/// @notice Updates the vetoer
+/// @param newVetoer The new vetoer addresss
+function updateVetoer(address newVetoer) external;
+
+/// @notice Burns the vetoer
+function burnVetoer() external;
+```
+
+---

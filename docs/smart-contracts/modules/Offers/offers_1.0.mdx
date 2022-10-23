@@ -76,7 +76,7 @@ mapping(address => mapping(uint256 => uint256[])) public offersForNFT
 Creates an `offer` for a specific NFT which can be made in either ETH or an ERC-20 token and returns the `offerId` of the newly created `offer`.
 
 - ZORA takes custody of the amount until either the `offer` is filled or canceled
-- The user must first approve the [ERC-20 Transfer Helper](../../../../smart-contracts/zora-v3#approving-tokens-to-v3) if the `offer` currency is an ERC-20 token
+- The user must first approve the ERC-20 Transfer Helper if the `offer` currency is an ERC-20 token
 - No approvals are needed if the `offer` currency is ETH
 
 ```
