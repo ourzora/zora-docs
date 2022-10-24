@@ -38,7 +38,7 @@ We have created a separate website that allows you to test out deploying a DAO o
 ---
 
 ## General Settings
-First, you will need to provide the name, symbol, an image for our DAO and optionally a website.
+First, you will need to provide the name, symbol, image for your DAO, and optionally a website.
 
 Note, the symbol is used as the name in the DAO NFT metadata. 
 For example, a DAO with a symbol of `NOUN` would have NFTs named `NOUN #1`, `NOUN #2`, etc.
@@ -57,9 +57,9 @@ Next, you will need to configure your auction settings. Keep in mind, a new DAO 
 #### Advanced
 We have chosen safe default values so don't feel pressured to change these unless you feel like a different setting is truly preferential. 
 
-- `Proposal Threshold:` Min percent of total votes (NFTs) needed to put a proposal to a vote.
+- `Proposal Threshold:` Min percent of total votes (NFTs) balance needed to put a proposal to a vote.
 For example, if the Proposal Threshold is set to 0.5% and there are 1000 total NFTs minted then 5 NFTs need to approve the proposal for it to be put to a vote.
-- `Quorum Threshold:` Min percent of total votes (NFTs) required for a proposal to pass
+- `Quorum Threshold:` Min percent of total **For** votes (NFTs) required for a proposal to pass
 
 <img className="guide-photos" src={auctionSettings} alt="auction-settings" height="500px"/>
 
@@ -157,11 +157,11 @@ Make sure to double-check that they are all correct.
 
 ---
 
-## Initializing the DAO 
+## Starting the DAO 
 Finally, once you have confirmed all the settings are correct, you are ready to start your DAO. 
 You can do this by going to your dashboard and clicking on "Start Auction". 
-This step will start the first auction and also hand over all admin controls to DAO governance.
-Note, once you initialize your DAO the settings can't be changed by a founder and must pass a governance vote.
+This step will start the first auction and also hands over admin controls to DAO governance.
+Note, once you start your DAO the settings can't be changed by a founder and must pass a governance vote.
 
 <img className="guide-photos" src={daoSettings} alt="dao-settings" height="250px"/>
 

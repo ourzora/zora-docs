@@ -31,6 +31,10 @@ module.exports = {
         collapsed: true,
         items: [
           'smart-contracts/nouns-builder/intro',
+          'smart-contracts/nouns-builder/img-config',
+          'smart-contracts/nouns-builder/creating',
+          'smart-contracts/nouns-builder/auctions',
+          'smart-contracts/nouns-builder/governance',
         ],
       },
       {
