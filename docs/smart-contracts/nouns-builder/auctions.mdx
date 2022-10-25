@@ -1,0 +1,44 @@
+---
+id: auctions
+title: Auctions
+---
+
+##### Bidding and Settling an Auction
+---
+Auctions play a key role in a DAO as the main form of perpetual funding.
+The frequency of an auction is set by the founder when the DAO is created.
+Once the DAO has been initialized it will hand over control of the auction house to the treasure and start the first auction.
+
+- `Duration:` How long an auction runs/how often a new NFT is created
+- `Reserve Price:` Min bid amount required to start an auction
+- `Min Bid Increment:` The min percent greater a bid must be than the current highest bid to be valid.
+Nouns builder default sets the minBidIncrement to 10%.
+For example, if the current highest bid is 1 ETH and then the next bid must be 1.1 ETH or greater
+- `Buffer:` The time window in the final minutes of an auction when a new bid can reset the timer. 
+The default time buffer is 5 minutes, meaning that a bid in the last 5 minutes of the auction resets the timer to 5 minutes. 
+
+## Creating a Bid
+Anyone can create a bid by calling `createBid` and passing in the tokenId of the NFT that is currently being sold.
+Note, submitting a bid within the range of the buffer time will reset the auction timer to the buffer time. 
+The DAO defaults to a 5-minute buffer meaning that a bid in the last 5 minutes of the auction resets the timer to 5 minutes. 
+
+Also, a bid must be equal to or greater than the `minBidIncrement` amount which is set to 10% in the DAO by default.
+For example, if the current highest bid is 1 ETH and the `minBidIncrement` is set to 10% then the next bid must be 1.1 ETH or greater.
+
+```
+// @notice Creates a bid on an NFT. Note the ETH is sent in the value field of a transaction.
+function createBid(uint256 _tokenId) external payable nonReentrant
+```
+
+## Starting and Settling an Auction
+Once the first auction has been started by initializing the DAO, perpetual auctions are set into motion. 
+Setting the auction is done by calling `settleCurrentAndCreateNewAuction` which allows the winner to claim the NFT. 
+In addition, the same transaction mints and starts the next auction for a new NFT. 
+
+```
+/// @notice Settles the current auction and creates the next one
+    function settleCurrentAndCreateNewAuction() external nonReentrant whenNotPaused {
+        _settleAuction();
+        _createAuction();
+    }
+```

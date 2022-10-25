@@ -1,0 +1,52 @@
+---
+id: img-config
+title: Image Configuration
+---
+
+import builderProperties from "../../../static/img/builderProperties.png"
+
+
+##### Configuring the NFTs Images
+---
+
+Every time an auction is started a new NFT image is randomly generated.
+These properties are first set when the DAO is created by providing a folder of artwork layers.
+
+Note, that the properties for the DAO NFTs are stored in a single folder on IPFS and then randomly generated using the image properties.
+
+### Image Requirments
+- PNG and SVG are the only supported file types
+- 600px x 600px minimum for PNGs and 32px minimum for SVGs
+- Images must be square
+
+### Properties vs Items
+- `Properties:` Categories of different traits for the DAO NFTs 
+- `Items:` Distinct images that make up a property
+
+<img class="guide-photos" src={builderProperties} alt="builder-proterties"/>
+
+<br/> 
+
+### Seed Generation
+The seed is used to create a random combination of properties for the DAO NFTs.
+It is generated in the [Metadata Render Contract](https://github.com/ourzora/nouns-protocol/blob/main/src/token/metadata/MetadataRenderer.sol#L279) by calling `_generateSeed` with the current tokenId and salting the hash with block data.
+
+```
+function _generateSeed(uint256 _tokenId) private view returns (uint256) {
+    return uint256(keccak256(abi.encode(_tokenId, blockhash(block.number), block.coinbase, block.timestamp)));
+}
+```
+
+### Adding Properties
+Once the properties have been uploaded to IPFS they then need to be added to the metadata render by calling `addProperties`.
+```
+/// @notice Adds properties and/or items to be pseudo-randomly chosen from during token minting
+/// @param _names The names of the properties to add
+/// @param _items The items to add to each property
+/// @param _ipfsGroup The IPFS base URI and extension
+function addProperties(
+    string[] calldata _names,
+    ItemParam[] calldata _items,
+    IPFSGroup calldata _ipfsGroup
+) external onlyOwner
+```

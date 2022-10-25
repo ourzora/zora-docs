@@ -1,20 +1,20 @@
 export const toolsCardsContent = [
   {
-    toolsTitle: 'Zora API',
+    toolsTitle: 'Nouns Builder',
     toolsParagraph:
-      'A GraphQL API with data for all ERC-721 NFTs on Ethereum.',
-    toolsLink: '/docs/zora-api/intro',
-  },
-  {
-    toolsTitle: 'Smart Contracts',
-    toolsParagraph:
-      'Permissonless contracts that allows anyone to sell any ERC-721 NFT.',
-    toolsLink: '/docs/smart-contracts/zora-v3',
+      'Build a Nouns styled DAO in minutes.',
+    toolsLink: '/docs/smart-contracts/intro',
   },
   {
     toolsTitle: 'Create',
-    toolsParagraph: 'An interface that makes it easy to create an NFT collection with no coding required.',
+    toolsParagraph: 'Create an NFT collection with no coding.',
     toolsLink: 'https://create.zora.co/',
+  },
+  {
+    toolsTitle: 'Zora API',
+    toolsParagraph:
+      'Get data for any ERC-721 NFTs on Ethereum.',
+    toolsLink: '/docs/zora-api/intro',
   },
   {
     toolsTitle: 'NFT Rendering',
@@ -25,7 +25,7 @@ export const toolsCardsContent = [
   {
     toolsTitle: 'ZDK',
     toolsParagraph:
-      'A developer kit that makes it easy to use the Zora API without needing to know GraphQL.',
+      'A kit that makes it easy to use the Zora API without needing to know GraphQL.',
     toolsLink: '/docs/zora-api/zdk',
   },
   {

@@ -24,7 +24,19 @@ module.exports = {
     {
       type: 'category',
       label: 'Smart Contracts',
-      items: ['smart-contracts/zora-v3',
+      items: ['smart-contracts/intro',
+      {
+        type: 'category',
+        label: 'Nouns Builder',
+        collapsed: true,
+        items: [
+          'smart-contracts/nouns-builder/intro',
+          'smart-contracts/nouns-builder/img-config',
+          'smart-contracts/nouns-builder/creating',
+          'smart-contracts/nouns-builder/auctions',
+          'smart-contracts/nouns-builder/governance',
+        ],
+      },
       {
         type: 'category',
         label: 'Create NFT Collection',
@@ -39,9 +51,10 @@ module.exports = {
       },
       {
         type: 'category',
-        label: 'V3 Modules ',
+        label: 'V3 Modules',
         collapsed: true,
         items: [
+          'smart-contracts/modules/intro',
           {
             type: 'category',
             label: 'Asks',
@@ -106,7 +119,7 @@ module.exports = {
         type: 'category',
         label: 'Guides',
         collapsed: false,
-        items: ['guides/v3-approvals', 'guides/sell-nft-fixed-price'],
+        items: ['guides/builder-deployment','guides/v3-approvals', 'guides/sell-nft-fixed-price'],
       }],
     },
   ],

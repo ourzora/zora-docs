@@ -1,0 +1,72 @@
+---
+id: creating
+title: Creating a DAO
+---
+
+import deployingDAO from "../../../static/img/deployingDAO.png"
+import initialDAO from "../../../static/img/initialDAO.png"
+
+##### Highlights the 3 Steps for Creating a DAO
+---
+
+Useful resources for creating a DAO:
+[Interface](https://nouns.build/) | [Testnet Interface](https://testnet.nouns.build) | [Deploy Guide](../../guides/builder-deployment)
+
+## Deployment 
+
+First, the founder calls the Manager contract with all the selected settings to deploy the DAO contracts. 
+This deploys new contracts for each component of the DAO and has the owner set to the founder's address.
+In this stage, the founders can edit the contracts directly and make any necessary changes before handing off control to the DAO.
+
+<img class="guide-photos" src={deployingDAO} alt="deploying-DAO" height="350px"/>
+
+---
+
+```
+/// @notice Deploys a DAO with custom token, auction, and governance settings
+/// @param _founderParams The DAO founders
+/// @param _tokenParams The ERC-721 token settings
+/// @param _auctionParams The auction settings
+/// @param _govParams The governance settings
+function deploy(
+    FounderParams[] calldata _founderParams,
+    TokenParams calldata _tokenParams,
+    AuctionParams calldata _auctionParams,
+    GovParams calldata _govParams
+)
+```
+
+---
+
+## Metadata Configuration 
+Next, a separate transaction is sent to the Metadata Render contract to store all the property values.
+This way the Render contract knows all the possible properties and items when randomly generating the images for the DAO NFTs.
+
+```
+/// @notice Adds properties and/or items to be pseudo-randomly chosen from during token minting
+/// @param _names The names of the properties to add
+/// @param _items The items to add to each property
+/// @param _ipfsGroup The IPFS base URI and extension
+function addProperties(
+    string[] calldata _names,
+    ItemParam[] calldata _items,
+    IPFSGroup calldata _ipfsGroup
+) external onlyOwner
+```
+
+---
+
+## Starting 
+
+Finally, starting hands control over to the DAO by setting the Treasury contract as the owner and then starting the first auction.
+
+
+The Treasury contract is set as the owner since it is the contract that executes transactions based on governance votes.
+Once a DAO has been initialized the founders are no longer able to directly change the contracts and must have a proposal pass governance to do so.
+
+<img class="guide-photos" src={initialDAO} alt="deploying-DAO" height="350px"/>
+
+<br/> 
+
+The DAO is initialized by calling the `unpause()` function on the Auction contract.
+Calling this function will start the first auction.

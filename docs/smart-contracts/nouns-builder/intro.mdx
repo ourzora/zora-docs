@@ -1,0 +1,63 @@
+---
+id: intro
+title: Introduction
+---
+
+import nounsBuilderArch from "../../../static/img/nounsBuilderArch.png"
+import managerContract from "../../../static/img/managerContract.png"
+import builderProperties from "../../../static/img/builderProperties.png"
+
+
+# Introduction
+
+##### Build your own DAO 
+
+---
+
+Nouns builder allows anyone to easily deploy a DAO in minutes. 
+Inspired by [NounsDAO](https://nouns.center/intro), Nouns builder uses a factory contract called the Manager to create custom Nouns-styled DAOs.
+
+### Important Links
+[Code](https://github.com/ourzora/nouns-protocol) | [Addresses](https://github.com/ourzora/nouns-protocol/blob/main/deploys/1.txt) | [Interface](https://nouns.build/) | [Testnet Interface](https://testnet.nouns.build) | [Deploy Guide](../../guides/builder-deployment)
+
+<img class="guide-photos" src={managerContract} alt="builder-arch" height="400px"/>
+
+<br/>
+
+#### Why Nouns styled DAOs are interesting
+- `Distribution Mechanism:` Creating an NFT at a consistent interval allows the community to form at a healthy rate rather than distributing governance via an airdrop.
+- `Composable and Upgradable:` All contracts are individually upgradable meaning the DAO is not a static thing, but rather something that is meant to evolve over time.
+- `Perpetual Funding:` The DAO creates sustainable funding by consistently issuing new NFTs over time.
+
+---
+
+## Core Contracts
+Definitions for the key contracts that make up Builder. 
+- `Manager:` In charge of deploying custom DAOs
+
+DAO Components: 
+- `Token:` ERC-721 NFT contract which has its minting controlled by the Auction contract
+- `Metadata Renderer:` On-chain metadata renderer for the NFTs
+- `Auction:` Mints new NFTs and auctions them off
+- `Treasury:` Stores DAO funds and executes transactions based on governance
+- `Governance:` Holds logic for creating and voting on proposals
+
+<img class="guide-photos" src={nounsBuilderArch} alt="builder-arch"/>
+
+---
+
+## Custom Settings
+The important settings that can be configured when first creating a DAO and later updated by Governance. 
+
+- `DAO Metadata`: Name, Description, Image, [Website]
+- `Auction Duration:` How often a new NFT is created and put up for auction
+- `Auction Reserve Price:` Min bid required to start an auction
+- `Proposal Threshold:` Min [BPS](https://www.investopedia.com/terms/b/basispoint.asp) of total votes (NFTs) needed to put a proposal to a vote.
+For example, if the Proposal Threshold is set to 100 BPS and there are 500 total NFTs minted then 5 NFTs need to approve the proposal for it to be put to a vote.
+- `Quorum Threshold:` Min BPS of total **For** votes (NFTs) required for a proposal to pass
+- `Veto Power:` Optional choice for founders to be able to veto proposals
+- `NFT Image Properties:` Image components used for creating the NFTs
+- `Founders and Allocations:` Set multiple founders with different allocations
+
+Note, veto power is encouraged due to the small number of votes (NFTs) at the beginning of a DAO.
+The veto can later before removed by the founders once the NFTs have become sufficiently decentralized.

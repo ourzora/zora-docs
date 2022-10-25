@@ -28,7 +28,7 @@ module.exports = {
         {
           position: 'left',
           label: 'Contracts',
-          to: '/docs/smart-contracts/zora-V3',
+          to: '/docs/smart-contracts/intro',
         },
         {
           position: 'left',
