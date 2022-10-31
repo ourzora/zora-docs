@@ -20,23 +20,7 @@ module.exports = {
       items: ['intro', 'v3-overview'],
     },
   ],
-  smartcontracts: [
-    {
-      type: 'category',
-      label: 'Smart Contracts',
-      items: ['smart-contracts/intro',
-      {
-        type: 'category',
-        label: 'Nouns Builder',
-        collapsed: true,
-        items: [
-          'smart-contracts/nouns-builder/intro',
-          'smart-contracts/nouns-builder/img-config',
-          'smart-contracts/nouns-builder/creating',
-          'smart-contracts/nouns-builder/auctions',
-          'smart-contracts/nouns-builder/governance',
-        ],
-      },
+  createtools: [
       {
         type: 'category',
         label: 'Create NFT Collection',
@@ -48,7 +32,34 @@ module.exports = {
           'smart-contracts/creator-tools/EditionMetadataRenderer', 
           'smart-contracts/creator-tools/DropMetadataRenderer'
         ],
-      },
+      }],
+  nounsbuilder:  [
+    {
+      type: 'category',
+      label: 'Nouns Builder',
+      collapsed: true,
+      items: [
+        'smart-contracts/nouns-builder/intro',
+        'smart-contracts/nouns-builder/img-config',
+        'smart-contracts/nouns-builder/creating',
+        'smart-contracts/nouns-builder/auctions',
+        'smart-contracts/nouns-builder/governance',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Guides',
+      collapsed: false,
+      items: [
+        'guides/builder-deployment'
+      ],
+    },
+  ],
+  smartcontracts: [
+    {
+      type: 'category',
+      label: 'Smart Contracts',
+      items: ['smart-contracts/intro',
       {
         type: 'category',
         label: 'V3 Modules',
@@ -119,7 +130,7 @@ module.exports = {
         type: 'category',
         label: 'Guides',
         collapsed: false,
-        items: ['guides/builder-deployment','guides/v3-approvals', 'guides/sell-nft-fixed-price'],
+        items: ['guides/v3-approvals', 'guides/sell-nft-fixed-price'],
       }],
     },
   ],

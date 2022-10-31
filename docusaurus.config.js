@@ -27,8 +27,13 @@ module.exports = {
         },
         {
           position: 'left',
-          label: 'Contracts',
-          to: '/docs/smart-contracts/intro',
+          label: 'Create',
+          to: '/docs/smart-contracts/creator-tools/intro',
+        },
+        {
+          position: 'left',
+          label: 'Nouns Builder',
+          to: '/docs/smart-contracts/nouns-builder/intro',
         },
         {
           position: 'left',
