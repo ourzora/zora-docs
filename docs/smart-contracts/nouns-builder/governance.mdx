@@ -3,6 +3,8 @@ id: governance
 title: Governance
 ---
 
+import proposalLifecycle from "../../../static/img/proposalLifecycle.png"
+
 ##### Creating a Proposal, Voting, and Vetoing
 ---
 
@@ -15,15 +17,19 @@ For example, if the Proposal Threshold is set to 100 BPS and there are 500 total
 - `Quorum Threshold:` Min BPS of total **For** votes (NFTs) required for a proposal to pass
 - `Voting Delay:` The amount of time before a proposal can start voting in seconds.
 - `Voting Period:` The duration for voting on a proposal in seconds.
+- `Time Lock Delay:` The amount of time a successful proposal must wait between being queued and exectuted.
 
 ---
 
-## Proposal Lifecycle:
-- A proposal is submitted to the DAO on-chain
-- If the proposer owns enough NFTs  to clear the Proposal Threshold it is then put to a vote
-- However, the proposal can't be voted on until after the voting delay time has passed
-- Once the delay has concluded, the proposal must then receive more **For** votes than **Against** and the number of **For** votes must surpass the Quorum Threshold
-- Finally, if the voting period has finished and it has received enough **For** votes then the proposed transaction is submitted for execution
+### Proposal Lifecycle:
+- A proposal is submitted to the DAO on-chain by an address that owns enough NFTs to clear the Proposal Threshold.
+- The proposal can't be voted on until after the voting delay time has passed.
+- Once the delay period has passed, the proposal must then receive more **For** votes than **Against** and the number of **For** votes must meet or the Quorum Threshold.
+- Finally, if the voting period has finished and it has received enough **For** votes then the proposed transaction is queued for execution.
+- Then the proposal must pass the Time Lock Delay which defaults to 2 days.
+- Finally, once the time lock has ended the the proposal is then executed.
+
+<img className="guide-photos" src={proposalLifecycle} alt="proposal-lifecycle" height="450px"/>
 
 ---
 

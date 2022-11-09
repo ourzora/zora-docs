@@ -1,0 +1,125 @@
+---
+id: builder-proposal
+title: How to Create a Proposal
+---
+
+import adminEdit from "../../static/img/guides/proposalGuide/adminEdit.png"
+import adminSection from "../../static/img/guides/proposalGuide/adminSection.png"
+import generalProposal from "../../static/img/guides/proposalGuide/generalProposal.png"
+import proposalCreated from "../../static/img/guides/proposalGuide/proposalCreated.png"
+import proposalForm from "../../static/img/guides/proposalGuide/proposalForm.png"
+import proposalSuccess from "../../static/img/guides/proposalGuide/proposalSuccess.png"
+import sendEthGif from "../../static/img/guides/proposalGuide/sendEthGif.gif"
+import mintNFTGif from "../../static/img/guides/proposalGuide/mintNFTGif.gif"
+import proposalLifecycle from "../../static/img/proposalLifecycle.png"
+
+##### Learn how to create a proposal for a DAO
+
+---
+
+This guide will walk you through how to create a proposal for your DAO using the [Nouns Builder UI](https://nouns.build).
+You can learn how to submit proposals for:
+- [Editing the DAO's Settings](./builder-proposal#updating-dao-settings)
+- [Sending ETH](./builder-proposal#sending-ether)
+- [Calling a Contract Function](./builder-proposal#calling-a-contract-function)
+
+However, it is important to first familiarize yourself with the key terms and lifecycle of a proposal.
+
+### Key Terms 
+
+- `Proposal Threshold:` Minimum amount of total votes (NFTs) needed to put a proposal to a vote.
+For example, if the Proposal Threshold is set to 1% and there are 500 total NFTs minted then 5 NFTs need to approve the proposal for it to a vote.
+- `Quorum Threshold:` Minimum of total **For** votes (NFTs) required for a proposal to pass
+- `Voting Delay:` The amount of time before a proposal can start voting in seconds.
+- `Voting Period:` The duration for voting on a proposal in seconds.
+- `Time Lock Delay:` The amount of time a successful proposal must wait between being queued and executed.
+
+### Proposal Lifecycle:
+- A proposal is submitted to the DAO on-chain by an address that owns enough NFTs to clear the Proposal Threshold.
+- The proposal can't be voted on until after the voting delay time has passed.
+- Once the delay period has passed, the proposal must then receive more **For** votes than **Against** and the number of **For** votes must meet or surpass the Quorum Threshold.
+- Next, if the voting period has finished and it has received enough **For** votes then the proposed transaction is queued for execution.
+- Then the proposal must pass the Time Lock Delay which defaults to 2 days.
+- Finally, once the time lock has ended the proposal is then executed.
+
+<img className="guide-photos" src={proposalLifecycle} alt="proposal-lifecycle" height="450px"/>
+
+---
+
+## Updating DAO Settings
+This section will go over how to edit a specific parameter of your DAO such as the description, auction duration, voting period, and much more.
+
+#### Admin Section
+First, navigate to the Admin tab under the live auction for your DAO. 
+You will only be able to view this section if connect a wallet that has an NFT for the DAO.
+<img className="guide-photos" src={adminSection} alt="admin-section" height="500px"/>
+
+<br/>
+
+#### Edit Details
+Next, select the DAO setting you would like to change. 
+In the example below, we are changing the auction duration to once a day instead of once every three hours.
+<img className="guide-photos" src={adminEdit} alt="admin-edit" height="400px"/>
+
+<br/>
+
+#### Proposal Form
+Now add a title and description to your proposal.
+<img className="guide-photos" src={proposalForm} alt="proposal-form" height="600px"/>
+
+<br/>
+
+#### Submitting the Proposal
+Finally, you will be prompted with a transaction once you click Submit proposal.
+This will create the proposal on-chain. 
+Note, that you must have enough NFTs in your address to meet the Proposal Threshold to create a proposal.
+<img className="guide-photos" src={proposalSuccess} alt="proposal-success" height="200px"/>
+
+<br/>
+
+#### Live Proposals
+Then you should be able to see your proposal under the Governance tab under the live auction for a DAO.
+Note, the proposal must pass the Voting Delay time period before being voted on.
+
+<img className="guide-photos" src={proposalCreated} alt="proposal-created" height="120px"/>
+
+---
+
+## Creating a General Proposal
+This section will cover how to create a custom proposal that sends ETH out of the treasury.
+
+### Sending Ether
+
+First, navigate to the Governance tab under the live auction for a DAO.
+Then click the Submit Proposal button in the Proposals section.
+<img className="guide-photos" src={generalProposal} alt="general-proposal" height="250px"/>
+
+
+#### Proposal Form
+Now add a title and description to your proposal. 
+Then paste the address you would like to send the ETH and enter the amount.
+You can skip the function and arguments part since we are only sending ETH.
+
+<img className="guide-photos" src={sendEthGif} alt="send-eth" height="400px"/>
+
+### Calling a Contract Function
+
+In this example, we will create a proposal that will mint a free NFT from a [Zora Create](https://create.zora.co/) contract.
+
+#### Proposals Section
+First, navigate to the Governance tab under the live auction for a DAO.
+Then click the Submit Proposal button in the Proposals section.
+<img className="guide-photos" src={generalProposal} alt="general-proposal" height="250px"/>
+
+#### Proposal Form
+Then write a title and description for your proposal. 
+After that add the contract ABI for the contract you are calling. 
+You can find the ABI for a contract on Etherscan under the [Contract section](https://etherscan.io/address/0xe87a68de82204bfa63e4d626d4c5194481cf3b59#code) below the source code.
+Then select the function you want to call in the proposal. 
+
+<img className="guide-photos" src={mintNFTGif} alt="general-proposal" height="400px"/>
+
+In this case, we are minting [an NFT](https://create.zora.co/collections/0xd945f759d422ae30a6166838317b937de08380e3).
+For this we will select the `purchase` function, the NFT is free so we set the ETH to 0, and we set the amount to 1 to mint a single NFT.
+Once, that is done we can submit our proposal on-chain with a transaction.
+
