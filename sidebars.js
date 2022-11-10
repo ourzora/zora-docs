@@ -51,7 +51,8 @@ module.exports = {
       label: 'Guides',
       collapsed: false,
       items: [
-        'guides/builder-deployment'
+        'guides/builder-deployment',
+        'guides/builder-proposal'
       ],
     },
   ],
