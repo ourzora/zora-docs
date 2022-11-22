@@ -1,3 +1,4 @@
+import osRoyalties from "../../../static/img/osRoyalties.png"
 
 ##### A template NFT contract that is used to create a new collection
 ---
@@ -221,5 +222,18 @@ Similar to `upgradeTo`, `upgradeToAndCall` allows a new implementation contract 
 ```
 function upgradeToAndCall(address newImplementation, bytes data)
 ```
+<br/>
+
+## Opting in to OpenSea Royalties
+OpenSea has enacted a policy that requires NFT contracts block other NFT exchanges to set royalties.
+Meaning the NFTs can't be sold on other platforms.
+When creating NFTs using the Create tool there is the option to select the implementation version that allows you to set royalties on OpenSea.
+
+<img className="guide-photos" src={osRoyalties} alt="proposal-lifecycle" width="100%"/>
+
+<br/>
+
+Note it is possible to upgrade the contract to an implementation that doesn't contain this later on if you change your mind.
+
 
 <br/>
