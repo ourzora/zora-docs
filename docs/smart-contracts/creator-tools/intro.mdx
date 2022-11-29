@@ -3,6 +3,7 @@ id: intro
 title: Introduction
 ---
 
+import EvD from "../../../static/img/EvD.png"
 import Tabs from '@theme/Tabs'
 import TabItem from '@theme/TabItem'
 
@@ -11,22 +12,20 @@ import TabItem from '@theme/TabItem'
 ---
 
 These contracts allow anyone to deploy an NFT collection in seconds.
-The `ZoraNFTCreator` factory contract uses [ERC721A](https://www.azuki.com/erc721a). 
-ERC721A is a gas-optimized NFT contract that excels when trying to mint many NFTs in a single transaction.
+The `ZoraNFTCreator` factory contract deploys gas-optimized NFT contracts.
 
 In addition, these contracts **provide built-in sales mechanics**, making it easy to both deploy a collection and sell the initial mints.
 
-## Addresses
-Creator contract addresses are constantly changing due to new deployments. 
-As a result, view [here for the most up-to-date addresses.](https://github.com/ourzora/zora-drops-contracts/tree/main/deployments)
+## Contract Addresses
+View the most update-to-date create contract addresses here: 
 
-###  Create Proxy Deployments
-The create proxy is the main contract that is used to interact with the latest deployments of the create contracts. 
+- [Mainnet Addresses](https://github.com/ourzora/zora-drops-contracts/blob/main/addresses/1.json)
+- [Goerli Addresses](https://github.com/ourzora/zora-drops-contracts/blob/main/addresses/5.json)
 
-| **Network**       | **Address**                                |
-|-------------------|--------------------------------------------|
-| Ethereum - 1      | 0xf74b146ce44cc162b601dec3be331784db111dc1 |
-| Goerli - 5        | 0xb9583D05Ba9ba8f7F14CCEe3Da10D2bc0A72f519 |
+## Important Links
+
+- [Contract Source Code](https://github.com/ourzora/zora-drops-contracts/tree/main/src)
+- [Goerli Testnet UI](https://testnet.create.zora.co/)
 
 ## Main Create Contracts
 The most important contracts are:
@@ -42,3 +41,5 @@ These contracts can make two different types of NFT collections:
 
 - `Edition`: All the NFTs share the same media asset.
 - `Drop`: All the NFTs have individual pieces of media.
+
+<img className="guide-photos" src={EvD} alt="proposal-lifecycle" width="100%"/>
