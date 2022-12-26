@@ -23,7 +23,7 @@ Blitmap Contract Address: `0x8d04a8c79cEB0889Bdd12acdF3Fa9D207eD3Ff63`
 import { ZDK } from "@zoralabs/zdk";
 
 const API_ENDPOINT = "https://api.zora.co/graphql";
-const zdk = new ZDK(API_ENDPOINT); // Defaults to Ethereum Mainnet
+const zdk = new ZDK({ endpoint: API_ENDPOINT }); // Defaults to Ethereum Mainnet
 ```
 
 ---
