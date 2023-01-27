@@ -63,7 +63,7 @@ module.exports = {
     footer: {
       style: 'dark',
     },
-    image: 'img/previewImage.png',
+    image: 'img/og-image.png',
     ...(process.env.GTAG_ID && {
       gtag: {
         trackingID: process.env.GTAG_ID,
