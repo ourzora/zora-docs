@@ -30,6 +30,7 @@ module.exports = {
           'smart-contracts/creator-tools/ZoraNFTCreator',
           'smart-contracts/creator-tools/ERC721Drop', 
           'smart-contracts/creator-tools/EditionMetadataRenderer', 
+          'smart-contracts/creator-tools/JSONExtensionRegistry', 
           'smart-contracts/creator-tools/DropMetadataRenderer'
         ],
       }],

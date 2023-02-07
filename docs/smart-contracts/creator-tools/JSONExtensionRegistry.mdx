@@ -1,0 +1,29 @@
+
+##### JSONExtensionRegistry
+---
+
+This contract is a extension registry for any address or contract owned by another address to reference a theming configuration file on-chain to update their zora.co minting profile.
+
+This contract is statically deployed at: [0xABCDEFEd93200601e1dFe26D6644758801D732E8](https://etherscan.io/address/0xABCDEFEd93200601e1dFe26D6644758801D732E8) on görli and mainnet. We will deploy on further chains as needed and we use an open CREATE2 bytecode-based deploy scheme where anyone can deploy this hyperstructure to any chain as desired.
+
+## Updating your configuration
+
+`function setJSONExtension(address target, string memory uri) external;`
+
+Call this function to set the JSON extension for your own address or an owned target address. We lookup ownership first via `AccessControl` then the `owner()` function.
+
+## Reading your configuration
+
+`function getJSONExtension(address target) external returns (string memory);`
+
+This function gets the latest registered JSON extension file.
+
+## Checking your admin status
+
+`function getIsAdmin(address target, address expectedAdmin) external view returns (bool);`
+
+For front-ends checking for updates you can use the `getIsAdmin` function to determine if the ad.
+
+## Source
+
+View source at [github.com/ourzora/json-extension-registry](https://github.com/ourzora/json-extension-registry/)
