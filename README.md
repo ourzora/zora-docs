@@ -13,6 +13,8 @@ $$$$$$$$/  $$$$$$/  $$/   $$/ $$/   $$/       $$$$$$$/   $$$$$$/   $$$$$$/   $$$
 # Contribution Guidelines
 Thanks for giving a little extra love to our docs site! Below are some basic guidelines to follow to get your PR merged :)
 
+[Live Docs Website](https://docs.zora.co/)
+
 ### Creating a Pull Request
 1. Fork the repository.
 2. On your copy of the repo, create a new branch. Be sure that your branch contains the most recent changes from the main branch.
