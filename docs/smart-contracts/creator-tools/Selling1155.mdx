@@ -12,17 +12,13 @@ Check out the [minting](./Minting1155) section to learn more about minters.
 - [Mainnet Addresses](https://github.com/ourzora/zora-creator-contracts/blob/main/addresses/1.json)
 - [Goerli Addresses](https://github.com/ourzora/zora-creator-contracts/blob/main/addresses/5.json)
 
-To sell a token, the minter strategy contract address must be given the minter role in the 1155 contract. The minter role can either be set at the contract level or on a per token basis. 
-Setting the minter address as a minter role for tokenId 0 will give it contract-level minting privileges.
-View the [permissions](./Permissions1155) section for more details on minting 
-
 To create a sale you must use the `callSale` function on the 1155 contract.
 This will set the sale in the appropriate minter.
 
 ```
 function callSale(
     uint256 tokenId,
-    IMinter1155 salesConfig, // Minter Strategy Contract Address
+    IMinter1155 salesConfig, // Minter Strategy Contract
     bytes memory data
 ) 
 ```

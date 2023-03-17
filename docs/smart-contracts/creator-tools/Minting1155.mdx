@@ -34,10 +34,8 @@ function mint(
 ## Minter Strategy Contracts
 The minting logic for Zora 1155's lives outside of the main 1155 contract. 
 It lives in separate contracts called minters. 
-To mint a token the `mint` function is called on the main 1155 contract and then the execution is passed to a minter.
-
-Note, that the minters need to be assigned the minter role to be able to mint and sell NFTs.
-View the [permissions](./Permissions1155) section for more details.
+To mint a token the `mint` function is called on the main 1155 contract and then minter checks if the user should be able to mi
+Then the minter tells the main 1155 contract if it should mint or not.
 
 - [Minters Code](https://github.com/ourzora/zora-creator-contracts/tree/main/src/minters)
 - [Mainnet Addresses](https://github.com/ourzora/zora-creator-contracts/blob/main/addresses/1.json)
