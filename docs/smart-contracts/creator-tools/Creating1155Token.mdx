@@ -1,0 +1,37 @@
+---
+title: Creating a Token 
+---
+---
+
+Calling `setupNewToken` on a deployed 1155 contract will create a new token. 
+All tokens start at tokenId 1 and increment up. 
+tokenId 0 is reserved for the contract information.
+`maxSupply` should be set to `MAX_INT` for an open edition.
+
+```
+function setupNewToken(
+    string memory _uri,
+    uint256 maxSupply
+) public nonReentrant returns (uint256) 
+```
+
+
+## Updating Metadata
+`updateTokenURI` updates the token URI for a token. 
+Won't work for tokenId 0 since that is reserved for the contract level information.
+
+```
+function updateTokenURI(
+    uint256 tokenId, 
+    string memory _newURI
+)
+```
+
+Updates the contract metadata.
+```
+function updateContractMetadata(
+    string memory _newURI, 
+    string memory _newName
+)
+```
+

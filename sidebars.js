@@ -27,11 +27,30 @@ module.exports = {
         collapsed: true,
         items: [
           'smart-contracts/creator-tools/intro',
-          'smart-contracts/creator-tools/ZoraNFTCreator',
-          'smart-contracts/creator-tools/ERC721Drop', 
-          'smart-contracts/creator-tools/EditionMetadataRenderer', 
-          'smart-contracts/creator-tools/JSONExtensionRegistry', 
-          'smart-contracts/creator-tools/DropMetadataRenderer'
+          {
+            type: 'category',
+            label: '1155 Contracts',
+            collapsed: false,
+            items: [
+            'smart-contracts/creator-tools/Deploy1155Contract',
+            'smart-contracts/creator-tools/Creating1155Token',
+            'smart-contracts/creator-tools/Selling1155',
+            'smart-contracts/creator-tools/Minting1155',
+            'smart-contracts/creator-tools/Permissions1155',
+            ],
+          },
+          {
+            type: 'category',
+            label: '721 Contracts',
+            collapsed: true,
+            items: [
+            'smart-contracts/creator-tools/ZoraNFTCreator',
+            'smart-contracts/creator-tools/ERC721Drop', 
+            'smart-contracts/creator-tools/EditionMetadataRenderer', 
+            'smart-contracts/creator-tools/JSONExtensionRegistry', 
+            'smart-contracts/creator-tools/DropMetadataRenderer'
+            ],
+          },
         ],
       }],
   nounsbuilder:  [

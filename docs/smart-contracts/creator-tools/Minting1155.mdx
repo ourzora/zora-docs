@@ -1,0 +1,78 @@
+---
+title: Minting Tokens
+---
+---
+
+## Zora Mint Fee
+Zora charges a small fee (~$1) to a user minting an NFT. 
+There is no charge to the creator, all the funds from the sales go to the creator.
+Lastly, the mint fee doesn't apply to admin minted NFT (airdropping).
+
+The best way to find the mint fee for a specific contract is to retieve it from the contract by calling the `mintFee` function.
+You can read more about the Zora mint fee [here](https://support.zora.co/en/articles/4981037-zora-mint-fees).
+
+`function mintFee() external view returns (uint256)`
+
+## Mint Function
+
+Purchase tokens given a minter contract and minter arguments
+- `minter`: The minter contract to use
+- `tokenId`: The token ID to purchase
+- `quantity`: The quantity of tokens to purchase
+- `minterArguments`: The arguments to pass to the minter (detail in the minters section)
+
+*The minter arguments are different for each minter contract and are listed in the section.
+```
+function mint(
+    IMinter1155 minter, 
+    uint256 tokenId, 
+    uint256 quantity, 
+    bytes calldata minterArguments
+) external payable 
+```
+
+## Minter Strategy Contracts
+The minting logic for Zora 1155's lives outside of the main 1155 contract. 
+It lives in separate contracts called minters. 
+To mint a token the `mint` function is called on the main 1155 contract and then minter checks if the user should be able to mi
+Then the minter tells the main 1155 contract if it should mint or not.
+
+- [Minters Code](https://github.com/ourzora/zora-creator-contracts/tree/main/src/minters)
+- [Mainnet Addresses](https://github.com/ourzora/zora-creator-contracts/blob/main/addresses/1.json)
+- [Goerli Addresses](https://github.com/ourzora/zora-creator-contracts/blob/main/addresses/5.json)
+
+### Fixed Price Strategy 
+Mint NFTs for a specific ETH price. 
+
+`ETH transaction value = ((price + Zora mint fee) * amount)`
+
+`minterArguments`: Address to mint to
+
+### Merkle Proof Strategy
+Mints tokens based on a merkle tree.
+
+`ETH transaction value = ((price + Zora mint fee) * amount)`
+
+`minterArguments`: Address to mint to, Max quantity, Price per token, Merkle proof
+
+## Admin Minting
+
+Admins can mint NFTs to addresses. These NFTs **do not** incur the Zora mint fee.
+
+```
+function adminMint(
+    address recipient, 
+    uint256 tokenId, 
+    uint256 quantity, 
+    bytes memory data
+) external onlyAdminOrRole(tokenId, PERMISSION_BIT_MINTER)
+```
+
+```
+function adminMintBatch(
+    address recipient, 
+    uint256[] memory tokenIds, 
+    uint256[] memory quantities, 
+    bytes memory data
+) public nonReentrant
+```
