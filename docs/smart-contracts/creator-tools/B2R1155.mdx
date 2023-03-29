@@ -3,10 +3,10 @@ title: Burn to Redeem
 ---
 ---
 
-Burn to redeem allows for a combination token types to be burned to be able to claim an 1155 token.
-For example, a requirement could be burn `x` amount of a specific 721 and `y` amount of a specific 1155 token to be able to mint a different 1155 token.
+Burn to redeem allows for a combination of token types to be burned to claim an 1155 token.
+For example, a requirement could be burn `x` amount of a specific 721 and `y` amount of a specific 1155 token to be able to mint an 1155 token.
 
-Supported burn token types:
+Supported Burn Token Types:
 - ERC-20 
 - ERC-721
 - ERC-1155
@@ -21,8 +21,8 @@ Features:
 [Source Code](https://github.com/ourzora/zora-1155-contracts/tree/james/redemption-minting/src/minters/redeem)
 
 ## Factory Contract
-For security reasons, each Zora 1155 contract needs to have a new Burn to Redeem minter deployed for it.
-Meaning, that the factory contract must be called to create a unique minter contract for the user. 
+For security reasons, each Zora 1155 contract needs to have a new burn to redeem minter deployed for it.
+Meaning, that the factory contract must be called to create a unique burn to redeem minter for each 1155 creator contract. 
 
 
 ### Checking if a Minter has been deployed
@@ -36,9 +36,8 @@ function getDeployedRedeemMinterForCreatorContract(
 ) external view returns (address) 
 ```
 
-
 ### Deploying the Minter
-Deploying a minter is done by calling the `mint` function on the 1155 contract.
+Deploying a minter is done by calling the `callSale` function on the 1155 contract.
 
 The factory uses `CREATE2` to generate the B2R contract addresses. 
 This means the address of the deployment can be known ahead of time by calling `predictMinterAddress` with the 1155 address.
