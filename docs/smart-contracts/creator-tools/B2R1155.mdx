@@ -1,0 +1,197 @@
+---
+title: Burn to Redeem
+---
+---
+
+Burn to redeem allows for a combination token types to be burned to be able to claim an 1155 token.
+For example, a requirement could be burn `x` amount of a specific 721 and `y` amount of a specific 1155 token to be able to mint a different 1155 token.
+
+Supported burn token types:
+- ERC-20 
+- ERC-721
+- ERC-1155
+- ETH Payments
+
+Features: 
+- Multi Token Types in a Single Redemption
+- ETH Payment Option
+- Multi Redeem Options
+- Supports Specific TokenId Ranges
+
+[Source Code](https://github.com/ourzora/zora-1155-contracts/tree/james/redemption-minting/src/minters/redeem)
+
+## Factory Contract
+For security reasons, each Zora 1155 contract needs to have a new Burn to Redeem minter deployed for it.
+Meaning, that the factory contract must be called to create a unique minter contract for the user. 
+
+
+### Checking if a Minter has been deployed
+Before deploying a minter for an 1155, it is possible to check and see if one has been deployed or not calling the contract. 
+
+`getDeployedRedeemMinterForCreatorContract` returns an `address` based on if a B2R minter contract has been deployed for an 1155 contract.
+The function will return the 0 address if no contract has been deployed.
+```
+function getDeployedRedeemMinterForCreatorContract(
+    address _creatorContract 
+) external view returns (address) 
+```
+
+
+### Deploying the Minter
+Deploying a minter is done by calling the `mint` function on the 1155 contract.
+
+The factory uses `CREATE2` to generate the B2R contract addresses. 
+This means the address of the deployment can be known ahead of time by calling `predictMinterAddress` with the 1155 address.
+```
+function predictMinterAddress(
+    address _creatorContract
+) external view returns (address) 
+```
+
+The following can be done in a single transaction using multi-call.
+The data structure for `REDEEM_INSTRUCTIONS` can be found [here](./B2R1155#data-structures)
+
+Multi-call if the contract hasn't been deployed, but 1155 contract has:
+
+1. `setPermissions(REDEMPTION_MINTER_FACTORY, MINTER)`: Give permission to the factory.
+2. `callSale(REDEMPTION_MINTER_FACTORY, abi.encode(createMinter))`: Use the callSale function on the 1155 contract.
+    - `target.callSale(0, minterFactory, abi.encodeWithSelector(ZoraCreatorRedeemMinterFactoryImpl.createMinter.selector));`
+3. `clearPermissions(REDEMPTION_MINTER_FACTORY, NONE)`: Remove permission.
+4. `setPermissions(REDEMPTION_MINTER_CONTRACT, MINTER)`: Give permission to the minter.
+5. `callSale(REDEMPTION_MINTER_CONTRACT, abi.encode(setRedeem, {REDEEM_INSTRUCTIONS})`: Use callSale on the 1155 to set up a redemption.
+
+<br/> 
+
+Multi-call if the contract is deployed and already has minter permissions:
+1. `callSale(REDEMPTION_MINTER_CONTRACT, abi.encode(setRedeem, {REDEEM_INSTRUCTIONS})`
+
+## Redeem Minter
+
+Each 1155 contract must have its own deployed burn to redeem minter contract. 
+
+### Redeeming a Token
+Before a token can be redeemed all the tokens that will be burned must be approved to the specific burn to redeem contract.
+Once approved, then the user can call the `mint` function on the 1155 contract to burn their tokens in exchange for the redeem token. 
+The data structure for the instructions and args can be found below.
+```
+mint(
+    REDEMPTION_MINTER_CONTRACT, 
+    tokenId, 
+    quantity, 
+    abi.encode(
+        MINT_TO_ADDRESS, 
+        REDEEM_INSTRUCTIONS, 
+        REDEEM_ARGS
+    ))
+```
+
+### Updating a Redemption
+There is no update function within the burn to redeem minter. 
+This means updating requires that a user clear their previous redeem and set a new one.
+Note, that the `clearRedeem` function takes in a hash of the instructions. 
+```
+callSale(
+    REDEMPTION_MINTER_CONTRACT, 
+    abi.encode(clearRedeem({REDEEM_INSTRUCTIONS_HASH}))
+)
+```
+
+```
+callSale(
+    REDEMPTION_MINTER_CONTRACT, 
+    abi.encode(setRedeem({REDEEM_INSTRUCTIONS}))
+)
+```
+
+## Data Structures
+
+### Redeem Instructions
+Instructions are set when the creator decides on the burn-to-redeem options.
+
+```
+enum TokenType {NULL, ERC1155, ERC721, ERC20}
+
+struct RedeemToken {
+    // Target contract address.
+    // This _must_ be the contract address associated with this contract
+    // For security and readability reasons it is duplicated here.
+    address tokenContract;
+    // The token ID to receive
+    uint256 tokenId;
+    // The amount to receive of the token
+    uint256 amount;
+    // Always set to 1155 for this contract – can change in the future
+        TokenType tokenType;
+}
+
+struct RedeemInstruction {
+    TokenType tokenType;
+    uint256 amount;
+    // For ERC20, these are always zero.
+    // To match for any tokenId (on 721 and 1155), both start and end can be set to 0.
+    // For a single token each ID is set to be the same since end is inclusive.
+    uint256 tokenIdStart;
+    // Inclusive
+    uint256 tokenIdEnd;
+
+        address tokenContract;
+
+    // Transfer Recipient (0x0 for burn)
+    address transferRecipient;
+    // burn function bytes4 selector (0 if using transfer recipient)
+    bytes4 burnFunction;
+}
+
+struct RedeemInstructions {
+    // Getting this token
+    RedeemToken redeemToken;
+    // Giving these tokens
+    RedeemInstruction[] instructions; 
+
+    // Timestamp start
+    uint64 saleStart;
+    // Timestamp end
+    uint64 saleEnd;
+
+    uint256 ethAmount;
+        address ethRecipient;
+}
+```
+
+### Redeem Arguments
+These arguments are used when redeeming a token.
+```
+address mintTo
+
+RedeemInstructions redeemInstructions
+
+// array of tokenId arrays. must have same length as instructions
+uint256[][] tokenIds
+
+// array of amount arrays. amounts[i] is only checked if instructions[i].tokenType == ERC1155
+uint256[][] amounts
+```
+
+
+### Examples
+
+```
+instructions[i].tokenType == ERC20
+instructions[i].amount == 1000000000000000000
+tokenIds[i]: [] (won't be checked, no tokenIds for ERC20)
+amounts[i]: [] (won't be checked, contract uses instructions[i].amount)
+
+instructions[i].tokenType: ERC721
+instructions[i].amount: 3
+tokenIds[i]: [34, 92, 13] (length == instructions[i].amount
+amounts[i]: [] (won't be checked, all 721 tokens have amount 1)
+note: tokenIds[i].length == instructions[i].amount for ERC721s
+
+instructions[i].tokenType == ERC1155
+instructions[i].amount == 8
+tokenIds[i] = [42, 934, 54] (can have any length greater than 0)
+amounts[i] == [5, 2, 1] (sum of amounts[i] == instructions[i].amount) 
+note 1: sum(amounts[i]) == instructions[i].amount for ERC1155s AND
+note 2: amounts[i].length == tokenIds[i].length
+*/
+```
