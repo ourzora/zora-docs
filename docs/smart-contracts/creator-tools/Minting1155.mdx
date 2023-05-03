@@ -34,19 +34,27 @@ function mint(
 ## Minter Strategy Contracts
 The minting logic for Zora 1155's lives outside of the main 1155 contract. 
 It lives in separate contracts called minters. 
-To mint a token the `mint` function is called on the main 1155 contract and then minter checks if the user should be able to mi
+To mint a token the `mint` function is called on the main 1155 contract and then minter checks if the user should be able to mint.
 Then the minter tells the main 1155 contract if it should mint or not.
 
 - [Minters Code](https://github.com/ourzora/zora-creator-contracts/tree/main/src/minters)
 - [Mainnet Addresses](https://github.com/ourzora/zora-creator-contracts/blob/main/addresses/1.json)
 - [Goerli Addresses](https://github.com/ourzora/zora-creator-contracts/blob/main/addresses/5.json)
 
+*Note, that the minter arguments are type `bytes`
+
 ### Fixed Price Strategy 
 Mint NFTs for a specific ETH price. 
 
 `ETH transaction value = ((price + Zora mint fee) * amount)`
 
-`minterArguments`: Address to mint to
+`minterArguments`: User address to mint to, in bytes
+
+*Note, the payment amount of ETH must be set an override if using wagmi or ethers.js. 
+
+#### Getting the Mint Price 
+Caling the `sale` function on the fixed-price minter will return the price for a specific token.
+`function sale(address tokenContract, uint256 tokenId) ` 
 
 ### Merkle Proof Strategy
 Mints tokens based on a merkle tree.
