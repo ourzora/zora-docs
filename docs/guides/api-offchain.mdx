@@ -356,31 +356,40 @@ const cheapestNounOrder = gql`
 `
 
 const {data} = await client.query({query: cheapestNounOrder})
-const cheapestNoun = data.nodes[0];
+const cheapestNoun = data.nodes[0].offchainOrders;
 
 
 // 2) Verfiy 
 const postObj = {
-  "caller_address": "YOUR_ADDRESS",
-  "contract_address": cheapestNoun.offchainOrder.contractAddress, // The contract that fills the orders e.g. Seaport
-  "calldata": cheapestNoun.offchainOrder.calldata,
-  "value": cheapestNoun.price.nativePrice.decimal // Price in Ether (Decimals Price)
+  caller_address: "YOUR_ADDRESS",
+  contract_address: cheapestNoun.contractAddress, // The contract that fills the orders e.g. Seaport
+  calldata: cheapestNoun.calldata,
+  value: cheapestNoun.price.nativePrice.decimal, // Price in Ether (Decimals Price)
+};
+
+try {
+  const response = await axios.post(
+    "https://api.zora.co/validate-contract-call",
+    postObj
+  );
+
+  // Make a check to confirm that order is still valid
+  if (response.data.message !== "successfully simulated contract call")
+    return;
+} catch (error) {
+  console.log(error);
 }
-const response = await axios.post('https://api.zora.co/validate-contract-call', postObj);
 
-// Make a check to confirm that order is still valid
-if (response.data.message !== "successfully simulated contract call") return;
-
-// 3) Submit 
+// 3) Submit
 const decimalPrice = cheapestNoun.price.nativePrice.decimal; // Price in ETH
-const weiPrice = ethers.utils.parseEther(decimalPrice);
+const weiPrice = ethers.parseEther(decimalPrice.toString());
 
 const tx = {
   from: "YOUR_ADDRESS",
-  to: cheapestNoun.offchainOrder.contractAddress, // Contract that fills the order e.g. Seaport
+  to: cheapestNoun.contractAddress, // Contract that fills the order e.g. Seaport
   value: weiPrice, // Price in Wei
-  data: cheapestNoun.offchainOrder.calldata ,
-}
+  data: cheapestNoun.calldata,
+};
 
 const result = await signer.sendTransaction(tx)
 ```
