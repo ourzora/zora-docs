@@ -32,18 +32,13 @@ module.exports = {
         },
         {
           position: 'left',
-          label: 'Nouns Builder',
-          to: '/docs/smart-contracts/nouns-builder/intro',
+          label: 'Zora Chain',
+          to: '/docs/zora-chain/intro',
         },
         {
           position: 'left',
           label: 'API',
           to: '/docs/zora-api/intro',
-        },
-        {
-          position: 'left',
-          label: 'Tools',
-          to: '/docs/developer-tools/nft-rendering/introduction',
         },
       ],
     },

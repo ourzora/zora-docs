@@ -1,9 +1,9 @@
 export const toolsCardsContent = [
   {
-    toolsTitle: 'Nouns Builder',
+    toolsTitle: 'Zora Chain',
     toolsParagraph:
-      'Build a Nouns styled DAO in minutes.',
-    toolsLink: '/docs/smart-contracts/intro',
+      'Create you work on layer 2.',
+    toolsLink: 'https://zora.energy/',
   },
   {
     toolsTitle: 'Create',
@@ -29,9 +29,9 @@ export const toolsCardsContent = [
     toolsLink: '/docs/zora-api/zdk',
   },
   {
-    toolsTitle: 'NFT Hooks',
+    toolsTitle: 'Nouns Builder',
     toolsParagraph:
-      'Tools to quickly retrieve metadata, historical info, and market data for any NFT.',
-    toolsLink: '/docs/developer-tools/nft-hooks/intro',
+      'Build a Nouns styled DAO in minutes.',
+    toolsLink: '/docs/smart-contracts/intro',
   },
 ]

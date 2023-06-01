@@ -1,9 +1,9 @@
 export const gettingStartedContent = [
   {
     docNumber: '01',
-    docTitle: 'Build a DAO →',
-    docSubtopic: 'Nouns Builder',
-    docLink: 'docs/smart-contracts/nouns-builder/intro',
+    docTitle: 'Build on Layer 2→',
+    docSubtopic: 'Zora Chain',
+    docLink: 'https://zora.energy/',
   },
   {
     docNumber: '02',

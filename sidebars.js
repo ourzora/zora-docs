@@ -17,7 +17,7 @@ module.exports = {
     {
       type: 'category',
       label: 'Getting Started',
-      items: ['intro', 'v3-overview'],
+      items: ['intro'],
     },
   ],
   createtools: [
@@ -77,85 +77,6 @@ module.exports = {
       ],
     },
   ],
-  smartcontracts: [
-    {
-      type: 'category',
-      label: 'Smart Contracts',
-      items: ['smart-contracts/intro',
-      {
-        type: 'category',
-        label: 'V3 Modules',
-        collapsed: true,
-        items: [
-          'smart-contracts/modules/intro',
-          {
-            type: 'category',
-            label: 'Asks',
-            collapsed: true,
-            items: [
-              'smart-contracts/modules/Asks/zora-v3-asks-intro',
-              {
-                type: 'category',
-                label: 'Core',
-                collapsed: true,
-                items: ['smart-contracts/modules/Asks/Core/zora-v3-asks-coreETH'],
-              },
-              'smart-contracts/modules/Asks/private_asks',
-              'smart-contracts/modules/Asks/zora-v3-asks-v1.1',
-              'smart-contracts/modules/Asks/zora-v3-asks-v1.0',
-          ],
-          },
-          {
-            type: 'category',
-            label: 'Reserve Auction',
-            collapsed: true,
-            items: [
-              'smart-contracts/modules/ReserveAuctions/zora-v3-reserve-auctions-intro',
-              {
-                type: 'category',
-                label: 'Core',
-                collapsed: true,
-                items: [
-                  'smart-contracts/modules/ReserveAuctions/Core/zora-v3-auctions-coreETH',
-                  'smart-contracts/modules/ReserveAuctions/Core/zora-v3-auctions-coreERC20',
-                ],
-              },
-              {
-                type: 'category',
-                label: 'Finders',
-                collapsed: true,
-                items: [
-                  'smart-contracts/modules/ReserveAuctions/Finders/zora-v3-auctions-finderETH',
-                  'smart-contracts/modules/ReserveAuctions/Finders/zora-v3-auctions-finderERC20'
-                ],
-              },
-              // {
-              //   type: 'category',
-              //   label: 'Listing',
-              //   collapsed: true,
-              //   items: [
-              //     'smart-contracts/modules/ReserveAuctions/Listing/zora-v3-auctions-ListingETH',
-              //     'smart-contracts/modules/ReserveAuctions/Listing/zora-v3-auctions-ListingERC20'
-              //   ],
-              // },
-            ],
-          },
-          {
-            type: 'category',
-            label: 'Offers',
-            collapsed: true,
-            items: ['smart-contracts/modules/Offers/zora-v3-offers-latest'],
-          },
-        ],
-      },
-      {
-        type: 'category',
-        label: 'Guides',
-        collapsed: false,
-        items: ['guides/v3-approvals', 'guides/sell-nft-fixed-price'],
-      }],
-    },
-  ],
   api: [
     {
       type: 'category',
@@ -207,4 +128,15 @@ module.exports = {
     ],
     },
   ],
+  zorachain: [
+    'zora-chain/intro',
+    'zora-chain/network',  
+    'zora-chain/ethvszora',  
+    'zora-chain/bridging',  
+    {
+      type: 'category',
+      label: 'Guides',
+      items: [],
+    },
+  ]
 }
