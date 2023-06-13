@@ -21,40 +21,41 @@ module.exports = {
     },
   ],
   createtools: [
-      {
-        type: 'category',
-        label: 'Create NFT Collection',
-        collapsed: true,
-        items: [
-          'smart-contracts/creator-tools/intro',
-          {
-            type: 'category',
-            label: '1155 Contracts',
-            collapsed: false,
-            items: [
+    {
+      type: 'category',
+      label: 'Create NFT Collection',
+      collapsed: true,
+      items: [
+        'smart-contracts/creator-tools/intro',
+        {
+          type: 'category',
+          label: '1155 Contracts',
+          collapsed: false,
+          items: [
             'smart-contracts/creator-tools/Deploy1155Contract',
             'smart-contracts/creator-tools/Creating1155Token',
             'smart-contracts/creator-tools/Selling1155',
             'smart-contracts/creator-tools/Minting1155',
             'smart-contracts/creator-tools/Permissions1155',
             'smart-contracts/creator-tools/B2R1155',
-            ],
-          },
-          {
-            type: 'category',
-            label: '721 Contracts',
-            collapsed: true,
-            items: [
+          ],
+        },
+        {
+          type: 'category',
+          label: '721 Contracts',
+          collapsed: true,
+          items: [
             'smart-contracts/creator-tools/ZoraNFTCreator',
-            'smart-contracts/creator-tools/ERC721Drop', 
-            'smart-contracts/creator-tools/EditionMetadataRenderer', 
-            'smart-contracts/creator-tools/JSONExtensionRegistry', 
-            'smart-contracts/creator-tools/DropMetadataRenderer'
-            ],
-          },
-        ],
-      }],
-  nounsbuilder:  [
+            'smart-contracts/creator-tools/ERC721Drop',
+            'smart-contracts/creator-tools/EditionMetadataRenderer',
+            'smart-contracts/creator-tools/JSONExtensionRegistry',
+            'smart-contracts/creator-tools/DropMetadataRenderer',
+          ],
+        },
+      ],
+    },
+  ],
+  nounsbuilder: [
     {
       type: 'category',
       label: 'Nouns Builder',
@@ -71,10 +72,7 @@ module.exports = {
       type: 'category',
       label: 'Guides',
       collapsed: false,
-      items: [
-        'guides/builder-deployment',
-        'guides/builder-proposal'
-      ],
+      items: ['guides/builder-deployment', 'guides/builder-proposal'],
     },
   ],
   api: [
@@ -83,7 +81,7 @@ module.exports = {
       label: 'Zora API',
       items: [
         'zora-api/intro',
-        'zora-api/query-formatting', 
+        'zora-api/query-formatting',
         'zora-api/media-encoding',
         'zora-api/zdk',
         {
@@ -94,7 +92,7 @@ module.exports = {
             'guides/api-address-balance',
             'guides/api-collection-data',
             'guides/zdk-intro-guide',
-            'guides/api-offchain'
+            'guides/api-offchain',
           ],
         },
       ],
@@ -113,30 +111,30 @@ module.exports = {
           collapsed: true,
           items: ['developer-tools/nft-rendering/introduction'],
         },
-      {
-        type: 'category',
-        label: 'NFT Hooks',
-        collapsed: false,
-        items: [
-          'developer-tools/nft-hooks/intro', 
-          'developer-tools/nft-hooks/useNft', 
-          'developer-tools/nft-hooks/usenftmetadata', 
-          'developer-tools/nft-hooks/usenftcontent'
-        ],
-      },
-      
-    ],
+        {
+          type: 'category',
+          label: 'NFT Hooks',
+          collapsed: false,
+          items: [
+            'developer-tools/nft-hooks/intro',
+            'developer-tools/nft-hooks/useNft',
+            'developer-tools/nft-hooks/usenftmetadata',
+            'developer-tools/nft-hooks/usenftcontent',
+          ],
+        },
+      ],
     },
   ],
   zorachain: [
     'zora-chain/intro',
-    'zora-chain/network',  
-    'zora-chain/ethvszora',  
-    'zora-chain/bridging',  
+    'zora-chain/network',
+    'zora-chain/ethvszora',
+    'zora-chain/bridging',
+    'zora-chain/contracts',
     {
       type: 'category',
       label: 'Guides',
       items: [],
     },
-  ]
+  ],
 }
