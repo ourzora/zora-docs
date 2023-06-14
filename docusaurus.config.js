@@ -33,7 +33,7 @@ module.exports = {
         {
           position: 'left',
           label: 'Zora Network',
-          to: '/docs/zora-chain/intro',
+          to: '/docs/zora-network/intro',
         },
         {
           position: 'left',

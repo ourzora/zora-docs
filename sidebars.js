@@ -125,13 +125,13 @@ module.exports = {
       ],
     },
   ],
-  zorachain: [
-    'zora-chain/intro',
-    'zora-chain/network',
-    'zora-chain/ethvszora',
-    'zora-chain/bridging',
-    'zora-chain/contracts',
-    'zora-chain/metamask',
+  zoranetwork: [
+    'zora-network/intro',
+    'zora-network/network',
+    'zora-network/ethvszora',
+    'zora-network/bridging',
+    'zora-network/contracts',
+    'zora-network/metamask',
     {
       type: 'category',
       label: 'Guides',
