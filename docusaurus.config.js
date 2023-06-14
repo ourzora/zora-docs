@@ -32,7 +32,7 @@ module.exports = {
         },
         {
           position: 'left',
-          label: 'Zora Chain',
+          label: 'Zora Network',
           to: '/docs/zora-chain/intro',
         },
         {

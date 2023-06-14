@@ -1,6 +1,6 @@
 export const toolsCardsContent = [
   {
-    toolsTitle: 'Zora Chain',
+    toolsTitle: 'Zora Network',
     toolsParagraph:
       'Create you work on layer 2.',
     toolsLink: 'https://zora.energy/',
