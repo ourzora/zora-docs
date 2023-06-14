@@ -13,7 +13,7 @@ export default function Home() {
       <ShaderComponent />
       <div>
         <HomepageLogo className={styles.logoText} />
-        <h2 className={styles.headerSubtitle}>Tools for Collective Imagination</h2>
+        <h2 className={styles.headerSubtitle}>Imagination Onchain</h2>
       </div>
       <main className={styles.layout}>
         <div className={styles.layoutFlexBox}>
