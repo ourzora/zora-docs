@@ -131,6 +131,7 @@ module.exports = {
     'zora-chain/ethvszora',
     'zora-chain/bridging',
     'zora-chain/contracts',
+    'zora-chain/metamask',
     {
       type: 'category',
       label: 'Guides',
