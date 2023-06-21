@@ -132,6 +132,7 @@ module.exports = {
     'zora-network/bridging',
     'zora-network/contracts',
     'zora-network/metamask',
+    'zora-network/deployments',
     {
       type: 'category',
       label: 'Guides',

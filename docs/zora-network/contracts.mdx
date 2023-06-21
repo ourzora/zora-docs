@@ -68,7 +68,7 @@ You can use the same flags for more complicated deploy commands, such as with co
 To deploy and verify your contract in one command, use Foundry's verification flags configured with Blockscout and Zora Network's Blockscout API:
 
 ```bash
-forge create src/MyContract.sol:MyContract --chain-id 999 --rpc-url https://testnet.rpc.zora.co/ --private-key $PRIVATE_KEY --verify --verifier blockscout --verifier-url https://testnet.explorer.zora.co/api
+forge create src/MyContract.sol:MyContract --chain-id 999 --rpc-url https://testnet.rpc.zora.co/ --private-key $PRIVATE_KEY --verify --verifier blockscout --verifier-url https://testnet.explorer.zora.energy/api
 ```
 
 You can also verify a pre-existing contract with the `forge verify-contract` command using the same flags (`--verifier` and `--verifier-url`).
