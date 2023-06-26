@@ -72,12 +72,12 @@ module.exports = {
       },
       {
         name: 'og:description',
-        content: 'Open tools to build your own NFT marketplaces and applications.'
+        content: 'Bringing imagination onchain.'
       },
       {
         name: 'description',
         content:
-          'Zora makes it easy for developers to get started building with NFTs by providing tools for displaying, minting, and selling all in one place. ',
+          'Zora makes it easy for developers to get started building with NFTs. ',
       },
     ],
   },
