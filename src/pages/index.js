@@ -3,17 +3,14 @@ import Layout from '@theme/Layout'
 import styles from './index.module.css'
 import { GettingStartedCards } from '../components/GettingStartedCards'
 import { ToolsCards } from '../components/ToolsCards'
-import { ShaderComponent } from '../components/ShaderComponent'
 import ProjectsCards from '../components/ProjectsCards'
-import HomepageLogo from '../../static/img/homepageLogo.svg'
+import BannerImage from '../../static/img/bannerImage.jpg'
 
 export default function Home() {
   return (
     <Layout>
-      <ShaderComponent />
       <div>
-        <HomepageLogo className={styles.logoText} />
-        <h2 className={styles.headerSubtitle}>Imagination Onchain</h2>
+        <img src={BannerImage}></img>
       </div>
       <main className={styles.layout}>
         <div className={styles.layoutFlexBox}>
