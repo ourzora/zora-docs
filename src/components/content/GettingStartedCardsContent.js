@@ -3,7 +3,7 @@ export const gettingStartedContent = [
     docNumber: '01',
     docTitle: 'Build on Layer 2→',
     docSubtopic: 'Zora Network',
-    docLink: 'https://zora.energy/',
+    docLink: 'docs/zora-network/intro',
   },
   {
     docNumber: '02',
