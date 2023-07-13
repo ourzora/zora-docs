@@ -74,3 +74,5 @@ forge create src/MyContract.sol:MyContract --chain-id 999 --rpc-url https://test
 You can also verify a pre-existing contract with the `forge verify-contract` command using the same flags (`--verifier` and `--verifier-url`).
 
 Note: Zora uses Blockscout which requires apending `\?` to the end of the API url like in the example above. More details [here](https://github.com/foundry-rs/foundry/issues/5160).
+
+Alternatively, use Standard JSON Input to verify a pre-existing contract by appending the `--show-standard-json-input` option to `forge verify-contract`, creating a JSON file from the output and uploading that file to the Blockscout UI.
