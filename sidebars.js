@@ -133,6 +133,7 @@ module.exports = {
     'zora-network/contracts',
     'zora-network/metamask',
     'zora-network/deployments',
+    'zora-network/rewards',
     {
       type: 'category',
       label: 'Guides',
