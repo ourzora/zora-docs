@@ -52,6 +52,7 @@ module.exports = {
             'smart-contracts/creator-tools/DropMetadataRenderer',
           ],
         },
+        'smart-contracts/creator-tools/rewards',
       ],
     },
   ],
@@ -133,7 +134,6 @@ module.exports = {
     'zora-network/contracts',
     'zora-network/metamask',
     'zora-network/deployments',
-    'zora-network/rewards',
     {
       type: 'category',
       label: 'Guides',
