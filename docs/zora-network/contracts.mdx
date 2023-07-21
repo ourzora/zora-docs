@@ -28,12 +28,12 @@ const config: HardhatUserConfig = {
   networks: {
     // for testnet
     'zora-goerli': {
-      url: 'https://testnet.rpc.zora.co/',
+      url: 'https://testnet.rpc.zora.energy/',
       accounts: [process.env.WALLET_KEY as string],
     },
     // for mainnet
     'zora-mainnet': {
-      url: 'https://mainnet.rpc.zora.co/',
+      url: 'https://mainnet.rpc.zora.energy/',
       accounts: [process.env.WALLET_KEY as string],
     },
   },
