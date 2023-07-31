@@ -1,17 +1,45 @@
 ---
 id: rewards
-title: Creator Rewards
+title: Protocol Rewards
 ---
 
 ---
 
 ## Introduction
 
-At Zora, we are passionate about providing creators the best experience to create and earn on Ethereum.
+At Zora, we are passionate about providing the best experience to create and earn on Ethereum.
 
-Our latest offering, **Creator Rewards**, provides creators a split of our 0.000999 ETH fee on free open editions, allowing them to monetize their work without charging their communities.
+Our latest offering, **Protocol Rewards**, is a split of our 0.000777 ETH mint fee allowing:
 
-## How It Works
+- Creators to monetize their work without charging their communities
+- Developers to earn from NFT mints and creations they facilitate
+
+## Fee Split (Per Mint)
+
+#### Free Mint
+
+| Recipient       | Amount       |
+| --------------- | ------------ |
+| Creator         | 0.000333 ETH |
+| Create Referral | 0.000111 ETH |
+| Mint Referral   | 0.000111 ETH |
+| First Minter    | 0.000111 ETH |
+| Zora            | 0.000111 ETH |
+
+#### Paid mint
+
+| Recipient       | Amount       |
+| --------------- | ------------ |
+| Create Referral | 0.000222 ETH |
+| Mint Referral   | 0.000222 ETH |
+| First Minter    | 0.000111 ETH |
+| Zora            | 0.000222 ETH |
+ 
+**First Minter**: The first collector to mint an NFT  
+**Mint Referral**: The platform that referred a specific mint of an NFT  
+**Create Referral**: The platform that referred the creator to deploy the NFT collection 
+
+## How It Works: Creator
 
 1. Creator selects the **"Free + Rewards"** pricing option when creating their 721 or 1155 open edition
 2. Creator specifies a wallet address eligible to claim their rewards
@@ -19,18 +47,84 @@ Our latest offering, **Creator Rewards**, provides creators a split of our 0.000
 
 The creator's total ETH generated from rewards is aggregated into an escrow contract and can withdrawn at any time.
 
-## Fee Split
+## How It Works: Developer
 
-#### Free Mint
+### Create Referral Reward
 
-| Recipient       | Amount       |
-| --------------- | ------------ |
-| Creator         | 0.000444 ETH |
-| First Minter    | 0.000111 ETH |
-| Mint Referral   | 0.000111 ETH |
-| Create Referral | 0.000111 ETH |
-| Zora            | 0.000222 ETH |
+The create referral reward is paid out to the developer or platform that referred the creator to deploy their NFT collection.
 
-**First Minter**: The first collector to mint the open edition  
-**Mint Referral**: The platform that referred a specific mint  
-**Create Referral**: The platform that referred the creator to deploy the edition
+#### ERC-721
+
+The `createReferral` address is the parameter to specify as the reward recipient when calling the `createEditionWithReferral` or `createDropWithReferral` functions. More info on the other parameters from our standard `createEdition` and `createDrop` functions can be found [here](./ZoraNFTCreator#creating-an-nft-contract).
+
+```
+function createEditionWithReferral(
+    string memory name,
+    string memory symbol,
+    uint64 editionSize,
+    uint16 royaltyBPS,
+    address payable fundsRecipient,
+    address defaultAdmin,
+    IERC721Drop.SalesConfiguration memory saleConfig,
+    string memory description,
+    string memory animationURI,
+    string memory imageURI,
+    address createReferral
+) external returns (address)
+```
+
+```
+function createDropWithReferral(
+    string memory name,
+    string memory symbol,
+    address defaultAdmin,
+    uint64 editionSize,
+    uint16 royaltyBPS,
+    address payable fundsRecipient,
+    IERC721Drop.SalesConfiguration memory saleConfig,
+    string memory metadataURIBase,
+    string memory metadataContractURI,
+    address createReferral
+) external returns (address)
+```
+
+#### ERC-1155
+
+The `createReferral` address is specified upon token creation.
+
+```
+function setupNewTokenWithCreateReferral(
+    string calldata newURI,
+    uint256 maxSupply,
+    address createReferral
+) public
+```
+
+### Mint Referral Reward
+
+The mint referral reward is paid out to the developer or platform that referred the collector to mint an NFT.
+
+#### ERC-721
+
+The `mintReferral` address is the parameter to specify as the reward recipient upon mint.
+
+```
+function mintWithRewards(
+    address recipient, 
+    uint256 quantity, 
+    string calldata comment, 
+    address mintReferral
+)
+```
+
+#### ERC-1155
+
+```
+function mintWithRewards(
+    IMinter1155 minter,
+    uint256 tokenId,
+    uint256 quantity,
+    bytes calldata minterArguments,
+    address mintReferral
+)
+```
