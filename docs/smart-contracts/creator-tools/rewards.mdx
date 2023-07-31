@@ -7,11 +7,10 @@ title: Protocol Rewards
 
 ## Introduction
 
-At Zora, we are passionate about providing the best experience to create and earn on Ethereum.
+At Zora, we are passionate about providing the best experience to create and earn onchain.
+**Protocol Rewards** is a split of our 0.000777 ETH mint fee allowing:
 
-Our latest offering, **Protocol Rewards**, is a split of our 0.000777 ETH mint fee allowing:
-
-- Creators to monetize their work without charging their communities
+- Creators to monetize their work
 - Developers to earn from NFT mints and creations they facilitate
 
 ## Fee Split (Per Mint)
@@ -34,28 +33,29 @@ Our latest offering, **Protocol Rewards**, is a split of our 0.000777 ETH mint f
 | Mint Referral   | 0.000222 ETH |
 | First Minter    | 0.000111 ETH |
 | Zora            | 0.000222 ETH |
- 
-**First Minter**: The first collector to mint an NFT  
+
 **Mint Referral**: The platform that referred a specific mint of an NFT  
 **Create Referral**: The platform that referred the creator to deploy the NFT collection 
+**First Minter**: The first collector to mint an NFT, defaults to the NFT creator if a normal NFT  
 
 ## How It Works: Creator
 
-1. Creator selects the **"Free + Rewards"** pricing option when creating their 721 or 1155 open edition
+1. Creator selects the **"Free + Rewards"** pricing option when creating their 721 or 1155 NFT
 2. Creator specifies a wallet address eligible to claim their rewards
 3. Creator opens up their edition for minting -- **that's it!**
 
-The creator's total ETH generated from rewards is aggregated into an escrow contract and can withdrawn at any time.
+The creator's total ETH generated from rewards is aggregated into an [escrow contract](https://github.com/ourzora/protocol-rewards/blob/main/src/ProtocolRewards.sol) and can be withdrawn at any time.
 
 ## How It Works: Developer
 
 ### Create Referral Reward
 
-The create referral reward is paid out to the developer or platform that referred the creator to deploy their NFT collection.
+The create referral reward is paid out to the developer or platform that referred the creator to deploy their NFT collection using Zora's contracts.
 
-#### ERC-721
+#### Creating an ERC-721 Token
 
-The `createReferral` address is the parameter to specify as the reward recipient when calling the `createEditionWithReferral` or `createDropWithReferral` functions. More info on the other parameters from our standard `createEdition` and `createDrop` functions can be found [here](./ZoraNFTCreator#creating-an-nft-contract).
+The `createReferral` address is the parameter to specify the reward recipient when calling the `createEditionWithReferral` or `createDropWithReferral` functions. 
+More info on the other parameters from our standard `createEdition` and `createDrop` functions can be found [here](./ZoraNFTCreator#creating-an-nft-contract).
 
 ```
 function createEditionWithReferral(
@@ -88,7 +88,7 @@ function createDropWithReferral(
 ) external returns (address)
 ```
 
-#### ERC-1155
+#### Creating an ERC-1155 Token
 
 The `createReferral` address is specified upon token creation.
 
@@ -102,9 +102,9 @@ function setupNewTokenWithCreateReferral(
 
 ### Mint Referral Reward
 
-The mint referral reward is paid out to the developer or platform that referred the collector to mint an NFT.
+The mint referral reward is paid out to the party that referred the collector to mint an NFT.
 
-#### ERC-721
+#### ERC-721 Minting
 
 The `mintReferral` address is the parameter to specify as the reward recipient upon mint.
 
@@ -117,7 +117,7 @@ function mintWithRewards(
 )
 ```
 
-#### ERC-1155
+#### ERC-1155 Minting
 
 ```
 function mintWithRewards(
@@ -126,5 +126,23 @@ function mintWithRewards(
     uint256 quantity,
     bytes calldata minterArguments,
     address mintReferral
+)
+```
+
+## Withdrawing Rewards
+Rewards must be withdrawn from the escrow contract, which the address can be found [here](https://github.com/ourzora/protocol-rewards/tree/main/addresses).
+```
+function withdraw(uint256 amount)
+```
+
+```
+function withdrawWithSig(
+    address owner, 
+    uint256 amount, 
+    uint256 deadline, 
+    uint8 v, 
+    bytes32 
+    r, 
+    bytes32 s
 )
 ```
