@@ -27,6 +27,7 @@ module.exports = {
       collapsed: true,
       items: [
         'smart-contracts/creator-tools/intro',
+        'smart-contracts/creator-tools/rewards',
         {
           type: 'category',
           label: '1155 Contracts',
