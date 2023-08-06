@@ -53,6 +53,7 @@ module.exports = {
             'smart-contracts/creator-tools/DropMetadataRenderer',
           ],
         },
+        'smart-contracts/creator-tools/factories'
       ],
     },
   ],
