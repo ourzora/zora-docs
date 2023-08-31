@@ -9,46 +9,6 @@ sidebar_position: 5
 Deploying contracts can be done with familiar EVM tools like [Hardhat](https://hardhat.org/) and [Foundry](https://book.getfoundry.sh/). 
 Make sure to configure these tools with the correct chain ID and RPC URL to deploy smart contracts to Zora Network Goerli and Zora Network Mainnet. See the [Network Details](/docs/zora-network/network) section for more information.
 
-## Hardhat
-
-### Setup
-Refer to Hardhat's [Quick Start](https://hardhat.org/hardhat-runner/docs/getting-started#quick-start) guide to install Hardhat and initialize your project. 
-To configure your project, add the Zora Network information in `hardhat.config.js`:
-
-```js
-import { HardhatUserConfig } from 'hardhat/config';
-import '@nomicfoundation/hardhat-toolbox';
-
-require('dotenv').config();
-
-const config: HardhatUserConfig = {
-  solidity: {
-    version: '0.8.17',
-  },
-  networks: {
-    // for testnet
-    'zora-goerli': {
-      url: 'https://testnet.rpc.zora.energy/',
-      accounts: [process.env.WALLET_KEY as string],
-    },
-    // for mainnet
-    'zora-mainnet': {
-      url: 'https://mainnet.rpc.zora.energy/',
-      accounts: [process.env.WALLET_KEY as string],
-    },
-  },
-  defaultNetwork: 'hardhat',
-};
-
-export default config;
-```
-
-### Deploying
-Once you've configured your Hardhat project to work with Zora Network, you can proceed with the Hardhat guide to compile, test, and deploy your contracts.
-
-### Verifying
-Zora Network uses Blockscout for chain exploration and contract verification. See Blockscout's [Hardhat plugin guide](https://docs.blockscout.com/for-users/verifying-a-smart-contract/hardhat-verification-plugin) to verify contracts with Hardhat and Blockscout.
-
 ## Foundry
 
 ### Setup
@@ -74,3 +34,43 @@ forge create src/MyContract.sol:MyContract --chain-id 999 --rpc-url https://test
 You can also verify a pre-existing contract with the `forge verify-contract` command using the same flags (`--verifier` and `--verifier-url`).
 
 Note: Zora uses Blockscout which requires apending `\?` to the end of the API url like in the example above. More details [here](https://github.com/foundry-rs/foundry/issues/5160).
+
+## Hardhat
+
+### Setup
+Refer to Hardhat's [Quick Start](https://hardhat.org/hardhat-runner/docs/getting-started#quick-start) guide to install Hardhat and initialize your project. 
+To configure your project, add the Zora Network information in `hardhat.config.js`:
+
+```js
+import { HardhatUserConfig } from 'hardhat/config';
+import '@nomicfoundation/hardhat-toolbox';
+
+require('dotenv').config();
+
+const config: HardhatUserConfig = {
+  solidity: {
+    version: '0.8.17',
+  },
+  networks: {
+    // for testnet
+    'zora-goerli': {
+      url: 'https://testnet.rpc.zora.energy/',
+      accounts: [process.env.WALLET_KEY as string],
+    },
+    // for mainnet
+    'zora-mainnet': {
+      url: 'https://rpc.zora.energy/',
+      accounts: [process.env.WALLET_KEY as string],
+    },
+  },
+  defaultNetwork: 'hardhat',
+};
+
+export default config;
+```
+
+### Deploying
+Once you've configured your Hardhat project to work with Zora Network, you can proceed with the Hardhat guide to compile, test, and deploy your contracts.
+
+### Verifying
+Zora Network uses Blockscout for chain exploration and contract verification. See Blockscout's [Hardhat plugin guide](https://docs.blockscout.com/for-users/verifying-a-smart-contract/hardhat-verification-plugin) to verify contracts with Hardhat and Blockscout.
