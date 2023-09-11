@@ -17,7 +17,7 @@ module.exports = {
     {
       type: 'category',
       label: 'Getting Started',
-      items: ['intro'],
+      items: ['intro', 'security'],
     },
   ],
   createtools: [
@@ -135,6 +135,11 @@ module.exports = {
     'zora-network/contracts',
     'zora-network/metamask',
     'zora-network/deployments',
+    {
+      type: 'link',
+      label: 'Status',
+      href: 'https://status.zora.energy/',
+    },
     {
       type: 'category',
       label: 'Guides',
