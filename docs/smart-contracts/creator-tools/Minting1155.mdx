@@ -3,8 +3,10 @@ title: Minting Tokens
 ---
 ---
 
+[View Source Code](https://github.com/ourzora/zora-protocol/blob/main/packages/1155-contracts/src/nft/ZoraCreator1155Impl.sol#L426)
+
 ## Zora Mint Fee
-Zora charges a small fee (~$1) to a user minting an NFT. 
+Zora charges a small fee for minting an NFT. 
 There is no charge to the creator, all the funds from the sales go to the creator.
 Lastly, the mint fee doesn't apply to admin minted NFT (airdropping).
 
@@ -13,7 +15,10 @@ You can read more about the Zora mint fee [here](https://support.zora.co/en/arti
 
 `function mintFee() external view returns (uint256)`
 
-## Mint Function
+## Mint Function with Rewards
+
+Referring a mint and passing it in as the `mintReferral` with give a reward to the person or platform that referrs the mint.
+View the rewards section for more information.
 
 Purchase tokens given a minter contract and minter arguments
 - `minter`: The minter contract to use
@@ -23,12 +28,13 @@ Purchase tokens given a minter contract and minter arguments
 
 *The minter arguments are different for each minter contract and are listed in the section.
 ```
-function mint(
-    IMinter1155 minter, 
-    uint256 tokenId, 
-    uint256 quantity, 
-    bytes calldata minterArguments
-) external payable 
+function mintWithRewards(
+    IMinter1155 minter,
+    uint256 tokenId,
+    uint256 quantity,
+    bytes calldata minterArguments,
+    address mintReferral
+) external payable nonReentrant 
 ```
 
 ## Minter Strategy Contracts
@@ -37,9 +43,8 @@ It lives in separate contracts called minters.
 To mint a token the `mint` function is called on the main 1155 contract and then minter checks if the user should be able to mint.
 Then the minter tells the main 1155 contract if it should mint or not.
 
-- [Minters Code](https://github.com/ourzora/zora-creator-contracts/tree/main/src/minters)
-- [Mainnet Addresses](https://github.com/ourzora/zora-creator-contracts/blob/main/addresses/1.json)
-- [Goerli Addresses](https://github.com/ourzora/zora-creator-contracts/blob/main/addresses/5.json)
+- [Minters Code](https://github.com/ourzora/zora-protocol/tree/main/packages/1155-contracts/src/minters)
+- [Deployed Addresses](https://github.com/ourzora/zora-protocol/tree/main/packages/protocol-deployments/addresses)
 
 *Note, that the minter arguments are type `bytes`
 

@@ -5,13 +5,21 @@ title: Protocol Rewards
 
 ---
 
+[Rewards escrow contract code](https://github.com/ourzora/zora-protocol/tree/main/packages/protocol-rewards)
+
 ## Introduction
 
 At Zora, we are passionate about providing the best experience to create and earn onchain.
-**Protocol Rewards** is a split of our 0.000777 ETH mint fee allowing:
+**Protocol Rewards** is a split of our the Zora mint fee allowing:
 
 - Creators to monetize their work
 - Developers to earn from NFT mints and creations they facilitate
+
+## Address
+
+Rewards v1.1 is deployed at the same address on all networks.
+
+0x7777777F279eba3d3Ad8F4E708545291A6fDBA8B
 
 ## Fee Split (Per Mint)
 
@@ -52,43 +60,7 @@ The creator's total ETH generated from rewards is aggregated into an [escrow con
 
 The create referral reward is paid out to the developer or platform that referred the creator to deploy their NFT collection using Zora's contracts.
 
-#### Creating an ERC-721 Token
-
-The `createReferral` address is the parameter to specify the reward recipient when calling the `createEditionWithReferral` or `createDropWithReferral` functions. 
-More info on the other parameters from our standard `createEdition` and `createDrop` functions can be found [here](./ZoraNFTCreator#creating-an-nft-contract).
-
-```
-function createEditionWithReferral(
-    string memory name,
-    string memory symbol,
-    uint64 editionSize,
-    uint16 royaltyBPS,
-    address payable fundsRecipient,
-    address defaultAdmin,
-    IERC721Drop.SalesConfiguration memory saleConfig,
-    string memory description,
-    string memory animationURI,
-    string memory imageURI,
-    address createReferral
-) external returns (address)
-```
-
-```
-function createDropWithReferral(
-    string memory name,
-    string memory symbol,
-    address defaultAdmin,
-    uint64 editionSize,
-    uint16 royaltyBPS,
-    address payable fundsRecipient,
-    IERC721Drop.SalesConfiguration memory saleConfig,
-    string memory metadataURIBase,
-    string memory metadataContractURI,
-    address createReferral
-) external returns (address)
-```
-
-#### Creating an ERC-1155 Token
+#### Creating an ERC-1155 Token with Rewards
 
 The `createReferral` address is specified upon token creation.
 
@@ -104,20 +76,7 @@ function setupNewTokenWithCreateReferral(
 
 The mint referral reward is paid out to the party that referred the collector to mint an NFT.
 
-#### ERC-721 Minting
-
-The `mintReferral` address is the parameter to specify as the reward recipient upon mint.
-
-```
-function mintWithRewards(
-    address recipient, 
-    uint256 quantity, 
-    string calldata comment, 
-    address mintReferral
-)
-```
-
-#### ERC-1155 Minting
+#### ERC-1155 Minting with Rewards
 
 ```
 function mintWithRewards(
@@ -133,6 +92,11 @@ function mintWithRewards(
 Rewards must be withdrawn from the escrow contract, which the address can be found [here](https://github.com/ourzora/protocol-rewards/tree/main/addresses).
 ```
 function withdraw(address to, uint256 amount)
+```
+
+Withdraw for another address directly.
+```
+function withdrawFor(address to, uint256 amount) 
 ```
 
 ```

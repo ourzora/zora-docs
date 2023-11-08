@@ -23,10 +23,11 @@ module.exports = {
   createtools: [
     {
       type: 'category',
-      label: 'Create NFT Collection',
+      label: 'NFT Smart Contracts',
       collapsed: true,
       items: [
         'smart-contracts/creator-tools/intro',
+        'smart-contracts/creator-tools/factories',
         'smart-contracts/creator-tools/rewards',
         {
           type: 'category',
@@ -53,7 +54,7 @@ module.exports = {
             'smart-contracts/creator-tools/DropMetadataRenderer',
           ],
         },
-        'smart-contracts/creator-tools/factories'
+        
       ],
     },
   ],
