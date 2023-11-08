@@ -8,9 +8,8 @@ Once a token has been created, it can then be put up for sale.
 Minter strategy contracts are separate contracts that hold minting logic, but the main 1155 is called for minting. 
 Check out the [minting](./Minting1155) section to learn more about minters.
 
-- [Minter Strategy Code](https://github.com/ourzora/zora-creator-contracts/tree/main/src/minters)
-- [Mainnet Addresses](https://github.com/ourzora/zora-creator-contracts/blob/main/addresses/1.json)
-- [Goerli Addresses](https://github.com/ourzora/zora-creator-contracts/blob/main/addresses/5.json)
+- [Minter Strategy Code](https://github.com/ourzora/zora-protocol/tree/main/packages/1155-contracts/src/minters)
+- [Addresses](https://github.com/ourzora/zora-protocol/tree/main/packages/protocol-deployments/addresses)
 
 To create a sale you must use the `callSale` function on the 1155 contract.
 This will set the sale in the appropriate minter.
@@ -59,12 +58,9 @@ struct MerkleSaleSettings {
 }
 ```
 
-## Supply Royalty
-When selling a token, a creator has the opportunity to receive a certain percentage of the tokens minted for themselves. 
-These tokens are minted to the `royaltyRecipient` address as the mints occur.
-As tokens are minted, an amount is minted to them as the mints occur using the `royaltyMintSchedule`.
+## Royalty
+Royalties are set on the main 1155 contract.
 
-- `royaltyMintSchedule`: 1/N tokens are minted to the royalty recipient
 - `royaltyBPS`: The royalty amount in basis points for secondary sales.
 - `royaltyRecipient`: The address that will receive the royalty payments.
 

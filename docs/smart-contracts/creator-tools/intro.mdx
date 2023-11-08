@@ -14,30 +14,13 @@ import TabItem from '@theme/TabItem'
 These contracts allow anyone to deploy an NFT collection in seconds.
 In addition, these contracts **provide built-in sales mechanics**, making it easy to both deploy a collection and sell the initial mints.
 
-- [Goerli Testnet UI](https://testnet.zora.co/) - Test out deploying a contract
-- [1155 Contract Code](https://github.com/ourzora/zora-creator-contracts/tree/main/src)
-- [721 Contract Code](https://github.com/ourzora/zora-drops-contracts/tree/main/src)
+- [Zora Testnet UI](https://testnet.zora.co/)
+- [1155 Contract Code](https://github.com/ourzora/zora-protocol/tree/main/packages/1155-contracts)
 
-## Contract Addresses
-
-### 1155 Contracts
-- [Mainnet](https://github.com/ourzora/zora-creator-contracts/blob/main/addresses/1.json)
-- [Goerli](https://github.com/ourzora/zora-creator-contracts/blob/main/addresses/5.json)
-
-### 721 Contracts
-- [Mainnet](https://github.com/ourzora/zora-drops-contracts/blob/main/addresses/1.json)
-- [Goerli](https://github.com/ourzora/zora-drops-contracts/blob/main/addresses/5.json)
-
-
-## Edition vs Drop
-
-These contracts can make two different types of NFT collections:
-
-- `Edition`: All the NFTs share the same media asset.
-- `Drop`: All the NFTs have individual pieces of media.
-
+## Deployment Addresses
+[Files are numbered by chainId of the network deployment.](https://github.com/ourzora/zora-protocol/tree/main/packages/protocol-deployments/addresses)
 
 ## 1155 vs 721
 
-- `1155`: Editions are stored in the same contract. Recommended for creating editions.
-- `721`: All NFTs have unique id numbers. Recommended for creating drops.
+- `1155`: Multiple editions are stored in the same contract.
+- `721`: All NFTs have unique id numbers. 

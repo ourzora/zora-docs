@@ -27,7 +27,7 @@ module.exports = {
         },
         {
           position: 'left',
-          label: 'Create',
+          label: 'Contracts',
           to: '/docs/smart-contracts/creator-tools/intro',
         },
         {
