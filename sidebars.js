@@ -95,7 +95,6 @@ module.exports = {
             'guides/api-address-balance',
             'guides/api-collection-data',
             'guides/zdk-intro-guide',
-            'guides/api-offchain',
           ],
         },
       ],
