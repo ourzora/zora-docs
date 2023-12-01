@@ -27,6 +27,7 @@ module.exports = {
       collapsed: true,
       items: [
         'smart-contracts/creator-tools/intro',
+        'smart-contracts/creator-tools/ProtocolSDK',
         'smart-contracts/creator-tools/factories',
         'smart-contracts/creator-tools/rewards',
         {
@@ -95,7 +96,6 @@ module.exports = {
             'guides/api-address-balance',
             'guides/api-collection-data',
             'guides/zdk-intro-guide',
-            'guides/api-offchain',
           ],
         },
       ],

@@ -5,11 +5,7 @@ title: Introduction
 
 # Introduction
 
-##### The Most Powerful NFT API
-
----
-
-The ZORA API makes it easy to retrieve NFT metadata, monitor on-chain events, analyze sales activity, and so much more. 
+The ZORA API makes it easy to retrieve NFT metadata, monitor on-chain events, and analyze on-chain sales activity.
 
 :::note
 
@@ -22,8 +18,10 @@ API Endpoint: https://api.zora.co/graphql
 [NFT Hooks](../developer-tools/nft-hooks/intro): A tool that makes NFT data retrieval even easier than the ZDK
 
 :::
+
 ## Key Features
-- Sales info from every marketplace (ZORA, OpenSea, LooksRare etc.)
+
+- Sales info from on-chain marketplaces (ZORA, OpenSea, LooksRare etc.)
 - Data on every Ethereum NFT contract (Transfers, Mints, etc.)
 - Media is encoded to provide assets at different sizes
 - Automatically syncs newly deployed NFT contracts
@@ -34,17 +32,25 @@ API Endpoint: https://api.zora.co/graphql
 ---
 
 ## Supported Networks
+
 The API is expanding to more networks and currently supports:
 
-Network     | ChainId | Status             |
-------------|---------|--------------------|
-ETH Mainnet | 1       |   Entire History   |
-Goerli      | 5       |   Tip of Chain     |
+| Network         | ChainId | Status         |
+| --------------- | ------- | -------------- |
+| ETH Mainnet     | 1       | Entire History |
+| Goerli          | 5       | Tip of Chain   |
+| ZORA            | 7777777 | Entire History |
+| ZORA Goerli     | 999     | Entire History |
+| Base            | 8453    | Entire History |
+| Base Goerli     | 84531   | Entire History |
+| Optimism        | 10      | Entire History |
+| Optimism Goerli | 420     | Entire History |
 
 ---
 
 ## Getting Started
-If you are unfamiliar with GraphQL, we recommend that you [check out this resource](https://www.howtographql.com/basics/0-introduction/). 
+
+If you are unfamiliar with GraphQL, we recommend that you [check out this resource](https://www.howtographql.com/basics/0-introduction/).
 In addition, here are a few considerations before using the API.
 
 - The [ZDK](./zdk) and [NFT Hooks](../developer-tools/nft-hooks/intro) allows anyone to build top on of the API without needing to know GraphQL.
@@ -58,10 +64,10 @@ In addition, here are a few considerations before using the API.
 
 Anyone can use the API **without an API key** as long as the application is making **less than 120 requests per minute.**
 
-| **Needs**                 | **API Key Requirements**|
-| ------------------------- | ---------------------   |
-| Less than 120 requests per minute  | **No Key Needed**           |
-| Greater than 120 requests per minute   | Key Needed              |
+| **Needs**                            | **API Key Requirements** |
+| ------------------------------------ | ------------------------ |
+| Less than 120 requests per minute    | **No Key Needed**        |
+| Greater than 120 requests per minute | Key Needed               |
 
 You can get an API key [here](https://keys.api.zora.co/) if your needs require **greater than 120 requests per mintue.**
 To access the API with a key, add a header in your requests with the key `X-API-KEY` .
