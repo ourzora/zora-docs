@@ -125,14 +125,14 @@ You can also get `Geroli` ETH at the faucet [here](https://faucet.paradigm.xyz/)
 
 ##### Setting the Finders Fee
 The Finders Fee is an optional amount that can be included when an `ask` is created.
-This amount can be awarded to the party that helped matched the buyer to the NFT.
+This amount can be awarded to the party that helped match the buyer to the NFT.
 The Finders Fee is set in basis points, so if you wanted 2% of the sale amount to go to the finder then you would set `findersFeeBps` to 200 (2 x 100 = 200).
 
 ---
 
 ### Filling an Ask
 Once an `ask` has been created it can be filled by anyone. 
-If the NFT is priced in an ERC-20 token then the user trying to fill the `ask` must approve their tokens to the [ERC-20 Transfer Helper](/docs/guides/v3-approvals#approving-a-transfer-helper) 
+If the NFT is priced in an ERC-20 token then the user trying to fill in the `ask` must approve their tokens to the [ERC-20 Transfer Helper](/docs/guides/v3-approvals#approving-a-transfer-helper) 
 and then approve the `Asks 1.1 Module` in the Module Manager.
 
 
@@ -167,7 +167,7 @@ await askModuleContract.fillAsk(
 ```
 
 ##### The Finder Address 
-The `finder` is an address of the party that helped matched the buyer to the NFT and is awarded the Finders Fee. 
+The `finder` is an address of the party that helped match the buyer to the NFT and is awarded the Finders Fee. 
 The `finder` address can be set to the `0 address` if no address is provided or no Finder's Fee is set. 
 This will skip over the Finder's Fee logic in the contract and will send the total sale amount to the seller's address.
 
