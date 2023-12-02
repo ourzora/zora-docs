@@ -29,7 +29,7 @@ The config holds the internal settings for all the minting/sales parameters.
 - `maxSalePurchasePerAddress`: Max amount of NFTs an address can mint (only for public minting)
 - `presaleMerkleRoot`: A cryptographic proof that is used for presale minting (allow list)
 
-Note that `presaleMerkleRoot` can be set to `0x0000000000000000000000000000000000000000000000000000000000000000` if there are no plans for allow list minting.
+Note that `presaleMerkleRoot` can be set to `0x0000000000000000000000000000000000000000000000000000000000000000` if there are no plans for allowing list minting.
 Current values can be viewed by calling `salesConfig` on the contract and it can be updated by calling `setSalesConfig` with the new parameters.
 
 Learn more about creating an allow list [here.](./ERC721Drop#creating-a-presale-allowlist)
@@ -50,7 +50,7 @@ function setSaleConfiguration(
 ## Collection Size
 
 #### Fixed Size
-A fixed-size collection is where there is a max number of NFTs that are allowed to be minted from the contract.
+A fixed-size collection is where there is a maximum number of NFTs that are allowed to be minted from the contract.
 The max size is set when creating the contract and specifying the `editionSize`.
 
 #### Open Edition
@@ -115,7 +115,7 @@ function purchasePresaleWithRewards(
 ## Collection Roles
 
 #### Owner
-The owner doesn't have access to any write functions on the contract. They are only able to set royalty and contract configurations on third-party applications that expect an owner. 
+The owner doesn't have access to any written functions on the contract. They are only able to set royalty and contract configurations on third-party applications that expect an owner. 
 The owner address is set to the same address as the default admin argument when the contract was created but can be updated to any address by a default admin.
 
 #### Default Admin
@@ -126,7 +126,7 @@ Capabilities include:
 
 - Assign and revoke admin roles
 - Call `adminMint`and `adminMintAirdrop` mint functions
-- Change the owner Address
+- Change the owner's Address
 - Update the `salesConfig`
 - Call `finalizeOpenEdition`
 
@@ -146,7 +146,7 @@ A restricted admin that is only able to update the `salesConfig` and call the `w
 <br/>
 
 ## Assigning and Revoking Roles
-Note, admin roles can only be assigned and revoked by default admins. 
+Note, that admin roles can only be assigned and revoked by default admins. 
 
 #### Checking Admin Status
 `isAdmin` function checks if an address is an admin or not. 
