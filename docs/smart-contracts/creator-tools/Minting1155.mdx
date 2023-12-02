@@ -17,10 +17,10 @@ You can read more about the Zora mint fee [here](https://support.zora.co/en/arti
 
 ## Mint Function with Rewards
 
-Referring a mint and passing it in as the `mintReferral` with give a reward to the person or platform that referrs the mint.
+Referring a mint and passing it in as the `mintReferral` with give a reward to the person or platform that refers the mint.
 View the rewards section for more information.
 
-Purchase tokens given a minter contract and minter arguments
+Purchase tokens are given a minter contract and minter arguments
 - `minter`: The minter contract to use
 - `tokenId`: The token ID to purchase
 - `quantity`: The quantity of tokens to purchase
@@ -55,10 +55,10 @@ Mint NFTs for a specific ETH price.
 
 `minterArguments`: User address to mint to, in bytes
 
-*Note, the payment amount of ETH must be set an override if using wagmi or ethers.js. 
+*Note, the payment amount of ETH must be set as an override if using wagmi or ethers.js. 
 
 #### Getting the Mint Price 
-Caling the `sale` function on the fixed-price minter will return the price for a specific token.
+Calling the `sale` function on the fixed-price minter will return the price for a specific token.
 `function sale(address tokenContract, uint256 tokenId) ` 
 
 ### Merkle Proof Strategy
