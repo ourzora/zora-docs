@@ -458,7 +458,7 @@ const response = await zdk.tokens(args);
 
 <br/>
 
-Looking at the response, we can see that only 3 Blitmap NFTs were returned because the limit was set 3 and they are ordered in descending order of `tokenId` based on the `sort` argument.
+Looking at the response, we can see that only 3 Blitmap NFTs were returned because the limit was set to 3 and they are ordered in descending order of `tokenId` based on the `sort` argument.
 
 ---
 
@@ -597,7 +597,7 @@ We can see this returns the `ownerCount` (how many addresses own an NFT from tha
 
 ## Collection Attribute Stats
 Diving deeper into Collection data, we can now look at the attribute stats. 
-These stats tell the amount of NFTs that have a certain attribute and the percent of how many NFTs in the collection have that attribute. 
+These stats tell the amount of NFTs that have a certain attribute and the percentage of how many NFTs in the collection have that attribute. 
 Attribute stats can be retrieved by calling `zdk.aggregateAttributes` with the `collectionAddress`.
 <Tabs
   defaultValue="query"
