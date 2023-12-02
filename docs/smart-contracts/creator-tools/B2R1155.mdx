@@ -4,7 +4,7 @@ title: Burn to Redeem
 ---
 
 Burn to redeem allows for a combination of token types to be burned to claim an 1155 token.
-For example, a requirement could be burn `x` amount of a specific 721 and `y` amount of a specific 1155 token to be able to mint an 1155 token.
+For example, a requirement could be to burn `x` amount of a specific 721 and `y` amount of a specific 1155 token to be able to mint an 1155 token.
 
 Supported Burn Token Types:
 - ERC-20 
@@ -27,15 +27,15 @@ Meaning, that the factory contract must be called to create a unique burn to red
 ### Checking if a Minter has been deployed
 Before deploying a minter for an 1155, it is possible to check and see if one has been deployed or not by calling the contract. 
 
-`getDeployedRedeemMinterForCreatorContract` returns an `address` based on if a B2R minter contract has been deployed for a specific 1155 contract.
-The function will return error if no contract has been deployed.
+`getDeployedRedeemMinterForCreatorContract` returns an `address` based on whether a B2R minter contract has been deployed for a specific 1155 contract.
+The function will return an error if no contract has been deployed.
 ```
 function getDeployedRedeemMinterForCreatorContract(
     address _creatorContract 
 ) external view returns (address) 
 ```
 
-`doesRedeemMinterExistForCreatorContract` returns a bool based on if a contract has been deployed when given the creator's 1155 contract address. 
+`doesRedeemMinterExistForCreatorContract` returns a bool based on whether a contract has been deployed when given the creator's 1155 contract address. 
 
 ```
 function doesRedeemMinterExistForCreatorContract(
@@ -80,7 +80,7 @@ Each 1155 contract must have its own deployed burn to redeem minter contract.
 
 ### Redeeming a Token
 Before a token can be redeemed all the tokens that will be burned must be approved to the specific burn to redeem contract.
-Once approved, then the user can call the `mint` function on the 1155 contract to burn their tokens in exchange for the redeem token. 
+Once approved, then the user can call the `mint` function on the 1155 contract to burn their tokens in exchange for the redeemed token. 
 The data structure for the instructions and args can be found below.
 ```
 mint(
