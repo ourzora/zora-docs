@@ -17,16 +17,19 @@ module.exports = {
     {
       type: 'category',
       label: 'Getting Started',
-      items: ['intro'],
+      items: ['intro', 'security'],
     },
   ],
   createtools: [
     {
       type: 'category',
-      label: 'Create NFT Collection',
+      label: 'NFT Smart Contracts',
       collapsed: true,
       items: [
         'smart-contracts/creator-tools/intro',
+        'smart-contracts/creator-tools/ProtocolSDK',
+        'smart-contracts/creator-tools/factories',
+        'smart-contracts/creator-tools/rewards',
         {
           type: 'category',
           label: '1155 Contracts',
@@ -52,6 +55,7 @@ module.exports = {
             'smart-contracts/creator-tools/DropMetadataRenderer',
           ],
         },
+        
       ],
     },
   ],
@@ -92,7 +96,6 @@ module.exports = {
             'guides/api-address-balance',
             'guides/api-collection-data',
             'guides/zdk-intro-guide',
-            'guides/api-offchain',
           ],
         },
       ],
@@ -133,6 +136,11 @@ module.exports = {
     'zora-network/contracts',
     'zora-network/metamask',
     'zora-network/deployments',
+    {
+      type: 'link',
+      label: 'Status',
+      href: 'https://status.zora.energy/',
+    },
     {
       type: 'category',
       label: 'Guides',

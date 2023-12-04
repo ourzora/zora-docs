@@ -1,0 +1,113 @@
+---
+id: rewards
+title: Protocol Rewards
+---
+
+---
+
+[Rewards escrow contract code](https://github.com/ourzora/zora-protocol/tree/main/packages/protocol-rewards)
+
+## Introduction
+
+At Zora, we are passionate about providing the best experience to create and earn onchain.
+**Protocol Rewards** is a split of our the Zora mint fee allowing:
+
+- Creators to monetize their work
+- Developers to earn from NFT mints and creations they facilitate
+
+## Address
+
+Rewards v1.1 is deployed at the same address on all networks.
+
+0x7777777F279eba3d3Ad8F4E708545291A6fDBA8B
+
+## Fee Split (Per Mint)
+
+#### Free Mint
+
+| Recipient       | Amount       |
+| --------------- | ------------ |
+| Creator         | 0.000333 ETH |
+| Create Referral | 0.000111 ETH |
+| Mint Referral   | 0.000111 ETH |
+| First Minter    | 0.000111 ETH |
+| Zora            | 0.000111 ETH |
+
+#### Paid mint
+
+| Recipient       | Amount       |
+| --------------- | ------------ |
+| Create Referral | 0.000222 ETH |
+| Mint Referral   | 0.000222 ETH |
+| First Minter    | 0.000111 ETH |
+| Zora            | 0.000222 ETH |
+
+**Mint Referral**: The platform that referred a specific mint of an NFT  
+**Create Referral**: The platform that referred the creator to deploy the NFT collection 
+**First Minter**: The first collector to mint an NFT, defaults to the NFT creator if a normal NFT  
+
+## How It Works: Creator
+
+1. Creator selects the **"Free + Rewards"** pricing option when creating their 721 or 1155 NFT
+2. Creator specifies a wallet address eligible to claim their rewards
+3. Creator opens up their edition for minting -- **that's it!**
+
+The creator's total ETH generated from rewards is aggregated into an [escrow contract](https://github.com/ourzora/protocol-rewards/blob/main/src/ProtocolRewards.sol) and can be withdrawn at any time.
+
+## How It Works: Developer
+
+### Create Referral Reward
+
+The create referral reward is paid out to the developer or platform that referred the creator to deploy their NFT collection using Zora's contracts.
+
+#### Creating an ERC-1155 Token with Rewards
+
+The `createReferral` address is specified upon token creation.
+
+```
+function setupNewTokenWithCreateReferral(
+    string calldata newURI,
+    uint256 maxSupply,
+    address createReferral
+) public
+```
+
+### Mint Referral Reward
+
+The mint referral reward is paid out to the party that referred the collector to mint an NFT.
+
+#### ERC-1155 Minting with Rewards
+
+```
+function mintWithRewards(
+    IMinter1155 minter,
+    uint256 tokenId,
+    uint256 quantity,
+    bytes calldata minterArguments,
+    address mintReferral
+)
+```
+
+## Withdrawing Rewards
+Rewards must be withdrawn from the escrow contract, which the address can be found [here](https://github.com/ourzora/protocol-rewards/tree/main/addresses).
+```
+function withdraw(address to, uint256 amount)
+```
+
+Withdraw for another address directly.
+```
+function withdrawFor(address to, uint256 amount) 
+```
+
+```
+function withdrawWithSig(
+    address from, 
+    address to
+    uint256 amount, 
+    uint256 deadline, 
+    uint8 v, 
+    bytes32 
+    r, 
+    bytes32 s
+)
+```

@@ -11,7 +11,7 @@ Both `Editions` and `Drops` use the same base contract but have different metada
 Every time an NFT is minted and sold using these contracts 5% of the primary sale amount will be reserved by the Zora DAO. Nothing is taken on secondary sales.
 :::
 
-View the list of deployed contract addresses [here](https://github.com/ourzora/zora-drops-contracts/tree/main/deployments) and view the contract source code [here](https://github.com/ourzora/zora-drops-contracts/blob/main/src/ERC721Drop.sol)
+View the list of deployed contract addresses [here](https://github.com/ourzora/zora-721-contracts/tree/main/addresses) and view the contract source code [here](https://github.com/ourzora/zora-drops-contracts/blob/main/src/ERC721Drop.sol)
 
 - `Edition`: A collection where all the NFTs share the same media asset.
 - `Drop`: A collection where all the NFTs have individual pieces of media.
@@ -55,7 +55,7 @@ The max size is set when creating the contract and specifying the `editionSize`.
 
 #### Open Edition
 An open edition collection has no max amount but instead has a certain time window where minting is open. 
-However, once the period is over then no one can publically mint anymore.
+However, once the period is over then no one can publicly mint anymore.
 
 Note, `finalizeOpenEdition` **must be called by an admin** once the minting window has closed to make sure that it's not possible to mint any more NFTs from the contract.
 
@@ -68,7 +68,7 @@ function finalizeOpenEdition()
 ## Minting Functions
 
 #### adminMint
-An admin can mint a certain number of the NFTs to an address without having to pay the base price.
+An admin can mint a certain number of the NFTs to an address without having to pay the base price or protocol rewards.
 
 ```
 function adminMint(address recipient, uint256 quantity)
@@ -82,23 +82,31 @@ The function takes in an array of addresses to mint to.
 function adminMintAirdrop(address[] calldata recipients)
 ```
 
-#### purchase 
-A public minting function that can be called by anyone once the public sale has started.
+#### mintWithRewards 
+A public minting function that can be called by anyone once the public sale has started. 
+Minter referral is given to the address that referred the mint.
 
 ```
-function purchase(uint256 quantity)
+function mintWithRewards(
+    address recipient, 
+    uint256 quantity, 
+    string calldata comment, 
+    address mintReferral
+)
 ```
 
-#### presalePurchase
+#### purchasePresaleWithRewards
 A private sale function for allowlist minting that requires a merkle proof.
 Check out the section [here](./ERC721Drop#creating-a-presale-allow-list) for creating an allowlist.  
 
 ```
-function purchasePresale(
+function purchasePresaleWithRewards(
     uint256 quantity,
-    uint256 maxQuantity, // Max quantity that can be purchased with a merkle proof
+    uint256 maxQuantity,
     uint256 pricePerToken,
-    bytes32[] calldata merkleProof
+    bytes32[] calldata merkleProof,
+    string memory comment,
+    address mintReferral
 )
 ```
 
@@ -222,18 +230,3 @@ Similar to `upgradeTo`, `upgradeToAndCall` allows a new implementation contract 
 ```
 function upgradeToAndCall(address newImplementation, bytes data)
 ```
-<br/>
-
-## Opting in to OpenSea Royalties
-OpenSea has enacted a policy that requires NFT contracts block other NFT exchanges to set royalties.
-Meaning the NFTs can't be sold on platforms that have 0% percent royalties.
-When creating NFTs using the Create tool there is the option to select the implementation version that allows you to set royalties on OpenSea.
-
-<img className="guide-photos" src={osRoyalties} alt="proposal-lifecycle" width="100%"/>
-
-<br/>
-
-Note it is possible to upgrade the contract to an implementation that doesn't contain this later on if you change your mind.
-You read more about the OpenSea policy [here](https://support.opensea.io/hc/en-us/articles/1500009575482).
-
-<br/>

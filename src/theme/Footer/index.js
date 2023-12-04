@@ -9,6 +9,7 @@ import styles from './styles.module.css'
 import QuestionsIcon from '../../../static/img/questionsIcon.svg'
 import TwitterIcon from '../../../static/img/twitterIcon.svg'
 import ZoraLogo from '../../../static/img/homepageLogo.svg'
+import SecurityIcon from '../../../static/img/shield-64.svg'
 
 function Footer() {
   return (
@@ -40,6 +41,18 @@ function Footer() {
           </div>
           <p className={styles.footerParagraph}>
             Follow us on Twitter for release updates.
+          </p>
+        </a>
+        <a
+          href="./docs/security"
+          className={styles.textFlexbox}
+        >
+          <div className={styles.footerTitleFlexbox}>
+            <SecurityIcon className={styles.footerIcon} />
+            <h3 className={styles.footerTitle}>Found a Bug</h3>
+          </div>
+          <p className={styles.footerParagraph}>
+          Learn more here.
           </p>
         </a>
       </div>
