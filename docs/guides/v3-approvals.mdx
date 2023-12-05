@@ -62,7 +62,7 @@ const erc721Contract = IERC721__factory.connect(nftContractAddress, signer);
 
 // Initialize ERC20 currency demo contract
 const erc20ContractAddress = "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48"; // USDC token address
-const erc20Contract = IERC20__factory.connect(nftContractAddress, signer);
+const erc20Contract = IERC20__factory.connect(erc20ContractAddress, signer);
 
 // Initialize Zora V3 Module Manager contract 
 const moduleManagerContract = ZoraModuleManager__factory.connect(mainnetZoraAddresses.ZoraModuleManager, signer);
