@@ -30,6 +30,7 @@ module.exports = {
         'smart-contracts/creator-tools/ProtocolSDK',
         'smart-contracts/creator-tools/factories',
         'smart-contracts/creator-tools/rewards',
+        'smart-contracts/creator-tools/events',
         {
           type: 'category',
           label: '1155 Contracts',
