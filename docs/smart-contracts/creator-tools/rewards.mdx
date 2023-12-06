@@ -52,7 +52,7 @@ Rewards v1.1 is deployed at the same address on all networks.
 2. Creator specifies a wallet address eligible to claim their rewards
 3. Creator opens up their edition for minting -- **that's it!**
 
-The creator's total ETH generated from rewards is aggregated into an [escrow contract](https://github.com/ourzora/protocol-rewards/blob/main/src/ProtocolRewards.sol) and can be withdrawn at any time.
+The creator's total ETH generated from rewards is aggregated into an [escrow contract](https://github.com/ourzora/zora-protocol/blob/main/packages/protocol-rewards/src/ProtocolRewards.sol) and can be withdrawn at any time.
 
 ## How It Works: Developer
 
@@ -89,17 +89,20 @@ function mintWithRewards(
 ```
 
 ## Withdrawing Rewards
-Rewards must be withdrawn from the escrow contract, which the address can be found [here](https://github.com/ourzora/protocol-rewards/tree/main/addresses).
-```
-function withdraw(address to, uint256 amount)
+
+Rewards must be withdrawn from the escrow contract, which the address can be found [in the readme](https://github.com/ourzora/zora-protocol/tree/main/packages/protocol-rewards).
+
+```sol
+function withdraw(address to, uint256 amount) external;
 ```
 
 Withdraw for another address directly.
-```
-function withdrawFor(address to, uint256 amount) 
+
+```sol
+function withdrawFor(address to, uint256 amount) external;
 ```
 
-```
+```sol
 function withdrawWithSig(
     address from, 
     address to
