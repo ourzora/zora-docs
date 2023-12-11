@@ -1,16 +1,16 @@
 ---
-title: Smart Contracts High-Level Overview
+title: Events for Indexing and Integration Overview
 ---
 
-# ZORA Smart Contracts High-Level Overview
+# ZORA Smart Contracts Event-based Overview
 
 ## Zora 1155 Contracts
 
 ### Creating a New Token
 
-A create is when a new token becomes available on the contract to mint.
+When a user creates a new token, the parameters expected are maxSupply and URI. maxSupply is the immutable maximum number of NFTs that can be made for this token and the URI is possible to change but the initial URL representing the token.
 
-Now that we have both gasless and on-chain minting the mint event arguments are slightly different to determine the originating user of the mint.
+Now that we have both gasless and on-chain minting the token creation event arguments are slightly different to determine the originating user of the mint.
 
 Creating new tokens can happen with a call to either [`setupNewToken()`](https://github.com/ourzora/zora-protocol/blob/HEAD/packages/1155-contracts/src/nft/ZoraCreator1155Impl.sol#L260) or [`delegateSetupNewToken()`](https://github.com/ourzora/zora-protocol/blob/f58ee955e6b50c13e90b4cfd72ab4b68dce86fad/packages/1155-contracts/src/nft/ZoraCreator1155Impl.sol#L765) (used by the gasless creation mint flow).
 
@@ -36,7 +36,7 @@ event URI(string uri, uint256 tokenId)
 // Emitted in ZoraCreator1155Impl:306
 ```
 
-The `CreatorAttribution` event is emitted only when bringing a token onchain. The creator of the token in this case is the `creator` field of the event.
+The `CreatorAttribution` event is emitted only when bringing a token onchain. The creator of the token in this case is the `creator` field of the event. This is part of a [draft ERC standard](https://eips.ethereum.org/EIPS/eip-7015).
 
 If necessary, this field can be verified by extracting the signer of the `signature` using `structHash`.
 
@@ -264,7 +264,7 @@ Zora protocol rewards power rewards for both the 721 and 1155 contracts.
 
 The contracts include a shared solidity library to calculate the fees and call a shared hyperstructure to escrow and store the deposits for users to deposit.
 
-This allows us to have the gas savings and security of a pull contract while also making it easy for users to retrieve all their rewards in one place.
+This allows us to have the gas savings and security of a model where users retrieve funds from the contract rather than push payments where payments are sent to them while also making it easy for users to retrieve all their rewards in one place.
 
 Protocol Reward events for a free and a paid mint vary.
 
