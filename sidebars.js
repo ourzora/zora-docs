@@ -134,6 +134,7 @@ module.exports = {
     'zora-network/network',
     'zora-network/ethvszora',
     'zora-network/bridging',
+    'zora-network/api-access',
     'zora-network/contracts',
     'zora-network/metamask',
     'zora-network/deployments',
