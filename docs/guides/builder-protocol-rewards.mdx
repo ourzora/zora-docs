@@ -1,0 +1,54 @@
+---
+id: builder-protocol-rewards
+title: Builder Protocol Rewards
+---
+
+import builderProtocolRewards from '../../static/img/guides/builderGuide/builderProtocolRewards.png'
+
+##### Learn about Protocol Rewards
+
+---
+
+Builder Protocol Rewards is a rendition of the Zora Protocol Rewards model. Rewards are taken as a percent of final auction bids and distributed to bid referrals, DAO founders and Builder DAO
+
+### Proposal
+
+The Builder DAO proposal to deploy Builder Protocol Rewards can be found [here.](https://nouns.build/dao/ethereum/0xdf9b7d26c8fc806b1ae6273684556761ff02d422/vote/87) The proposal officially passed on January 29, 2024 (UTC).
+
+---
+
+### Configuration
+
+<img
+  className="guide-photos"
+  src={builderProtocolRewards}
+  alt="builder-protocol-rewards"
+  height="400px"
+/>
+
+_Diagram for Builder Protocol Rewards_
+
+1.  **Builder DAO Reward** - 2.5%
+    Builder DAO, the developer and maintainer of the protocol, receives this reward.
+
+2.  **Auction Referral Reward** - 2.5%
+    The auction referral reward goes to the client that facilitates the auction.
+
+    Examples:
+
+    - If the auction takes place on https://nouns.build, then the reward goes to Builder DAO which maintains and develops the client.
+    - If the auction takes place on another website, then the reward goes to the wallet address that is designated by the developer of that website.<br /> \* Websites that want to claim this reward must call the `createBidWithReferral` function on the upgraded contract and pass the reward recipient as the `_referral` parameter.
+
+3.  **Founder Reward** - _Optional and controlled by individual DAOs_ <br />
+    DAOs can choose to distribute up to 50% of the auction revenue to its founder. This can be applied at the time of DAO creation or post-creation. If post-creation, then the DAO can vote on a proposal to assign this reward.
+
+---
+
+### Builder DAO Rewards Recipients
+
+All Builder DAO rewards will go to a 3/6 multisig on each network managed by the DAO's Operations Working Group. The addresses are:
+
+- **Ethereum Mainnet:** 0x38C170B11038eBEf16f3EC4F9b8a3A51B045533d
+- **Base:** 0x894F30da29216516b5aE85207dED77038C107f22
+- **OP Mainnet:** 0x7C69609645837a77915410B9B5605f54C79Da5D2
+- **Zora Network:** 0x7229F0c537e64f3EA9E9b993601578A7B09c402C
