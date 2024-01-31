@@ -77,7 +77,7 @@ module.exports = {
       type: 'category',
       label: 'Guides',
       collapsed: false,
-      items: ['guides/builder-deployment', 'guides/builder-proposal'],
+      items: ['guides/builder-deployment', 'guides/builder-proposal', 'guides/builder-bridging', 'guides/builder-protocol-rewards'],
     },
   ],
   api: [
