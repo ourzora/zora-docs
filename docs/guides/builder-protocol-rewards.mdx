@@ -11,6 +11,8 @@ import builderProtocolRewards from '../../static/img/guides/builderGuide/builder
 
 Builder Protocol Rewards is a rendition of the Zora Protocol Rewards model. Rewards are taken as a percent of final auction bids and distributed to bid referrals, DAO founders and Builder DAO
 
+This document describes how Builder Protocol Rewards work for all DAOs that 1) launched on L2 using Builder Protocol after the Bali Upgrade, or 2) prior DAOs who have chosen to opt-in to Builder Protocol Rewards.
+
 ### Proposal
 
 The Builder DAO proposal to deploy Builder Protocol Rewards can be found [here.](https://nouns.build/dao/ethereum/0xdf9b7d26c8fc806b1ae6273684556761ff02d422/vote/87) The proposal officially passed on January 29, 2024 (UTC).
@@ -29,7 +31,7 @@ The Builder DAO proposal to deploy Builder Protocol Rewards can be found [here.]
 _Diagram for Builder Protocol Rewards_
 
 1.  **Builder DAO Reward** - 2.5%
-    Builder DAO, the developer and maintainer of the protocol, receives this reward.
+    Builder DAO, the DAO responsible for developing and maintaining the protocol, receives this reward.
 
 2.  **Auction Referral Reward** - 2.5%
     The auction referral reward goes to the client that facilitates the auction.
@@ -40,13 +42,13 @@ _Diagram for Builder Protocol Rewards_
     - If the auction takes place on another website, then the reward goes to the wallet address that is designated by the developer of that website.<br /> \* Websites that want to claim this reward must call the `createBidWithReferral` function on the upgraded contract and pass the reward recipient as the `_referral` parameter.
 
 3.  **Founder Reward** - _Optional and controlled by individual DAOs_ <br />
-    DAOs can choose to distribute up to 50% of the auction revenue to its founder. This can be applied at the time of DAO creation or post-creation. If post-creation, then the DAO can vote on a proposal to assign this reward.
+    DAOs can choose to distribute up to 50% of the auction revenue to its founder(s). This can be applied at the time of DAO creation or post-creation. If post-creation, then the DAO can vote on a proposal to assign this reward.
 
 ---
 
 ### Builder DAO Rewards Recipients
 
-All Builder DAO rewards will go to a 3/6 multisig on each network managed by the DAO's Operations Working Group. The addresses are:
+BuilderDAO's portion of the rewards will go to a 3/6 multisig on each network managed by the DAO's Operations Working Group. The addresses are:
 
 - **Ethereum Mainnet:** 0x38C170B11038eBEf16f3EC4F9b8a3A51B045533d
 - **Base:** 0x894F30da29216516b5aE85207dED77038C107f22
