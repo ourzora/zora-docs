@@ -11,11 +11,11 @@ At Zora, we prioritize the safety and security for all of our users and communit
 To submit your report, please send an email to [security@zora.co](mailto:security@zora.co) and include the following details:
 - Provide a clear description of the issue, highlighting its potential impact.
 - Specify the location where the vulnerability was identified.
-- Provide detailed steps necessary to reproduce the issue.
+- Steps to reproduce the issue (Add details for how we can reproduce the issue).
 - Include any proof-of-concept code or supporting materials.
 
 
-After receiving your report, a member of our security team will confirm and begin investigating the issue. We'll keep you updated on the progress of your report and we may request further information if required. For the same issue, we'll consider only the first report meeting our criteria
+Upon receipt of your report, a member of our security team will confirm and begin an investigation into the reported issue. We are committed to providing you with regular updates on the progress of your report. Should further information or clarification be necessary, we will reach out to you.
 
 ### Bug Bounty Rewards
 
@@ -45,12 +45,15 @@ Assets listed below are considered in-scope and are eligible submissions within 
 - Vulnerabilities that require physical access to a user's device.
 - Clickjacking on pages with no sensitive actions.
 - Attacks requiring leaked keys or credentials.
+- Self-XSS reports will not be accepted.
+- Lack of Secure/HTTPOnly flags on non-sensitive Cookies.
 - Missing or incorrect SPF and/or DMARC records of any kind.
 - Theoretical attacks without proof of exploitability.
 
 ### Program Rules
 
 - Social engineering targeted to Zora employees is prohibited.
+- publishing any sensitive information discovered during security testing is prohibited.
 - Only submit one vulnerability per report.
 - Vulnerabilities that Zora is aware of will not be rewarded.
 - Please provide thorough reports with clear steps that can be replicated. If the report lacks sufficient detail to reproduce the issue, it may not be accepted.
