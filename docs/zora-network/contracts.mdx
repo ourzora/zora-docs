@@ -7,7 +7,7 @@ sidebar_position: 5
 ---
 
 Deploying contracts can be done with familiar EVM tools like [Hardhat](https://hardhat.org/) and [Foundry](https://book.getfoundry.sh/). 
-Make sure to configure these tools with the correct chain ID and RPC URL to deploy smart contracts to Zora Network Goerli and Zora Network Mainnet. See the [Network Details](/docs/zora-network/network) section for more information.
+Make sure to configure these tools with the correct chain ID and RPC URL to deploy smart contracts to Zora Network Sepolia and Zora Network Mainnet. See the [Network Details](/docs/zora-network/network) section for more information.
 
 ## Foundry
 
@@ -16,10 +16,10 @@ Make sure to configure these tools with the correct chain ID and RPC URL to depl
 See the [Foundry](https://book.getfoundry.sh/) documentation to initialize your project with Foundry.
 
 ### Deploying
-To deploy smart contracts to Zora Network with Foundry, remember to use the --rpc-url and --chain-id flags with the correct values for the Zora network you are deploying to. For example, to deploy to Zora Goerli:
+To deploy smart contracts to Zora Network with Foundry, remember to use the --rpc-url and --chain-id flags with the correct values for the Zora network you are deploying to. For example, to deploy to Zora Sepolia:
 
 ```bash
-forge create src/MyContract.sol:MyContract --chain-id 999 --rpc-url https://testnet.rpc.zora.energy/ --private-key $PRIVATE_KEY 
+forge create src/MyContract.sol:MyContract --chain-id 999999999 --rpc-url https://sepolia.rpc.zora.energy/ --private-key $PRIVATE_KEY 
 ```
 
 You can use the same flags for more complicated deploy commands, such as with constructor arguments or a deploy script.
@@ -28,7 +28,7 @@ You can use the same flags for more complicated deploy commands, such as with co
 To deploy and verify your contract in one command, use Foundry's verification flags configured with Blockscout and Zora Network's Blockscout API:
 
 ```bash
-forge create src/MyContract.sol:MyContract --chain-id 999 --rpc-url https://testnet.rpc.zora.energy/ --private-key $PRIVATE_KEY --verify --verifier blockscout --verifier-url https://testnet.explorer.zora.energy/api\?
+forge create src/MyContract.sol:MyContract --chain-id 999999999 --rpc-url https://sepolia.rpc.zora.energy/ --private-key $PRIVATE_KEY --verify --verifier blockscout --verifier-url https://sepolia.explorer.zora.energy/api\?
 ```
 
 You can also verify a pre-existing contract with the `forge verify-contract` command using the same flags (`--verifier` and `--verifier-url`).
@@ -56,8 +56,8 @@ const config: HardhatUserConfig = {
   },
   networks: {
     // for testnet
-    'zora-goerli': {
-      url: 'https://testnet.rpc.zora.energy/',
+    'zora-sepolia': {
+      url: 'https://sepolia.rpc.zora.energy/',
       accounts: [process.env.WALLET_KEY as string],
     },
     // for mainnet
@@ -73,7 +73,24 @@ export default config;
 ```
 
 ### Deploying
-Once you've configured your Hardhat project to work with Zora Network, you can proceed with the Hardhat guide to compile, test, and deploy your contracts.
+After you've configured your Hardhat project to work with Zora Network, you can compile, test, and deploy your contracts.
+#### Compiling your contracts
+```bash
+npx hardhat compile
+```
+#### Testing contracts
+```bash
+npx hardhat test
+```
+#### Deploying your contracts
+For Zora Mainnet:
+```javascript
+npx hardhat run --network zora-mainnet scripts/deploy.js
+```
+For Zora Sepolia Testnet:
+```javascript
+npx hardhat run --network zora-sepolia scripts/deploy.js
+```
 
 ### Verifying
 Zora Network uses Blockscout for chain exploration and contract verification. See Blockscout's [Hardhat plugin guide](https://docs.blockscout.com/for-users/verifying-a-smart-contract/hardhat-verification-plugin) to verify contracts with Hardhat and Blockscout.
