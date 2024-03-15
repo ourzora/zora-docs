@@ -43,8 +43,11 @@ Rewards v1.1 is deployed at the same address on all networks.
 | Zora            | 0.000222 ETH |
 
 **Mint Referral**: The platform that referred a specific mint of an NFT  
-**Create Referral**: The platform that referred the creator to deploy the NFT collection 
-**First Minter**: The first collector to mint an NFT, defaults to the NFT creator if a normal NFT  
+
+**Create Referral**: The platform that referred the creator to deploy the NFT collection. The creator is determined by the royaltyRecipient of the token followed by the funds recipient of the contract.
+
+**First Minter**: Only for premints, this is the first collector to execute the premint. In a non-premint context, this reward is paid out to the creator of the NFT.
+
 
 ## How It Works: Creator
 
