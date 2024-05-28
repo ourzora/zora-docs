@@ -32,6 +32,6 @@ export const toolsCardsContent = [
     toolsTitle: 'Nouns Builder',
     toolsParagraph:
       'Build a Nouns styled DAO in minutes.',
-    toolsLink: '/docs/smart-contracts/intro',
+    toolsLink: '/docs/smart-contracts/nouns-builder/intro',
   },
 ]
