@@ -10,7 +10,7 @@ title: Protocol Rewards
 ## Introduction
 
 At Zora, we are passionate about providing the best experience to create and earn onchain.
-**Protocol Rewards** is a split of our the Zora mint fee allowing:
+**Protocol Rewards** is a split of the Zora mint fee allowing:
 
 - Creators to monetize their work
 - Developers to earn from NFT mints and creations they facilitate
@@ -33,20 +33,33 @@ Rewards v1.1 is deployed at the same address on all networks.
 | First Minter    | 0.000111 ETH |
 | Zora            | 0.000111 ETH |
 
-#### Paid mint
+#### Paid Mint
 
 | Recipient       | Amount       |
 | --------------- | ------------ |
+| Creator | 100% of earnings from sales |
 | Create Referral | 0.000222 ETH |
 | Mint Referral   | 0.000222 ETH |
 | First Minter    | 0.000111 ETH |
 | Zora            | 0.000222 ETH |
 
+#### ERC20 Mint
+
+| Recipient       | Amount       |
+| --------------- | ------------ |
+| Creator | 95% of earnings from sales |
+| Mint Fee | 5% of listed purchase price|
+| Create Referral | 28.57% of Mint Fee |
+| Mint Referral   | 28.57% of Mint Fee |
+| First Minter    | 14.23% of Mint Fee |
+| Zora            | 28.63% of Mint Fee |
+
+
 **Mint Referral**: The platform that referred a specific mint of an NFT  
 
 **Create Referral**: The platform that referred the creator to deploy the NFT collection. The creator is determined by the royaltyRecipient of the token followed by the funds recipient of the contract.
 
-**First Minter**: Only for premints, this is the first collector to execute the premint. In a non-premint context, this reward is paid out to the creator of the NFT.
+**First Minter**: Only for premints, this is the first collector to execute the premint. In a non-premint context, this reward is paid out to the creator of the NFT. *Note: For ERC20 Mints, the creator is set as the First Minter and earns First Minter rewards by default.*
 
 
 ## How It Works: Creator
