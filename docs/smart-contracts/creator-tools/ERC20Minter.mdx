@@ -9,14 +9,14 @@ When minting with the ERC20 Minter contract there is a 5% reward that is split a
 
 #### ERC20 Mint Reward Percentages
 
-| Recipient                            | Amount                                                                                                                                                        |
-| -------------------------------------| --------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Creator                              | 95% of earnings from sales                                                                                                                                    |
-| Mint Fee                             | 5% of listed purchase price                                                                                                                                   |
-| Create Referral                      | 28.57% of Mint Fee (if there is no create referral address set the reward will go to Zora)                                                                    |
-| Mint Referral                        | 28.57% of Mint Fee                                                                                                                                            |
-| First Minter                         | 14.23% of Mint Fee (if there is no first minter address set the reward will go to the creator reward recipient and if that does not exist it will go to Zora) |
-| Zora                                 | 28.63% of Mint Fee                                                                                                                                            |
+| Recipient                            | Amount                                                                                                                                                                 |
+| -------------------------------------| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Creator                              | 95% of earnings from sales                                                                                                                                             |
+| Mint Fee                             | 5% of listed purchase price                                                                                                                                            |
+| Create Referral                      | 28.57% of Mint Fee (if there is no create referral recipient set the reward will go to Zora)                                                                             |
+| Mint Referral                        | 28.57% of Mint Fee                                                                                                                                                     |
+| First Minter                         | 14.23% of Mint Fee (if there is no first minter reward recipient set the reward will go to the creator reward recipient and if that does not exist it will go to Zora) |
+| Zora                                 | 28.63% of Mint Fee                                                                                                                                                     |
 
 
 Read functions on the contract:
@@ -151,4 +151,4 @@ struct SalesConfig {
 }
 ```
 
-[Using the ERC20 Minter contract with the protocol sdk](https://github.com/ourzora/zora-protocol/tree/main/packages/protocol-sdk#minting-an-nft-with-an-erc20-minter)
+[Using the ERC20 Minter contract with the protocol sdk](https://ourzora.github.io/zora-protocol/protocol-sdk/mint-client#collecting-an-onchain-1155-token)
