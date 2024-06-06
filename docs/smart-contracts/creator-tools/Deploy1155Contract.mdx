@@ -8,8 +8,8 @@ When calling this factory it will deploy a minimal proxy contract that is upgrad
 All upgrades are opt-in and must be done manually on a per contract basis by the user.
 
 - [Factory Contract Code](https://github.com/ourzora/zora-protocol/blob/main/packages/1155-contracts/src/factory/ZoraCreator1155FactoryImpl.sol)
-- [Deployed Addresses](https://github.com/ourzora/zora-protocol/tree/main/packages/protocol-deployments/addresses)
-- Factory Proxy Address 0x777777C338d93e2C7adf08D102d45CA7CC4Ed021 on all networks
+- [Deployed Addresses](https://github.com/ourzora/zora-protocol/tree/main/packages/1155-deployments/addresses)
+- Factory Proxy Address `0x777777C338d93e2C7adf08D102d45CA7CC4Ed021` on all networks
 
 ## Calling the Factory Contract
 The `createContract` function on the factory is responsible for deploying a new 1155 contract. 
@@ -34,34 +34,6 @@ function createContract(
 :::note
 The contract supports multicall so multiple functions can be called to set up the contract in a single transaction.
 :::
-
-## Royalty Configuration
-The `defaultRoyaltyConfiguration` sets contract-wide royalties. 
-Note, that royalties can also be set at the token level.
-The parameter can be passed in with the following details: 
-
-- `royaltyMintSchedule`: 1/N tokens are minted to the royalty recipient
-- `royaltyBPS`: The royalty amount in basis points for secondary sales.
-- `royaltyRecipient`: The address that will receive the royalty payments.
-
-```
-struct RoyaltyConfiguration {
-    uint32 royaltyMintSchedule;
-    uint32 royaltyBPS;
-    address royaltyRecipient;
-}
-```
-
-### Supply Royalty
-When selling a token, a creator has the opportunity to reserve a certain percentage of the tokens minted for themselves. 
-The tokens are minted to them as the mints occur using the `royaltyMintSchedule`.
-
-`getRoyalties` can be called on a contract to view the royalty info a specific token.
-Calling it with tokenId 0 will return the contract level information.
-
-```
-function getRoyalties(uint256 tokenId) public view returns (RoyaltyConfiguration memory)  
-```
 
 ## Contract URI 
 The Contract URI contains contract specific details. This metadata is stored in a JSON file on IPFS. 
