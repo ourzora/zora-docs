@@ -3,7 +3,7 @@ title: Permissions
 ---
 ---
 
-[View Source Code](https://github.com/ourzora/zora-protocol/blob/main/packages/1155-contracts/src/nft/ZoraCreator1155Impl.sol#L329)
+[View Source Code](https://github.com/ourzora/zora-protocol/blob/ba8548a06b3b003dff59bab1c9aa2738255326c3/packages/1155-contracts/src/nft/ZoraCreator1155Impl.sol#L356)
 
 ## Admin and Minter Role
 - `Admin`: Can update sales, airdrop tokens, metadata, and withdraw ETH
@@ -90,9 +90,10 @@ function updateRoyaltiesForToken(
 )
 ```
 
-- `royaltyMintSchedule`: 1/N tokens are minted to the royalty recipient
 - `royaltyBPS`: The royalty amount in basis points for secondary sales.
 - `royaltyRecipient`: The address that will receive the royalty payments.
+
+`Deprecated` `royaltyMintSchedule`: 1/N tokens are minted to the royalty recipient
 
 ```
 struct RoyaltyConfiguration {
