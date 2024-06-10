@@ -28,13 +28,15 @@ Purchase tokens given a minter contract and minter arguments
 
 *The minter arguments are different for each minter contract and are listed in the section.
 ```
-function mintWithRewards(
-    IMinter1155 minter,
-    uint256 tokenId,
-    uint256 quantity,
-    bytes calldata minterArguments,
-    address mintReferral
-) external payable nonReentrant 
+ function mint(
+        IMinter1155 minter,
+        uint256 tokenId,
+        uint256 quantity,
+        address[] calldata rewardsRecipients,
+        bytes calldata minterArguments
+    ) external payable nonReentrant {
+        _mint(minter, tokenId, quantity, rewardsRecipients, minterArguments);
+    }
 ```
 
 ## Minter Strategy Contracts
@@ -44,7 +46,7 @@ To mint a token the `mint` function is called on the main 1155 contract and then
 Then the minter tells the main 1155 contract if it should mint or not.
 
 - [Minters Code](https://github.com/ourzora/zora-protocol/tree/main/packages/1155-contracts/src/minters)
-- [Deployed Addresses](https://github.com/ourzora/zora-protocol/tree/main/packages/protocol-deployments/addresses)
+- [Deployed Addresses](https://github.com/ourzora/zora-protocol/tree/main/packages/1155-deployments/addresses)
 
 *Note, that the minter arguments are type `bytes`
 
