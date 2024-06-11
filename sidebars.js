@@ -41,7 +41,6 @@ module.exports = {
             'smart-contracts/creator-tools/Selling1155',
             'smart-contracts/creator-tools/Minting1155',
             'smart-contracts/creator-tools/Permissions1155',
-            'smart-contracts/creator-tools/B2R1155',
             'smart-contracts/creator-tools/ERC20Minter',
           ],
         },
