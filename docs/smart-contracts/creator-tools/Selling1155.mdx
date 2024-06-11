@@ -9,7 +9,7 @@ Minter strategy contracts are separate contracts that hold minting logic, but th
 Check out the [minting](./Minting1155) section to learn more about minters.
 
 - [Minter Strategy Code](https://github.com/ourzora/zora-protocol/tree/main/packages/1155-contracts/src/minters)
-- [Addresses](https://github.com/ourzora/zora-protocol/tree/main/packages/protocol-deployments/addresses)
+- [Addresses](https://github.com/ourzora/zora-protocol/tree/main/packages/1155-deployments/addresses)
 
 To create a sale you must use the `callSale` function on the 1155 contract.
 This will set the sale in the appropriate minter.
@@ -64,6 +64,9 @@ Royalties are set on the main 1155 contract.
 - `royaltyBPS`: The royalty amount in basis points for secondary sales.
 - `royaltyRecipient`: The address that will receive the royalty payments.
 
+`*Note*: The `royaltyMintSchedule` argument has been deprecated.`
+
+
 ```
 struct RoyaltyConfiguration {
     uint32 royaltyMintSchedule;
@@ -79,18 +82,4 @@ function updateRoyaltiesForToken(
     uint256 tokenId, 
     RoyaltyConfiguration memory newConfiguration
 )
-```
-
-## Withdrawing Funds
-Admin can withdraw all funds to the `msg.sender`.
-```
-function withdrawAll() public onlyAdminOrRole(CONTRACT_BASE_ID, PERMISSION_BIT_FUNDS_MANAGER)
-```
-
-Admin can withdraw a certain amount to a specific address.
-```
-function withdrawCustom(
-    address recipient, 
-    uint256 amounts
-) public onlyAdminOrRole(CONTRACT_BASE_ID, PERMISSION_BIT_FUNDS_MANAGER)
 ```
