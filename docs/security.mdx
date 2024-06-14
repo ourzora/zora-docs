@@ -3,29 +3,28 @@
 
 ### Security at Zora
 
-At Zora, we prioritize the safety and security for all of our users and community members. We encourage and appreciate any feedback from our community to help us identify and promptly address any potential vulnerabilities in our product. 
+At Zora, we prioritize the safety and security for all of our users and community members. We encourage and value any feedback from our community to help us identify and promptly address any potential vulnerabilities in our product. 
 
 
 ### Report Submission Guidelines
 
-To submit your report, please send an email to [security@zora.co](mailto:security@zora.co) and include the following details:
-- Provide a clear description of the issue, highlighting its potential impact.
-- Specify the location where the vulnerability was identified.
-- Steps to reproduce (Add details for how we can reproduce the issue).
-- Include any proof-of-concept code or supporting materials.
+To submit your report, send an email to [security@zora.co](mailto:security@zora.co) and include the following details:
+- **Issue Description**: Provide a detailed description of the issue, outlining its potential impact.
+- **Location**: Specify the location where the vulnerability was identified.
+- **Steps to Reproduce**: Outline detailed steps to reproduce the issue.
+- **Proof of Concept**: Include proof-of-concept code, screenshots, videos, logs, etc. demonstrating the vulnerability.
 
-
-Upon receipt of your report, a member of our security team will confirm and begin an investigation into the reported issue. We are committed to providing you with regular updates on the progress of your report. Should further information or clarification be necessary, we will reach out to you.
+Upon receiving your report, a member of our security team will promptly confirm receipt and initiate an investigation into the reported issue. We are committed to keeping you informed with regular updates on the progress of the investigation. If we require additional information or clarification, we will reach out to you directly.
 
 ### Bug Bounty Rewards
 
 - Rewards of up to $40,000 for any **critical** bugs that could result in loss of funds.
-- Rewards may be awarded for smaller bugs or improvements that are classified as valid. This will depend on the following considerations; the exploit scenario, product found in, likelihood and impact.
+- Rewards may also be awarded for smaller bugs or improvements deemed valid. Considerations include the exploit scenario, product affected, likelihood, and impact.
 
 
 ### Scope
 
-Assets listed below are considered in-scope and are eligible submissions within the bug bounty program. If you believe you have found a vulnerability in an area not specified in the table, please report it to the team and a member of our security team will investigate it further. 
+The assets listed below are considered in-scope within our bug bounty program. If you discover a vulnerability outside these specified areas, please report it to our team for further investigation. 
 
 | Asset                                                                                                                                                                                      | Type                     | Scope    | Eligible Reward  |
 |-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------|----------|-----------------|
@@ -42,27 +41,29 @@ Assets listed below are considered in-scope and are eligible submissions within 
 ### Out of scope vulnerabilities    
 
 - Any activity that could lead to the disruption of our service (DDOS/DOS).
+- Theoretical impacts without proof or demonstration.
 - Vulnerabilities that require physical access to a user's device.
 - Clickjacking on pages with no sensitive actions.
 - Attacks requiring leaked keys or credentials.
-- Self-XSS reports will not be accepted.
+- Self-XSS.
 - Lack of Secure/HTTPOnly flags on non-sensitive Cookies.
-- Missing or incorrect SPF and/or DMARC records of any kind.
-- Theoretical attacks without proof of exploitability.
+- SPF/DMARC misconfigured records.
+- Lack of DNSSEC or CAA records.
+- Automated scanner reports without demonstrated impact.
+- Issues that are not reproducible or do not present a clear security risk.
 
 ### Program Rules
 
+- Only submit one vulnerability per report.
+- When duplicates occur, we will only accept the first report that was received, as long as it fulfils our submission criteria and can be fully reproduced.
 - Social engineering targeted to Zora employees is prohibited.
 - Publishing sensitive information discovered during security testing is prohibited.
-- Only submit one vulnerability per report.
 - Vulnerabilities that Zora is aware of will not be rewarded.
-- Please provide thorough reports with clear steps that can be replicated. If the report lacks sufficient detail to reproduce the issue, it may not be accepted.
-- When duplicates occur, we will only accept the first report that was received, as long as it fulfills our submission criteria and can be fully reproduced.
-
+- Please provide thorough reports with clear steps that can be replicated. If your report lacks sufficient detail to reproduce the issue, it will not be accepted.
 
 
 ### Disclosure Policy
 
-To ensure responsible handling of vulnerability disclosures, it is crucial to keep all discussions of such vulnerabilities (even those that have already been resolved) within the program and not disclose them externally within 90 days of remediation or without Zora's express approval. Failure to comply with the Disclosure Policy will result in forfeiture of any eligible reward. Be confident that you are adhering to this policy and contributing to the safety and integrity of the program.
+For responsible management of vulnerability disclosures, keep all discussions related to these vulnerabilities, including resolved ones, strictly within the program. Additionally, do not disclose them externally within 90 days of remediation or without Zora's explicit consent. Failure to comply with the Disclosure Policy may result in the loss of any potential reward. Your adherence to this policy greatly enhances the program's safety and integrity.
 
-*Updated as of February 2024*
+*Updated June 2024*
