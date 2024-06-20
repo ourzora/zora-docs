@@ -11,7 +11,7 @@ sidebar_position: 3
 This hook makes a request to fetch metadata from an NFT's `metadataURI`.
 
 Most metadata servers allow for remote JSON fetches, however, there is a chance this request could fail.
-Requests are set with a 10 second timeout to allow showing the user an error message
+Requests are set with a 10-second timeout to allow showing the user an error message
 instead of an indefinite loader.
 
 :::note 
@@ -83,7 +83,7 @@ import { MediaFetchAgent, Networks } from '@zoralabs/nft-hooks'
 // Each instance contains a different request cache.
 const fetchAgent = new MediaFetchAgent(Networks.MAINNET)
 
-// Get result from the server
+// Get results from the server
 const result = await fetchAgent.fetchIPFSMetadata('https://ipfs.io/ipfs/METADATA_HASH')
 // result type is {metadata}
 ```
