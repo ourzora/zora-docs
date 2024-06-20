@@ -219,7 +219,7 @@ query FirstMonarchMinted {
 One thing to call out is that sometimes collections will airdrop their tokens to people to trick certain interfaces into making it look like that address minted from the collection.
 A way to prevent this is to compare the `originatorAddress` with the `toAddress`.
 
-The `originatorAddress` is the address that submitted the transaction and the `toAddress` is the address where the minted NFT was sent to in the transaction.
+The `originatorAddress` is the address that submitted the transaction and the `toAddress` is the address where the minted NFT was sent in the transaction.
 :::
 
 However, if we set the `tokenId` in `where` to 20 we can view the 21st Monarch minted and see that it was [minted for 0.8 ETH](https://etherscan.io/tx/0x07d236e70c1647f1d8504df7ea74435c01b276e2effe54b1df463a2ea7c76235).
