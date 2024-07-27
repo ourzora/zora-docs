@@ -1,6 +1,6 @@
-const darkCodeTheme = require('prism-react-renderer/themes/dracula')
-const math = require('remark-math')
-const katex = require('rehype-katex')
+const darkCodeTheme = require('prism-react-renderer/themes/dracula');
+const math = require('remark-math');
+const katex = require('rehype-katex');
 
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
 module.exports = {
@@ -19,45 +19,16 @@ module.exports = {
         src: 'img/zoraOrb.svg',
       },
       items: [
-        {
-          type: 'doc',
-          docId: 'intro',
-          position: 'left',
-          label: 'Intro',
-        },
-        {
-          position: 'left',
-          label: 'Contracts',
-          to: '/docs/smart-contracts/creator-tools/intro',
-        },
-        {
-          position: 'left',
-          label: 'Zora Network',
-          to: '/docs/zora-network/intro',
-        },
-        {
-          position: 'left',
-          label: 'API',
-          to: '/docs/zora-api/intro',
-        },
+        { type: 'doc', docId: 'intro', position: 'left', label: 'Intro' },
+        { position: 'left', label: 'Contracts', to: '/docs/smart-contracts/creator-tools/intro' },
+        { position: 'left', label: 'Zora Network', to: '/docs/zora-network/intro' },
+        { position: 'left', label: 'API', to: '/docs/zora-api/intro' },
       ],
     },
-    colorMode: {
-      defaultMode: 'dark',
-      disableSwitch: true,
-    },
-    prism: {
-      theme: darkCodeTheme,
-      additionalLanguages: ['solidity', 'graphql'],
-    },
-    algolia: {
-      apiKey: 'ea9711802399936fa4d55c3033c4cfc5',
-      indexName: 'zora',
-      appId: 'BH4D9OD16A',
-    },
-    footer: {
-      style: 'dark',
-    },
+    colorMode: { defaultMode: 'dark', disableSwitch: true },
+    prism: { theme: darkCodeTheme, additionalLanguages: ['solidity', 'graphql'] },
+    algolia: { apiKey: 'ea9711802399936fa4d55c3033c4cfc5', indexName: 'zora', appId: 'BH4D9OD16A' },
+    footer: { style: 'dark' },
     image: 'img/og-image.png',
     ...(process.env.GTAG_ID && {
       gtag: {
@@ -66,19 +37,9 @@ module.exports = {
       },
     }),
     metadatas: [
-      {
-        name: 'title',
-        content: 'Zora Docs',
-      },
-      {
-        name: 'og:description',
-        content: 'Bringing imagination onchain.'
-      },
-      {
-        name: 'description',
-        content:
-          'Zora makes it easy for developers to get started building with NFTs. ',
-      },
+      { name: 'title', content: 'Zora Docs' },
+      { name: 'og:description', content: 'Bringing imagination onchain.' },
+      { name: 'description', content: 'Zora makes it easy for developers to get started building with NFTs.' },
     ],
   },
   presets: [
@@ -91,20 +52,15 @@ module.exports = {
           remarkPlugins: [math],
           rehypePlugins: [katex],
         },
-        theme: {
-          customCss: require.resolve('./src/css/custom.css'),
-        },
-        guides: {
-          sidebarPath: require.resolve('./sidebars.js'),
-        },
+        theme: { customCss: require.resolve('./src/css/custom.css') },
+        guides: { sidebarPath: require.resolve('./sidebars.js') },
       },
     ],
   ],
   stylesheets: [
     {
       href: 'https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.css',
-      integrity:
-        'sha384-Um5gpz1odJg5Z4HAmzPtgZKdTBHZdw8S29IecapCSB31ligYPhHQZMIlWLYQGVoc',
+      integrity: 'sha384-Um5gpz1odJg5Z4HAmzPtgZKdTBHZdw8S29IecapCSB31ligYPhHQZMIlWLYQGVoc',
       crossorigin: 'anonymous',
     },
   ],
@@ -120,4 +76,5 @@ module.exports = {
       },
     ],
   ],
-}
+};
+
