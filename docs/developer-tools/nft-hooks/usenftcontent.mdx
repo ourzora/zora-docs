@@ -11,7 +11,7 @@ sidebar_position: 4
 This hook makes a request to fetch content (image, video, etc) based on an NFT's metadata.
 
 Most metadata servers allow remote JSON fetches. However, there is a chance this request could fail. 
-Requests are set with a 10 second timeout to allow showing the user
+Requests are set with a 10-second timeout to allow showing the user
 an error message instead of an indefinite loader.
 
 :::note 
@@ -28,7 +28,7 @@ You can learn more about MIME types [here](https://developer.mozilla.org/en-US/d
 If you do not have access to `mimeType` from the metadata or do not wish to retrieve the metadata, it
 can be omitted with a small performance impact.
 
-Content returned from this hook is **NOT CACHED**, meaning that each time the hook is used the content will be fetched.
+The content returned from this hook is **NOT CACHED**, meaning that each time the hook is used the content will be fetched.
 
 ```ts
 /**
