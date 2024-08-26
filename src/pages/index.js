@@ -1,5 +1,4 @@
 import React from 'react'
-import Layout from '@theme/Layout'
 import styles from './index.module.css'
 import { GettingStartedCards } from '../components/GettingStartedCards'
 import { ToolsCards } from '../components/ToolsCards'
@@ -8,7 +7,10 @@ import BannerImage from '../../static/img/bannerImage.jpg'
 
 export default function Home() {
   return (
-    <Layout>
+    <>
+      <Head>
+        <meta property="og:image" content="img/image.png" />
+      </Head>
       <div>
         <img src={BannerImage}></img>
       </div>
@@ -24,6 +26,7 @@ export default function Home() {
           <ProjectsCards />
         </div>
       </main>
-    </Layout>
+      </>
+
   )
 }
