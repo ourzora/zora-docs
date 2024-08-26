@@ -5,13 +5,13 @@ import { ToolsCards } from '../components/ToolsCards'
 import ProjectsCards from '../components/ProjectsCards'
 import BannerImage from '../../static/img/bannerImage.jpg'
 import Head from '@docusaurus/Head'
-import Layout from '@theme/layout'
+import Layout from '@theme/Layout'
 
 export default function Home() {
   return (
     <>
       <Head>
-        <meta property="og:image" content="img/og-image.png" />
+        <meta property="og:image" content="/img/og-image.png" />
       </Head>
       <Layout>
         <div>
