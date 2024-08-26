@@ -5,6 +5,7 @@ import { ToolsCards } from '../components/ToolsCards'
 import ProjectsCards from '../components/ProjectsCards'
 import BannerImage from '../../static/img/bannerImage.jpg'
 import Head from '@docusaurus/Head'
+import Layout from '@theme/layout'
 
 export default function Home() {
   return (
@@ -12,21 +13,23 @@ export default function Home() {
       <Head>
         <meta property="og:image" content="img/image.png" />
       </Head>
-      <div>
-        <img src={BannerImage}></img>
-      </div>
-      <main className={styles.layout}>
-        <div className={styles.layoutFlexBox}>
-          <div className={styles.gettingStartedFlexBox}>
-            <p className={styles.gettingStarted}>Getting Started</p>
-          </div>
-          <GettingStartedCards />
-          <p className={styles.tools}>Tools</p>
-          <ToolsCards />
-          <p className={styles.projects}>Projects Building on ZORA</p>
-          <ProjectsCards />
+      <Layout>
+        <div>
+          <img src={BannerImage}></img>
         </div>
-      </main>
+        <main className={styles.layout}>
+          <div className={styles.layoutFlexBox}>
+            <div className={styles.gettingStartedFlexBox}>
+              <p className={styles.gettingStarted}>Getting Started</p>
+            </div>
+            <GettingStartedCards />
+            <p className={styles.tools}>Tools</p>
+            <ToolsCards />
+            <p className={styles.projects}>Projects Building on ZORA</p>
+            <ProjectsCards />
+          </div>
+        </main>
+      </Layout>
     </>
   )
 }
