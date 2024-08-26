@@ -11,7 +11,7 @@ export default function Home() {
   return (
     <>
       <Head>
-        <meta property="og:image" content="img/image.png" />
+        <meta property="og:image" content="img/og-image.png" />
       </Head>
       <Layout>
         <div>
