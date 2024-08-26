@@ -4,6 +4,7 @@ import { GettingStartedCards } from '../components/GettingStartedCards'
 import { ToolsCards } from '../components/ToolsCards'
 import ProjectsCards from '../components/ProjectsCards'
 import BannerImage from '../../static/img/bannerImage.jpg'
+import Head from '@docusaurus/Head'
 
 export default function Home() {
   return (
@@ -26,7 +27,6 @@ export default function Home() {
           <ProjectsCards />
         </div>
       </main>
-      </>
-
+    </>
   )
 }
